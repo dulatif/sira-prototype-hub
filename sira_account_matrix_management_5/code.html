@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <load src="/src/partials/head.html" title="Sira - Account Matrix" />
+    <style type="text/tailwindcss">
+      ::-webkit-scrollbar {
+        width: 8px;
       }
       ::-webkit-scrollbar-track {
         background: transparent;
@@ -35,9 +39,9 @@
           class="absolute bottom-0 right-1/3 w-[500px] h-[500px] bg-secondary opacity-[0.08] dark:opacity-[0.1] rounded-full blur-3xl"
         ></div>
       </div>
-              <load src="/src/partials/sidebar.html" active="account" />
+      <load src="/src/partials/sidebar.html" active="account" />
       <main class="flex-1 flex flex-col h-full relative z-10 overflow-hidden">
-                <load
+        <load
           src="/src/partials/header.html"
           title="My Accounts"
           subtitle="TOTAL NET WORTH: <span class='text-primary font-bold'>$42,850.00</span>"
