@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import injectHTML from 'vite-plugin-html-inject';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { resolve } from 'path';
 import { readdirSync, lstatSync } from 'fs';
 
@@ -27,7 +28,17 @@ function getHtmlEntries(dir, entries = {}) {
 }
 
 export default defineConfig({
-  plugins: [injectHTML()],
+  plugins: [
+    injectHTML(),
+    viteStaticCopy({
+      targets: readdirSync(__dirname)
+        .filter(f => f.startsWith('sira_') && lstatSync(resolve(__dirname, f)).isDirectory())
+        .map(folder => ({
+          src: `${folder}/*.png`,
+          dest: folder
+        }))
+    })
+  ],
   build: {
     rollupOptions: {
       input: getHtmlEntries(__dirname)
