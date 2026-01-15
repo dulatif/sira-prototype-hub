@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sira Sign Up Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#2A9D8F",
+                        "primary-dark": "#1F7A6F",
+                        "teal-gradient-start": "#63C1BB",
+                        "teal-gradient-end": "#C8E6E2",
+                        "background-light": "#F0F9F8",
+                        "background-dark": "#0F172A",
+                        "surface-light": "rgba(255, 255, 255, 0.7)",
+                        "surface-dark": "rgba(30, 41, 59, 0.7)",
+                        "text-light": "#1E293B",
+                        "text-dark": "#E2E8F0",
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        'xl': "1rem",
+                        '2xl': "1.5rem",
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        .input-field {
+            @apply w-full px-5 py-3.5 rounded-xl border border-slate-200 bg-white text-slate-700 placeholder-slate-400 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all duration-300;
+        }
+        .social-btn {
+            @apply flex items-center justify-center gap-3 w-full py-3 rounded-xl border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-all duration-300 font-medium text-slate-600 text-sm bg-white;
+        }
+        .auth-bg-pattern {
+            background-image: radial-gradient(#2A9D8F 1px, transparent 1px);
+            background-size: 32px 32px;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body class="bg-white font-sans h-screen flex overflow-hidden selection:bg-primary/20 selection:text-primary-dark text-slate-800">
+<div class="hidden lg:flex w-1/2 bg-[#E0F5F2] relative flex-col justify-center items-center p-16 overflow-hidden">
+<div class="absolute inset-0 auth-bg-pattern"></div>
+<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-300/20 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/4"></div>
+<div class="absolute bottom-0 left-20 w-[400px] h-[400px] bg-blue-300/20 rounded-full blur-3xl pointer-events-none translate-y-1/3"></div>
+<div class="relative z-10 max-w-lg w-full animate-float">
+<svg class="w-full h-auto drop-shadow-2xl" fill="none" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+<circle cx="250" cy="270" fill="white" fill-opacity="0.4" r="160"></circle>
+<circle cx="250" cy="270" fill="white" fill-opacity="0.6" r="110"></circle>
+<ellipse cx="250" cy="380" fill="#264653" rx="70" ry="18"></ellipse>
+<path d="M180 380v20c0 9.9 31.3 18 70 18s70-8.1 70-18v-20" fill="#1F3A45"></path>
+<ellipse cx="250" cy="360" fill="#2A9D8F" rx="65" ry="16"></ellipse>
+<path d="M185 360v16c0 8.8 29.1 16 65 16s65-7.2 65-16v-16" fill="#1F7A6F"></path>
+<ellipse cx="250" cy="340" fill="#63C1BB" rx="60" ry="14"></ellipse>
+<path d="M190 340v14c0 7.7 26.8 14 60 14s60-6.3 60-14v-14" fill="#4BA39D"></path>
+<path d="M250 340Q250 240 250 180" stroke="#2A9D8F" stroke-linecap="round" stroke-width="8"></path>
+<path d="M250 280Q300 260 320 220" stroke="#2A9D8F" stroke-linecap="round" stroke-width="5"></path>
+<circle cx="320" cy="220" fill="#63C1BB" r="15"></circle>
+<path d="M250 240Q200 220 180 180" stroke="#2A9D8F" stroke-linecap="round" stroke-width="5"></path>
+<circle cx="180" cy="180" fill="#264653" r="12"></circle>
+<path d="M250 180Q280 150 280 120" stroke="#2A9D8F" stroke-linecap="round" stroke-width="5"></path>
+<circle cx="280" cy="120" fill="#2A9D8F" r="18"></circle>
+<path d="M250 180Q220 150 220 110" stroke="#2A9D8F" stroke-linecap="round" stroke-width="5"></path>
+<circle cx="220" cy="110" fill="#E9C46A" r="20"></circle> 
+<circle cx="200" cy="100" fill="#F4A261" opacity="0.6" r="6"></circle>
+<circle cx="300" cy="150" fill="#63C1BB" opacity="0.6" r="8"></circle>
+</svg>
+<div class="text-center mt-12">
+<h2 class="text-3xl font-bold text-slate-800 mb-3 tracking-tight">Plant seeds for your future</h2>
+<p class="text-slate-500 text-lg max-w-sm mx-auto leading-relaxed">Join Sira and watch your financial mindfulness grow, one habit at a time.</p>
+</div>
+</div>
+</div>
+<div class="w-full lg:w-1/2 h-full overflow-y-auto bg-white flex flex-col items-center justify-center p-6 md:p-12 lg:p-20 relative">
+<div class="w-full max-w-md space-y-8 animate-fade-in-up">
+<div class="text-center">
+<div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-gradient-start to-primary flex items-center justify-center shadow-lg shadow-teal-500/20 overflow-hidden mx-auto mb-6">
+<img alt="Sira Logo" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGIhj6I7i2Jx-bN4ewyhor4iKOyqwuoPpGwhX79Oe_qouCgPiVynPO9jA1KiCK3v3UQsXMtWEJczLYBcDMD8LvdPdf8FxHWDPI1aU_Uau4bxvEqbl1SAH5nLoBfa-acFuqOQjNkPO-wZCcfqTLLFhEAFXpmLteW6oYh829R-RNbQR8Vep-R7Eqga9vKdVVrh0JWL3n9DD42mTCMmWBL85vqJ1cag91A5cpAbA8ZhP5aDJclmvANYKK8VCywi1Q9heRV_bxbXFS3wm4"/>
+</div>
+<h1 class="text-3xl font-bold text-slate-800 tracking-tight mb-2">Create Account</h1>
+<p class="text-slate-500">Start your journey to financial clarity today.</p>
+</div>
+<form class="space-y-5" onsubmit="event.preventDefault();">
+<div>
+<label class="block text-sm font-semibold text-slate-700 mb-2 ml-1">Full Name</label>
+<input class="input-field" placeholder="e.g. Alex Chen" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-semibold text-slate-700 mb-2 ml-1">Email Address</label>
+<input class="input-field" placeholder="name@example.com" type="email"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<div>
+<label class="block text-sm font-semibold text-slate-700 mb-2 ml-1">Password</label>
+<input class="input-field" placeholder="••••••••" type="password"/>
+</div>
+<div>
+<label class="block text-sm font-semibold text-slate-700 mb-2 ml-1">Confirm Password</label>
+<input class="input-field" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<div class="pt-2">
+<button class="w-full py-4 rounded-xl bg-gradient-to-r from-teal-500 to-primary text-white font-bold text-lg shadow-xl shadow-teal-500/20 hover:shadow-teal-500/40 hover:-translate-y-0.5 transition-all duration-300">
+                    Create Account
+                </button>
+</div>
+</form>
+<div class="relative flex items-center py-2">
+<div class="flex-grow border-t border-slate-200"></div>
+<span class="flex-shrink-0 mx-4 text-slate-400 text-xs font-semibold uppercase tracking-wider">Or sign up with</span>
+<div class="flex-grow border-t border-slate-200"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="social-btn group">
+<img alt="Google" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgK_ApqoxjsiS0W26WYitNoLlJtEx9UKawL7aidga7Dy_MnVyJFebqAx8W167VNiHQ_5IoT-D2bWGYP1k45jbh54rX_AuEg4l18mLjx5WCkRy43fYmB-20fCmymdhs2ivocNVxAWa4ykFJyZnlgYe1E9OPPKWHuRiraGzPrC9rQBZS7BsjN0fYfX4a11WPNApPmt27GOVOFn8e99jYXs2ic6QnJ5wZGzpTy4ZD5gt68-DyaF6Qd_jFOdR1mbKlXseXoTwK7cILya2Z"/>
+<span class="group-hover:text-slate-900 transition-colors">Google</span>
+</button>
+<button class="social-btn group">
+<img alt="Apple" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc0D5yqhdsQdEwQiGcJD-1N1G6O8SszRQO73ueE9wnlgjrVxNMV-j8DL_Ux4aVXun0ITQKsXV6A6U33iztWiDAD8hQZ3kGW33lK6UkjBfSyqsAI5glWLU8kNOepoLTHMXpQd3AmD6iRUYi7v77SPaWOT97ywqSsdUOfPvrSChaYyWdNFn_qpSLMndZ45Ob_xWQxz2WpVjdUwMYmP6yK9rIwiRhndEIZiw8k4UWKdV6hAGJvRKSFP3AohhcdD8K4IlGbRW8VtEK4zUe"/>
+<span class="group-hover:text-slate-900 transition-colors">Apple</span>
+</button>
+</div>
+<p class="text-center text-slate-500 text-sm mt-8">
+            Already have an account? 
+            <a class="text-primary font-bold hover:text-primary-dark hover:underline transition-colors" href="#">Sign In</a>
+</p>
+</div>
+</div>
+
+</body></html>

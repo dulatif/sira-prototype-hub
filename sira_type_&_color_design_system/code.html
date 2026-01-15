@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sira Design System</title>
+<!-- Fonts: Manrope (UI), Outfit (Brand Type), JetBrains Mono (Data), Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Outfit:wght@100..900&amp;family=JetBrains+Mono:wght@100..800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5dc6bd",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#141e1d",
+                        "sira-teal": "#63C1BB",
+                        "sira-mint": "#F3FBFA",
+                        "sira-ocean": "#194657",
+                        "sira-obsidian": "#24292F",
+                        "sira-success": "#4CAF50",
+                        "sira-danger": "#E91E63",
+                        "sira-warning": "#FFC107",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "brand": ["Outfit", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(25, 70, 87, 0.05)',
+                        'glow': '0 0 15px rgba(99, 193, 187, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .font-brand {
+            font-family: 'Outfit', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .flux-gradient {
+            background: linear-gradient(135deg, #63C1BB 0%, #194657 100%);
+        }
+        .deep-flow-gradient {
+            background: radial-gradient(circle at top right, #2C5F6D 0%, #141e1d 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-sira-obsidian dark:text-white transition-colors duration-200">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-[#dde3e3] bg-white/80 backdrop-blur-md px-6 py-4 lg:px-12">
+<div class="flex items-center gap-3">
+<div class="flex size-8 items-center justify-center rounded-lg bg-sira-ocean text-white">
+<span class="material-symbols-outlined text-xl">waves</span>
+</div>
+<h2 class="font-brand text-xl font-bold tracking-tight text-sira-ocean">Sira <span class="text-primary font-light">Design System</span></h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-semibold text-primary" href="#">Tokens</a>
+<a class="text-sm font-medium text-sira-obsidian/70 hover:text-sira-ocean transition" href="#">Components</a>
+<a class="text-sm font-medium text-sira-obsidian/70 hover:text-sira-ocean transition" href="#">Patterns</a>
+</nav>
+<div class="flex items-center gap-3">
+<button class="flex h-9 items-center justify-center gap-2 rounded-lg bg-gray-100 px-3 text-xs font-bold text-sira-ocean hover:bg-gray-200 transition">
+<span class="material-symbols-outlined text-base">download</span>
+                    Assets
+                </button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex flex-1 flex-col items-center py-10 px-4 sm:px-8">
+<div class="flex w-full max-w-[1024px] flex-col gap-12">
+<!-- Hero Section -->
+<div class="flex flex-col gap-4 py-6">
+<div class="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-bold text-sira-ocean uppercase tracking-wider">
+<span class="size-2 rounded-full bg-primary animate-pulse"></span>
+                        v2.4.0 Documentation
+                    </div>
+<h1 class="font-brand text-4xl font-extrabold leading-tight text-sira-ocean sm:text-5xl md:text-6xl">
+                        Typography &amp; <br/>Color Tokens
+                    </h1>
+<p class="max-w-2xl text-lg text-slate-500 font-medium">
+                        The foundational elements of the Sira visual language. Consistent usage of these tokens ensures a cohesive, mindful, and accessible user experience across the platform.
+                    </p>
+</div>
+<!-- Section 1: Color Palette -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center justify-between border-b border-gray-200 pb-2">
+<h2 class="text-2xl font-bold text-sira-ocean flex items-center gap-2">
+<span class="text-primary">01.</span> Color Palette (Teal Flux)
+                        </h2>
+<span class="text-xs font-mono text-slate-400">@sira/colors</span>
+</div>
+<!-- Primary Colors -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Brand Primary -->
+<div class="flex flex-col gap-4 rounded-xl bg-white p-6 shadow-soft border border-slate-100">
+<h3 class="font-bold text-sira-ocean">Brand Primary</h3>
+<div class="flex flex-col gap-3">
+<div class="group relative flex h-24 w-full items-end justify-between rounded-lg bg-sira-teal p-4 text-white shadow-sm transition-transform hover:scale-[1.01]">
+<span class="font-mono text-sm opacity-80">brand.primary.500</span>
+<span class="font-mono font-bold">#63C1BB</span>
+<div class="absolute inset-0 bg-white/20 opacity-0 transition-opacity group-hover:opacity-100 rounded-lg"></div>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<div class="flex h-16 flex-col justify-end rounded-lg bg-[#b2dfdb] p-2 text-[10px] font-bold text-sira-ocean">
+<span class="opacity-60">primary.200</span>
+<span>#B2DFDB</span>
+</div>
+<div class="flex h-16 flex-col justify-end rounded-lg bg-[#80cbc4] p-2 text-[10px] font-bold text-sira-ocean">
+<span class="opacity-60">primary.300</span>
+<span>#80CBC4</span>
+</div>
+<div class="flex h-16 flex-col justify-end rounded-lg bg-[#26a69a] p-2 text-[10px] font-bold text-white">
+<span class="opacity-80">primary.700</span>
+<span>#26A69A</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Brand Neutrals -->
+<div class="flex flex-col gap-4 rounded-xl bg-white p-6 shadow-soft border border-slate-100">
+<h3 class="font-bold text-sira-ocean">Neutrals &amp; Surfaces</h3>
+<div class="flex flex-col gap-3">
+<div class="flex h-24 w-full items-end justify-between rounded-lg bg-sira-ocean p-4 text-white shadow-sm">
+<span class="font-mono text-sm opacity-80">text.ocean</span>
+<span class="font-mono font-bold">#194657</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="flex h-16 flex-col justify-end rounded-lg border border-gray-100 bg-sira-mint p-2 text-[10px] font-bold text-sira-ocean">
+<span class="opacity-60">surface.mint</span>
+<span>#F3FBFA</span>
+</div>
+<div class="flex h-16 flex-col justify-end rounded-lg bg-sira-obsidian p-2 text-[10px] font-bold text-white">
+<span class="opacity-60">text.obsidian</span>
+<span>#24292F</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Semantic & Gradients -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Semantic Scale -->
+<div class="flex flex-col justify-between gap-4 rounded-xl bg-white p-6 shadow-soft border border-slate-100">
+<h3 class="font-bold text-sira-ocean">Semantic</h3>
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-sira-success shadow-sm"></div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-sira-ocean">Success</span>
+<span class="font-mono text-[10px] text-slate-500">#4CAF50</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-sira-warning shadow-sm"></div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-sira-ocean">Warning</span>
+<span class="font-mono text-[10px] text-slate-500">#FFC107</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-sira-danger shadow-sm"></div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-sira-ocean">Danger</span>
+<span class="font-mono text-[10px] text-slate-500">#E91E63</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Gradients -->
+<div class="md:col-span-2 flex flex-col gap-4 rounded-xl bg-white p-6 shadow-soft border border-slate-100">
+<h3 class="font-bold text-sira-ocean">System Gradients</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 h-full">
+<div class="flux-gradient group relative flex h-32 w-full flex-col justify-end rounded-xl p-4 text-white shadow-lg transition-all hover:shadow-xl">
+<span class="font-brand text-lg font-bold">Flux Gradient</span>
+<span class="font-mono text-xs opacity-75">linear-gradient(135deg)</span>
+<div class="absolute inset-0 rounded-xl bg-white/0" data-alt="Abstract teal to deep blue gradient showing the flux theme"></div>
+</div>
+<div class="deep-flow-gradient relative flex h-32 w-full flex-col justify-end rounded-xl p-4 text-white shadow-lg">
+<span class="font-brand text-lg font-bold">Deep Flow</span>
+<span class="font-mono text-xs opacity-75">radial-gradient(circle)</span>
+<div class="absolute inset-0 rounded-xl bg-white/0" data-alt="Dark deep radial gradient mimicking ocean depth"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Typography -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center justify-between border-b border-gray-200 pb-2">
+<h2 class="text-2xl font-bold text-sira-ocean flex items-center gap-2">
+<span class="text-primary">02.</span> Typography (Outfit)
+                        </h2>
+<span class="text-xs font-mono text-slate-400">@sira/type-brand</span>
+</div>
+<div class="overflow-hidden rounded-xl border border-slate-100 bg-white shadow-soft">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-gray-50/50 text-xs uppercase tracking-wider text-slate-400">
+<th class="px-6 py-4 font-medium">Role</th>
+<th class="px-6 py-4 font-medium">Example</th>
+<th class="px-6 py-4 font-medium text-right">Specs</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100">
+<tr class="group hover:bg-sira-mint/30 transition-colors">
+<td class="px-6 py-8 align-top text-sm font-bold text-slate-400">Display H1</td>
+<td class="px-6 py-8 align-middle">
+<p class="font-brand text-5xl font-bold text-sira-ocean">Mindful Finance</p>
+</td>
+<td class="px-6 py-8 align-top text-right font-mono text-xs text-slate-500">
+                                        48/1.1<br/>Bold (700)<br/>-0.02em
+                                    </td>
+</tr>
+<tr class="group hover:bg-sira-mint/30 transition-colors">
+<td class="px-6 py-6 align-top text-sm font-bold text-slate-400">Heading H2</td>
+<td class="px-6 py-6 align-middle">
+<p class="font-brand text-3xl font-semibold text-sira-ocean">Account Overview</p>
+</td>
+<td class="px-6 py-6 align-top text-right font-mono text-xs text-slate-500">
+                                        30/1.2<br/>SemiBold (600)<br/>-0.01em
+                                    </td>
+</tr>
+<tr class="group hover:bg-sira-mint/30 transition-colors">
+<td class="px-6 py-6 align-top text-sm font-bold text-slate-400">Heading H3</td>
+<td class="px-6 py-6 align-middle">
+<p class="font-brand text-xl font-medium text-sira-ocean">Recent Transactions</p>
+</td>
+<td class="px-6 py-6 align-top text-right font-mono text-xs text-slate-500">
+                                        20/1.4<br/>Medium (500)<br/>0em
+                                    </td>
+</tr>
+<tr class="group hover:bg-sira-mint/30 transition-colors">
+<td class="px-6 py-6 align-top text-sm font-bold text-slate-400">Body Large</td>
+<td class="px-6 py-6 align-middle">
+<p class="font-brand text-lg font-normal text-sira-obsidian leading-relaxed">
+                                            Sira helps you understand your financial health through intuitive visualizations.
+                                        </p>
+</td>
+<td class="px-6 py-6 align-top text-right font-mono text-xs text-slate-500">
+                                        18/1.6<br/>Regular (400)<br/>0em
+                                    </td>
+</tr>
+<tr class="group hover:bg-sira-mint/30 transition-colors">
+<td class="px-6 py-6 align-top text-sm font-bold text-slate-400">Caption</td>
+<td class="px-6 py-6 align-middle">
+<p class="font-brand text-sm font-medium text-slate-500 uppercase tracking-wider">
+                                            Last updated 2 mins ago
+                                        </p>
+</td>
+<td class="px-6 py-6 align-top text-right font-mono text-xs text-slate-500">
+                                        14/1.5<br/>Medium (500)<br/>0.05em
+                                    </td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Section 3: Specialized Type -->
+<section class="flex flex-col gap-6">
+<div class="flex items-center justify-between border-b border-gray-200 pb-2">
+<h2 class="text-2xl font-bold text-sira-ocean flex items-center gap-2">
+<span class="text-primary">03.</span> Specialized Data (JetBrains Mono)
+                        </h2>
+<span class="text-xs font-mono text-slate-400">@sira/type-mono</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Card 1: Financial Data -->
+<div class="relative overflow-hidden rounded-xl bg-sira-ocean p-8 text-white shadow-soft">
+<div class="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-white/5 blur-3xl"></div>
+<div class="flex flex-col gap-6">
+<div>
+<p class="mb-2 text-xs font-medium uppercase text-primary/80 tracking-widest">Balance Display</p>
+<div class="flex items-baseline gap-1">
+<span class="font-mono text-4xl font-light tracking-tight">$</span>
+<span class="font-mono text-5xl font-medium tracking-tight">12,450.00</span>
+<span class="font-mono text-sm text-green-400 ml-2">+2.4%</span>
+</div>
+</div>
+<div class="h-px w-full bg-white/10"></div>
+<div class="flex justify-between">
+<div class="flex flex-col">
+<span class="text-xs text-white/50">API ID</span>
+<span class="font-mono text-sm tracking-wide text-primary">usr_892_xfk</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="text-xs text-white/50">Limit</span>
+<span class="font-mono text-sm">50,000 USD</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Code/Technical -->
+<div class="rounded-xl bg-[#F8F9FA] border border-slate-200 p-8 shadow-soft flex flex-col justify-center">
+<div class="flex items-center gap-2 mb-4">
+<div class="size-3 rounded-full bg-red-400"></div>
+<div class="size-3 rounded-full bg-yellow-400"></div>
+<div class="size-3 rounded-full bg-green-400"></div>
+</div>
+<div class="font-mono text-sm leading-7 text-sira-obsidian">
+<span class="text-purple-600">const</span> <span class="text-blue-600">formatCurrency</span> = (value) =&gt; {<br/>
+                                  <span class="text-purple-600">return</span> <span class="text-orange-600">new</span> Intl.NumberFormat(<span class="text-green-600">'en-US'</span>, {<br/>
+                                    style: <span class="text-green-600">'currency'</span>,<br/>
+                                    currency: <span class="text-green-600">'USD'</span><br/>
+                                  }).format(value);<br/>
+                                }
+                            </div>
+</div>
+</div>
+</section>
+<!-- Section 4: Functional Tokens -->
+<section class="flex flex-col gap-6 pb-20">
+<div class="flex items-center justify-between border-b border-gray-200 pb-2">
+<h2 class="text-2xl font-bold text-sira-ocean flex items-center gap-2">
+<span class="text-primary">04.</span> Usage Tokens
+                        </h2>
+<span class="text-xs font-mono text-slate-400">@sira/tokens-usage</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Glass Surface -->
+<div class="group relative flex aspect-square flex-col items-center justify-center gap-3 overflow-hidden rounded-xl bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&amp;w=2564&amp;auto=format&amp;fit=crop')] bg-cover bg-center shadow-md" data-alt="Abstract soft focus background">
+<div class="absolute inset-0 bg-sira-ocean/30"></div>
+<div class="glass-panel absolute flex flex-col items-center justify-center p-4 rounded-lg shadow-lg backdrop-blur-md transition-all group-hover:scale-105">
+<span class="material-symbols-outlined text-white mb-2">blur_on</span>
+<span class="text-xs font-bold text-white">surface.glass</span>
+</div>
+</div>
+<!-- Border Subtle -->
+<div class="flex aspect-square flex-col items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+<div class="h-16 w-16 rounded-full border border-slate-200 bg-gray-50 flex items-center justify-center">
+<div class="h-10 w-10 rounded-full border border-slate-300 bg-white"></div>
+</div>
+<span class="font-mono text-xs text-slate-500">border.subtle</span>
+</div>
+<!-- Focus State -->
+<div class="flex aspect-square flex-col items-center justify-center gap-3 rounded-xl bg-white p-4 shadow-sm border border-transparent ring-4 ring-primary/20">
+<button class="rounded-lg bg-primary px-4 py-2 text-xs font-bold text-white shadow-glow">
+                                Focus
+                             </button>
+<span class="font-mono text-xs text-slate-500">state.focus</span>
+</div>
+<!-- Text Contrast -->
+<div class="flex aspect-square flex-col items-center justify-center gap-1 rounded-xl bg-sira-obsidian p-4 text-center shadow-sm">
+<p class="text-white text-sm font-medium">High Contrast</p>
+<p class="text-white/60 text-xs">Low Contrast</p>
+<div class="mt-2 h-px w-8 bg-white/20"></div>
+<span class="mt-1 font-mono text-[10px] text-white/40">text.inverse</span>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

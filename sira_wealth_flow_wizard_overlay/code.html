@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sira Wealth Flow Wizard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00e6d2",
+                        "primary-dark": "#00bcb0",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#0f2321",
+                        "surface-glass": "rgba(255, 255, 255, 0.05)",
+                        "surface-glass-hover": "rgba(255, 255, 255, 0.1)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "1.5rem",
+                        "3xl": "2rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "neon": "0 0 20px rgba(0, 230, 210, 0.3)",
+                        "glass": "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Utilities for Mood Glows */
+        .mood-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mood-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .glow-mager:hover, .glow-mager.active { box-shadow: 0 0 15px rgba(96, 165, 250, 0.4); border-color: rgba(96, 165, 250, 0.6); color: #60a5fa; }
+        .glow-gabut:hover, .glow-gabut.active { box-shadow: 0 0 15px rgba(192, 132, 252, 0.4); border-color: rgba(192, 132, 252, 0.6); color: #c084fc; }
+        .glow-healing:hover, .glow-healing.active { box-shadow: 0 0 15px rgba(52, 211, 153, 0.4); border-color: rgba(52, 211, 153, 0.6); color: #34d399; }
+        .glow-cuan:hover, .glow-cuan.active { box-shadow: 0 0 15px rgba(250, 204, 21, 0.4); border-color: rgba(250, 204, 21, 0.6); color: #facc15; }
+        .glow-hype:hover, .glow-hype.active { box-shadow: 0 0 15px rgba(244, 114, 182, 0.4); border-color: rgba(244, 114, 182, 0.6); color: #f472b6; }
+
+        /* Hide scrollbar for clean modal look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Input styling to remove arrows */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+    </style>
+</head>
+<body class="bg-background-dark text-white font-display min-h-screen relative overflow-hidden">
+<!-- Ambient Background simulating the underlying app -->
+<div class="fixed inset-0 z-0 pointer-events-none">
+<!-- Abstract blurred shapes -->
+<div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-primary/20 blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-blue-900/20 blur-[150px]"></div>
+<!-- Dashboard Simulation (Blurred) -->
+<div class="w-full h-full opacity-30 bg-[url('https://images.unsplash.com/photo-1642427749670-f20e2e76ed8c?q=80&amp;w=2080&amp;auto=format&amp;fit=crop')] bg-cover bg-center" data-alt="Abstract digital financial dashboard background"></div>
+</div>
+<!-- The Overlay Wrapper -->
+<div class="relative z-10 flex min-h-screen w-full flex-col items-center justify-center bg-black/40 backdrop-blur-[20px] p-4 sm:p-6">
+<!-- Modal Card -->
+<div class="w-full max-w-[520px] rounded-[24px] border border-white/10 bg-white/10 p-6 shadow-glass backdrop-blur-xl sm:p-8 flex flex-col gap-6 animate-fade-in-up">
+<!-- Header -->
+<div class="flex items-center justify-between border-b border-white/5 pb-4">
+<h2 class="text-[22px] font-bold leading-tight tracking-[-0.015em] text-white">New Wealth Flow</h2>
+<button class="group flex h-8 w-8 items-center justify-center rounded-full bg-white/5 transition hover:bg-white/10 hover:text-primary">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<!-- Content Scroll Area (if needed on small screens) -->
+<div class="flex flex-col gap-7 overflow-y-auto no-scrollbar max-h-[75vh]">
+<!-- 1. Source Selection -->
+<div class="flex flex-col gap-3">
+<label class="text-sm font-medium text-gray-400 uppercase tracking-wider font-body">From Pocket</label>
+<div class="grid grid-cols-3 gap-3">
+<!-- Card 1 (Active) -->
+<button class="group relative flex flex-col items-start justify-between gap-3 rounded-2xl border border-primary bg-primary/10 p-4 transition-all hover:bg-primary/20">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20 text-primary">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div class="text-left">
+<p class="text-sm font-bold text-white leading-tight">Main Vault</p>
+<p class="text-[11px] font-medium text-primary font-mono mt-1">$12,450</p>
+</div>
+<!-- Active Check -->
+<div class="absolute top-2 right-2 text-primary">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+</div>
+</button>
+<!-- Card 2 -->
+<button class="group flex flex-col items-start justify-between gap-3 rounded-2xl border border-white/5 bg-surface-glass p-4 transition-all hover:border-white/20 hover:bg-surface-glass-hover">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-300 group-hover:bg-white/10 group-hover:text-white">
+<span class="material-symbols-outlined">credit_card</span>
+</div>
+<div class="text-left">
+<p class="text-sm font-medium text-gray-300 group-hover:text-white leading-tight">Daily</p>
+<p class="text-[11px] font-medium text-gray-500 group-hover:text-gray-400 font-mono mt-1">$450.20</p>
+</div>
+</button>
+<!-- Card 3 -->
+<button class="group flex flex-col items-start justify-between gap-3 rounded-2xl border border-white/5 bg-surface-glass p-4 transition-all hover:border-white/20 hover:bg-surface-glass-hover">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 text-gray-300 group-hover:bg-white/10 group-hover:text-white">
+<span class="material-symbols-outlined">currency_bitcoin</span>
+</div>
+<div class="text-left">
+<p class="text-sm font-medium text-gray-300 group-hover:text-white leading-tight">Crypto</p>
+<p class="text-[11px] font-medium text-gray-500 group-hover:text-gray-400 font-mono mt-1">2.4 ETH</p>
+</div>
+</button>
+</div>
+</div>
+<!-- 2. Amount Input -->
+<div class="flex flex-col items-center justify-center py-2">
+<div class="relative w-full">
+<span class="absolute left-1/2 top-1/2 -translate-x-[140%] -translate-y-1/2 text-4xl text-gray-500 font-mono font-light">$</span>
+<input autofocus="" class="w-full bg-transparent border-none p-0 text-center text-[64px] font-mono font-medium text-white focus:ring-0 placeholder-gray-600 caret-primary leading-none" placeholder="0.00" type="number" value="85.00"/>
+</div>
+<p class="mt-2 text-xs text-primary/80 font-mono tracking-wide">AVAILABLE BALANCE: $12,450.00</p>
+</div>
+<!-- 3. Destination Toggle -->
+<div class="flex flex-col gap-3">
+<label class="text-sm font-medium text-gray-400 uppercase tracking-wider font-body">Destination</label>
+<div class="flex w-full rounded-xl bg-black/20 p-1">
+<button class="flex-1 rounded-lg bg-white/10 py-2.5 text-sm font-semibold text-white shadow-sm transition-all">
+                            Merchant
+                        </button>
+<button class="flex-1 rounded-lg py-2.5 text-sm font-medium text-gray-400 hover:text-white transition-all">
+                            Saving Pocket
+                        </button>
+<button class="flex-1 rounded-lg py-2.5 text-sm font-medium text-gray-400 hover:text-white transition-all">
+                            Goal
+                        </button>
+</div>
+<!-- Dynamic Selection based on toggle (Merchant Input) -->
+<div class="relative mt-1">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 material-symbols-outlined">storefront</span>
+<input class="w-full rounded-xl bg-surface-glass border border-white/5 py-3 pl-12 pr-4 text-white placeholder-gray-500 focus:border-primary/50 focus:bg-white/10 focus:ring-0 transition-all font-body" placeholder="Search merchant (e.g., Starbucks, Amazon)" type="text"/>
+</div>
+</div>
+<!-- 4. Context & Mood -->
+<div class="flex flex-col gap-3">
+<label class="text-sm font-medium text-gray-400 uppercase tracking-wider font-body">Context &amp; Mood</label>
+<div class="flex flex-wrap gap-2">
+<button class="mood-btn glow-mager flex-1 min-w-[80px] rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-xs font-bold tracking-wide text-gray-300 transition-all">
+                            MAGER
+                        </button>
+<button class="mood-btn glow-gabut flex-1 min-w-[80px] rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-xs font-bold tracking-wide text-gray-300 transition-all">
+                            GABUT
+                        </button>
+<button class="mood-btn glow-healing active flex-1 min-w-[80px] rounded-full border border-emerald-400/50 bg-emerald-500/10 px-4 py-2.5 text-xs font-bold tracking-wide text-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.3)] transition-all">
+                            HEALING
+                        </button>
+<button class="mood-btn glow-cuan flex-1 min-w-[80px] rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-xs font-bold tracking-wide text-gray-300 transition-all">
+                            CUAN
+                        </button>
+<button class="mood-btn glow-hype flex-1 min-w-[80px] rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-xs font-bold tracking-wide text-gray-300 transition-all">
+                            HYPE
+                        </button>
+</div>
+</div>
+</div>
+<!-- 5. Footer / Review -->
+<div class="pt-2">
+<button class="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-primary to-emerald-300 p-[1px] shadow-neon transition-all hover:shadow-[0_0_30px_rgba(0,230,210,0.5)] active:scale-[0.99]">
+<div class="relative flex h-12 w-full items-center justify-center rounded-[11px] bg-background-dark/20 backdrop-blur-sm transition-all group-hover:bg-transparent">
+<span class="text-base font-bold text-white mix-blend-overlay group-hover:mix-blend-normal group-hover:text-[#0f2321]">Confirm Flow</span>
+<span class="material-symbols-outlined ml-2 text-white group-hover:text-[#0f2321]">arrow_forward</span>
+</div>
+</button>
+</div>
+</div>
+</div>
+</body></html>

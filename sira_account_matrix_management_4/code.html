@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sira - Account Matrix</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#4fb0a9",
+                        "primary-hover": "#248f85",
+                        secondary: "#66D2CE",
+                        "background-light": "#f6f7f7",
+                        "background-dark": "#151d1c",
+                        "surface-light": "rgba(255, 255, 255, 0.7)",
+                        "surface-dark": "rgba(30, 41, 46, 0.6)",
+                        "border-light": "rgba(45, 170, 158, 0.15)",
+                        "border-dark": "rgba(45, 170, 158, 0.15)"
+                    },
+                    fontFamily: {
+                        sans: ["Outfit", "sans-serif"],
+                        display: ["Outfit", "sans-serif"],
+                        mono: ["JetBrains Mono", "monospace"]
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        lg: "1rem",
+                        xl: "1.5rem",
+                        "2xl": "1.5rem", 
+                        full: "9999px"
+                    },
+                    boxShadow: {
+                        glass: "0 4px 30px rgba(0, 0, 0, 0.1)",
+                        glow: "0 0 20px rgba(45, 170, 158, 0.3)"
+                    }
+                }
+            }
+        };
+    </script>
+<style type="text/tailwindcss">
+        .glass {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .dark .glass {
+            background: rgba(30, 41, 46, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(45, 170, 158, 0.07);
+        }
+        .dark .glass-panel {
+            background: linear-gradient(135deg, rgba(45, 170, 158, 0.05) 0%, rgba(15, 23, 26, 0.4) 100%);
+            border: 1px solid rgba(45, 170, 158, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(45, 170, 158, 0.2);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(45, 170, 158, 0.4);
+        }
+        .table-row-hover:hover {
+            background: rgba(45, 170, 158, 0.05);
+        }
+        .dark .table-row-hover:hover {
+            background: rgba(45, 170, 158, 0.1);
+        }.toggle-checkbox:checked {
+            right: 0;
+            border-color: #4fb0a9;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #4fb0a9;
+        }.modal-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        .dark .modal-glass {
+            background: rgba(22, 30, 33, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-sans min-h-screen transition-colors duration-300">
+<div class="flex h-screen overflow-hidden relative">
+<div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+<div class="absolute -top-32 -left-32 w-96 h-96 bg-primary opacity-[0.08] dark:opacity-[0.15] rounded-full blur-3xl"></div>
+<div class="absolute bottom-0 right-1/3 w-[500px] h-[500px] bg-secondary opacity-[0.08] dark:opacity-[0.1] rounded-full blur-3xl"></div>
+</div>
+<aside class="w-20 lg:w-64 glass h-full z-20 flex flex-col justify-between border-r border-border-light dark:border-border-dark transition-all duration-300">
+<div class="p-6 flex items-center gap-4">
+<div class="relative w-10 h-10 shrink-0">
+<img alt="Sira Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZRJLHX0f4UAyTmZkAXptoZiB5B6rVGFRWqE6FeVnMFy_Df3H5Krn2VdQsdwKvcI-PtoMsqJWb3dcIc6xqSgPMjhteBfNLia28VSIFZCp1oFvljC9gGhGgYgTCeYTI7YXm5k1diZn1vVX65wk-BsLAIam25uxYCvVvJBTrYyPpUiTwSp0_eGCpbuh5VR9dGXWeUO9BFiln10MoYZeX09vXENvsG3tOZffi3FlL6GLpLFmzoprF3FCXy8Qmhw2Zf97stCmTccAL3Qum"/>
+</div>
+<span class="text-2xl font-bold text-primary hidden lg:block tracking-tight">Sira</span>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-8">
+<a class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-primary/10 hover:text-primary rounded-xl transition-colors group" href="#">
+<span class="material-symbols-rounded">dashboard</span>
+<span class="hidden lg:block font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 bg-primary/10 text-primary rounded-xl transition-colors shadow-sm" href="#">
+<span class="material-symbols-rounded fill-current">account_balance_wallet</span>
+<span class="hidden lg:block font-medium">Accounts</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-primary/10 hover:text-primary rounded-xl transition-colors group" href="#">
+<span class="material-symbols-rounded">analytics</span>
+<span class="hidden lg:block font-medium">Analytics</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-primary/10 hover:text-primary rounded-xl transition-colors group" href="#">
+<span class="material-symbols-rounded">savings</span>
+<span class="hidden lg:block font-medium">Goals</span>
+</a>
+</nav>
+<div class="p-4 mb-4">
+<button class="flex items-center gap-4 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white w-full transition-colors">
+<span class="material-symbols-rounded">settings</span>
+<span class="hidden lg:block font-medium">Settings</span>
+</button>
+<div class="mt-4 flex items-center gap-3 px-2">
+<div class="w-8 h-8 rounded-full bg-gradient-to-tr from-primary to-secondary p-[2px]">
+<img alt="User Profile" class="rounded-full w-full h-full border-2 border-white dark:border-slate-800" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb7DGkQSZSG5uw965psRLJuJ5VT6Su6pgxRDWEvpsUfHi34-QPpy3VACn6KQgnO1teSocu4XKfr7e5J16M3d6BwOhREeE8eLM54LTgmpnDNk3qhUBOAzl3Ch4FBUmheHaQHX4qEp74Z89oYUBhPtoCOTdJHCoI6d2kGNSXx-NxSKPxDAHBMWWwObzj7B7z_T59K71rlDb5QzEWH_STIaX--HJVL-GxKTY2WyumGQ51i96esugsMdG1W_gSuBhKbQLy32FXSiOLi54n"/>
+</div>
+<div class="hidden lg:block">
+<p class="text-xs font-bold text-slate-700 dark:text-slate-200">Alex Chen</p>
+<p class="text-[10px] text-slate-500">Free Plan</p>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col h-full relative z-10 overflow-hidden">
+<header class="h-20 px-8 flex items-center justify-between glass sticky top-0 z-30 border-b border-border-light dark:border-border-dark">
+<div>
+<h1 class="text-2xl font-bold font-display text-slate-800 dark:text-white">My Accounts</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-mono mt-1 uppercase tracking-wider">TOTAL NET WORTH: <span class="text-primary font-bold">$42,850.00</span></p>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-500">
+<span class="material-symbols-rounded">search</span>
+</button>
+<button class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-500 relative">
+<span class="material-symbols-rounded">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-800"></span>
+</button>
+<button class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-500" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-rounded block dark:hidden">dark_mode</span>
+<span class="material-symbols-rounded hidden dark:block">light_mode</span>
+</button>
+</div>
+</header>
+<div class="flex-1 flex overflow-hidden relative">
+<section class="flex-1 flex flex-col overflow-hidden p-8">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
+<button class="px-5 py-2 bg-primary text-white rounded-full text-sm font-medium shadow-glow transition-all whitespace-nowrap">All Pockets</button>
+<button class="px-5 py-2 glass hover:bg-white/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium border border-border-light dark:border-border-dark transition-all whitespace-nowrap">Saving</button>
+<button class="px-5 py-2 glass hover:bg-white/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium border border-border-light dark:border-border-dark transition-all whitespace-nowrap">Checking</button>
+<button class="px-5 py-2 glass hover:bg-white/50 dark:hover:bg-slate-700/50 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium border border-border-light dark:border-border-dark transition-all whitespace-nowrap">Investment</button>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-xl text-sm font-bold hover:bg-primary/20 transition-all">
+<span class="material-symbols-rounded text-sm">add_circle</span>
+                        NEW POCKET
+                    </button>
+</div>
+<div class="flex-1 glass-panel rounded-2xl overflow-hidden flex flex-col border border-border-light dark:border-border-dark">
+<div class="grid grid-cols-[64px_2fr_1.5fr_2fr_1fr] items-center px-6 py-4 border-b border-border-light dark:border-border-dark bg-white/40 dark:bg-slate-900/40 text-[10px] font-bold tracking-widest text-slate-500 dark:text-slate-400 uppercase">
+<div class="text-center">Icon</div>
+<div>Pocket Name</div>
+<div>Current Balance</div>
+<div>Goal Progress</div>
+<div class="text-right">Trend</div>
+</div>
+<div class="flex-1 overflow-y-auto">
+<div class="grid grid-cols-[64px_2fr_1.5fr_2fr_1fr] items-center px-6 py-4 border-b border-border-light dark:border-border-dark table-row-hover transition-colors cursor-pointer">
+<div class="flex justify-center">
+<div class="w-10 h-10 bg-white dark:bg-slate-800 rounded-lg flex items-center justify-center shadow-sm border border-slate-100 dark:border-slate-700">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<path class="text-primary" d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+<path class="text-primary opacity-50" d="M22 2L11 13"></path>
+</svg>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-800 dark:text-white">Jago - Travel Fund</p>
+<span class="px-2 py-0.5 bg-primary/10 text-primary text-[9px] font-bold tracking-wider rounded border border-primary/20">PRIMARY</span>
+</div>
+<div class="font-mono font-bold text-slate-700 dark:text-slate-200">$2,450.00</div>
+<div class="pr-8">
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-[10px] text-slate-400">45%</span>
+<span class="text-[10px] text-slate-400">of goal</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<div class="text-right text-xs font-mono text-slate-400">—</div>
+</div>
+<div class="grid grid-cols-[64px_2fr_1.5fr_2fr_1fr] items-center px-6 py-4 border-b border-border-light dark:border-border-dark table-row-hover transition-colors cursor-pointer">
+<div class="flex justify-center">
+<div class="w-10 h-10 bg-white dark:bg-slate-800 rounded-lg flex items-center justify-center shadow-sm border border-slate-100 dark:border-slate-700">
+<svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"></path>
+<path d="M9 22V12H15V22"></path>
+</svg>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-800 dark:text-white">BCA - Main</p>
+<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400 text-[9px] font-bold tracking-wider rounded">POCKET</span>
+</div>
+<div class="font-mono font-bold text-slate-700 dark:text-slate-200">$12,890.50</div>
+<div class="pr-8 italic text-[10px] text-slate-400">No goal set</div>
+<div class="text-right">
+<span class="text-xs text-green-500 font-mono flex items-center justify-end">
+<span class="material-symbols-rounded text-sm mr-1">trending_up</span> +2.4%
+                                </span>
+</div>
+</div>
+<div class="grid grid-cols-[64px_2fr_1.5fr_2fr_1fr] items-center px-6 py-4 border-b border-border-light dark:border-border-dark table-row-hover transition-colors cursor-pointer">
+<div class="flex justify-center">
+<div class="w-10 h-10 bg-white dark:bg-slate-800 rounded-lg flex items-center justify-center shadow-sm border border-slate-100 dark:border-slate-700">
+<svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z"></path>
+<path d="M12 8V12" stroke-opacity="0.6"></path>
+<circle cx="12" cy="16" fill="currentColor" r="0.5"></circle>
+</svg>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-800 dark:text-white">Jago - Emergency</p>
+<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400 text-[9px] font-bold tracking-wider rounded">POCKET</span>
+</div>
+<div class="font-mono font-bold text-slate-700 dark:text-slate-200">$5,000.00</div>
+<div class="pr-8">
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-[10px] text-green-500 font-bold">100%</span>
+<span class="text-[10px] text-slate-400">Fully Funded</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden">
+<div class="bg-green-500 h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div class="text-right text-xs font-mono text-slate-400">—</div>
+</div>
+<div class="grid grid-cols-[64px_2fr_1.5fr_2fr_1fr] items-center px-6 py-4 border-b border-border-light dark:border-border-dark table-row-hover transition-colors cursor-pointer">
+<div class="flex justify-center">
+<div class="w-10 h-10 bg-white dark:bg-slate-800 rounded-lg flex items-center justify-center shadow-sm border border-slate-100 dark:border-slate-700">
+<svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<path d="M18 8H6C4.89543 8 4 8.89543 4 10V19C4 20.1046 4.89543 21 6 21H18C19.1046 21 20 20.1046 20 19V10C20 8.89543 19.1046 8 18 8Z"></path>
+<path d="M16 8V6C16 4.93913 15.5786 3.92172 14.8284 3.17157C14.0783 2.42143 13.0609 2 12 2C10.9391 2 9.92172 2.42143 9.17157 3.17157C8.42143 3.92172 8 4.93913 8 6V8"></path>
+<circle cx="12" cy="14" r="2"></circle>
+</svg>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-800 dark:text-white">Cash - Daily</p>
+<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400 text-[9px] font-bold tracking-wider rounded">POCKET</span>
+</div>
+<div class="font-mono font-bold text-slate-700 dark:text-slate-200">$210.00</div>
+<div class="pr-8 italic text-[10px] text-slate-400">No goal set</div>
+<div class="text-right">
+<span class="text-xs text-red-500 font-mono flex items-center justify-end">
+<span class="material-symbols-rounded text-sm mr-1">trending_down</span> -12%
+                                </span>
+</div>
+</div>
+<div class="grid grid-cols-[64px_2fr_1.5fr_2fr_1fr] items-center px-6 py-4 border-b border-border-light dark:border-border-dark table-row-hover transition-colors cursor-pointer">
+<div class="flex justify-center">
+<div class="w-10 h-10 bg-white dark:bg-slate-800 rounded-lg flex items-center justify-center shadow-sm border border-slate-100 dark:border-slate-700">
+<svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+<rect height="14" rx="2" ry="2" width="20" x="2" y="3"></rect>
+<line x1="8" x2="16" y1="21" y2="21"></line>
+<line x1="12" x2="12" y1="17" y2="21"></line>
+</svg>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-800 dark:text-white">BCA - Gadgets</p>
+<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400 text-[9px] font-bold tracking-wider rounded">POCKET</span>
+</div>
+<div class="font-mono font-bold text-slate-700 dark:text-slate-200">$1,800.00</div>
+<div class="pr-8">
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-[10px] text-slate-400">60%</span>
+<span class="text-[10px] text-slate-400">of goal</span>
+</div>
+<div class="w-full bg-slate-200 dark:bg-slate-700 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 60%"></div>
+</div>
+</div>
+<div class="text-right text-xs font-mono text-slate-400">—</div>
+</div>
+<div class="grid grid-cols-[64px_1fr] items-center px-6 py-4 table-row-hover transition-colors cursor-pointer border-t border-dashed border-primary/20 mt-4">
+<div class="flex justify-center">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-rounded text-xl">add</span>
+</div>
+</div>
+<div class="text-sm font-medium text-slate-500 dark:text-slate-400">Create New Pocket</div>
+</div>
+</div>
+<div class="px-6 py-3 bg-slate-50/50 dark:bg-slate-900/50 border-t border-border-light dark:border-border-dark flex justify-between items-center">
+<span class="text-[10px] text-slate-400 uppercase tracking-widest font-bold">5 Pockets total</span>
+<div class="flex gap-2">
+<button class="p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-400 transition-colors">
+<span class="material-symbols-rounded text-lg">chevron_left</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-400 transition-colors">
+<span class="material-symbols-rounded text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<aside class="w-80 glass border-l border-border-light dark:border-border-dark hidden xl:flex flex-col">
+<div class="p-6 border-b border-border-light dark:border-border-dark">
+<h2 class="text-lg font-bold text-slate-800 dark:text-white mb-1">Connected Providers</h2>
+<p class="text-xs text-slate-500 dark:text-slate-400">Filter pockets by source</p>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-3">
+<button class="w-full text-left p-3 rounded-xl bg-primary/10 border border-primary/30 flex items-center justify-between group transition-all shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-white rounded-full p-2 shadow-sm flex items-center justify-center">
+<span class="font-bold text-blue-700 text-[10px]">BCA</span>
+</div>
+<div>
+<p class="font-bold text-slate-800 dark:text-slate-100 text-sm">BCA</p>
+<p class="text-[10px] text-slate-500 dark:text-slate-400">2 Pockets</p>
+</div>
+</div>
+<span class="font-mono text-xs font-bold text-slate-700 dark:text-slate-200">$14,690</span>
+</button>
+<button class="w-full text-left p-3 rounded-xl hover:bg-white/40 dark:hover:bg-slate-800/40 border border-transparent hover:border-border-light dark:hover:border-slate-700 flex items-center justify-between group transition-all">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-[#f8a53e] rounded-full p-2 shadow-sm flex items-center justify-center text-white">
+<span class="font-bold text-[10px]">Jago</span>
+</div>
+<div>
+<p class="font-bold text-slate-800 dark:text-slate-100 text-sm">Bank Jago</p>
+<p class="text-[10px] text-slate-500 dark:text-slate-400">2 Pockets</p>
+</div>
+</div>
+<span class="font-mono text-xs font-medium text-slate-500 dark:text-slate-400">$7,450</span>
+</button>
+<button class="w-full text-left p-3 rounded-xl hover:bg-white/40 dark:hover:bg-slate-800/40 border border-transparent hover:border-border-light dark:hover:border-slate-700 flex items-center justify-between group transition-all">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-green-100 text-green-600 rounded-full p-2 shadow-sm flex items-center justify-center">
+<span class="material-symbols-rounded text-lg">payments</span>
+</div>
+<div>
+<p class="font-bold text-slate-800 dark:text-slate-100 text-sm">Cash Wallet</p>
+<p class="text-[10px] text-slate-500 dark:text-slate-400">1 Pocket</p>
+</div>
+</div>
+<span class="font-mono text-xs font-medium text-slate-500 dark:text-slate-400">$210</span>
+</button>
+<button class="w-full text-left p-3 rounded-xl hover:bg-white/40 dark:hover:bg-slate-800/40 border border-transparent hover:border-border-light dark:hover:border-slate-700 flex items-center justify-between group transition-all">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-[#FCD535] text-slate-900 rounded-full p-2 shadow-sm flex items-center justify-center">
+<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 24c6.627 0 12-5.373 12-12S18.627 0 12 0 0 5.373 0 12s5.373 12 12 12z" fill="none"></path><path d="M16.42 14.54l-4.42 4.42-4.42-4.42-2.17 2.17 6.59 6.59 6.59-6.59-2.17-2.17zm0-5.08l2.17-2.17-6.59-6.59L5.41 7.29l2.17 2.17 4.42-4.42 4.42 4.42zm-4.42 6.13l2.25-2.25-2.25-2.25-2.25 2.25 2.25 2.25zm6.39-3.88l2.17 2.17 2.17-2.17-2.17-2.17-2.17 2.17zm-12.78 0l2.17 2.17 2.17-2.17-2.17-2.17-2.17 2.17z"></path></svg>
+</div>
+<div>
+<p class="font-bold text-slate-800 dark:text-slate-100 text-sm">Binance</p>
+<p class="text-[10px] text-slate-500 dark:text-slate-400">1 Pocket</p>
+</div>
+</div>
+<span class="font-mono text-xs font-medium text-slate-500 dark:text-slate-400">$20,500</span>
+</button>
+</div>
+<div class="p-6 border-t border-border-light dark:border-border-dark mt-auto bg-white/30 dark:bg-slate-900/30">
+<button class="w-full py-3 bg-primary text-white rounded-xl font-bold shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:bg-primary-hover transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-rounded">add_circle</span>
+                        Add New Provider
+                    </button>
+</div>
+</aside>
+<div class="absolute inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-slate-900/20 dark:bg-black/40 p-4">
+<div class="w-full max-w-md modal-glass rounded-[24px] overflow-hidden transform transition-all shadow-2xl animate-in fade-in zoom-in duration-300">
+<div class="px-6 py-5 flex items-center justify-between border-b border-border-light dark:border-border-dark">
+<h2 class="text-xl font-bold text-slate-800 dark:text-white font-display">Create New Pocket</h2>
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 transition-colors">
+<span class="material-symbols-rounded text-xl">close</span>
+</button>
+</div>
+<div class="p-6 space-y-6">
+<div class="space-y-2">
+<label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Pocket Name</label>
+<input class="w-full bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-slate-800 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all font-sans font-medium" placeholder="e.g., Vacation Fund" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Select Provider</label>
+<div class="flex gap-3">
+<button class="flex-1 p-2 rounded-xl border-2 border-primary bg-primary/5 flex flex-col items-center justify-center gap-1 transition-all group">
+<div class="w-8 h-8 bg-white rounded-full p-1.5 shadow-sm flex items-center justify-center">
+<span class="font-bold text-blue-700 text-[8px]">BCA</span>
+</div>
+<span class="text-[10px] font-bold text-primary">BCA</span>
+</button>
+<button class="flex-1 p-2 rounded-xl border border-border-light dark:border-border-dark hover:bg-slate-50 dark:hover:bg-slate-800 flex flex-col items-center justify-center gap-1 transition-all group opacity-60 hover:opacity-100">
+<div class="w-8 h-8 bg-[#f8a53e] rounded-full p-1.5 shadow-sm flex items-center justify-center text-white">
+<span class="font-bold text-[8px]">Jago</span>
+</div>
+<span class="text-[10px] font-medium text-slate-600 dark:text-slate-400">Jago</span>
+</button>
+<button class="flex-1 p-2 rounded-xl border border-border-light dark:border-border-dark hover:bg-slate-50 dark:hover:bg-slate-800 flex flex-col items-center justify-center gap-1 transition-all group opacity-60 hover:opacity-100">
+<div class="w-8 h-8 bg-green-100 text-green-600 rounded-full p-1.5 shadow-sm flex items-center justify-center">
+<span class="material-symbols-rounded text-sm">payments</span>
+</div>
+<span class="text-[10px] font-medium text-slate-600 dark:text-slate-400">Cash</span>
+</button>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Choose Icon</label>
+<div class="flex gap-2 justify-between">
+<button class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center shadow-lg shadow-primary/30 transition-all">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"></path><path d="M9 22V12H15V22"></path></svg>
+</button>
+<button class="w-10 h-10 rounded-xl border border-border-light dark:border-border-dark text-slate-400 hover:text-primary hover:border-primary hover:bg-primary/5 flex items-center justify-center transition-all">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-2.7 8.5c-.2.7.3 1.6 1.1 1.6H19z"></path><circle cx="7.5" cy="17.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>
+</button>
+<button class="w-10 h-10 rounded-xl border border-border-light dark:border-border-dark text-slate-400 hover:text-primary hover:border-primary hover:bg-primary/5 flex items-center justify-center transition-all">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M20 12v10H4V12"></path><path d="M2 7h20v5H2z"></path><path d="M12 22V7"></path><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+</button>
+<button class="w-10 h-10 rounded-xl border border-border-light dark:border-border-dark text-slate-400 hover:text-primary hover:border-primary hover:bg-primary/5 flex items-center justify-center transition-all">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+</button>
+<button class="w-10 h-10 rounded-xl border border-border-light dark:border-border-dark text-slate-400 hover:text-primary hover:border-primary hover:bg-primary/5 flex items-center justify-center transition-all">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" x2="7.01" y1="7" y2="7"></line></svg>
+</button>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Starting Balance</label>
+<div class="relative">
+<span class="absolute left-4 top-3.5 text-slate-400 font-mono font-bold">$</span>
+<input class="w-full bg-white/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl pl-8 pr-4 py-3 text-slate-800 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all font-mono font-bold text-lg" placeholder="0.00" type="number"/>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl bg-white/30 dark:bg-slate-800/30 border border-border-light dark:border-border-dark">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300">Track a goal for this pocket</span>
+<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-slate-300 transition-all duration-300 top-0 left-0" id="toggle" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-5 rounded-full bg-slate-300 cursor-pointer transition-colors duration-300" for="toggle"></label>
+</div>
+</div>
+</div>
+<div class="p-6 bg-slate-50/80 dark:bg-slate-900/50 border-t border-border-light dark:border-border-dark flex flex-col gap-4">
+<button class="w-full py-3.5 bg-gradient-to-r from-[#4fb0a9] to-[#66D2CE] text-white rounded-xl font-bold text-sm shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:brightness-105 transition-all">
+                Create Pocket
+            </button>
+<div class="flex items-center justify-center gap-1.5 opacity-60">
+<span class="material-symbols-rounded text-[10px] text-slate-500 dark:text-slate-400">lock</span>
+<span class="text-[9px] font-bold text-slate-500 dark:text-slate-400 tracking-widest uppercase">Secured with 256-bit Encryption</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

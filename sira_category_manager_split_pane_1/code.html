@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sira Budget Management Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#14ccc3",
+                        "primary-hover": "#11b5ad",
+                        "background-light": "#f8fafb",
+                        "background-dark": "#0f1414",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2221",
+                        "sidebar-light": "#fcfdfe",
+                    },
+                    fontFamily: {
+                        "display": ["Outfit", "sans-serif"],
+                        "body": ["Outfit", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem", 
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "glass": "0 8px 32px 0 rgba(31, 38, 135, 0.07)",
+                        "glass-dark": "0 8px 32px 0 rgba(0, 0, 0, 0.3)",
+                        "glow-primary": "0 0 20px rgba(20, 204, 195, 0.3)",
+                        "glow-warning": "0 0 15px rgba(250, 204, 21, 0.3)",
+                        "glow-danger": "0 0 15px rgba(239, 68, 68, 0.3)",
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply font-display;
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .dark .glass-panel {
+            background: rgba(26, 34, 33, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .sidebar-compact {
+            width: 64px;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .sidebar-compact:hover {
+            width: 280px;
+        }
+        .sidebar-compact .nav-text {
+            opacity: 0;
+            width: 0;
+            overflow: hidden;
+            transition: opacity 0.2s;
+        }
+        .sidebar-compact:hover .nav-text {
+            opacity: 1;
+            width: auto;
+            margin-left: 12px;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 overflow-hidden h-screen flex transition-colors duration-300">
+<aside class="w-64 flex-none border-r border-slate-100 dark:border-slate-800 bg-sidebar-light dark:bg-surface-dark flex flex-col h-full z-50">
+<div class="p-6">
+<img alt="Sira Logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkkyk-CPArkVQgQMiuMZQg0ixZxK8_bFe9qFJrms7Z5g0b6hT6vZEkpIQ7Fg9Ca1h26Bip3m8xhabZIZQcdpz2K_nuSC4vuvvJfu_idYqrHh1Nc3NsmRdeodV8MueNNtX3OrS4kqmdY3OQpnLt6ISw4z5v1KtkiMeeshFPQ91TTsWrgMQvl3CWtxJ8f1LKoalkWhGPCaAK5Avxf5HgdIzYaeU5lbGXSbIOuQU-fWd44phWbULrhMuGO6881wtpB9puUsoGOWOHUelI"/>
+</div>
+<nav class="flex-1 px-4 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-semibold text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="font-semibold text-sm">Accounts</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">list_alt</span>
+<span class="font-semibold text-sm">Transactions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">pie_chart</span>
+<span class="font-bold text-sm">Budget Manager</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">track_changes</span>
+<span class="font-semibold text-sm">Goals</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-100 dark:border-slate-800">
+<button class="flex items-center gap-3 w-full px-4 py-3 text-slate-500 hover:bg-red-50 hover:text-red-500 rounded-xl transition-all">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-semibold text-sm">Logout</span>
+</button>
+</div>
+</aside>
+<div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+<header class="h-20 flex-none bg-white dark:bg-surface-dark border-b border-slate-100 dark:border-slate-800 flex items-center justify-between px-8 sticky top-0 z-40">
+<div>
+<h1 class="text-2xl font-extrabold tracking-tight">Budget Manager</h1>
+<p class="text-xs text-slate-500 font-medium">October 2023</p>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative w-64 hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="w-full h-10 pl-10 pr-4 bg-slate-50 dark:bg-background-dark border-none rounded-full text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Find category..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="size-10 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-10 w-px bg-slate-100 dark:bg-slate-800"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-bold text-slate-900 dark:text-white">Sarah Jenkins</p>
+<p class="text-[10px] font-bold text-primary uppercase tracking-wider">Premium</p>
+</div>
+<div class="size-10 rounded-full ring-2 ring-primary/20 overflow-hidden group-hover:ring-primary/50 transition-all">
+<img alt="User avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqsQNI6nnKfSHF2DQ7WiXi0XhkqnnEIBQz-DGErvWuHKRxMxf54wPmLipwECNrEy5j9nrKuNnu9LGw6tG4oJBHuI4pFl5d8jKWKX0-YFo1-rUKWEVocRBmOXOnJAB-hDUf5tpt7l38OMFJjbyn0VD0YUpBQJM__hX5nmCc30nUBoNaFeqHGv4UARDZ0VIxDzt45bg5Hz_iEaKbHy4KscNIOyOzU7D2XdT84d9Dumm-mzfdJEM6NkAMG37FUE8uStrboI6FoB3t8_ak"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex overflow-hidden">
+<aside class="w-72 flex-none flex flex-col bg-white dark:bg-surface-dark border-r border-slate-100 dark:border-slate-800 h-full overflow-y-auto z-30 transition-all">
+<div class="p-4 border-b border-slate-50 dark:border-slate-800/50 flex items-center justify-between sticky top-0 bg-inherit z-10 backdrop-blur-sm">
+<h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest pl-1">Categories</h3>
+<button class="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-lg">tune</span>
+</button>
+</div>
+<div class="p-3 space-y-2">
+<div class="group relative p-3 rounded-xl bg-primary/5 border border-primary/20 cursor-pointer overflow-hidden shadow-sm shadow-primary/5">
+<div class="absolute bottom-0 left-0 h-1 bg-primary/20 w-full">
+<div class="h-full bg-primary w-[75%] rounded-r-full"></div>
+</div>
+<div class="flex items-center gap-3 relative z-10 mb-1">
+<div class="size-9 rounded-lg bg-white dark:bg-slate-800 text-primary shadow-sm flex items-center justify-center ring-1 ring-slate-100 dark:ring-slate-700">
+<span class="material-symbols-outlined text-xl">coffee</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-bold text-sm text-slate-900 dark:text-white truncate">Coffee</p>
+<p class="text-[10px] text-slate-500 font-mono tracking-tight">$112 / $150</p>
+</div>
+<div class="text-right">
+<span class="block text-xs font-bold text-primary">$38</span>
+<span class="block text-[9px] text-slate-400 font-medium uppercase">Left</span>
+</div>
+</div>
+</div>
+<div class="group relative p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-all border border-transparent hover:border-slate-200 dark:hover:border-slate-700">
+<div class="absolute bottom-0 left-0 h-1 bg-slate-100 dark:bg-slate-700 w-full rounded-b-xl overflow-hidden">
+<div class="h-full bg-yellow-400 w-[90%] shadow-glow-warning"></div>
+</div>
+<div class="flex items-center gap-3 relative z-10 mb-1">
+<div class="size-9 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-500 group-hover:text-yellow-500 flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-xl">shopping_basket</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-bold text-sm text-slate-700 dark:text-slate-300 truncate group-hover:text-slate-900 dark:group-hover:text-white">Groceries</p>
+<p class="text-[10px] text-slate-500 font-mono tracking-tight">$450 / $500</p>
+</div>
+<div class="text-right">
+<span class="block text-xs font-bold text-yellow-500">$50</span>
+<span class="block text-[9px] text-slate-400 font-medium uppercase">Left</span>
+</div>
+</div>
+</div>
+<div class="group relative p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-all border border-transparent hover:border-slate-200 dark:hover:border-slate-700">
+<div class="absolute bottom-0 left-0 h-1 bg-slate-100 dark:bg-slate-700 w-full rounded-b-xl overflow-hidden">
+<div class="h-full bg-red-500 w-[100%] shadow-glow-danger"></div>
+</div>
+<div class="flex items-center gap-3 relative z-10 mb-1">
+<div class="size-9 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-500 group-hover:text-red-500 flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-xl">directions_car</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-bold text-sm text-slate-700 dark:text-slate-300 truncate group-hover:text-slate-900 dark:group-hover:text-white">Transport</p>
+<p class="text-[10px] text-slate-500 font-mono tracking-tight">$320 / $300</p>
+</div>
+<div class="text-right">
+<span class="block text-xs font-bold text-red-500">-$20</span>
+<span class="block text-[9px] text-slate-400 font-medium uppercase">Over</span>
+</div>
+</div>
+</div>
+<div class="group relative p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-all border border-transparent hover:border-slate-200 dark:hover:border-slate-700">
+<div class="absolute bottom-0 left-0 h-1 bg-slate-100 dark:bg-slate-700 w-full rounded-b-xl overflow-hidden">
+<div class="h-full bg-emerald-500 w-[30%]"></div>
+</div>
+<div class="flex items-center gap-3 relative z-10 mb-1">
+<div class="size-9 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-500 group-hover:text-emerald-500 flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-xl">cottage</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-bold text-sm text-slate-700 dark:text-slate-300 truncate group-hover:text-slate-900 dark:group-hover:text-white">Housing</p>
+<p class="text-[10px] text-slate-500 font-mono tracking-tight">$600 / $2000</p>
+</div>
+<div class="text-right">
+<span class="block text-xs font-bold text-emerald-500">$1.4k</span>
+<span class="block text-[9px] text-slate-400 font-medium uppercase">Left</span>
+</div>
+</div>
+</div>
+<div class="group relative p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-all border border-transparent hover:border-slate-200 dark:hover:border-slate-700">
+<div class="absolute bottom-0 left-0 h-1 bg-slate-100 dark:bg-slate-700 w-full rounded-b-xl overflow-hidden">
+<div class="h-full bg-primary w-[10%]"></div>
+</div>
+<div class="flex items-center gap-3 relative z-10 mb-1">
+<div class="size-9 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-500 group-hover:text-primary flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-xl">checkroom</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-bold text-sm text-slate-700 dark:text-slate-300 truncate group-hover:text-slate-900 dark:group-hover:text-white">Clothing</p>
+<p class="text-[10px] text-slate-500 font-mono tracking-tight">$20 / $200</p>
+</div>
+<div class="text-right">
+<span class="block text-xs font-bold text-slate-500">$180</span>
+<span class="block text-[9px] text-slate-400 font-medium uppercase">Left</span>
+</div>
+</div>
+</div>
+<div class="pt-4 px-2">
+<button class="w-full py-3 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 text-slate-400 hover:text-primary hover:border-primary hover:bg-primary/5 transition-all text-sm font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add</span>
+                        New Category
+                    </button>
+</div>
+</div>
+</aside>
+<section class="flex-1 relative bg-slate-50 dark:bg-background-dark flex flex-col p-6 md:p-8 lg:p-10 overflow-y-auto">
+<div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-400/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 relative z-10 max-w-5xl mx-auto w-full">
+<div class="glass-panel p-5 rounded-2xl flex flex-col relative overflow-hidden group hover:shadow-lg transition-all duration-300">
+<div class="absolute right-0 top-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-slate-900 dark:text-white">account_balance_wallet</span>
+</div>
+<span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-2">Total Budget Set</span>
+<span class="text-2xl font-mono font-bold text-slate-900 dark:text-white tracking-tight">$4,250.00</span>
+</div>
+<div class="glass-panel p-5 rounded-2xl flex flex-col relative overflow-hidden group hover:shadow-lg transition-all duration-300">
+<div class="absolute right-0 top-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-slate-900 dark:text-white">credit_card</span>
+</div>
+<span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-2">Total Spent</span>
+<div class="flex items-end gap-3">
+<span class="text-2xl font-mono font-bold text-slate-900 dark:text-white tracking-tight">$1,842.30</span>
+<span class="text-[10px] font-bold text-emerald-600 bg-emerald-100 dark:bg-emerald-900/30 px-2 py-1 rounded-md mb-1">43% Used</span>
+</div>
+</div>
+<div class="glass-panel p-5 rounded-2xl flex flex-col relative overflow-hidden group hover:shadow-lg transition-all duration-300 border-b-2 border-b-primary">
+<div class="absolute right-0 top-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-slate-900 dark:text-white">savings</span>
+</div>
+<span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest mb-2">Remaining Balance</span>
+<span class="text-2xl font-mono font-bold text-primary tracking-tight">$2,407.70</span>
+</div>
+</div>
+<div class="w-full max-w-5xl mx-auto glass-panel shadow-glass dark:shadow-glass-dark rounded-[2.5rem] relative z-10 flex-1 flex flex-col min-h-[500px]">
+<div class="bg-white/60 dark:bg-surface-dark/60 rounded-[2.2rem] p-8 md:p-12 backdrop-blur-xl h-full flex flex-col">
+<div class="flex items-start justify-between mb-8 pb-8 border-b border-slate-100 dark:border-slate-800/50">
+<div class="flex gap-6 items-center">
+<div class="size-20 rounded-2xl bg-gradient-to-br from-primary to-emerald-400 text-white shadow-xl shadow-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl">coffee</span>
+</div>
+<div>
+<div class="flex items-center gap-3 mb-1">
+<span class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-primary bg-primary/10 px-2 py-1 rounded">Editing</span>
+<span class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-slate-400">ID: #CF-01</span>
+</div>
+<h2 class="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Coffee</h2>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="size-12 rounded-xl flex items-center justify-center text-slate-400 hover:text-primary hover:bg-primary/5 transition-all border border-transparent hover:border-primary/20" title="History">
+<span class="material-symbols-outlined">history</span>
+</button>
+<button class="size-12 rounded-xl flex items-center justify-center text-red-400 hover:text-white hover:bg-red-500 transition-all border border-red-100 dark:border-red-900/30 shadow-sm" title="Delete Category">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+<form class="space-y-8 flex-1" onsubmit="event.preventDefault();">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 space-y-3">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Monthly Budget Limit</label>
+<div class="relative group">
+<span class="absolute left-6 top-1/2 -translate-y-1/2 text-primary font-mono font-bold text-2xl">$</span>
+<input class="w-full h-20 pl-14 pr-6 bg-white dark:bg-slate-900/40 border-2 border-slate-100 dark:border-slate-700/50 rounded-2xl font-mono text-4xl font-bold focus:ring-0 focus:border-primary transition-all shadow-sm text-slate-900 dark:text-white placeholder-slate-300" type="text" value="150.00"/>
+<span class="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-bold">USD</span>
+</div>
+</div>
+<div class="space-y-3">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Frequency</label>
+<div class="bg-slate-100 dark:bg-slate-800/80 p-1.5 rounded-2xl h-20 flex">
+<button class="flex-1 rounded-xl bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm font-bold text-sm transition-all border border-slate-200 dark:border-slate-600" type="button">Monthly</button>
+<button class="flex-1 rounded-xl text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 font-bold text-sm transition-all" type="button">Weekly</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+<div class="space-y-3">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Category Name</label>
+<input class="w-full h-14 px-5 bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-700/50 rounded-2xl font-bold focus:ring-4 focus:ring-primary/10 transition-all shadow-sm hover:bg-white dark:hover:bg-slate-900/60 focus:bg-white" type="text" value="Coffee"/>
+</div>
+<div class="space-y-3">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Parent Group</label>
+<button class="w-full h-14 px-5 flex items-center justify-between bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-700/50 rounded-2xl font-bold hover:border-primary transition-all text-left group hover:bg-white dark:hover:bg-slate-900/60" type="button">
+<div class="flex items-center gap-3">
+<div class="size-6 rounded bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600">
+<span class="material-symbols-outlined text-sm">restaurant</span>
+</div>
+<span>Food &amp; Drinks</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">unfold_more</span>
+</button>
+</div>
+</div>
+<div class="bg-primary/5 rounded-[1.5rem] p-6 border border-primary/10 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-start gap-4">
+<div class="size-10 rounded-full bg-white dark:bg-slate-800 shadow-sm text-primary flex items-center justify-center mt-1">
+<span class="material-symbols-outlined">auto_mode</span>
+</div>
+<div>
+<p class="font-bold text-slate-900 dark:text-white">Rollover Unused Budget</p>
+<p class="text-xs text-slate-500 mt-1 max-w-xs">If enabled, any remaining budget from this month will be added to next month's limit.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-14 h-8 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 dark:peer-focus:ring-primary/20 rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-7 after:w-7 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-end gap-4 pt-4 mt-auto">
+<button class="px-8 py-4 rounded-2xl text-slate-500 font-bold text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition-all" type="button">
+                                Cancel
+                             </button>
+<button class="px-10 py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold text-sm shadow-xl shadow-slate-900/10 hover:shadow-slate-900/20 transition-all transform hover:-translate-y-1 flex items-center gap-2" type="submit">
+<span class="material-symbols-outlined text-lg">save</span>
+                                Save Changes
+                             </button>
+</div>
+</form>
+</div>
+</div>
+<p class="mt-8 text-center text-[11px] font-bold text-slate-400 uppercase tracking-widest opacity-50">Sira Mindful Finance • Budgeting Engine v2.4</p>
+</section>
+</main>
+</div>
+
+</body></html>

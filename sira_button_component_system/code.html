@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sira Button Component System</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00d2e6",
+                        "primary-dark": "#00b5c7",
+                        "secondary": "#5e898d",
+                        "background-light": "#f2f8f7",
+                        "background-dark": "#141b1f",
+                        "surface-white": "#ffffff",
+                        "text-main": "#101818",
+                        "text-muted": "#5e898d",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Manrope", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'glow': '0 4px 20px -2px rgba(0, 210, 230, 0.4)',
+                        'subtle': '0 2px 10px -2px rgba(16, 24, 24, 0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        /* Gradient for primary buttons */
+        .bg-flux-gradient {
+            background: linear-gradient(135deg, #00d2e6 0%, #4ff0e6 100%);
+        }
+        .bg-flux-gradient:hover {
+            background: linear-gradient(135deg, #00bdd0 0%, #3de0d6 100%);
+        }
+        /* Pattern background for the page */
+        .bg-pattern {
+            background-color: #f2f8f7;
+            background-image: radial-gradient(#00d2e6 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-pattern min-h-screen text-text-main flex flex-col font-display">
+<!-- Top Navigation -->
+<header class="bg-surface-white/80 backdrop-blur-md border-b border-[#e0e8e9] sticky top-0 z-50">
+<div class="px-6 md:px-12 lg:px-20 h-16 flex items-center justify-between max-w-[1440px] mx-auto w-full">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C12.95 4 4 12.95 4 24C4 35.05 12.95 44 24 44C35.05 44 44 35.05 44 24C44 12.95 35.05 4 24 4ZM24 40C15.16 40 8 32.84 8 24C8 15.16 15.16 8 24 8C32.84 8 40 15.16 40 24C40 32.84 32.84 40 24 40Z" fill="currentColor"></path>
+<path d="M24 14C18.48 14 14 18.48 14 24C14 29.52 18.48 34 24 34C29.52 34 34 29.52 34 24C34 18.48 29.52 14 24 14ZM24 30C20.69 30 18 27.31 18 24C18 20.69 20.69 18 24 18C27.31 18 30 20.69 30 24C30 27.31 27.31 30 24 30Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-text-main">Sira <span class="text-text-muted font-medium">Design System</span></h1>
+</div>
+<nav class="hidden md:flex gap-8">
+<a class="text-sm font-semibold text-text-main hover:text-primary transition-colors" href="#">Foundation</a>
+<a class="text-sm font-semibold text-primary border-b-2 border-primary py-5" href="#">Components</a>
+<a class="text-sm font-semibold text-text-muted hover:text-text-main transition-colors" href="#">Patterns</a>
+</nav>
+<div class="size-10 rounded-full bg-cover bg-center border-2 border-white shadow-sm" data-alt="User avatar profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSLm5r_69yzOk3ZSrGE14Btq6weVIhuxMJLYUz5V_2xlXmxQ_KYgH40f0ZjD9K3NYDQmi6k5RwZXq0vZsRxVAnDgMIk9PECLQNBc3zKFydixla6e-t-EL0A2k8p2A6q9Twf3xjb_0Wq-a5RYSLTbqkov7odQUz_3hny2smnSwkou-zj3-41naTjESdTQIEcNLky0BmybDu9kB7g1iyT-7yFAxbHxfpIqab3h92yAL9NSpUOyILXFodJejKcjvfW45KfFYfHPXZqtEF');"></div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 px-6 md:px-12 lg:px-20 py-10 max-w-[1440px] mx-auto w-full">
+<!-- Breadcrumbs & Header -->
+<div class="mb-12">
+<div class="flex items-center gap-2 text-sm font-medium text-text-muted mb-4">
+<a class="hover:text-primary transition-colors" href="#">System</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Components</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-text-main">Buttons</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h2 class="text-4xl md:text-5xl font-extrabold text-text-main tracking-tight mb-3">Button Components</h2>
+<p class="text-lg text-text-muted max-w-2xl leading-relaxed">
+                        The core interactive elements of the Sira interface. Featuring the signature 'Flux Gradient' and mindful, rounded forms designed for clarity and calm financial management.
+                    </p>
+</div>
+<div class="flex gap-3">
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                        Stable v2.1
+                    </span>
+<span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wider">
+                        Figma Linked
+                    </span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+<!-- LEFT COLUMN: PRIMARY HIERARCHY -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- 1. Primary Actions Section -->
+<section class="bg-surface-white rounded-3xl p-8 md:p-10 shadow-subtle border border-gray-100">
+<div class="flex items-center justify-between mb-8 pb-4 border-b border-gray-100">
+<h3 class="text-2xl font-bold text-text-main">Primary Actions</h3>
+<p class="text-sm text-text-muted">High emphasis</p>
+</div>
+<div class="space-y-12">
+<!-- Flux Gradient Row -->
+<div>
+<div class="text-xs font-bold text-text-muted uppercase tracking-widest mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">palette</span>
+                                Flux Gradient
+                            </div>
+<div class="flex flex-wrap items-center gap-8 md:gap-12">
+<div class="flex flex-col gap-3 items-center">
+<button class="h-12 px-8 rounded-full bg-flux-gradient text-white font-bold text-base shadow-glow transition-all hover:scale-[1.02]">
+                                        Save Changes
+                                    </button>
+<span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Default</span>
+</div>
+<div class="flex flex-col gap-3 items-center">
+<button class="h-12 px-8 rounded-full bg-flux-gradient text-white font-bold text-base shadow-lg ring-4 ring-primary/20">
+                                        Save Changes
+                                    </button>
+<span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Focus / Hover</span>
+</div>
+<div class="flex flex-col gap-3 items-center">
+<button class="h-12 px-8 rounded-full bg-[#00aebf] text-white font-bold text-base shadow-inner scale-95 opacity-90">
+                                        Save Changes
+                                    </button>
+<span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Pressed</span>
+</div>
+<div class="flex flex-col gap-3 items-center">
+<button class="h-12 px-8 rounded-full bg-gray-100 text-gray-400 font-bold text-base cursor-not-allowed">
+                                        Save Changes
+                                    </button>
+<span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Disabled</span>
+</div>
+</div>
+</div>
+<!-- Solid Electric Teal Row -->
+<div>
+<div class="text-xs font-bold text-text-muted uppercase tracking-widest mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">circle</span>
+                                Solid Electric Teal
+                            </div>
+<div class="flex flex-wrap items-center gap-8 md:gap-12">
+<div class="flex flex-col gap-3 items-center">
+<button class="h-12 px-8 rounded-full bg-primary text-white font-bold text-base transition-colors hover:bg-primary-dark">
+                                        Continue
+                                    </button>
+<span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Default</span>
+</div>
+<div class="flex flex-col gap-3 items-center">
+<button class="h-12 px-8 rounded-full bg-primary-dark text-white font-bold text-base shadow-md">
+                                        Continue
+                                    </button>
+<span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Hover</span>
+</div>
+<div class="flex flex-col gap-3 items-center">
+<button class="h-12 px-8 rounded-full bg-primary/20 text-primary font-bold text-base">
+                                        Processing...
+                                    </button>
+<span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Loading</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Secondary & Tertiary Section -->
+<section class="bg-surface-white rounded-3xl p-8 md:p-10 shadow-subtle border border-gray-100">
+<div class="flex items-center justify-between mb-8 pb-4 border-b border-gray-100">
+<h3 class="text-2xl font-bold text-text-main">Secondary &amp; Tertiary</h3>
+<p class="text-sm text-text-muted">Medium &amp; Low emphasis</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+<!-- Secondary (Arctic Mint) -->
+<div>
+<div class="text-xs font-bold text-text-muted uppercase tracking-widest mb-6">Secondary (Fill)</div>
+<div class="flex flex-wrap gap-4">
+<button class="h-11 px-6 rounded-full bg-[#e0f2f1] text-[#006978] font-bold text-sm hover:bg-[#b2dfdb] transition-colors">
+                                    Cancel
+                                </button>
+<button class="h-11 px-6 rounded-full bg-[#b2dfdb] text-[#006978] font-bold text-sm ring-2 ring-[#006978]/20">
+                                    Cancel
+                                </button>
+</div>
+</div>
+<!-- Secondary (Outline) -->
+<div>
+<div class="text-xs font-bold text-text-muted uppercase tracking-widest mb-6">Secondary (Outline)</div>
+<div class="flex flex-wrap gap-4">
+<button class="h-11 px-6 rounded-full border-2 border-primary text-primary font-bold text-sm hover:bg-primary/5 transition-colors">
+                                    View Details
+                                </button>
+<button class="h-11 px-6 rounded-full border-2 border-gray-200 text-gray-400 font-bold text-sm cursor-not-allowed">
+                                    View Details
+                                </button>
+</div>
+</div>
+<!-- Tertiary (Ghost) -->
+<div class="md:col-span-2">
+<div class="text-xs font-bold text-text-muted uppercase tracking-widest mb-6">Ghost / Text Link</div>
+<div class="flex flex-wrap gap-8 items-center">
+<button class="h-10 px-4 rounded-lg text-text-main font-bold text-sm hover:bg-gray-50 transition-colors">
+                                    Skip for now
+                                </button>
+<button class="h-10 px-4 rounded-lg text-primary font-bold text-sm hover:bg-primary/5 transition-colors flex items-center gap-1">
+                                    Learn more <span class="material-symbols-outlined text-sm">arrow_outward</span>
+</button>
+<button class="h-10 px-4 rounded-lg text-red-500 font-bold text-sm hover:bg-red-50 transition-colors">
+                                    Delete Account
+                                </button>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Icon Buttons -->
+<section class="bg-surface-white rounded-3xl p-8 md:p-10 shadow-subtle border border-gray-100">
+<div class="flex items-center justify-between mb-8 pb-4 border-b border-gray-100">
+<h3 class="text-2xl font-bold text-text-main">Iconography</h3>
+<p class="text-sm text-text-muted">Visual cues</p>
+</div>
+<div class="flex flex-wrap items-center gap-8">
+<!-- Leading -->
+<button class="h-12 pl-6 pr-8 rounded-full bg-text-main text-white font-bold text-sm hover:bg-gray-800 transition-colors flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                            Add Money
+                        </button>
+<!-- Trailing -->
+<button class="h-12 pl-8 pr-6 rounded-full bg-text-main text-white font-bold text-sm hover:bg-gray-800 transition-colors flex items-center gap-3">
+                            Next Step
+                            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<!-- Icon Only Round -->
+<button class="size-12 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<!-- Icon Only Square-ish -->
+<button class="size-12 rounded-2xl bg-white border border-gray-200 text-gray-500 hover:text-primary hover:border-primary transition-colors flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</section>
+</div>
+<!-- RIGHT COLUMN: SIZES & UTILITIES -->
+<div class="lg:col-span-4 flex flex-col gap-8">
+<!-- 4. Sizes Card -->
+<section class="bg-surface-white rounded-3xl p-8 shadow-subtle border border-gray-100 h-fit">
+<h3 class="text-xl font-bold text-text-main mb-6 border-b border-gray-100 pb-4">Size Hierarchy</h3>
+<div class="space-y-8">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-text-muted uppercase w-16">Large</span>
+<div class="flex-1 flex items-center gap-4">
+<button class="h-14 px-8 rounded-full bg-text-main text-white font-bold text-lg w-full">
+                                    Button 56
+                                </button>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-text-muted uppercase w-16">Medium</span>
+<div class="flex-1 flex items-center gap-4">
+<button class="h-11 px-6 rounded-full bg-text-main text-white font-bold text-base w-full">
+                                    Button 44
+                                </button>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold text-text-muted uppercase w-16">Small</span>
+<div class="flex-1 flex items-center gap-4">
+<button class="h-8 px-4 rounded-full bg-text-main text-white font-bold text-xs w-full">
+                                    Button 32
+                                </button>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Social Auth Card -->
+<section class="bg-surface-white rounded-3xl p-8 shadow-subtle border border-gray-100 h-fit">
+<h3 class="text-xl font-bold text-text-main mb-6 border-b border-gray-100 pb-4">Social Auth</h3>
+<div class="flex flex-col gap-3">
+<button class="relative h-12 w-full rounded-full border border-gray-200 bg-white text-text-main font-semibold text-sm hover:bg-gray-50 transition-colors flex items-center justify-center gap-3">
+<img alt="Google Logo" class="w-5 h-5" data-alt="Google G logo in color" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnYk8SS1aKBH51gr3D6ez5sRfYMiOLFEWAhbz6Ec4o6x1dl30rPzNcIXKJiqP1K9o8DIDaqqsRc4YIWjQPMErQZYzgzknVNOftNrPQuXb65oE8w4C7FIYGCLiWUUvSxOI-n7E3u7SNbQQtNBscQOJ5QSLN2-hQIBMcuyrK2ZL0PsINvFPbH_c0ei3q18DK_B0K81j2tyeGl7T1HKUQCvZJliXcQAVC8y06uAFtXXlEkictDNPOLKplhZYk0UxJBdtaKTiiYnc3903V"/>
+                            Continue with Google
+                        </button>
+<button class="relative h-12 w-full rounded-full bg-black text-white font-semibold text-sm hover:bg-gray-800 transition-colors flex items-center justify-center gap-3">
+<img alt="Apple Logo" class="w-5 h-5 invert" data-alt="Apple logo silhouette" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3M05VQlDvRGkOPLfLSf1w8IIccLmBtKOw_2Xyb82UbQpqQ3To3GtPzzjoUYCf4ascxEE_Gn37GdrElVnunYMlepPdgDj9U4oxSK1_R33slE_luq0JZQWiBvA59pHNuxnO5J0ciSG93bXmk_wxqH2HrPH64E4NYq0HG17dvufe_y37GBqEC4XdIKISAD8V0Bc3jOIQVm_0hKk3PsdVb88wehfI7DDyyMuVMJqc7x1nT2AGdAIjvy8hX3RKaUjU97AtzUy1B9EqXyx3"/>
+                            Continue with Apple
+                        </button>
+</div>
+</section>
+<!-- 6. Floating Action Button (FAB) Showcase -->
+<section class="bg-gradient-to-br from-primary/10 to-primary/5 rounded-3xl p-8 shadow-inner border border-primary/10 h-fit relative overflow-hidden">
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-primary/20 rounded-full blur-xl"></div>
+<h3 class="text-xl font-bold text-text-main mb-2">Mindful Actions</h3>
+<p class="text-sm text-text-muted mb-6">Contextual floating actions for mobile interfaces.</p>
+<div class="flex items-center justify-center gap-4 py-4">
+<button class="size-14 rounded-full bg-flux-gradient text-white shadow-glow flex items-center justify-center transition-transform hover:scale-110 active:scale-95">
+<span class="material-symbols-outlined text-[28px]">add</span>
+</button>
+<button class="size-10 rounded-full bg-white text-text-main shadow-sm flex items-center justify-center hover:bg-gray-50">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+</button>
+</div>
+</section>
+</div>
+</div>
+<!-- Footer / Notes -->
+<footer class="mt-16 pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between text-text-muted text-sm">
+<p>© 2024 Sira Design System. All rights reserved.</p>
+<div class="flex gap-6 mt-4 md:mt-0">
+<span>Updated: Oct 24, 2023</span>
+<span>Maintained by Design Ops</span>
+</div>
+</footer>
+</main>
+</body></html>

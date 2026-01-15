@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sira Onboarding: Connect Provider</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1b988d",
+                        "primary-dark": "#136f66",
+                        "background-light": "#f6f9f8",
+                        "background-dark": "#182125",
+                        "surface-light": "rgba(255, 255, 255, 0.7)",
+                        "surface-dark": "rgba(30, 41, 46, 0.7)",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem", 
+                        "lg": "1rem", 
+                        "xl": "1.5rem", 
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                    backdropBlur: {
+                        "xs": "2px",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(27, 152, 141, 0.2);
+            border-radius: 20px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(27, 152, 141, 0.5);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.02), 
+                0 2px 4px -1px rgba(0, 0, 0, 0.02),
+                0 20px 40px -8px rgba(27, 152, 141, 0.08);
+        }
+        
+        .dark .glass-card {
+            background: rgba(24, 33, 37, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .provider-card:hover {
+            transform: translateY(-2px);
+            border-color: #1b988d;
+            box-shadow: 0 10px 25px -5px rgba(27, 152, 141, 0.15); 
+        }
+        
+        /* Subtle texture for background */
+        .bg-texture {
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(27, 152, 141, 0.08) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(27, 152, 141, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(27, 152, 141, 0.08) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(27, 152, 141, 0.05) 0px, transparent 50%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#182125] dark:text-gray-100 font-display min-h-screen flex flex-col bg-texture transition-colors duration-300">
+<!-- Navbar (simplified for onboarding) -->
+<nav class="w-full px-8 py-6 flex justify-between items-center z-10">
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary bg-primary/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">spa</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-[#121717] dark:text-white">Sira</span>
+</div>
+<button class="text-sm font-semibold text-gray-500 hover:text-primary dark:text-gray-400 transition-colors">Help</button>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
+<!-- Glassmorphic Central Card -->
+<div class="glass-card w-full max-w-[640px] rounded-2xl p-8 sm:p-10 lg:p-12 flex flex-col gap-8 relative overflow-hidden transition-all duration-300">
+<!-- Progress Bar -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-end">
+<span class="text-sm font-semibold text-primary uppercase tracking-wider">Step 2 of 3</span>
+<span class="text-xs text-gray-400 dark:text-gray-500 font-medium">Connect Provider</span>
+</div>
+<div class="h-1.5 w-full bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500 ease-out" style="width: 66%"></div>
+</div>
+</div>
+<!-- Header Section -->
+<div class="text-center space-y-3">
+<h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#121717] dark:text-white leading-tight">
+                    Map your first flow.
+                </h1>
+<p class="text-gray-500 dark:text-gray-400 text-base sm:text-lg max-w-[480px] mx-auto leading-relaxed">
+                    Connect your primary bank or e-wallet to see your wealth path in real-time. Everything is encrypted and secure.
+                </p>
+</div>
+<!-- Search Bar -->
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors">search</span>
+</div>
+<input class="block w-full pl-12 pr-4 py-4 bg-white/50 dark:bg-black/20 border-2 border-transparent focus:border-primary/30 focus:bg-white dark:focus:bg-black/40 focus:ring-0 rounded-xl text-base placeholder-gray-400 transition-all duration-200 outline-none" placeholder="Find your bank, e-wallet, or investment app..." type="text"/>
+</div>
+<!-- Provider Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<!-- Provider 1: BCA -->
+<button class="provider-card group flex flex-col items-center justify-center gap-3 p-4 bg-white dark:bg-[#1f2b30] border border-gray-100 dark:border-gray-700 rounded-xl transition-all duration-200 hover:shadow-lg relative overflow-hidden h-32">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
+<!-- Placeholder for Logo -->
+<span class="material-symbols-outlined text-blue-700 text-[28px]">account_balance</span>
+</div>
+<span class="text-sm font-bold text-gray-700 dark:text-gray-200 z-10">BCA</span>
+</button>
+<!-- Provider 2: Jago -->
+<button class="provider-card group flex flex-col items-center justify-center gap-3 p-4 bg-white dark:bg-[#1f2b30] border border-gray-100 dark:border-gray-700 rounded-xl transition-all duration-200 hover:shadow-lg relative overflow-hidden h-32">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-orange-500 text-[28px]">savings</span>
+</div>
+<span class="text-sm font-bold text-gray-700 dark:text-gray-200 z-10">Jago</span>
+</button>
+<!-- Provider 3: Mandiri -->
+<button class="provider-card group flex flex-col items-center justify-center gap-3 p-4 bg-white dark:bg-[#1f2b30] border border-gray-100 dark:border-gray-700 rounded-xl transition-all duration-200 hover:shadow-lg relative overflow-hidden h-32 ring-2 ring-primary ring-offset-2 dark:ring-offset-[#182125]">
+<div class="absolute top-2 right-2 text-primary">
+<span class="material-symbols-outlined text-[20px] fill-current">check_circle</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-blue-900 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-yellow-400 text-[28px]">account_balance_wallet</span>
+</div>
+<span class="text-sm font-bold text-gray-700 dark:text-gray-200 z-10">Mandiri</span>
+</button>
+<!-- Provider 4: GoPay -->
+<button class="provider-card group flex flex-col items-center justify-center gap-3 p-4 bg-white dark:bg-[#1f2b30] border border-gray-100 dark:border-gray-700 rounded-xl transition-all duration-200 hover:shadow-lg relative overflow-hidden h-32">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-sky-500 text-[28px]">payments</span>
+</div>
+<span class="text-sm font-bold text-gray-700 dark:text-gray-200 z-10">GoPay</span>
+</button>
+</div>
+<!-- Manual Entry Option -->
+<button class="group flex items-center justify-between p-4 rounded-xl border border-dashed border-gray-300 dark:border-gray-600 hover:border-primary hover:bg-primary/5 dark:hover:bg-primary/10 transition-all cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-gray-500 dark:text-gray-300 group-hover:text-primary transition-colors">edit_note</span>
+</div>
+<div class="text-left">
+<p class="text-sm font-bold text-gray-800 dark:text-white group-hover:text-primary transition-colors">Add Manual Cash Pocket</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Track cash or assets without connecting</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-gray-400 group-hover:text-primary group-hover:translate-x-1 transition-all">arrow_forward</span>
+</button>
+<!-- Divider -->
+<div class="h-px w-full bg-gray-100 dark:bg-gray-700/50 my-2"></div>
+<!-- Footer Actions -->
+<div class="flex items-center justify-between gap-4 pt-2">
+<button class="text-sm font-semibold text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white px-4 py-2 rounded-lg transition-colors">
+                    I'll do this later
+                </button>
+<button class="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white text-sm font-bold py-3 px-8 rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/30 transform active:scale-95 transition-all">
+<span>Continue</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<!-- Security Badge -->
+<div class="absolute bottom-4 left-0 right-0 flex justify-center opacity-60 pointer-events-none">
+<div class="flex items-center gap-1.5 text-[10px] text-gray-400 uppercase tracking-widest font-bold">
+<span class="material-symbols-outlined text-[12px]">lock</span>
+                    Encrypted &amp; Secure
+                </div>
+</div>
+</div>
+</main>
+<!-- Background Elements for Atmosphere -->
+<div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+<div class="absolute top-[-10%] right-[-5%] w-[40rem] h-[40rem] rounded-full bg-primary/5 blur-[100px] mix-blend-multiply dark:mix-blend-screen"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[35rem] h-[35rem] rounded-full bg-teal-200/20 blur-[120px] mix-blend-multiply dark:mix-blend-screen"></div>
+</div>
+</body></html>

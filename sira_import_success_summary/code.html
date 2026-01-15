@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sira - Import Success</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;family=Outfit:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00c2b2",
+                        "primary-dark": "#009e91",
+                        "teal-flux-start": "#00c2b2",
+                        "teal-flux-end": "#0b98a8",
+                        "background-light": "#F2F8F8",
+                        "background-dark": "#21242c",
+                        "glass-border": "rgba(255, 255, 255, 0.6)",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                        "outfit": ["Outfit", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "3xl": "2.5rem", "full": "9999px"},
+                    boxShadow: {
+                        'glass': '0 20px 40px -8px rgba(0, 194, 178, 0.08), 0 12px 24px -6px rgba(0, 0, 0, 0.02)',
+                        'glow': '0 0 20px rgba(0, 194, 178, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;
+            background-color: #F2F8F8;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 194, 178, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(11, 152, 168, 0.05) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.02), 
+                0 2px 4px -1px rgba(0, 0, 0, 0.02),
+                inset 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .glass-stat {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        .glass-stat:hover {
+            background: rgba(255, 255, 255, 0.7);
+            transform: translateY(-2px);
+            border-color: rgba(0, 194, 178, 0.3);
+        }
+
+        .teal-flux-gradient {
+            background: linear-gradient(135deg, #00c2b2 0%, #0b98a8 100%);
+        }
+
+        /* Animations */
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes slideUpFade {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes checkmarkDraw {
+            0% { stroke-dashoffset: 100; opacity: 0; }
+            100% { stroke-dashoffset: 0; opacity: 1; }
+        }
+
+        .animate-pop { animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        .animate-slide-up { animation: slideUpFade 0.6s ease-out forwards; opacity: 0; }
+        
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col overflow-x-hidden text-[#0c1d1b]">
+<!-- Top Navigation -->
+<header class="w-full px-6 py-4 flex justify-center sticky top-0 z-20">
+<div class="max-w-[1200px] w-full flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary">
+<svg class="w-full h-full drop-shadow-sm" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-[#0c1d1b] text-xl font-bold tracking-tight font-display">Sira</h2>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-[#0c1d1b]/70 hover:text-primary text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-[#0c1d1b]/70 hover:text-primary text-sm font-medium transition-colors" href="#">Ledger</a>
+<a class="text-[#0c1d1b]/70 hover:text-primary text-sm font-medium transition-colors" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center size-10 rounded-full hover:bg-white/50 transition-colors text-[#0c1d1b]/80">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-white shadow-sm cursor-pointer hover:ring-primary/30 transition-all" data-alt="User profile picture showing a calm abstract landscape" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBxQDsbHVuVZy86i_2YcJNxB2q9qaiVsmc0_IVDcImwJ84bZ1rtJDr4ly1AXOqysNv0dx5019-H9hWvRy8c56cAFXtXaubfpf-zlWE9habq8-pcmyHv8FTAOqL4kZr9jno_80XdKlXYEb1qLW9Ae3gaFL32w-Ip17sfb9VP0EjJz1FknzcP2EMGcNOsb5TuEa4mldOZzP3J_bsorpIB_GW8d8GyveTQ5M5OYWbAzUbK_hkrtZTYifNp1oWXKaE5f3fNCRB9pmUHYZ6T");'>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Layout -->
+<main class="flex-1 flex items-center justify-center p-4 md:p-8 relative z-10">
+<!-- Center Glass Card -->
+<div class="glass-card w-full max-w-[840px] rounded-3xl p-8 md:p-14 flex flex-col gap-10 animate-pop origin-center">
+<!-- Hero Header -->
+<div class="flex flex-col items-center text-center gap-5">
+<div class="relative">
+<div class="absolute inset-0 bg-primary/20 blur-xl rounded-full"></div>
+<div class="relative bg-white rounded-full p-4 shadow-lg shadow-primary/10 ring-1 ring-primary/10">
+<span class="material-symbols-outlined text-5xl text-primary icon-filled animate-pulse">check_circle</span>
+</div>
+</div>
+<div class="animate-slide-up delay-100">
+<h1 class="text-3xl md:text-4xl font-bold text-[#0c1d1b] tracking-tight mb-2 font-display">Import Complete</h1>
+<p class="text-[#5c7a76] text-lg max-w-[480px] mx-auto leading-relaxed">Your financial data has been successfully synchronized and categorized.</p>
+</div>
+</div>
+<!-- Bento Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5 animate-slide-up delay-200">
+<!-- Stat 1 -->
+<div class="glass-stat p-6 rounded-2xl flex flex-col gap-4 group">
+<div class="size-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-700 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+<div>
+<p class="text-[#5c7a76] text-sm font-bold uppercase tracking-wider mb-1">Transactions</p>
+<p class="text-3xl font-bold text-[#0c1d1b] font-display">342</p>
+</div>
+</div>
+<!-- Stat 2 (Featured) -->
+<div class="glass-stat p-6 rounded-2xl flex flex-col gap-4 group border-primary/20 bg-white/60">
+<div class="size-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-700 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">account_balance</span>
+</div>
+<div>
+<p class="text-[#5c7a76] text-sm font-bold uppercase tracking-wider mb-1">Total Value</p>
+<p class="text-3xl font-bold text-primary font-mono tracking-tight">$12,450.00</p>
+</div>
+</div>
+<!-- Stat 3 -->
+<div class="glass-stat p-6 rounded-2xl flex flex-col gap-4 group">
+<div class="size-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-700 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">category</span>
+</div>
+<div>
+<p class="text-[#5c7a76] text-sm font-bold uppercase tracking-wider mb-1">New Categories</p>
+<p class="text-3xl font-bold text-[#0c1d1b] font-display">8</p>
+</div>
+</div>
+</div>
+<!-- Mindful Insight Box -->
+<div class="animate-slide-up delay-300">
+<div class="bg-[#A7E0DD]/20 border border-[#A7E0DD]/50 rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+<div class="p-2 bg-white/60 rounded-full text-primary shrink-0 shadow-sm">
+<span class="material-symbols-outlined icon-filled">spa</span>
+</div>
+<div class="flex-1">
+<p class="text-[#0c1d1b] font-outfit text-lg font-medium italic">
+                            "Your wealth map is now more accurate. Time for a mindful review?"
+                        </p>
+</div>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="flex flex-col-reverse sm:flex-row gap-4 justify-center items-center pt-2 animate-slide-up delay-300">
+<button class="group w-full sm:w-auto min-w-[160px] h-14 rounded-xl border border-primary/30 hover:border-primary text-primary hover:bg-primary/5 font-bold text-base transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:-translate-x-1">arrow_back</span>
+<span>View in Ledger</span>
+</button>
+<button class="group w-full sm:w-auto min-w-[200px] h-14 rounded-xl teal-flux-gradient text-white font-bold text-base shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:shadow-xl transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2">
+<span>Go to Dashboard</span>
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Decorative Background Elements -->
+<div class="fixed top-1/4 left-10 w-64 h-64 bg-teal-200/20 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
+<div class="fixed bottom-10 right-10 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl pointer-events-none -z-10"></div>
+</body></html>

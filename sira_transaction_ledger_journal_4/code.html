@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sira - Transaction Journal</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#22c3b6",
+                        "primary-dark": "#1aa398",
+                        "background-light": "#fafaf9",
+                        "background-dark": "#21262c",
+                        "glass-border": "rgba(255, 255, 255, 0.4)",
+                        "glass-bg": "rgba(255, 255, 255, 0.6)",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem", 
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "soft": "0 4px 20px rgba(34, 195, 182, 0.08)",
+                        "glass": "0 8px 32px 0 rgba(31, 38, 135, 0.07)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+        }
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-[#0f1a19] font-display antialiased overflow-hidden selection:bg-primary/30">
+<div class="flex h-screen w-full overflow-hidden">
+<aside class="hidden lg:flex w-72 flex-col h-full glass-panel border-r border-slate-200/50 relative z-20 shrink-0">
+<div class="p-6 pb-2">
+<div class="flex items-center gap-3">
+<div class="relative size-10 rounded-full overflow-hidden shadow-sm">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary to-emerald-200"></div>
+<span class="material-symbols-outlined absolute inset-0 flex items-center justify-center text-white font-bold" style="font-size: 24px;">spa</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-[#0f1a19] text-lg font-bold leading-tight tracking-tight">Sira</h1>
+<p class="text-primary text-xs font-medium tracking-wide uppercase">Mindful Finance</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-white/50 hover:text-primary transition-all group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">grid_view</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary border border-primary/5 shadow-sm" href="#">
+<span class="material-symbols-outlined text-[24px] fill-1">book</span>
+<span class="text-sm font-bold">Ledger</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-white/50 hover:text-primary transition-all group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">account_balance_wallet</span>
+<span class="text-sm font-medium">Pockets</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-white/50 hover:text-primary transition-all group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">donut_large</span>
+<span class="text-sm font-medium">Analysis</span>
+</a>
+<div class="mt-auto pt-4 border-t border-slate-200/50">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-white/50 hover:text-primary transition-all group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</nav>
+<div class="p-6">
+<div class="glass-card p-4 rounded-xl flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-white" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB_g1vysrGOSm0HE3F6RwjPQGbyYEfh3WnJv7s-FzpFp6BytRTZkfqIJWo4aOAy6N4JsRUgLnEpoz3GQKtvDp05B81XikADCGLOT2DYeUzzljIsROgdN0C14LmAgq2JW-YVJdD9Wk7oT-3DgKyDYBTEmdihS5Dw1QE7WOC-ECOaz2nGC1vT0MbLg7s_tsaDrtt78wTed1dYwxDZMVP_eL_87stdJuuMAvz29Q3-9LlrtC2AFk0pgYfW1zKD9SYXNIrg9r7UeKIEVV99");'></div>
+<div class="flex flex-col min-w-0">
+<p class="text-sm font-bold text-slate-800 truncate">Sarah J.</p>
+<p class="text-xs text-slate-500 truncate">Pro Plan</p>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col h-full relative overflow-hidden bg-gradient-to-br from-[#fafaf9] via-[#f2fcfb] to-[#e6f7f6]">
+<header class="h-20 shrink-0 glass-panel border-b border-white/50 px-8 flex items-center justify-between z-10 sticky top-0">
+<div class="flex items-center gap-4">
+<button class="lg:hidden p-2 -ml-2 text-slate-500">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h2 class="text-xl font-bold tracking-tight text-slate-800">Transaction Journal</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center bg-white/60 border border-white/80 rounded-xl px-3 h-10 w-64 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary/50 transition-all shadow-sm">
+<span class="material-symbols-outlined text-slate-400 text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-slate-400 text-slate-700 h-full" placeholder="Search transactions..." type="text"/>
+</div>
+<button class="size-10 flex items-center justify-center rounded-xl bg-white/60 border border-white/80 text-slate-600 hover:text-primary hover:bg-white hover:shadow-md transition-all relative">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+<span class="absolute top-2.5 right-2.5 size-2 bg-red-400 rounded-full border border-white"></span>
+</button>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto relative p-4 md:p-8 md:pt-6 pb-20 scroll-smooth">
+<div class="max-w-5xl mx-auto flex flex-col gap-6">
+<div class="sticky top-0 z-10 pt-2 pb-4 -mt-2 bg-gradient-to-b from-[#fafaf9]/80 to-transparent backdrop-blur-sm">
+<div class="pointer-events-auto glass-panel p-2 rounded-2xl shadow-soft flex flex-wrap items-center gap-2 md:gap-4 overflow-x-auto mx-1 border border-white/60">
+<button class="flex items-center gap-2 px-3 py-2 rounded-xl bg-white hover:bg-primary/5 text-slate-700 text-sm font-semibold border border-slate-100 shadow-sm transition-all whitespace-nowrap group">
+<span class="material-symbols-outlined text-primary text-[20px]">calendar_month</span>
+<span>Jan 1 - Jan 15</span>
+<span class="material-symbols-outlined text-slate-400 text-[18px] group-hover:text-primary transition-colors">expand_more</span>
+</button>
+<div class="w-px h-6 bg-slate-200"></div>
+<button class="flex items-center gap-2 px-3 py-2 rounded-xl bg-transparent hover:bg-white/80 text-slate-600 hover:text-primary text-sm font-medium transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+<span>Type: All</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-2 rounded-xl bg-transparent hover:bg-white/80 text-slate-600 hover:text-primary text-sm font-medium transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[20px]">mood</span>
+<span>Mood: All</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-2 rounded-xl bg-transparent hover:bg-white/80 text-slate-600 hover:text-primary text-sm font-medium transition-all whitespace-nowrap">
+<span class="material-symbols-outlined text-[20px]">wallet</span>
+<span>Wallet: Main</span>
+</button>
+<div class="flex-1"></div>
+<button class="hidden md:flex items-center justify-center size-8 rounded-full text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors">
+<span class="material-symbols-outlined text-[20px]">restart_alt</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<details class="group bg-white/40 border border-white/60 rounded-2xl overflow-hidden transition-all duration-300" open="">
+<summary class="flex items-center justify-between p-5 cursor-pointer list-none hover:bg-white/60 transition-colors">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-slate-800 font-bold text-base">Food &amp; Drink</h3>
+<p class="text-xs text-slate-500">2 Transactions</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<p class="text-xs text-slate-400 font-mono uppercase">Total</p>
+<p class="text-slate-800 font-bold font-mono">-$5.50</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="p-4 pt-0 flex flex-col gap-3">
+<div class="group relative flex flex-col md:flex-row md:items-center justify-between p-4 bg-white/80 hover:bg-white rounded-2xl border border-transparent hover:border-primary/20 shadow-sm transition-all duration-300">
+<div class="flex items-center gap-4 flex-1">
+<div class="size-12 rounded-full bg-[#e8f2f1] flex items-center justify-center text-2xl shadow-inner shrink-0">☕️</div>
+<div class="flex flex-col gap-0.5">
+<h4 class="text-slate-800 font-bold text-base group-hover:text-primary transition-colors">Starbucks Coffee</h4>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span>Today, 10:23 AM</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 mt-3 md:mt-0 md:justify-end flex-1 pl-[64px] md:pl-0">
+<div class="px-3 py-1 rounded-full bg-teal-50 border border-teal-100 text-teal-600 text-xs font-extrabold tracking-wide uppercase shadow-sm">HEALING</div>
+<div class="hidden lg:flex items-center gap-1.5 text-xs font-medium text-slate-400 bg-slate-50 px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-[14px]">credit_card</span> Jago Main
+                                    </div>
+<span class="font-mono font-bold text-slate-800 text-base md:text-lg min-w-[100px] text-right">-$5.50</span>
+</div>
+</div>
+</div>
+</details>
+<details class="group bg-white/40 border border-white/60 rounded-2xl overflow-hidden transition-all duration-300" open="">
+<summary class="flex items-center justify-between p-5 cursor-pointer list-none hover:bg-white/60 transition-colors">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">work</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-slate-800 font-bold text-base">Freelance</h3>
+<p class="text-xs text-slate-500">1 Transaction</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<p class="text-xs text-slate-400 font-mono uppercase">Total</p>
+<p class="text-primary font-bold font-mono">+$1,200.00</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="p-4 pt-0 flex flex-col gap-3">
+<div class="group relative flex flex-col md:flex-row md:items-center justify-between p-4 bg-white/80 hover:bg-white rounded-2xl border border-transparent hover:border-primary/20 shadow-sm transition-all duration-300">
+<div class="flex items-center gap-4 flex-1">
+<div class="size-12 rounded-full bg-emerald-50 flex items-center justify-center text-2xl shadow-inner shrink-0">💼</div>
+<div class="flex flex-col gap-0.5">
+<h4 class="text-slate-800 font-bold text-base group-hover:text-primary transition-colors">Client Payment #204</h4>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span>Today, 09:15 AM</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 mt-3 md:mt-0 md:justify-end flex-1 pl-[64px] md:pl-0">
+<div class="px-3 py-1 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-700 text-xs font-extrabold tracking-wide uppercase shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> CUAN
+                                    </div>
+<div class="hidden lg:flex items-center gap-1.5 text-xs font-medium text-slate-400 bg-slate-50 px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-[14px]">account_balance</span> BCA
+                                    </div>
+<span class="font-mono font-bold text-primary text-base md:text-lg min-w-[100px] text-right">+$1,200.00</span>
+</div>
+</div>
+</div>
+</details>
+<details class="group bg-white/40 border border-white/60 rounded-2xl overflow-hidden transition-all duration-300">
+<summary class="flex items-center justify-between p-5 cursor-pointer list-none hover:bg-white/60 transition-colors">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">devices</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-slate-800 font-bold text-base">Electronics</h3>
+<p class="text-xs text-slate-500">1 Transaction</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<p class="text-xs text-slate-400 font-mono uppercase">Total</p>
+<p class="text-slate-800 font-bold font-mono">-$319.00</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="p-4 pt-0 flex flex-col gap-3">
+<div class="group relative flex flex-col md:flex-row md:items-center justify-between p-4 bg-white/80 hover:bg-white rounded-2xl border border-transparent hover:border-primary/20 shadow-sm transition-all duration-300">
+<div class="flex items-center gap-4 flex-1">
+<div class="size-12 rounded-full bg-orange-50 flex items-center justify-center text-2xl shadow-inner shrink-0">🎧</div>
+<div class="flex flex-col gap-0.5">
+<h4 class="text-slate-800 font-bold text-base group-hover:text-primary transition-colors">Sony Headphones</h4>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span>Today, 08:45 AM</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 mt-3 md:mt-0 md:justify-end flex-1 pl-[64px] md:pl-0">
+<div class="px-3 py-1 rounded-full bg-orange-100 border border-orange-200 text-orange-700 text-xs font-extrabold tracking-wide uppercase shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">bolt</span> HYPE
+                                    </div>
+<div class="hidden lg:flex items-center gap-1.5 text-xs font-medium text-slate-400 bg-slate-50 px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-[14px]">credit_card</span> Credit Card
+                                    </div>
+<span class="font-mono font-bold text-slate-800 text-base md:text-lg min-w-[100px] text-right">-$319.00</span>
+</div>
+</div>
+</div>
+</details>
+<details class="group bg-white/40 border border-white/60 rounded-2xl overflow-hidden transition-all duration-300">
+<summary class="flex items-center justify-between p-5 cursor-pointer list-none hover:bg-white/60 transition-colors">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">commute</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-slate-800 font-bold text-base">Transport</h3>
+<p class="text-xs text-slate-500">1 Transaction</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<p class="text-xs text-slate-400 font-mono uppercase">Total</p>
+<p class="text-slate-800 font-bold font-mono">-$15.20</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="p-4 pt-0 flex flex-col gap-3">
+<div class="group relative flex flex-col md:flex-row md:items-center justify-between p-4 bg-white/80 hover:bg-white rounded-2xl border border-transparent hover:border-primary/20 shadow-sm transition-all duration-300">
+<div class="flex items-center gap-4 flex-1">
+<div class="size-12 rounded-full bg-slate-100 flex items-center justify-center text-2xl shadow-inner shrink-0">🚕</div>
+<div class="flex flex-col gap-0.5">
+<h4 class="text-slate-800 font-bold text-base group-hover:text-primary transition-colors">Uber Ride</h4>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span>Yesterday, 06:30 PM</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 mt-3 md:mt-0 md:justify-end flex-1 pl-[64px] md:pl-0">
+<div class="px-3 py-1 rounded-full bg-rose-100 border border-rose-200 text-rose-700 text-xs font-extrabold tracking-wide uppercase shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">snooze</span> MAGER
+                                    </div>
+<div class="hidden lg:flex items-center gap-1.5 text-xs font-medium text-slate-400 bg-slate-50 px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-[14px]">credit_card</span> Jago Main
+                                    </div>
+<span class="font-mono font-bold text-slate-800 text-base md:text-lg min-w-[100px] text-right">-$15.20</span>
+</div>
+</div>
+</div>
+</details>
+<details class="group bg-white/40 border border-white/60 rounded-2xl overflow-hidden transition-all duration-300">
+<summary class="flex items-center justify-between p-5 cursor-pointer list-none hover:bg-white/60 transition-colors">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">shopping_basket</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-slate-800 font-bold text-base">Groceries</h3>
+<p class="text-xs text-slate-500">1 Transaction</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<p class="text-xs text-slate-400 font-mono uppercase">Total</p>
+<p class="text-slate-800 font-bold font-mono">-$80.00</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="p-4 pt-0 flex flex-col gap-3">
+<div class="group relative flex flex-col md:flex-row md:items-center justify-between p-4 bg-white/80 hover:bg-white rounded-2xl border border-transparent hover:border-primary/20 shadow-sm transition-all duration-300">
+<div class="flex items-center gap-4 flex-1">
+<div class="size-12 rounded-full bg-blue-50 flex items-center justify-center text-2xl shadow-inner shrink-0">🥦</div>
+<div class="flex flex-col gap-0.5">
+<h4 class="text-slate-800 font-bold text-base group-hover:text-primary transition-colors">Whole Foods</h4>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span>Yesterday, 04:15 PM</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 mt-3 md:mt-0 md:justify-end flex-1 pl-[64px] md:pl-0">
+<div class="px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-600 text-xs font-extrabold tracking-wide uppercase shadow-sm">ESSENTIAL</div>
+<div class="hidden lg:flex items-center gap-1.5 text-xs font-medium text-slate-400 bg-slate-50 px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-[14px]">credit_card</span> Jago Main
+                                    </div>
+<span class="font-mono font-bold text-slate-800 text-base md:text-lg min-w-[100px] text-right">-$80.00</span>
+</div>
+</div>
+</div>
+</details>
+<details class="group bg-white/40 border border-white/60 rounded-2xl overflow-hidden transition-all duration-300">
+<summary class="flex items-center justify-between p-5 cursor-pointer list-none hover:bg-white/60 transition-colors">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">sync_alt</span>
+</div>
+<div class="flex flex-col">
+<h3 class="text-slate-800 font-bold text-base">Internal</h3>
+<p class="text-xs text-slate-500">1 Transaction</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<p class="text-xs text-slate-400 font-mono uppercase">Total</p>
+<p class="text-slate-600 font-bold font-mono">$50.00</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+</div>
+</summary>
+<div class="p-4 pt-0 flex flex-col gap-3">
+<div class="group relative flex flex-col md:flex-row md:items-center justify-between p-4 bg-white/80 hover:bg-white rounded-2xl border border-transparent hover:border-primary/20 shadow-sm transition-all duration-300">
+<div class="flex items-center gap-4 flex-1">
+<div class="size-12 rounded-full bg-purple-50 flex items-center justify-center text-2xl shadow-inner shrink-0">🔄</div>
+<div class="flex flex-col gap-0.5">
+<h4 class="text-slate-800 font-bold text-base group-hover:text-primary transition-colors">Savings Transfer</h4>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span>Yesterday, 12:00 PM</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 mt-3 md:mt-0 md:justify-end flex-1 pl-[64px] md:pl-0">
+<div class="px-3 py-1 rounded-full bg-purple-100 border border-purple-200 text-purple-700 text-xs font-extrabold tracking-wide uppercase shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">self_improvement</span> MINDFUL
+                                    </div>
+<div class="hidden lg:flex items-center gap-1.5 text-xs font-medium text-slate-400 bg-slate-50 px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-[14px]">arrow_right_alt</span> Vault
+                                    </div>
+<span class="font-mono font-bold text-slate-400 text-base md:text-lg min-w-[100px] text-right">$50.00</span>
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
+</div>
+<button class="md:hidden fixed bottom-6 right-6 size-14 rounded-full bg-primary text-white shadow-lg flex items-center justify-center z-50">
+<span class="material-symbols-outlined">add</span>
+</button>
+</main>
+</div>
+
+</body></html>

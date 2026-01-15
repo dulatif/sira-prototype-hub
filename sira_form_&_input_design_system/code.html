@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sira Form &amp; Input Design System</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00d2e6", // Teal Flux Primary
+                        "primary-dark": "#00acc1",
+                        "danger": "#DC2626",
+                        "background-light": "#f9fafb",
+                        "background-dark": "#22262a",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2d3339",
+                        "border-light": "#dae6e7",
+                        "border-dark": "#3f464e",
+                        "text-main": "#101818",
+                        "text-secondary": "#5e898d",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "2xl": "1.5rem", "full": "9999px"},
+                    boxShadow: {
+                        'glow': '0 0 0 3px rgba(0, 210, 230, 0.15)',
+                        'card': '0 4px 24px -6px rgba(0,0,0,0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>body {
+    font-family: "Manrope", sans-serif
+    }
+/* Custom scrollbar for textareas */
+textarea::-webkit-scrollbar {
+    width: 8px
+    }
+textarea::-webkit-scrollbar-track {
+    background: transparent
+    }
+textarea::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 20px;
+    border: 3px solid transparent;
+    background-clip: content-box
+    }
+/* Checkbox & Radio Custom Styles */
+.sira-checkbox:checked {
+    background-color: #00d2e6;
+    border-color: #00d2e6;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCD34xDjV7soISBk8SNDpQxce0oQWxFFUUqCMqybzgNAzOXvGTEAKA1OlHMQL5VrW8zzVoxXKbXq-iuiHJQcVynEM_7UFJCS2V80K15z6TIowic7eWPnlm_66AMoLpXnNSSk94EIMkXgc8Ol9j5xVFfXLndCZ3c0GR9FESKMUTWXw4j0nrS-jJ77_WVKnXTxmziXSLyDeyqDioP_41oGskS9khWwFT6qkj8zkFogc5da2E0KmpxkLrDmlKOISZIstXC2fRAwWxuar2n)
+    }
+.sira-radio:checked {
+    background-color: #00d2e6;
+    border-color: #00d2e6;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAPnMcSIvXyZ3gTxxuMfThCou7vb8UtohgdEetfo1B_Yfpqxh1funGg4C6pJY7Bnu0I0YpiEGxae0xm8J-KGF2ahTeycqDNWZrg8Xm45rTFcYq5WblSyoZHPJ-1_RsK1cuG7hOarW1gdaxC9-q_nOufGzUEOFv5VqXKakIQacAYfQ3ckbMV2danKrjKW5kwHNK39u5jsP-dWh5XmCSE3_ZgfTQJHlQYLUc6OZemWBZve8TZIbNtA5TV15PUmlRecIOodCiKagzSGqNo)
+    }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-text-main dark:text-white transition-colors duration-200">
+<div class="max-w-[1440px] mx-auto px-6 py-10 lg:px-12 lg:py-16">
+<!-- Header Section -->
+<header class="mb-12 border-b border-border-light dark:border-border-dark pb-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight text-text-main dark:text-white mb-2">
+                        Sira <span class="text-primary font-normal">System</span>
+</h1>
+<p class="text-text-secondary dark:text-gray-400 text-lg max-w-2xl">
+                        Mindful Finance Companion • Form &amp; Input Component Library. 
+                        Designed for clarity, precision, and trust.
+                    </p>
+</div>
+<div class="flex items-center gap-3 bg-white dark:bg-surface-dark py-2 px-4 rounded-full shadow-sm border border-border-light dark:border-border-dark">
+<span class="w-3 h-3 rounded-full bg-primary animate-pulse"></span>
+<span class="text-sm font-semibold text-text-secondary dark:text-gray-300">v2.4.0 • Teal Flux</span>
+</div>
+</div>
+</header>
+<!-- Main Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+<!-- COLUMN 1: FUNDAMENTALS -->
+<div class="flex flex-col gap-8">
+<!-- Text Inputs Card -->
+<section class="bg-surface-light dark:bg-surface-dark rounded-2xl p-6 shadow-card border border-border-light dark:border-border-dark flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold tracking-tight">Text Inputs</h2>
+<span class="material-symbols-outlined text-text-secondary">text_fields</span>
+</div>
+<!-- Default State -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-text-main dark:text-gray-200">Default Input</label>
+<input class="w-full h-12 px-4 rounded-xl border border-border-light dark:border-border-dark bg-white dark:bg-black/20 text-text-main dark:text-white placeholder-text-secondary focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all duration-200 outline-none" placeholder="e.g. Account Name" type="text"/>
+</div>
+<!-- Focused State (Simulated visual) -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-text-main dark:text-gray-200">Focused State</label>
+<input class="w-full h-12 px-4 rounded-xl border border-primary bg-white dark:bg-black/20 text-text-main dark:text-white shadow-glow outline-none" type="text" value="Personal Savings"/>
+</div>
+<!-- Error State -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between">
+<label class="text-sm font-semibold text-text-main dark:text-gray-200">Error State</label>
+<span class="text-xs text-danger font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">error</span>
+                                Invalid entry
+                            </span>
+</div>
+<div class="relative">
+<input class="w-full h-12 px-4 pr-10 rounded-xl border border-danger bg-red-50/30 dark:bg-red-900/10 text-text-main dark:text-white focus:border-danger focus:ring-4 focus:ring-danger/10 transition-all outline-none" type="text" value="Invalid@Input"/>
+<span class="material-symbols-outlined absolute right-3 top-3 text-danger">warning</span>
+</div>
+</div>
+<!-- Disabled State -->
+<div class="flex flex-col gap-2 opacity-60">
+<label class="text-sm font-semibold text-text-main dark:text-gray-200">Disabled</label>
+<input class="w-full h-12 px-4 rounded-xl border border-border-light dark:border-border-dark bg-gray-50 dark:bg-white/5 text-gray-400 cursor-not-allowed" disabled="" type="text" value="Archive-2023-read-only"/>
+</div>
+</section>
+<!-- Icon Inputs Card -->
+<section class="bg-surface-light dark:bg-surface-dark rounded-2xl p-6 shadow-card border border-border-light dark:border-border-dark flex flex-col gap-6">
+<h2 class="text-xl font-bold tracking-tight">Icon Variants</h2>
+<!-- Search / Leading Icon -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-text-main dark:text-gray-200">Leading Icon</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-3 text-text-secondary group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full h-12 pl-12 pr-4 rounded-xl border border-border-light dark:border-border-dark bg-white dark:bg-black/20 text-text-main dark:text-white placeholder-text-secondary focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none" placeholder="Search transactions..." type="text"/>
+</div>
+</div>
+<!-- Password / Trailing Icon -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-text-main dark:text-gray-200">Trailing Icon</label>
+<div class="relative group">
+<input class="w-full h-12 pl-4 pr-12 rounded-xl border border-border-light dark:border-border-dark bg-white dark:bg-black/20 text-text-main dark:text-white placeholder-text-secondary focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none" type="password" value="SuperSecret123"/>
+<button class="absolute right-4 top-3 text-text-secondary hover:text-primary transition-colors focus:outline-none">
+<span class="material-symbols-outlined">visibility_off</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<!-- COLUMN 2: DATA & CHOICE -->
+<div class="flex flex-col gap-8">
+<!-- Specialized Financial Input -->
+<section class="bg-surface-light dark:bg-surface-dark rounded-2xl p-6 shadow-card border border-border-light dark:border-border-dark flex flex-col gap-6 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">attach_money</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight z-10">Financial Entry</h2>
+<div class="flex flex-col gap-3 z-10">
+<label class="text-sm font-semibold text-text-main dark:text-gray-200 flex justify-between">
+                            Transfer Amount
+                            <span class="text-xs font-normal text-text-secondary">USD</span>
+</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-2xl font-mono text-text-secondary font-light">$</span>
+<input class="w-full h-20 pl-10 pr-4 rounded-xl border border-border-light dark:border-border-dark bg-white dark:bg-black/20 text-text-main dark:text-white font-mono text-4xl tracking-tight focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none" type="text" value="1,250.00"/>
+</div>
+<p class="text-xs text-text-secondary">Balance after transfer: <span class="font-mono text-text-main dark:text-gray-300">$4,102.32</span></p>
+</div>
+</section>
+<!-- Selection Controls -->
+<section class="bg-surface-light dark:bg-surface-dark rounded-2xl p-6 shadow-card border border-border-light dark:border-border-dark flex flex-col gap-6">
+<h2 class="text-xl font-bold tracking-tight">Selection Controls</h2>
+<!-- Toggles -->
+<div class="flex flex-col gap-4 pb-4 border-b border-border-light dark:border-border-dark">
+<p class="text-xs font-bold uppercase tracking-wider text-text-secondary">Toggles</p>
+<div class="flex items-center justify-between">
+<span class="text-sm font-medium text-text-main dark:text-gray-200">Notifications</span>
+<!-- Active Toggle -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/20 dark:peer-focus:ring-primary/40 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-sm font-medium text-text-main dark:text-gray-200">Auto-Save</span>
+<!-- Inactive Toggle -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/20 dark:peer-focus:ring-primary/40 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+<!-- Radios & Checkboxes -->
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-3">
+<p class="text-xs font-bold uppercase tracking-wider text-text-secondary">Radio</p>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="sira-radio w-5 h-5 text-primary bg-gray-100 border-gray-300 focus:ring-primary focus:ring-2 dark:bg-gray-700 dark:border-gray-600" name="plan" type="radio"/>
+<span class="text-sm text-text-main dark:text-gray-200 group-hover:text-primary transition-colors">Monthly</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="sira-radio w-5 h-5 text-primary bg-gray-100 border-gray-300 focus:ring-primary focus:ring-2 dark:bg-gray-700 dark:border-gray-600" name="plan" type="radio"/>
+<span class="text-sm text-text-main dark:text-gray-200 group-hover:text-primary transition-colors">Yearly</span>
+</label>
+</div>
+<div class="flex flex-col gap-3">
+<p class="text-xs font-bold uppercase tracking-wider text-text-secondary">Checkbox</p>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="sira-checkbox w-5 h-5 rounded text-primary bg-gray-100 border-gray-300 focus:ring-primary focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="checkbox"/>
+<span class="text-sm text-text-main dark:text-gray-200 group-hover:text-primary transition-colors">Agree</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="sira-checkbox w-5 h-5 rounded text-primary bg-gray-100 border-gray-300 focus:ring-primary focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="checkbox"/>
+<span class="text-sm text-text-main dark:text-gray-200 group-hover:text-primary transition-colors">Subscribe</span>
+</label>
+</div>
+</div>
+</section>
+</div>
+<!-- COLUMN 3: SPECIALIZED INPUTS & TEXTAREA -->
+<div class="flex flex-col gap-8">
+<!-- Dropdowns Card -->
+<section class="bg-surface-light dark:bg-surface-dark rounded-2xl p-6 shadow-card border border-border-light dark:border-border-dark flex flex-col gap-6 overflow-visible">
+<h2 class="text-xl font-bold tracking-tight">Dropdowns</h2>
+<!-- Standard Select -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-text-main dark:text-gray-200">Category</label>
+<div class="relative">
+<select class="w-full h-12 px-4 pr-10 rounded-xl border border-border-light dark:border-border-dark bg-white dark:bg-black/20 text-text-main dark:text-white appearance-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none cursor-pointer">
+<option>Business Expenses</option>
+<option>Travel &amp; Meals</option>
+<option>Software Subscriptions</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3.5 text-text-secondary pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Custom Glassmorphic Popover Example -->
+<div class="flex flex-col gap-2 relative z-20">
+<label class="text-sm font-semibold text-text-main dark:text-gray-200">Tag Selection (Active)</label>
+<div class="w-full min-h-[48px] px-4 py-2 rounded-xl border border-primary bg-white dark:bg-black/20 text-text-main dark:text-white flex flex-wrap items-center gap-2 shadow-glow cursor-text">
+<span class="bg-primary/10 text-primary-dark dark:text-primary border border-primary/20 px-2 py-0.5 rounded-md text-xs font-semibold flex items-center gap-1">
+                                Urgent
+                                <button class="hover:text-danger"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<span class="bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 border border-purple-200 dark:border-purple-800 px-2 py-0.5 rounded-md text-xs font-semibold flex items-center gap-1">
+                                Q3 Review
+                                <button class="hover:text-danger"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+</div>
+<!-- Floating Menu -->
+<div class="absolute top-full left-0 right-0 mt-2 bg-white/90 dark:bg-surface-dark/95 backdrop-blur-md rounded-xl shadow-xl border border-border-light dark:border-border-dark overflow-hidden p-1 z-50 animate-in fade-in zoom-in-95 duration-200">
+<div class="px-3 py-2 text-xs font-bold text-text-secondary uppercase tracking-wider">Available Tags</div>
+<button class="w-full text-left px-3 py-2 text-sm text-text-main dark:text-white hover:bg-primary/10 rounded-lg flex items-center justify-between group">
+<span>Tax Deductible</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 text-[18px]">add</span>
+</button>
+<button class="w-full text-left px-3 py-2 text-sm text-text-main dark:text-white hover:bg-primary/10 rounded-lg flex items-center justify-between group">
+<span>Recurring</span>
+<span class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 text-[18px]">add</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Textarea Card -->
+<section class="bg-surface-light dark:bg-surface-dark rounded-2xl p-6 shadow-card border border-border-light dark:border-border-dark flex flex-col gap-6 flex-grow">
+<h2 class="text-xl font-bold tracking-tight">Long Form</h2>
+<div class="flex flex-col gap-2 h-full">
+<div class="flex justify-between items-baseline">
+<label class="text-sm font-semibold text-text-main dark:text-gray-200">Transaction Notes</label>
+<span class="text-xs text-text-secondary">Optional</span>
+</div>
+<textarea class="w-full flex-grow min-h-[140px] p-4 rounded-xl border border-border-light dark:border-border-dark bg-white dark:bg-black/20 text-text-main dark:text-white placeholder-text-secondary focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none resize-none" placeholder="Add detailed context about this transaction here..."></textarea>
+<div class="flex justify-end">
+<span class="text-xs text-text-secondary">0/500 characters</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Typography Legend / Footer -->
+<div class="mt-12 pt-8 border-t border-border-light dark:border-border-dark grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-text-secondary">
+<div class="flex items-start gap-3">
+<div class="p-2 bg-surface-light dark:bg-surface-dark rounded-lg border border-border-light dark:border-border-dark">
+<span class="material-symbols-outlined text-primary">title</span>
+</div>
+<div>
+<p class="font-bold text-text-main dark:text-gray-200">Typography</p>
+<p>Labels: Manrope SemiBold (14px)<br/>Input Text: Manrope Regular (16px)</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="p-2 bg-surface-light dark:bg-surface-dark rounded-lg border border-border-light dark:border-border-dark">
+<span class="material-symbols-outlined text-primary">palette</span>
+</div>
+<div>
+<p class="font-bold text-text-main dark:text-gray-200">States &amp; Feedback</p>
+<p>Focus: Teal Glow (#00d2e6)<br/>Error: Danger Red (#DC2626)</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="p-2 bg-surface-light dark:bg-surface-dark rounded-lg border border-border-light dark:border-border-dark">
+<span class="material-symbols-outlined text-primary">rounded_corner</span>
+</div>
+<div>
+<p class="font-bold text-text-main dark:text-gray-200">Shape Language</p>
+<p>Radius: XL (12-16px) for approachable feel<br/>Depth: Subtle soft shadows</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative background elements -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
+<div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl"></div>
+<div class="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl"></div>
+</div>
+</body></html>
