@@ -1,320 +1,691 @@
 <!DOCTYPE html>
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sira - Goals &amp; Planner Path</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Outfit:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#11d4c4",
-                        "primary-hover": "#0fb9ab",
-                        "background-light": "#f8fcfb",
-                        "background-dark": "#102220",
-                        "card-light": "rgba(255, 255, 255, 0.7)",
-                        "card-stroke": "rgba(255, 255, 255, 0.6)",
-                        "text-main": "#0d1b1a",
-                        "text-secondary": "#4c9a93",
-                    },
-                    fontFamily: {
-                        "display": ["Epilogue", "sans-serif"],
-                        "body": ["Outfit", "sans-serif"],
-                        "mono": ["JetBrains Mono", "monospace"],
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.5rem",
-                        "lg": "1rem",
-                        "xl": "1.5rem",
-                        "2xl": "2rem",
-                        "full": "9999px"
-                    },
-                    boxShadow: {
-                        "glass": "0 8px 32px 0 rgba(31, 38, 135, 0.07)",
-                        "glow": "0 0 15px rgba(17, 212, 196, 0.3)",
-                    }
-                },
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Sira - Goals &amp; Planner Path</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Outfit:wght@300;400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#11d4c4",
+              "primary-hover": "#0fb9ab",
+              "background-light": "#f8fcfb",
+              "background-dark": "#102220",
+              "card-light": "rgba(255, 255, 255, 0.7)",
+              "card-stroke": "rgba(255, 255, 255, 0.6)",
+              "text-main": "#0d1b1a",
+              "text-secondary": "#4c9a93",
             },
-        }
+            fontFamily: {
+              display: ["Epilogue", "sans-serif"],
+              body: ["Outfit", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "1rem",
+              xl: "1.5rem",
+              "2xl": "2rem",
+              full: "9999px",
+            },
+            boxShadow: {
+              glass: "0 8px 32px 0 rgba(31, 38, 135, 0.07)",
+              glow: "0 0 15px rgba(17, 212, 196, 0.3)",
+            },
+          },
+        },
+      };
     </script>
-<style type="text/tailwindcss">
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-        }
-        .flux-gradient-text {
-            background: linear-gradient(135deg, #0d1b1a 0%, #116b63 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .flux-progress-bar {
-            background: linear-gradient(90deg, #12C2B2 0%, #4AD9CC 100%);
-            box-shadow: 0 0 10px rgba(74, 217, 204, 0.4);
-        }
-        .path-line {
-            stroke-dasharray: 10;
-        }
+    <style type="text/tailwindcss">
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+      }
+      .flux-gradient-text {
+        background: linear-gradient(135deg, #0d1b1a 0%, #116b63 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .flux-progress-bar {
+        background: linear-gradient(90deg, #12c2b2 0%, #4ad9cc 100%);
+        box-shadow: 0 0 10px rgba(74, 217, 204, 0.4);
+      }
+      .path-line {
+        stroke-dasharray: 10;
+      }
     </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark text-text-main font-body selection:bg-primary/30">
-<div class="flex h-screen w-full overflow-hidden">
-<aside class="hidden md:flex flex-col w-72 h-full border-r border-[#e7f3f2] bg-white/50 backdrop-blur-sm p-6 relative z-20">
-<div class="flex items-center gap-4 mb-10 pl-2">
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-12 shadow-sm" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCF28UAvqbIlkxG-RyLIFE5Uf59Qb_vUwue6gUtYbBH4UcY7E9QlvYTsi-jQYBTlGNVawjyfR_OXj3JqcLYmsnValCrtjPcGfF2IWr_gX7EI5nwkxTRT3YrIWdyLGhV4Uy61waBlHEGlFRJVdbXDR_YdyhJLgub68GexGMf9YqCKoJLyrXaBuvOIFaQEZUXhntQ17v1k7D5eXU-1CtrLoSJQk1o45q9dNnKOJleppX-PCI2EmChpQfaz3NuFmSxqsqUVrTIa7pWIjlI");'></div>
-<div class="flex flex-col">
-<h1 class="text-text-main text-xl font-display font-bold leading-none tracking-tight">Sira</h1>
-<p class="text-text-secondary text-xs font-body font-medium mt-1">Mindful Finance</p>
-</div>
-</div>
-<nav class="flex flex-col gap-2 flex-1">
-<a class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-[#e7f3f2]/50 text-text-main/70 hover:text-text-main transition-colors group" href="#">
-<span class="material-symbols-outlined text-2xl group-hover:text-primary transition-colors">grid_view</span>
-<span class="font-body font-medium">Dashboard</span>
-</a>
-<a class="flex items-center gap-4 px-4 py-3 rounded-xl bg-[#e7f3f2] text-text-main transition-colors shadow-sm ring-1 ring-[#d0e8e6]" href="#">
-<span class="material-symbols-outlined text-2xl text-primary font-variation-fill">map</span>
-<span class="font-body font-bold">Goals &amp; Planner</span>
-</a>
-<a class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-[#e7f3f2]/50 text-text-main/70 hover:text-text-main transition-colors group" href="#">
-<span class="material-symbols-outlined text-2xl group-hover:text-primary transition-colors">account_balance_wallet</span>
-<span class="font-body font-medium">Accounts</span>
-</a>
-<a class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-[#e7f3f2]/50 text-text-main/70 hover:text-text-main transition-colors group" href="#">
-<span class="material-symbols-outlined text-2xl group-hover:text-primary transition-colors">spa</span>
-<span class="font-body font-medium">Mindfulness</span>
-</a>
-<a class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-[#e7f3f2]/50 text-text-main/70 hover:text-text-main transition-colors group" href="#">
-<span class="material-symbols-outlined text-2xl group-hover:text-primary transition-colors">settings</span>
-<span class="font-body font-medium">Settings</span>
-</a>
-</nav>
-<div class="mt-auto pt-6">
-<div class="glass-panel p-4 rounded-2xl mb-6 relative overflow-hidden group cursor-pointer">
-<div class="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity">
-<span class="material-symbols-outlined text-6xl text-primary">psychology</span>
-</div>
-<p class="text-xs font-bold text-text-secondary uppercase tracking-wider mb-1">Daily Insight</p>
-<p class="text-sm text-text-main font-medium leading-relaxed">"Consistency is the path to wealth, not intensity."</p>
-</div>
-<button class="w-full flex items-center justify-center gap-2 rounded-xl h-12 bg-primary hover:bg-primary-hover text-text-main text-sm font-bold shadow-glow transition-all active:scale-95">
-<span class="material-symbols-outlined text-lg">add</span>
-<span>New Transaction</span>
-</button>
-</div>
-</aside>
-<main class="flex-1 flex flex-col h-full overflow-hidden relative">
-<div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#11d4c4]/5 rounded-full blur-[100px] pointer-events-none"></div>
-<div class="absolute bottom-[-10%] left-[10%] w-[300px] h-[300px] bg-[#4c9a93]/10 rounded-full blur-[80px] pointer-events-none"></div>
-<header class="flex items-center justify-between px-8 py-5 border-b border-[#e7f3f2]/60 bg-white/30 backdrop-blur-md z-10">
-<div class="flex items-center gap-3">
-<div class="p-2 rounded-lg bg-white/50 border border-white/60 shadow-sm text-primary">
-<span class="material-symbols-outlined">explore</span>
-</div>
-<div>
-<h2 class="text-text-main text-xl font-display font-bold leading-tight">Your Financial Path</h2>
-<p class="text-text-secondary text-sm font-body">2 milestones approaching this month</p>
-</div>
-</div>
-<div class="flex items-center gap-6">
-<div class="relative hidden lg:flex items-center">
-<span class="material-symbols-outlined absolute left-3 text-text-secondary">search</span>
-<input class="pl-10 pr-4 py-2.5 bg-white/50 border border-transparent focus:border-primary/30 focus:bg-white focus:ring-0 rounded-xl text-sm w-64 transition-all placeholder:text-text-secondary/70" placeholder="Search goals..." type="text"/>
-</div>
-<button class="relative p-2 rounded-full hover:bg-white/50 transition-colors text-text-main/80">
-<span class="material-symbols-outlined">notifications</span>
-<span class="absolute top-2 right-2 w-2 h-2 bg-red-400 rounded-full border-2 border-[#f8fcfb]"></span>
-</button>
-<div class="flex items-center gap-3 pl-4 border-l border-[#e7f3f2]">
-<div class="text-right hidden sm:block">
-<p class="text-sm font-bold text-text-main">Alex M.</p>
-<p class="text-xs text-text-secondary">Premium Plan</p>
-</div>
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-white shadow-sm" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAE4fj-Ts_xs0esQRbCO8BpuWVnpmI-XINI9GdfS7OMUMStmgGM_eQch56LX7IFuIwjQZtPCCquWFOS7_ejjCKlQOjILwFM1i0FiJNqznFaWhTuLC_trWTMwsgCprZoznFwsjkbj-czo-T95TnI4Fh6uhmE5fBjzMAIXskIMsGL1H-UYWEiy0Id1TYc1Ct9ZCwTF_mdpkw9QSa4VQB1cEkIqLuKP8lgTh6ZNrxesoWp0ZDdt_nFbNcmijViMORA9L_A94gRDAO_uJHH");'></div>
-</div>
-</div>
-</header>
-<div class="flex-1 overflow-y-auto overflow-x-hidden p-8 scroll-smooth">
-<div class="max-w-7xl mx-auto flex flex-col gap-10">
-<section>
-<div class="flex items-center justify-between mb-6">
-<h3 class="text-2xl font-display font-bold text-text-main">Active Paths</h3>
-<button class="text-primary font-bold text-sm hover:underline flex items-center gap-1">
-                                View All <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-<div class="glass-panel rounded-[20px] p-6 flex flex-col group hover:-translate-y-1 hover:shadow-glass transition-all duration-300 relative overflow-hidden">
-<div class="flex items-center justify-between mb-6">
-<div class="w-12 h-12 rounded-2xl bg-primary/5 flex items-center justify-center border border-primary/20 text-primary">
-<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m8 3 4 8 5-5 5 15H2L8 3z"></path></svg>
-</div>
-<div class="bg-primary/10 text-primary-hover px-2.5 py-1 rounded-lg text-xs font-bold">Jun '25</div>
-</div>
-<div class="mb-6">
-<p class="text-text-secondary text-xs font-bold uppercase tracking-widest mb-1">Travel</p>
-<h4 class="font-display font-bold text-lg text-text-main leading-tight">Europe Trip 2025</h4>
-</div>
-<div class="mt-auto space-y-4">
-<div class="space-y-2">
-<div class="flex justify-between items-end">
-<span class="text-text-secondary text-xs font-semibold uppercase tracking-wider">Progress</span>
-<span class="font-mono text-text-main font-bold text-sm">$4,200 <span class="text-text-secondary font-normal">/ $10,000</span></span>
-</div>
-<div class="h-2 w-full bg-[#e7f3f2] rounded-full overflow-hidden">
-<div class="h-full flux-progress-bar rounded-full" style="width: 42%"></div>
-</div>
-</div>
-<button class="w-full py-2.5 rounded-xl border border-primary/30 text-primary-hover hover:bg-primary hover:text-white hover:border-transparent font-bold text-sm transition-all flex items-center justify-center gap-2 group/btn">
-<span class="material-symbols-outlined text-lg">bolt</span>
-                                        Quick Boost
-                                    </button>
-</div>
-</div>
-<div class="glass-panel rounded-[20px] p-6 flex flex-col group hover:-translate-y-1 hover:shadow-glass transition-all duration-300 relative overflow-hidden">
-<div class="flex items-center justify-between mb-6">
-<div class="w-12 h-12 rounded-2xl bg-[#d4fc79]/10 flex items-center justify-center border border-[#d4fc79]/30 text-[#4c9a93]">
-<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-</div>
-<div class="bg-primary/10 text-primary-hover px-2.5 py-1 rounded-lg text-xs font-bold">Ongoing</div>
-</div>
-<div class="mb-6">
-<p class="text-text-secondary text-xs font-bold uppercase tracking-widest mb-1">Safety</p>
-<h4 class="font-display font-bold text-lg text-text-main leading-tight">Emergency Fund</h4>
-</div>
-<div class="mt-auto space-y-4">
-<div class="space-y-2">
-<div class="flex justify-between items-end">
-<span class="text-text-secondary text-xs font-semibold uppercase tracking-wider">Progress</span>
-<span class="font-mono text-text-main font-bold text-sm">$8,500 <span class="text-text-secondary font-normal">/ $10,000</span></span>
-</div>
-<div class="h-2 w-full bg-[#e7f3f2] rounded-full overflow-hidden">
-<div class="h-full flux-progress-bar rounded-full" style="width: 85%"></div>
-</div>
-</div>
-<button class="w-full py-2.5 rounded-xl border border-primary/30 text-primary-hover hover:bg-primary hover:text-white hover:border-transparent font-bold text-sm transition-all flex items-center justify-center gap-2 group/btn">
-<span class="material-symbols-outlined text-lg">bolt</span>
-                                        Quick Boost
-                                    </button>
-</div>
-</div>
-<div class="glass-panel rounded-[20px] p-6 flex flex-col group hover:-translate-y-1 hover:shadow-glass transition-all duration-300 relative overflow-hidden">
-<div class="flex items-center justify-between mb-6">
-<div class="w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center border border-gray-200 text-slate-700">
-<svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect height="14" rx="2" ry="2" width="20" x="2" y="3"></rect><line x1="2" x2="22" y1="20" y2="20"></line></svg>
-</div>
-<div class="bg-red-50 text-red-600 px-2.5 py-1 rounded-lg text-xs font-bold">Behind</div>
-</div>
-<div class="mb-6">
-<p class="text-text-secondary text-xs font-bold uppercase tracking-widest mb-1">Tech</p>
-<h4 class="font-display font-bold text-lg text-text-main leading-tight">New Macbook Pro</h4>
-</div>
-<div class="mt-auto space-y-4">
-<div class="space-y-2">
-<div class="flex justify-between items-end">
-<span class="text-text-secondary text-xs font-semibold uppercase tracking-wider">Progress</span>
-<span class="font-mono text-text-main font-bold text-sm">$200 <span class="text-text-secondary font-normal">/ $2,000</span></span>
-</div>
-<div class="h-2 w-full bg-[#e7f3f2] rounded-full overflow-hidden">
-<div class="h-full flux-progress-bar rounded-full" style="width: 10%"></div>
-</div>
-</div>
-<button class="w-full py-2.5 rounded-xl border border-primary/30 text-primary-hover hover:bg-primary hover:text-white hover:border-transparent font-bold text-sm transition-all flex items-center justify-center gap-2 group/btn">
-<span class="material-symbols-outlined text-lg">bolt</span>
-                                        Quick Boost
-                                    </button>
-</div>
-</div>
-<button class="rounded-[20px] border-2 border-dashed border-[#11d4c4]/40 hover:border-[#11d4c4] bg-white/10 hover:bg-[#11d4c4]/5 p-6 flex flex-col items-center justify-center gap-4 group transition-all duration-300 h-full min-h-[300px]">
-<div class="w-16 h-16 rounded-full bg-[#e7f3f2] group-hover:bg-[#11d4c4] flex items-center justify-center transition-colors shadow-sm">
-<span class="material-symbols-outlined text-3xl text-primary group-hover:text-white">add</span>
-</div>
-<div class="text-center">
-<h4 class="font-display font-bold text-lg text-text-main group-hover:text-primary transition-colors">Create New Path</h4>
-<p class="text-text-secondary text-sm mt-1">Start a new saving journey</p>
-</div>
-</button>
-</div>
-</section>
-<section class="glass-panel rounded-3xl p-8 relative overflow-hidden">
-<div class="flex items-center justify-between mb-8 relative z-10">
-<h3 class="text-2xl font-display font-bold text-text-main">Timeline Forecast</h3>
-<div class="flex gap-2">
-<span class="px-3 py-1 rounded-lg bg-white/50 text-xs font-bold text-text-main border border-white">YTD</span>
-<span class="px-3 py-1 rounded-lg bg-primary text-xs font-bold text-text-main shadow-glow">1 Year</span>
-<span class="px-3 py-1 rounded-lg bg-white/50 text-xs font-bold text-text-main border border-white">5 Years</span>
-</div>
-</div>
-<div class="relative w-full h-48 flex items-center">
-<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
-<defs>
-<linearGradient id="lineGradient" x1="0%" x2="100%" y1="0%" y2="0%">
-<stop offset="0%" style="stop-color:#11d4c4;stop-opacity:1"></stop>
-<stop offset="50%" style="stop-color:#11d4c4;stop-opacity:1"></stop>
-<stop offset="100%" style="stop-color:#cbd5e1;stop-opacity:1"></stop>
-</linearGradient>
-</defs>
-<path class="opacity-30" d="M 0 100 C 150 100, 200 60, 350 60 S 550 140, 750 100 S 950 60, 1200 80" fill="none" stroke="url(#lineGradient)" stroke-width="4"></path>
-<path class="shadow-glow drop-shadow-lg" d="M 0 100 C 150 100, 200 60, 350 60 S 550 140, 750 100" fill="none" stroke="#11d4c4" stroke-width="4"></path>
-</svg>
-<div class="absolute w-full h-full flex justify-between items-center px-4 md:px-16 pointer-events-none">
-<div class="relative group pointer-events-auto" style="margin-top: 40px;">
-<div class="w-4 h-4 rounded-full bg-primary ring-4 ring-primary/20"></div>
-<div class="absolute -top-12 left-1/2 -translate-x-1/2 w-32 text-center opacity-60 group-hover:opacity-100 transition-opacity">
-<p class="text-xs font-bold text-text-secondary uppercase">Oct 2023</p>
-<p class="text-sm font-bold text-text-main">Path Started</p>
-</div>
-</div>
-<div class="relative group pointer-events-auto" style="margin-top: -80px;">
-<div class="w-6 h-6 rounded-full bg-primary shadow-glow flex items-center justify-center">
-<span class="material-symbols-outlined text-[10px] text-white font-bold">check</span>
-</div>
-<div class="absolute top-8 left-1/2 -translate-x-1/2 w-40 text-center">
-<div class="bg-white/80 backdrop-blur-sm p-2 rounded-lg border border-white shadow-sm mt-2">
-<p class="text-xs font-bold text-text-secondary uppercase">Dec 2023</p>
-<p class="text-sm font-bold text-text-main">Credit Card Paid</p>
-</div>
-</div>
-</div>
-<div class="relative group pointer-events-auto z-10" style="margin-top: 80px;">
-<div class="w-8 h-8 rounded-full bg-primary border-4 border-white shadow-xl flex items-center justify-center">
-<div class="w-2 h-2 bg-white rounded-full"></div>
-</div>
-<div class="absolute -top-24 left-1/2 -translate-x-1/2 w-48 text-center">
-<div class="bg-white/90 backdrop-blur-md p-3 rounded-xl border border-primary/20 shadow-glass">
-<p class="text-xs font-bold text-primary uppercase mb-1">Current Focus</p>
-<p class="text-sm font-bold text-text-main">Emergency Fund</p>
-<p class="font-mono text-xs text-text-secondary">85% Complete</p>
-</div>
-<div class="w-0.5 h-8 bg-primary/30 mx-auto"></div>
-</div>
-</div>
-<div class="relative group pointer-events-auto opacity-50 hover:opacity-100 transition-opacity" style="margin-top: -40px;">
-<div class="w-4 h-4 rounded-full bg-gray-300 ring-4 ring-gray-100"></div>
-<div class="absolute top-6 left-1/2 -translate-x-1/2 w-32 text-center">
-<p class="text-xs font-bold text-gray-500 uppercase">Jun 2025</p>
-<p class="text-sm font-bold text-gray-700">Europe Trip</p>
-</div>
-</div>
-<div class="relative group pointer-events-auto opacity-50" style="margin-top: -20px;">
-<div class="w-3 h-3 rounded-full bg-gray-300"></div>
-</div>
-</div>
-</div>
-</section>
-<div class="text-center pb-8 pt-4">
-<p class="font-display italic text-text-secondary/60 text-lg">"The goal isn't more money. The goal is living life on your own terms."</p>
-</div>
-</div>
-</div>
-</main>
-</div>
-
-</body></html>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-text-main font-body selection:bg-primary/30"
+  >
+    <div class="flex h-screen w-full overflow-hidden">
+      <aside
+        class="hidden md:flex flex-col w-72 h-full border-r border-[#e7f3f2] bg-white/50 backdrop-blur-sm p-6 relative z-20"
+      >
+        <div class="flex items-center gap-4 mb-10 pl-2">
+          <div
+            class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 shadow-sm"
+            style="background-image: url('/Sira_Official_Logo.webp')"
+          ></div>
+          <div class="flex flex-col">
+            <h1
+              class="text-text-main text-xl font-display font-bold leading-none tracking-tight"
+            >
+              Sira
+            </h1>
+            <p class="text-text-secondary text-xs font-body font-medium mt-1">
+              Mindful Finance
+            </p>
+          </div>
+        </div>
+        <nav class="flex flex-col gap-2 flex-1">
+          <a
+            class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-[#e7f3f2]/50 text-text-main/70 hover:text-text-main transition-colors group"
+            href="#"
+          >
+            <span
+              class="material-symbols-outlined text-2xl group-hover:text-primary transition-colors"
+              >grid_view</span
+            >
+            <span class="font-body font-medium">Dashboard</span>
+          </a>
+          <a
+            class="flex items-center gap-4 px-4 py-3 rounded-xl bg-[#e7f3f2] text-text-main transition-colors shadow-sm ring-1 ring-[#d0e8e6]"
+            href="#"
+          >
+            <span
+              class="material-symbols-outlined text-2xl text-primary font-variation-fill"
+              >map</span
+            >
+            <span class="font-body font-bold">Goals &amp; Planner</span>
+          </a>
+          <a
+            class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-[#e7f3f2]/50 text-text-main/70 hover:text-text-main transition-colors group"
+            href="#"
+          >
+            <span
+              class="material-symbols-outlined text-2xl group-hover:text-primary transition-colors"
+              >account_balance_wallet</span
+            >
+            <span class="font-body font-medium">Accounts</span>
+          </a>
+          <a
+            class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-[#e7f3f2]/50 text-text-main/70 hover:text-text-main transition-colors group"
+            href="#"
+          >
+            <span
+              class="material-symbols-outlined text-2xl group-hover:text-primary transition-colors"
+              >spa</span
+            >
+            <span class="font-body font-medium">Mindfulness</span>
+          </a>
+          <a
+            class="flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-[#e7f3f2]/50 text-text-main/70 hover:text-text-main transition-colors group"
+            href="#"
+          >
+            <span
+              class="material-symbols-outlined text-2xl group-hover:text-primary transition-colors"
+              >settings</span
+            >
+            <span class="font-body font-medium">Settings</span>
+          </a>
+        </nav>
+        <div class="mt-auto pt-6">
+          <div
+            class="glass-panel p-4 rounded-2xl mb-6 relative overflow-hidden group cursor-pointer"
+          >
+            <div
+              class="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-20 transition-opacity"
+            >
+              <span class="material-symbols-outlined text-6xl text-primary"
+                >psychology</span
+              >
+            </div>
+            <p
+              class="text-xs font-bold text-text-secondary uppercase tracking-wider mb-1"
+            >
+              Daily Insight
+            </p>
+            <p class="text-sm text-text-main font-medium leading-relaxed">
+              "Consistency is the path to wealth, not intensity."
+            </p>
+          </div>
+          <button
+            class="w-full flex items-center justify-center gap-2 rounded-xl h-12 bg-primary hover:bg-primary-hover text-text-main text-sm font-bold shadow-glow transition-all active:scale-95"
+          >
+            <span class="material-symbols-outlined text-lg">add</span>
+            <span>New Transaction</span>
+          </button>
+        </div>
+      </aside>
+      <main class="flex-1 flex flex-col h-full overflow-hidden relative">
+        <div
+          class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#11d4c4]/5 rounded-full blur-[100px] pointer-events-none"
+        ></div>
+        <div
+          class="absolute bottom-[-10%] left-[10%] w-[300px] h-[300px] bg-[#4c9a93]/10 rounded-full blur-[80px] pointer-events-none"
+        ></div>
+        <header
+          class="flex items-center justify-between px-8 py-5 border-b border-[#e7f3f2]/60 bg-white/30 backdrop-blur-md z-10"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class="rounded-lg bg-primary/10 border border-primary/20 shadow-sm size-12 flex items-center justify-center text-primary"
+            >
+              <span class="material-symbols-outlined">explore</span>
+            </div>
+            <div>
+              <h2
+                class="text-text-main text-xl font-display font-bold leading-tight"
+              >
+                Your Financial Path
+              </h2>
+              <p class="text-text-secondary text-sm font-body">
+                2 milestones approaching this month
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center gap-6">
+            <div class="relative hidden lg:flex items-center">
+              <span
+                class="material-symbols-outlined absolute left-3 text-text-secondary"
+                >search</span
+              >
+              <input
+                class="pl-10 pr-4 py-2.5 bg-white/50 border border-transparent focus:border-primary/30 focus:bg-white focus:ring-0 rounded-xl text-sm w-64 transition-all placeholder:text-text-secondary/70"
+                placeholder="Search ..."
+                type="text"
+              />
+            </div>
+            <button
+              class="relative p-2 rounded-full hover:bg-white/50 transition-colors text-text-main/80"
+            >
+              <span class="material-symbols-outlined">dark_mode</span>
+            </button>
+            <button
+              class="relative p-2 rounded-full hover:bg-white/50 transition-colors text-text-main/80"
+            >
+              <span class="material-symbols-outlined">notifications</span>
+              <span
+                class="absolute top-2 right-2 w-2 h-2 bg-red-400 rounded-full border-2 border-[#f8fcfb]"
+              ></span>
+            </button>
+            <div class="flex items-center gap-3 pl-4 border-l border-[#e7f3f2]">
+              <div class="text-right hidden sm:block">
+                <p class="text-sm font-bold text-text-main">Alex M.</p>
+                <p class="text-xs text-text-secondary">Premium Plan</p>
+              </div>
+              <div
+                class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-white shadow-sm"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAE4fj-Ts_xs0esQRbCO8BpuWVnpmI-XINI9GdfS7OMUMStmgGM_eQch56LX7IFuIwjQZtPCCquWFOS7_ejjCKlQOjILwFM1i0FiJNqznFaWhTuLC_trWTMwsgCprZoznFwsjkbj-czo-T95TnI4Fh6uhmE5fBjzMAIXskIMsGL1H-UYWEiy0Id1TYc1Ct9ZCwTF_mdpkw9QSa4VQB1cEkIqLuKP8lgTh6ZNrxesoWp0ZDdt_nFbNcmijViMORA9L_A94gRDAO_uJHH');
+                "
+              ></div>
+            </div>
+          </div>
+        </header>
+        <div class="flex-1 overflow-y-auto overflow-x-hidden p-8 scroll-smooth">
+          <div class="max-w-7xl mx-auto flex flex-col gap-10">
+            <section>
+              <div class="flex items-center justify-between mb-6">
+                <h3 class="text-2xl font-display font-bold text-text-main">
+                  Active Paths
+                </h3>
+                <button
+                  class="text-primary font-bold text-sm hover:underline flex items-center gap-1"
+                >
+                  View All
+                  <span class="material-symbols-outlined text-sm"
+                    >arrow_forward</span
+                  >
+                </button>
+              </div>
+              <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+              >
+                <div
+                  class="glass-panel rounded-[20px] p-6 flex flex-col group hover:-translate-y-1 hover:shadow-glass transition-all duration-300 relative overflow-hidden"
+                >
+                  <div class="flex items-center justify-between mb-6">
+                    <div
+                      class="w-12 h-12 rounded-2xl bg-primary/5 flex items-center justify-center border border-primary/20 text-primary"
+                    >
+                      <svg
+                        class="w-7 h-7"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>
+                      </svg>
+                    </div>
+                    <div
+                      class="bg-primary/10 text-primary-hover px-2.5 py-1 rounded-lg text-xs font-bold"
+                    >
+                      Jun '25
+                    </div>
+                  </div>
+                  <div class="mb-6">
+                    <p
+                      class="text-text-secondary text-xs font-bold uppercase tracking-widest mb-1"
+                    >
+                      Travel
+                    </p>
+                    <h4
+                      class="font-display font-bold text-lg text-text-main leading-tight"
+                    >
+                      Europe Trip 2025
+                    </h4>
+                  </div>
+                  <div class="mt-auto space-y-4">
+                    <div class="space-y-2">
+                      <div class="flex justify-between items-end">
+                        <span
+                          class="text-text-secondary text-xs font-semibold uppercase tracking-wider"
+                          >Progress</span
+                        >
+                        <span class="font-mono text-text-main font-bold text-sm"
+                          >$4,200
+                          <span class="text-text-secondary font-normal"
+                            >/ $10,000</span
+                          ></span
+                        >
+                      </div>
+                      <div
+                        class="h-2 w-full bg-[#e7f3f2] rounded-full overflow-hidden"
+                      >
+                        <div
+                          class="h-full flux-progress-bar rounded-full"
+                          style="width: 42%"
+                        ></div>
+                      </div>
+                    </div>
+                    <button
+                      class="w-full py-2.5 rounded-xl border border-primary/30 text-primary-hover hover:bg-primary hover:text-white hover:border-transparent font-bold text-sm transition-all flex items-center justify-center gap-2 group/btn"
+                    >
+                      <span class="material-symbols-outlined text-lg"
+                        >bolt</span
+                      >
+                      Quick Boost
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="glass-panel rounded-[20px] p-6 flex flex-col group hover:-translate-y-1 hover:shadow-glass transition-all duration-300 relative overflow-hidden"
+                >
+                  <div class="flex items-center justify-between mb-6">
+                    <div
+                      class="w-12 h-12 rounded-2xl bg-[#d4fc79]/10 flex items-center justify-center border border-[#d4fc79]/30 text-[#4c9a93]"
+                    >
+                      <svg
+                        class="w-7 h-7"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div
+                      class="bg-primary/10 text-primary-hover px-2.5 py-1 rounded-lg text-xs font-bold"
+                    >
+                      Ongoing
+                    </div>
+                  </div>
+                  <div class="mb-6">
+                    <p
+                      class="text-text-secondary text-xs font-bold uppercase tracking-widest mb-1"
+                    >
+                      Safety
+                    </p>
+                    <h4
+                      class="font-display font-bold text-lg text-text-main leading-tight"
+                    >
+                      Emergency Fund
+                    </h4>
+                  </div>
+                  <div class="mt-auto space-y-4">
+                    <div class="space-y-2">
+                      <div class="flex justify-between items-end">
+                        <span
+                          class="text-text-secondary text-xs font-semibold uppercase tracking-wider"
+                          >Progress</span
+                        >
+                        <span class="font-mono text-text-main font-bold text-sm"
+                          >$8,500
+                          <span class="text-text-secondary font-normal"
+                            >/ $10,000</span
+                          ></span
+                        >
+                      </div>
+                      <div
+                        class="h-2 w-full bg-[#e7f3f2] rounded-full overflow-hidden"
+                      >
+                        <div
+                          class="h-full flux-progress-bar rounded-full"
+                          style="width: 85%"
+                        ></div>
+                      </div>
+                    </div>
+                    <button
+                      class="w-full py-2.5 rounded-xl border border-primary/30 text-primary-hover hover:bg-primary hover:text-white hover:border-transparent font-bold text-sm transition-all flex items-center justify-center gap-2 group/btn"
+                    >
+                      <span class="material-symbols-outlined text-lg"
+                        >bolt</span
+                      >
+                      Quick Boost
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="glass-panel rounded-[20px] p-6 flex flex-col group hover:-translate-y-1 hover:shadow-glass transition-all duration-300 relative overflow-hidden"
+                >
+                  <div class="flex items-center justify-between mb-6">
+                    <div
+                      class="w-12 h-12 rounded-2xl bg-gray-100 flex items-center justify-center border border-gray-200 text-slate-700"
+                    >
+                      <svg
+                        class="w-7 h-7"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <rect
+                          height="14"
+                          rx="2"
+                          ry="2"
+                          width="20"
+                          x="2"
+                          y="3"
+                        ></rect>
+                        <line x1="2" x2="22" y1="20" y2="20"></line>
+                      </svg>
+                    </div>
+                    <div
+                      class="bg-red-50 text-red-600 px-2.5 py-1 rounded-lg text-xs font-bold"
+                    >
+                      Behind
+                    </div>
+                  </div>
+                  <div class="mb-6">
+                    <p
+                      class="text-text-secondary text-xs font-bold uppercase tracking-widest mb-1"
+                    >
+                      Tech
+                    </p>
+                    <h4
+                      class="font-display font-bold text-lg text-text-main leading-tight"
+                    >
+                      New Macbook Pro
+                    </h4>
+                  </div>
+                  <div class="mt-auto space-y-4">
+                    <div class="space-y-2">
+                      <div class="flex justify-between items-end">
+                        <span
+                          class="text-text-secondary text-xs font-semibold uppercase tracking-wider"
+                          >Progress</span
+                        >
+                        <span class="font-mono text-text-main font-bold text-sm"
+                          >$200
+                          <span class="text-text-secondary font-normal"
+                            >/ $2,000</span
+                          ></span
+                        >
+                      </div>
+                      <div
+                        class="h-2 w-full bg-[#e7f3f2] rounded-full overflow-hidden"
+                      >
+                        <div
+                          class="h-full flux-progress-bar rounded-full"
+                          style="width: 10%"
+                        ></div>
+                      </div>
+                    </div>
+                    <button
+                      class="w-full py-2.5 rounded-xl border border-primary/30 text-primary-hover hover:bg-primary hover:text-white hover:border-transparent font-bold text-sm transition-all flex items-center justify-center gap-2 group/btn"
+                    >
+                      <span class="material-symbols-outlined text-lg"
+                        >bolt</span
+                      >
+                      Quick Boost
+                    </button>
+                  </div>
+                </div>
+                <button
+                  class="rounded-[20px] border-2 border-dashed border-[#11d4c4]/40 hover:border-[#11d4c4] bg-white/10 hover:bg-[#11d4c4]/5 p-6 flex flex-col items-center justify-center gap-4 group transition-all duration-300 h-full min-h-[300px]"
+                >
+                  <div
+                    class="w-16 h-16 rounded-full bg-[#e7f3f2] group-hover:bg-[#11d4c4] flex items-center justify-center transition-colors shadow-sm"
+                  >
+                    <span
+                      class="material-symbols-outlined text-3xl text-primary group-hover:text-white"
+                      >add</span
+                    >
+                  </div>
+                  <div class="text-center">
+                    <h4
+                      class="font-display font-bold text-lg text-text-main group-hover:text-primary transition-colors"
+                    >
+                      Create New Path
+                    </h4>
+                    <p class="text-text-secondary text-sm mt-1">
+                      Start a new saving journey
+                    </p>
+                  </div>
+                </button>
+              </div>
+            </section>
+            <section
+              class="glass-panel rounded-3xl p-8 relative overflow-hidden"
+            >
+              <div class="flex items-center justify-between mb-8 relative z-10">
+                <h3 class="text-2xl font-display font-bold text-text-main">
+                  Timeline Forecast
+                </h3>
+                <div class="flex gap-2">
+                  <span
+                    class="px-3 py-1 rounded-lg bg-white/50 text-xs font-bold text-text-main border border-white"
+                    >YTD</span
+                  >
+                  <span
+                    class="px-3 py-1 rounded-lg bg-primary text-xs font-bold text-text-main shadow-glow"
+                    >1 Year</span
+                  >
+                  <span
+                    class="px-3 py-1 rounded-lg bg-white/50 text-xs font-bold text-text-main border border-white"
+                    >5 Years</span
+                  >
+                </div>
+              </div>
+              <div class="relative w-full h-48 flex items-center">
+                <svg
+                  class="absolute inset-0 w-full h-full pointer-events-none"
+                  preserveAspectRatio="none"
+                >
+                  <defs>
+                    <linearGradient
+                      id="lineGradient"
+                      x1="0%"
+                      x2="100%"
+                      y1="0%"
+                      y2="0%"
+                    >
+                      <stop
+                        offset="0%"
+                        style="stop-color: #11d4c4; stop-opacity: 1"
+                      ></stop>
+                      <stop
+                        offset="50%"
+                        style="stop-color: #11d4c4; stop-opacity: 1"
+                      ></stop>
+                      <stop
+                        offset="100%"
+                        style="stop-color: #cbd5e1; stop-opacity: 1"
+                      ></stop>
+                    </linearGradient>
+                  </defs>
+                  <path
+                    class="opacity-30"
+                    d="M 0 100 C 150 100, 200 60, 350 60 S 550 140, 750 100 S 950 60, 1200 80"
+                    fill="none"
+                    stroke="url(#lineGradient)"
+                    stroke-width="4"
+                  ></path>
+                  <path
+                    class="shadow-glow drop-shadow-lg"
+                    d="M 0 100 C 150 100, 200 60, 350 60 S 550 140, 750 100"
+                    fill="none"
+                    stroke="#11d4c4"
+                    stroke-width="4"
+                  ></path>
+                </svg>
+                <div
+                  class="absolute w-full h-full flex justify-between items-center px-4 md:px-16 pointer-events-none"
+                >
+                  <div
+                    class="relative group pointer-events-auto"
+                    style="margin-top: 40px"
+                  >
+                    <div
+                      class="w-4 h-4 rounded-full bg-primary ring-4 ring-primary/20"
+                    ></div>
+                    <div
+                      class="absolute -top-12 left-1/2 -translate-x-1/2 w-32 text-center opacity-60 group-hover:opacity-100 transition-opacity"
+                    >
+                      <p
+                        class="text-xs font-bold text-text-secondary uppercase"
+                      >
+                        Oct 2023
+                      </p>
+                      <p class="text-sm font-bold text-text-main">
+                        Path Started
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="relative group pointer-events-auto"
+                    style="margin-top: -80px"
+                  >
+                    <div
+                      class="w-6 h-6 rounded-full bg-primary shadow-glow flex items-center justify-center"
+                    >
+                      <span
+                        class="material-symbols-outlined text-[10px] text-white font-bold"
+                        >check</span
+                      >
+                    </div>
+                    <div
+                      class="absolute top-8 left-1/2 -translate-x-1/2 w-40 text-center"
+                    >
+                      <div
+                        class="bg-white/80 backdrop-blur-sm p-2 rounded-lg border border-white shadow-sm mt-2"
+                      >
+                        <p
+                          class="text-xs font-bold text-text-secondary uppercase"
+                        >
+                          Dec 2023
+                        </p>
+                        <p class="text-sm font-bold text-text-main">
+                          Credit Card Paid
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="relative group pointer-events-auto z-10"
+                    style="margin-top: 80px"
+                  >
+                    <div
+                      class="w-8 h-8 rounded-full bg-primary border-4 border-white shadow-xl flex items-center justify-center"
+                    >
+                      <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                    <div
+                      class="absolute -top-24 left-1/2 -translate-x-1/2 w-48 text-center"
+                    >
+                      <div
+                        class="bg-white/90 backdrop-blur-md p-3 rounded-xl border border-primary/20 shadow-glass"
+                      >
+                        <p
+                          class="text-xs font-bold text-primary uppercase mb-1"
+                        >
+                          Current Focus
+                        </p>
+                        <p class="text-sm font-bold text-text-main">
+                          Emergency Fund
+                        </p>
+                        <p class="font-mono text-xs text-text-secondary">
+                          85% Complete
+                        </p>
+                      </div>
+                      <div class="w-0.5 h-8 bg-primary/30 mx-auto"></div>
+                    </div>
+                  </div>
+                  <div
+                    class="relative group pointer-events-auto opacity-50 hover:opacity-100 transition-opacity"
+                    style="margin-top: -40px"
+                  >
+                    <div
+                      class="w-4 h-4 rounded-full bg-gray-300 ring-4 ring-gray-100"
+                    ></div>
+                    <div
+                      class="absolute top-6 left-1/2 -translate-x-1/2 w-32 text-center"
+                    >
+                      <p class="text-xs font-bold text-gray-500 uppercase">
+                        Jun 2025
+                      </p>
+                      <p class="text-sm font-bold text-gray-700">Europe Trip</p>
+                    </div>
+                  </div>
+                  <div
+                    class="relative group pointer-events-auto opacity-50"
+                    style="margin-top: -20px"
+                  >
+                    <div class="w-3 h-3 rounded-full bg-gray-300"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <div class="text-center pb-8 pt-4">
+              <p class="font-display italic text-text-secondary/60 text-lg">
+                "The goal isn't more money. The goal is living life on your own
+                terms."
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
