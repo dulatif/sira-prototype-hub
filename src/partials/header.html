@@ -1,0 +1,55 @@
+<header
+  class="flex items-center justify-between px-8 py-5 border-b border-[#e7f3f2]/60 bg-white/30 backdrop-blur-md z-10"
+>
+  <div class="flex items-center gap-3">
+    <div
+      class="rounded-lg bg-primary/10 border border-primary/20 shadow-sm size-12 flex items-center justify-center text-primary"
+    >
+      <span class="material-symbols-outlined">{{ icon }}</span>
+    </div>
+    <div>
+      <h2 class="text-text-main text-xl font-display font-bold leading-tight">
+        {{ title }}
+      </h2>
+      <p class="text-text-secondary text-sm font-body">{{ subtitle }}</p>
+    </div>
+  </div>
+  <div class="flex items-center gap-6">
+    <div class="relative hidden lg:flex items-center">
+      <span
+        class="material-symbols-outlined absolute left-3 text-text-secondary"
+        >search</span
+      >
+      <input
+        class="pl-10 pr-4 py-2.5 bg-white/50 border border-transparent focus:border-primary/30 focus:bg-white focus:ring-0 rounded-xl text-sm w-64 transition-all placeholder:text-text-secondary/70"
+        placeholder="Search ..."
+        type="text"
+      />
+    </div>
+    <button
+      class="relative p-2 rounded-full hover:bg-white/50 transition-colors text-text-main/80"
+    >
+      <span class="material-symbols-outlined">dark_mode</span>
+    </button>
+    <button
+      class="relative p-2 rounded-full hover:bg-white/50 transition-colors text-text-main/80"
+    >
+      <span class="material-symbols-outlined">notifications</span>
+      <span
+        class="absolute top-2 right-2 w-2 h-2 bg-red-400 rounded-full border-2 border-[#f8fcfb]"
+      ></span>
+    </button>
+    <div class="flex items-center gap-3 pl-4 border-l border-[#e7f3f2]">
+      <div class="text-right hidden sm:block">
+        <p class="text-sm font-bold text-text-main">Alex M.</p>
+        <p class="text-xs text-text-secondary">Premium Plan</p>
+      </div>
+      <div
+        class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-white shadow-sm"
+        style="
+          background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAE4fj-Ts_xs0esQRbCO8BpuWVnpmI-XINI9GdfS7OMUMStmgGM_eQch56LX7IFuIwjQZtPCCquWFOS7_ejjCKlQOjILwFM1i0FiJNqznFaWhTuLC_trWTMwsgCprZoznFwsjkbj-czo-T95TnI4Fh6uhmE5fBjzMAIXskIMsGL1H-UYWEiy0Id1TYc1Ct9ZCwTF_mdpkw9QSa4VQB1cEkIqLuKP8lgTh6ZNrxesoWp0ZDdt_nFbNcmijViMORA9L_A94gRDAO_uJHH');
+        "
+      ></div>
+    </div>
+  </div>
+</header>

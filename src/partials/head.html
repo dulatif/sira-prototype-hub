@@ -1,0 +1,65 @@
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<link href="https://fonts.googleapis.com" rel="preconnect" />
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+<link
+  href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Outfit:wght@300;400;500;600&amp;display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+  rel="stylesheet"
+/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          primary: "#11d4c4",
+          "primary-hover": "#0fb9ab",
+          "background-light": "#f8fcfb",
+          "background-dark": "#102220",
+          "card-light": "rgba(255, 255, 255, 0.7)",
+          "card-stroke": "rgba(255, 255, 255, 0.6)",
+          "text-main": "#0d1b1a",
+          "text-secondary": "#4c9a93",
+        },
+        fontFamily: {
+          display: ["Epilogue", "sans-serif"],
+          body: ["Outfit", "sans-serif"],
+          mono: ["JetBrains Mono", "monospace"],
+        },
+        borderRadius: {
+          DEFAULT: "0.5rem",
+          lg: "1rem",
+          xl: "1.5rem",
+          "2xl": "2rem",
+          full: "9999px",
+        },
+        boxShadow: {
+          glass: "0 8px 32px 0 rgba(31, 38, 135, 0.07)",
+          glow: "0 0 15px rgba(17, 212, 196, 0.3)",
+        },
+      },
+    },
+  };
+</script>
+<style type="text/tailwindcss">
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+  }
+  .flux-gradient-text {
+    background: linear-gradient(135deg, #0d1b1a 0%, #116b63 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .flux-progress-bar {
+    background: linear-gradient(90deg, #12c2b2 0%, #4ad9cc 100%);
+    box-shadow: 0 0 10px rgba(74, 217, 204, 0.4);
+  }
+</style>
