@@ -1,52 +1,79 @@
-﻿<!DOCTYPE html>
-<html class="light" lang="en">
-  <head>
-    <load src="/src/partials/head.html" title="Sira - Split Bill" />
-    <style>
-      ::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
-      }
-      ::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 3px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8;
-      }
-      .glass-panel {
-        background: rgba(255, 255, 255, 0.65);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.6);
-      }
-      .glass-card {
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(8px);
-        border: 1px solid rgba(255, 255, 255, 0.8);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-      }
-      .toggle-checkbox:checked {
-        right: 0;
-        border-color: #52e0d4;
-      }
-      .toggle-checkbox:checked + .toggle-label {
-        background-color: #52e0d4;
-      }
-      .flux-gradient {
-        background: linear-gradient(135deg, #52e0d4 0%, #22d3ee 100%);
-      }
-      .bg-blob {
-        position: absolute;
-        filter: blur(80px);
-        z-index: 0;
-        opacity: 0.4;
-      }
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sira - Split Bill</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Manrope:wght@200..800&amp;family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#52e0d4",
+                        "primary-dark": "#3dbdb2",
+                        "background-light": "#f9fafa",
+                        "background-dark": "#21262c",
+                        "surface": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "body": ["Outfit", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px" },
+                    boxShadow: {
+                        "soft": "0 4px 20px rgba(0,0,0,0.03)",
+                        "glass": "0 8px 32px 0 rgba(31, 38, 135, 0.07)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }.glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }.toggle-checkbox:checked {
+            right: 0;
+            border-color: #52e0d4;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #52e0d4;
+        }.flux-gradient {
+            background: linear-gradient(135deg, #52e0d4 0%, #22d3ee 100%);
+        }.bg-blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.4;
+        }
     </style>
-  </head>
+</head>
 <body class="bg-background-light text-[#21262c] font-display h-screen flex overflow-hidden selection:bg-primary/30">
 <aside class="w-64 bg-surface h-full flex flex-col border-r border-slate-100 z-20 shrink-0">
 <div class="p-6 pb-2">
