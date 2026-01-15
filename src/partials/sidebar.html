@@ -1,5 +1,5 @@
 <aside
-  class="hidden md:flex flex-col w-72 h-full border-r border-[#e7f3f2] bg-white/50 backdrop-blur-sm p-6 relative z-20"
+  class="hidden md:flex flex-col w-72 h-full border-r border-[#e7f3f2] bg-white/50 backdrop-blur-sm p-6 relative z-20 nav-{=$active}"
 >
   <div class="flex items-center gap-4 mb-10 pl-2">
     <div
@@ -19,69 +19,83 @@
   </div>
   <nav class="flex-1 space-y-1 overflow-y-auto scrollbar-hide">
     <a
-      class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+      class="nav-link-dashboard flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
       href="/"
     >
       <span class="material-symbols-outlined">dashboard</span>
       <span class="font-semibold text-sm">Dashboard</span>
     </a>
     <a
-      class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
-      href="#"
+      class="nav-link-account flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+      href="/sira_account_matrix_management_1/code.html"
     >
       <span class="material-symbols-outlined">account_balance</span>
       <span class="font-semibold text-sm">Account</span>
     </a>
     <a
-      class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+      class="nav-link-transaction flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
       href="#"
     >
       <span class="material-symbols-outlined">list_alt</span>
       <span class="font-semibold text-sm">Transaction</span>
     </a>
     <a
-      class="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded-xl transition-all"
+      class="nav-link-goals flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
       href="/sira_goals_&_planner_path_3/code.html"
     >
       <span class="material-symbols-outlined">track_changes</span>
-      <span class="font-bold text-sm">Goals</span>
+      <span class="font-semibold text-sm">Goals</span>
     </a>
     <a
-      class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+      class="nav-link-split-bill flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
       href="#"
     >
       <span class="material-symbols-outlined">payments</span>
       <span class="font-semibold text-sm">Split Bill</span>
     </a>
     <a
-      class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+      class="nav-link-categories flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
       href="/sira_category_manager_split_pane_1/code.html"
     >
       <span class="material-symbols-outlined">category</span>
       <span class="font-semibold text-sm">Categories</span>
     </a>
     <a
-      class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+      class="nav-link-budget flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
       href="#"
     >
       <span class="material-symbols-outlined">pie_chart</span>
       <span class="font-semibold text-sm">Budget</span>
     </a>
     <a
-      class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+      class="nav-link-report flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
       href="#"
     >
       <span class="material-symbols-outlined">bar_chart</span>
       <span class="font-semibold text-sm">Report</span>
     </a>
     <a
-      class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+      class="nav-link-setting flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
       href="#"
     >
       <span class="material-symbols-outlined">settings</span>
       <span class="font-semibold text-sm">Setting</span>
     </a>
   </nav>
+
+  <style type="text/tailwindcss">
+    .nav-dashboard .nav-link-dashboard,
+    .nav-account .nav-link-account,
+    .nav-transaction .nav-link-transaction,
+    .nav-goals .nav-link-goals,
+    .nav-split-bill .nav-link-split-bill,
+    .nav-categories .nav-link-categories,
+    .nav-budget .nav-link-budget,
+    .nav-report .nav-link-report,
+    .nav-setting .nav-link-setting {
+      @apply bg-primary/10 text-primary font-bold;
+    }
+  </style>
   <div class="mt-auto pt-6">
     <div
       class="glass-panel p-4 rounded-2xl mb-6 relative overflow-hidden group cursor-pointer"
