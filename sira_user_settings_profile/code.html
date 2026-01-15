@@ -1,226 +1,269 @@
 <!DOCTYPE html>
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sira - User Settings</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#52e0d4",
-                        "primary-dark": "#3dbdb2",
-                        "background-light": "#f6f8f8",
-                        "background-dark": "#12201f",
-                        "surface-glass": "rgba(255, 255, 255, 0.65)",
-                    },
-                    fontFamily: {
-                        "display": ["Manrope", "sans-serif"],
-                        "outfit": ["Outfit", "sans-serif"]
-                    },
-                    boxShadow: {
-                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
-                    }
-                },
-            },
+<html class="light" lang="en">
+  <head>
+    <load src="/src/partials/head.html" title="Sira - User Settings" />
+    <style type="text/tailwindcss">
+      @layer utilities {
+        .glass-panel {
+          @apply bg-surface-glass backdrop-blur-xl border border-white/60 shadow-glass;
         }
-    </script>
-<style type="text/tailwindcss">
-        @layer utilities {
-            .glass-panel {
-                @apply bg-surface-glass backdrop-blur-xl border border-white/60 shadow-glass;
-            }
-            ::-webkit-scrollbar {
-                width: 6px;
-                height: 6px;
-            }
-            ::-webkit-scrollbar-track {
-                background: transparent; 
-            }
-            ::-webkit-scrollbar-thumb {
-                @apply bg-slate-200 rounded-full;
-            }
-            ::-webkit-scrollbar-thumb:hover {
-                @apply bg-slate-300;
-            }
+        ::-webkit-scrollbar {
+          width: 6px;
+          height: 6px;
         }
+        ::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+          @apply bg-slate-200 rounded-full;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          @apply bg-slate-300;
+        }
+      }
     </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display text-[#1f2937] antialiased overflow-hidden h-screen flex">
-<aside class="w-72 bg-white h-full border-r border-[#eaefef] flex flex-col justify-between shrink-0 z-20 hidden lg:flex">
-<div class="p-6">
-<div class="flex items-center gap-3 mb-10 px-2">
-<div class="size-10 rounded-xl bg-gradient-to-br from-primary to-[#2dd4bf] flex items-center justify-center text-[#12201f]">
-<span class="material-symbols-outlined text-[24px]">savings</span>
-</div>
-<div class="flex flex-col">
-<h1 class="text-[#121717] text-lg font-bold leading-none">Sira</h1>
-<span class="text-[#658683] text-xs font-medium">Mindful Finance</span>
-</div>
-</div>
-<nav class="flex flex-col gap-2">
-<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#658683] hover:bg-[#f0f4f4] transition-colors group" href="#">
-<span class="material-symbols-outlined text-[24px] group-hover:text-[#121717]">dashboard</span>
-<span class="text-sm font-medium group-hover:text-[#121717]">Dashboard</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-[#0d9488]" href="#">
-<span class="material-symbols-outlined text-[24px] text-[#0d9488] font-bold fill-1">settings</span>
-<span class="text-sm font-bold">Settings</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#658683] hover:bg-[#f0f4f4] transition-colors group" href="#">
-<span class="material-symbols-outlined text-[24px] group-hover:text-[#121717]">receipt_long</span>
-<span class="text-sm font-medium group-hover:text-[#121717]">Transactions</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-[#658683] hover:bg-[#f0f4f4] transition-colors group" href="#">
-<span class="material-symbols-outlined text-[24px] group-hover:text-[#121717]">pie_chart</span>
-<span class="text-sm font-medium group-hover:text-[#121717]">Budget</span>
-</a>
-</nav>
-</div>
-<div class="p-6">
-<div class="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#f8fafc] border border-[#eaefef]">
-<div class="size-10 bg-center bg-cover rounded-full" data-alt="User avatar small" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD1a5zXgGfBZAigOyq4ima0cRiIIrXbPN9G6oAfv3YSSP8uQyyG0zL4TlBbI3qO7BO8UiUBMXuDbJs72JVAUGrJwcZZ3GwWF8wI-qNn2E3XIyf2EydRzRyHy24hK3Fji57deZxeJMdHKfk96svPOtZJzpbu5jByyvi8A46fpPap09pFES1o--hd14jpNooFyHhxtyIPsSrEyfFlMWwS6ONgtNE89fuIENyXG_EjGs03fAw-HjO2clHcvVIrKbEA6v28KH0T-xKHdh3q');"></div>
-<div class="flex flex-col overflow-hidden">
-<p class="text-sm font-bold text-[#121717] truncate">Alex Morgan</p>
-<p class="text-xs text-[#658683] truncate">alex@sira.finance</p>
-</div>
-<button class="ml-auto text-[#658683] hover:text-[#121717]">
-<span class="material-symbols-outlined text-[20px]">logout</span>
-</button>
-</div>
-</div>
-</aside>
-<main class="flex-1 flex flex-col h-full relative overflow-hidden">
-<div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
-<div class="absolute bottom-[-10%] left-[10%] w-[300px] h-[300px] bg-[#2dd4bf]/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
-<header class="h-20 flex items-center justify-between px-8 lg:px-12 shrink-0 z-10 bg-white/50 backdrop-blur-sm border-b border-white/60">
-<div class="flex items-center gap-4">
-<button class="lg:hidden text-[#121717]">
-<span class="material-symbols-outlined">menu</span>
-</button>
-<h2 class="text-xl font-bold text-[#121717] tracking-tight">Profile &amp; Preferences</h2>
-</div>
-<div class="flex items-center gap-6">
-<button class="text-[#658683] hover:text-[#121717] relative">
-<span class="material-symbols-outlined text-[24px]">notifications</span>
-<span class="absolute top-0 right-0 size-2 bg-red-500 rounded-full border-2 border-white"></span>
-</button>
-<button class="text-[#658683] hover:text-[#121717]">
-<span class="material-symbols-outlined text-[24px]">help</span>
-</button>
-</div>
-</header>
-<div class="flex-1 overflow-y-auto p-4 lg:p-12 flex justify-center">
-<div class="glass-panel w-full max-w-4xl rounded-3xl flex flex-col h-fit mb-10 overflow-hidden animate-[fadeIn_0.5s_ease-out]">
-<div class="w-full p-8 lg:p-10 border-b border-white/60 bg-white/40 flex flex-col sm:flex-row items-center gap-8">
-<div class="relative group cursor-pointer shrink-0">
-<div class="size-32 rounded-full border-4 border-white shadow-lg bg-cover bg-center overflow-hidden transition-transform duration-300 group-hover:scale-105" data-alt="User profile picture large" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDG0QDM_WsG3TMAlJ4WTCKjraOeWzFPv1P1-uFGvgdLnUYaY8qblHSkQ0BHcrlNB3G9HXm-BN6LYXm_l2GFYYeupNNaj1DR0YvkWdV_y0nQgVPQbYScG7nP-iwTS2mChY3lbzm2QWl3qmjijWXtsJxngfZRBg4cijG5ZchGZtykVD83nlU4gZEzT_T1E31iTmJCiRP43-XfqDKh9qZXHmEkObWQK2MoBM7V2ZpWsyWDLp9pcmetauDYBZZjaSw9f0DubqBfILaxUQnQ');">
-<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-</div>
-<button aria-label="Upload new avatar" class="absolute bottom-1 right-1 size-8 bg-primary hover:bg-primary-dark text-[#12201f] rounded-full shadow-md flex items-center justify-center transition-all duration-300 hover:scale-110 border-2 border-white">
-<span class="material-symbols-outlined text-[18px]">photo_camera</span>
-</button>
-</div>
-<div class="text-center sm:text-left flex-1">
-<h3 class="text-2xl font-bold text-[#121717] font-display mb-1">Alex Morgan</h3>
-<p class="text-base text-[#658683] mb-4">alex@sira.finance</p>
-<div class="flex flex-wrap items-center gap-4 justify-center sm:justify-start">
-<button class="text-sm font-bold text-[#0f766e] bg-primary/10 hover:bg-primary/20 px-5 py-2 rounded-xl transition-colors">
-                                Update Avatar
-                            </button>
-<p class="text-xs text-[#658683] opacity-80">Recommended: 800x800 px, JPG or PNG.</p>
-</div>
-</div>
-</div>
-<form class="flex flex-col divide-y divide-white/60" onsubmit="event.preventDefault();">
-<div class="p-8 lg:p-10 space-y-8">
-<h4 class="text-lg font-bold text-[#121717] flex items-center gap-2 font-display">
-<span class="material-symbols-outlined text-primary-dark">badge</span>
-                            Profile Details
-                        </h4>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-<div class="space-y-2">
-<label class="text-sm font-semibold text-[#121717] ml-1 font-outfit" for="fullName">Full Name</label>
-<div class="relative">
-<input class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-base rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm placeholder:text-[#9ca3af]" id="fullName" placeholder="Enter your full name" type="text" value="Alex Morgan"/>
-<span class="material-symbols-outlined absolute right-4 top-3.5 text-[#9ca3af] pointer-events-none">person</span>
-</div>
-</div>
-<div class="space-y-2">
-<label class="text-sm font-semibold text-[#121717] ml-1 font-outfit" for="email">Email Address</label>
-<div class="relative opacity-75">
-<input class="w-full bg-[#f0f4f4] border border-transparent text-[#658683] text-base rounded-xl px-4 py-3.5 cursor-not-allowed shadow-inner" disabled="" id="email" type="email" value="alex@sira.finance"/>
-<span class="material-symbols-outlined absolute right-4 top-3.5 text-[#658683]">lock</span>
-</div>
-</div>
-<div class="space-y-2">
-<label class="text-sm font-semibold text-[#121717] ml-1 font-outfit" for="currentPassword">Current Password</label>
-<div class="relative group/input">
-<input class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-base rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm placeholder:text-[#9ca3af]" id="currentPassword" type="password" value="password123"/>
-<button class="absolute right-4 top-3.5 text-[#9ca3af] hover:text-[#121717] transition-colors focus:outline-none" type="button">
-<span class="material-symbols-outlined">visibility</span>
-</button>
-</div>
-</div>
-<div class="space-y-2">
-<label class="text-sm font-semibold text-[#121717] ml-1 font-outfit" for="newPassword">New Password</label>
-<div class="relative group/input">
-<input class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-base rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm placeholder:text-[#9ca3af]" id="newPassword" placeholder="••••••••" type="password"/>
-<button class="absolute right-4 top-3.5 text-[#9ca3af] hover:text-[#121717] transition-colors focus:outline-none" type="button">
-<span class="material-symbols-outlined">visibility_off</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-<div class="p-8 lg:p-10 space-y-8">
-<h4 class="text-lg font-bold text-[#121717] flex items-center gap-2 font-display">
-<span class="material-symbols-outlined text-primary-dark">tune</span>
-                            Preferences
-                        </h4>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-<div class="space-y-2">
-<label class="text-sm font-semibold text-[#121717] ml-1 font-outfit" for="currency">Base Currency</label>
-<div class="relative">
-<select class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-base rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm appearance-none font-outfit cursor-pointer" id="currency">
-<option value="USD">🇺🇸 USD - US Dollar</option>
-<option value="IDR">🇮🇩 IDR - Indonesian Rupiah</option>
-<option value="EUR">🇪🇺 EUR - Euro</option>
-<option value="SGD">🇸🇬 SGD - Singapore Dollar</option>
-</select>
-<span class="material-symbols-outlined absolute right-4 top-3.5 text-[#9ca3af] pointer-events-none">expand_more</span>
-</div>
-</div>
-<div class="space-y-2">
-<label class="text-sm font-semibold text-[#121717] ml-1 font-outfit" for="language">Language</label>
-<div class="relative">
-<select class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-base rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm appearance-none font-outfit cursor-pointer pr-12" id="language">
-<option value="en">English (US)</option>
-<option value="id">Bahasa Indonesia</option>
-</select>
-<span class="material-symbols-outlined absolute right-10 top-3.5 text-[#9ca3af] pointer-events-none border-r border-gray-200 pr-2 mr-2 h-5 flex items-center">language</span>
-<span class="material-symbols-outlined absolute right-4 top-3.5 text-[#9ca3af] pointer-events-none">expand_more</span>
-</div>
-</div>
-</div>
-</div>
-<div class="p-8 lg:p-10 bg-white/20 flex items-center justify-end gap-4">
-<button class="px-6 py-3 rounded-xl text-sm font-bold text-[#658683] hover:bg-gray-100/50 hover:text-[#121717] transition-colors font-outfit" type="button">
-                            Cancel
-                        </button>
-<button class="px-10 py-3.5 rounded-xl text-sm font-bold text-[#12201f] bg-gradient-to-r from-primary to-[#2dd4bf] hover:shadow-lg hover:shadow-primary/30 transform hover:-translate-y-0.5 transition-all duration-200 font-outfit" type="submit">
-                            Save Changes
-                        </button>
-</div>
-</form>
-</div>
-</div>
-</main>
-
-</body></html>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-[#1f2937] antialiased overflow-hidden h-screen flex"
+  >
+    <load src="/src/partials/sidebar.html" active="settings" />
+    <main class="flex-1 flex flex-col h-full relative overflow-hidden">
+      <div
+        class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl -z-10 pointer-events-none"
+      ></div>
+      <div
+        class="absolute bottom-[-10%] left-[10%] w-[300px] h-[300px] bg-[#2dd4bf]/10 rounded-full blur-3xl -z-10 pointer-events-none"
+      ></div>
+      <load
+        src="/src/partials/header.html"
+        title="Profile &amp; Preferences"
+        subtitle="Manage your account"
+        icon="settings"
+      />
+      <div class="flex-1 overflow-y-auto p-4 lg:p-12 flex justify-center">
+        <div
+          class="glass-panel w-full max-w-4xl rounded-3xl flex flex-col h-fit mb-10 overflow-hidden animate-[fadeIn_0.5s_ease-out]"
+        >
+          <div
+            class="w-full p-8 lg:p-10 border-b border-white/60 bg-white/40 flex flex-col sm:flex-row items-center gap-8"
+          >
+            <div class="relative group cursor-pointer shrink-0">
+              <div
+                class="size-32 rounded-full border-4 border-white shadow-lg bg-cover bg-center overflow-hidden transition-transform duration-300 group-hover:scale-105"
+                data-alt="User profile picture large"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDG0QDM_WsG3TMAlJ4WTCKjraOeWzFPv1P1-uFGvgdLnUYaY8qblHSkQ0BHcrlNB3G9HXm-BN6LYXm_l2GFYYeupNNaj1DR0YvkWdV_y0nQgVPQbYScG7nP-iwTS2mChY3lbzm2QWl3qmjijWXtsJxngfZRBg4cijG5ZchGZtykVD83nlU4gZEzT_T1E31iTmJCiRP43-XfqDKh9qZXHmEkObWQK2MoBM7V2ZpWsyWDLp9pcmetauDYBZZjaSw9f0DubqBfILaxUQnQ');
+                "
+              >
+                <div
+                  class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                ></div>
+              </div>
+              <button
+                aria-label="Upload new avatar"
+                class="absolute bottom-1 right-1 size-8 bg-primary hover:bg-primary-dark text-[#12201f] rounded-full shadow-md flex items-center justify-center transition-all duration-300 hover:scale-110 border-2 border-white"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >photo_camera</span
+                >
+              </button>
+            </div>
+            <div class="text-center sm:text-left flex-1">
+              <h3 class="text-2xl font-bold text-[#121717] font-display mb-1">
+                Alex Morgan
+              </h3>
+              <p class="text-base text-[#658683] mb-4">alex@sira.finance</p>
+              <div
+                class="flex flex-wrap items-center gap-4 justify-center sm:justify-start"
+              >
+                <button
+                  class="text-sm font-bold text-[#0f766e] bg-primary/10 hover:bg-primary/20 px-5 py-2 rounded-xl transition-colors"
+                >
+                  Update Avatar
+                </button>
+                <p class="text-xs text-[#658683] opacity-80">
+                  Recommended: 800x800 px, JPG or PNG.
+                </p>
+              </div>
+            </div>
+          </div>
+          <form
+            class="flex flex-col divide-y divide-white/60"
+            onsubmit="event.preventDefault();"
+          >
+            <div class="p-8 lg:p-10 space-y-8">
+              <h4
+                class="text-lg font-bold text-[#121717] flex items-center gap-2 font-display"
+              >
+                <span class="material-symbols-outlined text-primary-dark"
+                  >badge</span
+                >
+                Profile Details
+              </h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                <div class="space-y-2">
+                  <label
+                    class="text-sm font-semibold text-[#121717] ml-1 font-outfit"
+                    for="fullName"
+                    >Full Name</label
+                  >
+                  <div class="relative">
+                    <input
+                      class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-base rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm placeholder:text-[#9ca3af]"
+                      id="fullName"
+                      placeholder="Enter your full name"
+                      type="text"
+                      value="Alex Morgan"
+                    />
+                    <span
+                      class="material-symbols-outlined absolute right-4 top-3.5 text-[#9ca3af] pointer-events-none"
+                      >person</span
+                    >
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <label
+                    class="text-sm font-semibold text-[#121717] ml-1 font-outfit"
+                    for="email"
+                    >Email Address</label
+                  >
+                  <div class="relative opacity-75">
+                    <input
+                      class="w-full bg-[#f0f4f4] border border-transparent text-[#658683] text-base rounded-xl px-4 py-3.5 cursor-not-allowed shadow-inner"
+                      disabled=""
+                      id="email"
+                      type="email"
+                      value="alex@sira.finance"
+                    />
+                    <span
+                      class="material-symbols-outlined absolute right-4 top-3.5 text-[#658683]"
+                      >lock</span
+                    >
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <label
+                    class="text-sm font-semibold text-[#121717] ml-1 font-outfit"
+                    for="currentPassword"
+                    >Current Password</label
+                  >
+                  <div class="relative group/input">
+                    <input
+                      class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-base rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm placeholder:text-[#9ca3af]"
+                      id="currentPassword"
+                      type="password"
+                      value="password123"
+                    />
+                    <button
+                      class="absolute right-4 top-3.5 text-[#9ca3af] hover:text-[#121717] transition-colors focus:outline-none"
+                      type="button"
+                    >
+                      <span class="material-symbols-outlined">visibility</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <label
+                    class="text-sm font-semibold text-[#121717] ml-1 font-outfit"
+                    for="newPassword"
+                    >New Password</label
+                  >
+                  <div class="relative group/input">
+                    <input
+                      class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-base rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm placeholder:text-[#9ca3af]"
+                      id="newPassword"
+                      placeholder="••••••••"
+                      type="password"
+                    />
+                    <button
+                      class="absolute right-4 top-3.5 text-[#9ca3af] hover:text-[#121717] transition-colors focus:outline-none"
+                      type="button"
+                    >
+                      <span class="material-symbols-outlined"
+                        >visibility_off</span
+                      >
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-8 lg:p-10 space-y-8">
+              <h4
+                class="text-lg font-bold text-[#121717] flex items-center gap-2 font-display"
+              >
+                <span class="material-symbols-outlined text-primary-dark"
+                  >tune</span
+                >
+                Preferences
+              </h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                <div class="space-y-2">
+                  <label
+                    class="text-sm font-semibold text-[#121717] ml-1 font-outfit"
+                    for="currency"
+                    >Base Currency</label
+                  >
+                  <div class="relative">
+                    <select
+                      class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-base rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm appearance-none font-outfit cursor-pointer"
+                      id="currency"
+                    >
+                      <option value="USD">🇺🇸 USD - US Dollar</option>
+                      <option value="IDR">🇮🇩 IDR - Indonesian Rupiah</option>
+                      <option value="EUR">🇪🇺 EUR - Euro</option>
+                      <option value="SGD">🇸🇬 SGD - Singapore Dollar</option>
+                    </select>
+                    <span
+                      class="material-symbols-outlined absolute right-4 top-3.5 text-[#9ca3af] pointer-events-none"
+                      >expand_more</span
+                    >
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <label
+                    class="text-sm font-semibold text-[#121717] ml-1 font-outfit"
+                    for="language"
+                    >Language</label
+                  >
+                  <div class="relative">
+                    <select
+                      class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-base rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm appearance-none font-outfit cursor-pointer pr-12"
+                      id="language"
+                    >
+                      <option value="en">English (US)</option>
+                      <option value="id">Bahasa Indonesia</option>
+                    </select>
+                    <span
+                      class="material-symbols-outlined absolute right-10 top-3.5 text-[#9ca3af] pointer-events-none border-r border-gray-200 pr-2 mr-2 h-5 flex items-center"
+                      >language</span
+                    >
+                    <span
+                      class="material-symbols-outlined absolute right-4 top-3.5 text-[#9ca3af] pointer-events-none"
+                      >expand_more</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="p-8 lg:p-10 bg-white/20 flex items-center justify-end gap-4"
+            >
+              <button
+                class="px-6 py-3 rounded-xl text-sm font-bold text-[#658683] hover:bg-gray-100/50 hover:text-[#121717] transition-colors font-outfit"
+                type="button"
+              >
+                Cancel
+              </button>
+              <button
+                class="px-10 py-3.5 rounded-xl text-sm font-bold text-[#12201f] bg-gradient-to-r from-primary to-[#2dd4bf] hover:shadow-lg hover:shadow-primary/30 transform hover:-translate-y-0.5 transition-all duration-200 font-outfit"
+                type="submit"
+              >
+                Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
