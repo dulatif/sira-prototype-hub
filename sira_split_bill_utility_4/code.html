@@ -47,66 +47,16 @@
       }
     </style>
   </head>
-<body class="bg-background-light text-[#21262c] font-display h-screen flex overflow-hidden selection:bg-primary/30">
-<!-- Sidebar -->
-<aside class="w-64 bg-surface h-full flex flex-col border-r border-slate-100 z-20 shrink-0">
-<div class="p-6 pb-2">
-<div class="flex items-center gap-3">
-<div class="size-8 rounded-lg bg-primary/20 flex items-center justify-center text-primary-dark">
-<svg class="size-5" fill="currentColor" viewbox="0 0 24 24">
-<path d="M12 2L2 7l10 5 10-5-10-5zm0 9l2.5-1.25L12 8.5l-2.5 1.25L12 11zm0 2.5l-5-2.5-5 2.5L12 22l10-8.5-5-2.5-5 2.5z"></path>
-</svg>
-</div>
-<h1 class="text-xl font-bold tracking-tight">Sira</h1>
-</div>
-</div>
-<nav class="flex-1 px-4 py-6 flex flex-col gap-2">
-<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-slate-50 hover:text-gray-900 transition-colors group" href="#">
-<span class="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">grid_view</span>
-<span class="font-medium text-sm">Dashboard</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-teal-800 transition-colors" href="#">
-<span class="material-symbols-outlined text-[22px] text-teal-600">receipt_long</span>
-<span class="font-medium text-sm">Split Bill</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-slate-50 hover:text-gray-900 transition-colors group" href="#">
-<span class="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">account_balance_wallet</span>
-<span class="font-medium text-sm">Ledger</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-slate-50 hover:text-gray-900 transition-colors group" href="#">
-<span class="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">pie_chart</span>
-<span class="font-medium text-sm">Analytics</span>
-</a>
-</nav>
-<div class="p-4 border-t border-slate-50">
-<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-500 hover:bg-slate-50 transition-colors group" href="#">
-<span class="material-symbols-outlined text-[22px] group-hover:rotate-90 transition-transform">settings</span>
-<span class="font-medium text-sm">Settings</span>
-</a>
-</div>
-</aside>
-<!-- Main Content -->
-<main class="flex-1 flex flex-col relative min-w-0">
-<!-- Top Header -->
-<header class="h-16 bg-surface/50 backdrop-blur-md border-b border-slate-100 flex items-center justify-between px-8 z-20 sticky top-0">
-<h2 class="text-lg font-bold text-gray-800">New Split Session</h2>
-<div class="flex items-center gap-6">
-<!-- Search -->
-<div class="relative group">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-[20px] group-focus-within:text-primary transition-colors">search</span>
-<input class="pl-10 pr-4 py-2 bg-slate-50 border-none rounded-lg text-sm w-64 focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all outline-none placeholder:text-gray-400 font-medium" placeholder="Search history..." type="text"/>
-</div>
-<div class="h-6 w-px bg-slate-200"></div>
-<!-- User Profile -->
-<div class="flex items-center gap-3">
-<div class="text-right hidden md:block">
-<p class="text-xs font-bold text-gray-900">Alex M.</p>
-<p class="text-[10px] text-gray-500 font-medium">Pro Plan</p>
-</div>
-<div class="size-9 rounded-full bg-gray-200 bg-center bg-cover border-2 border-white shadow-sm" data-alt="User profile picture of a woman smiling" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAMA5znXEBrh3tgiNvaNRsRMxuMTXmg3hHpfdqXazwehIvfPcHO6GVA714I_Ywn0ozIhpwUSMNil8xK6mtHefFiTqsiQWgMK4aOLKltaI2C_WXmokit5iPq4AIrydtU8vjs_0D0GRcWOi5OebZgM2PAn8-XwOxoZ5OH98NMbTZPKAG5B1SHPnzu9GFGSTEFgXlG4w9UtRSrwS0TaJK4JBlp-QWCc7YuyqFljUAF7-Zi00U_X8lK7TkbZ3udypQ2RuUFXFPyvjF-3e9w');"></div>
-</div>
-</div>
-</header>
+  <body class="bg-background-light text-[#21262c] font-display h-screen flex overflow-hidden selection:bg-primary/30">
+    <load src="/src/partials/sidebar.html" active="split-bill" />
+    <main class="flex-1 flex flex-col relative min-w-0">
+      <load
+        src="/src/partials/header.html"
+        title="New Split Session"
+        subtitle="Two-column layout"
+        icon="receipt_long"
+      />
+
 <!-- Scrollable Workspace -->
 <div class="flex-1 overflow-y-auto relative">
 <!-- Background Decorative Elements -->
