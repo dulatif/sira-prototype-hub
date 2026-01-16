@@ -222,6 +222,28 @@
 
     <script>
       const prototypes = [
+        // # Design System
+        {
+          name: "Button System",
+          path: "sira_button_component_system",
+          category: "Design System",
+        },
+        {
+          name: "Card & Modal System",
+          path: "sira_card_&_modal_design_system",
+          category: "Design System",
+        },
+        {
+          name: "Form & Input System",
+          path: "sira_form_&_input_design_system",
+          category: "Design System",
+        },
+        {
+          name: "Type & Color System",
+          path: "sira_type_&_color_design_system",
+          category: "Design System",
+        },
+        // # Auth
         {
           name: "Login Screen",
           path: "login-screen",
@@ -252,6 +274,28 @@
           category: "Auth",
           order: 5,
         },
+        // # Dashboard
+        {
+          name: "Welcome Celebration",
+          path: "dashboard__welcome-celebration",
+          category: "Dashboard",
+        },
+        {
+          name: "Dashboard Main",
+          path: "dashboard__main",
+          category: "Dashboard",
+        },
+        {
+          name: "Dashboard Backup 1",
+          path: "dashboard__backup-1",
+          category: "Dashboard",
+        },
+        {
+          name: "Dashboard Backup 2",
+          path: "dashboard__backup-2",
+          category: "Dashboard",
+        },
+        // # Accounts
         {
           name: "Account Matrix (V1)",
           path: "sira_account_matrix_management_1",
@@ -277,87 +321,7 @@
           path: "sira_account_matrix_management_5",
           category: "Accounts",
         },
-        {
-          name: "Button System",
-          path: "sira_button_component_system",
-          category: "Design System",
-        },
-        {
-          name: "Card & Modal System",
-          path: "sira_card_&_modal_design_system",
-          category: "Design System",
-        },
-        {
-          name: "Category Manager (V1)",
-          path: "sira_category_manager_split_pane_1",
-          category: "Management",
-        },
-        {
-          name: "Category Manager (V2)",
-          path: "sira_category_manager_split_pane_2",
-          category: "Management",
-        },
-        {
-          name: "Category Manager (V3)",
-          path: "sira_category_manager_split_pane_3",
-          category: "Management",
-        },
-        {
-          name: "Welcome Celebration",
-          path: "sira_dashboard_welcome_celebration",
-          category: "Dashboard",
-        },
-        {
-          name: "Form & Input System",
-          path: "sira_form_&_input_design_system",
-          category: "Design System",
-        },
-        {
-          name: "Goals & Planner (V1)",
-          path: "sira_goals_&_planner_path_1",
-          category: "Goals",
-        },
-        {
-          name: "Goals & Planner (V2)",
-          path: "sira_goals_&_planner_path_2",
-          category: "Goals",
-        },
-        {
-          name: "Goals & Planner (V3)",
-          path: "sira_goals_&_planner_path_3",
-          category: "Goals",
-        },
-        {
-          name: "Import Success",
-          path: "sira_import_success_summary",
-          category: "Other",
-        },
-
-        {
-          name: "Split Bill (V1)",
-          path: "sira_split_bill_utility_1",
-          category: "Utilities",
-        },
-        {
-          name: "Split Bill (V2)",
-          path: "sira_split_bill_utility_2",
-          category: "Utilities",
-        },
-        {
-          name: "Split Bill (V3)",
-          path: "sira_split_bill_utility_3",
-          category: "Utilities",
-        },
-        {
-          name: "Split Bill (V4)",
-          path: "sira_split_bill_utility_4",
-          category: "Utilities",
-        },
-        {
-          name: "Split Bill (V5)",
-          path: "sira_split_bill_utility_5",
-          category: "Utilities",
-        },
+        // # Transactions
         {
           name: "Transaction Ledger (V1)",
           path: "sira_transaction_ledger_journal_1",
@@ -398,36 +362,82 @@
           path: "sira_transaction_ledger_journal_8",
           category: "Transactions",
         },
+        // # Goals
         {
-          name: "Type & Color System",
-          path: "sira_type_&_color_design_system",
-          category: "Design System",
+          name: "Goals & Planner (V1)",
+          path: "sira_goals_&_planner_path_1",
+          category: "Goals",
         },
+        {
+          name: "Goals & Planner (V2)",
+          path: "sira_goals_&_planner_path_2",
+          category: "Goals",
+        },
+        {
+          name: "Goals & Planner (V3)",
+          path: "sira_goals_&_planner_path_3",
+          category: "Goals",
+        },
+        // # Management
+        {
+          name: "Category Manager (V1)",
+          path: "sira_category_manager_split_pane_1",
+          category: "Management",
+        },
+        {
+          name: "Category Manager (V2)",
+          path: "sira_category_manager_split_pane_2",
+          category: "Management",
+        },
+        {
+          name: "Category Manager (V3)",
+          path: "sira_category_manager_split_pane_3",
+          category: "Management",
+        },
+        // # Utilities
+        {
+          name: "Split Bill (V1)",
+          path: "sira_split_bill_utility_1",
+          category: "Utilities",
+        },
+        {
+          name: "Split Bill (V2)",
+          path: "sira_split_bill_utility_2",
+          category: "Utilities",
+        },
+        {
+          name: "Split Bill (V3)",
+          path: "sira_split_bill_utility_3",
+          category: "Utilities",
+        },
+        {
+          name: "Split Bill (V4)",
+          path: "sira_split_bill_utility_4",
+          category: "Utilities",
+        },
+        {
+          name: "Split Bill (V5)",
+          path: "sira_split_bill_utility_5",
+          category: "Utilities",
+        },
+        // # Others
         {
           name: "User Settings",
           path: "sira_user_settings_profile",
-          category: "Settings",
-        },
-
-        {
-          name: "Wealth Dashboard (V3)",
-          path: "sira_wealth_flow_dashboard_3",
-          category: "Dashboard",
+          category: "Other",
+          order: 1,
         },
         {
-          name: "Wealth Dashboard (V4)",
-          path: "sira_wealth_flow_dashboard_4",
-          category: "Dashboard",
-        },
-        {
-          name: "Wealth Dashboard (V5)",
-          path: "sira_wealth_flow_dashboard_5",
-          category: "Dashboard",
+          name: "Import Success",
+          path: "sira_import_success_summary",
+          category: "Other",
+          order: 2,
         },
         {
           name: "Wealth Wizard Overlay",
           path: "sira_wealth_flow_wizard_overlay",
-          category: "Dashboard",
+          category: "Other",
+          order: 3,
         },
       ];
 
@@ -435,7 +445,7 @@
       const filterContainer = document.getElementById("category-filters");
 
       // Extract and populate categories
-      const categories = [...new Set(prototypes.map((p) => p.category))].sort();
+      const categories = [...new Set(prototypes.map((p) => p.category))];
       categories.forEach((cat) => {
         const btn = document.createElement("button");
         btn.className =
