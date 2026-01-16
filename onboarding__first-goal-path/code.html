@@ -1,168 +1,319 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sira Onboarding: First Goal Path</title>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#1b988d",
-                        "background-light": "#f6f9f8",
-                        "background-dark": "#182125",
-                        "surface-dark": "#232e34",
-                    },
-                    fontFamily: {
-                        "display": ["Manrope", "sans-serif"]
-                    },
-                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px" },
-                    boxShadow: {
-                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
-                    }
-                },
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Sira Onboarding: First Goal Path</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1b988d",
+              "background-light": "#f6f9f8",
+              "background-dark": "#182125",
+              "surface-dark": "#232e34",
             },
-        }
+            fontFamily: {
+              display: ["Manrope", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "1rem",
+              xl: "1.5rem",
+              "2xl": "2rem",
+              full: "9999px",
+            },
+            boxShadow: {
+              glass: "0 8px 32px 0 rgba(31, 38, 135, 0.07)",
+            },
+          },
+        },
+      };
     </script>
-<style>
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-        .dark .glass-panel {
-            background: rgba(35, 46, 52, 0.65);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .glass-card-hover:hover {
-            background: rgba(255, 255, 255, 0.9);
-            transform: translateY(-4px);
-            box-shadow: 0 10px 40px -10px rgba(27, 152, 141, 0.15);
-        }
-        .dark .glass-card-hover:hover {
-            background: rgba(45, 58, 65, 0.9);
-            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
-        }
+    <style>
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+      .dark .glass-panel {
+        background: rgba(35, 46, 52, 0.65);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
 
-        /* Abstract background shapes */
-        .blob {
-            position: absolute;
-            filter: blur(80px);
-            z-index: 0;
-            opacity: 0.6;
-        }
+      .glass-card-hover:hover {
+        background: rgba(255, 255, 255, 0.9);
+        transform: translateY(-4px);
+        box-shadow: 0 10px 40px -10px rgba(27, 152, 141, 0.15);
+      }
+      .dark .glass-card-hover:hover {
+        background: rgba(45, 58, 65, 0.9);
+        box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Abstract background shapes */
+      .blob {
+        position: absolute;
+        filter: blur(80px);
+        z-index: 0;
+        opacity: 0.6;
+      }
     </style>
-</head>
-<body class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden font-display antialiased selection:bg-primary/20 selection:text-primary transition-colors duration-300">
-<!-- Ambient Background Elements -->
-<div class="fixed inset-0 overflow-hidden pointer-events-none">
-<div class="blob w-96 h-96 rounded-full bg-primary/20 -top-20 -left-20 animate-pulse" style="animation-duration: 10s;"></div>
-<div class="blob w-[500px] h-[500px] rounded-full bg-[#a5f3fc]/30 dark:bg-[#1b988d]/10 bottom-0 right-0"></div>
-<div class="blob w-64 h-64 rounded-full bg-primary/10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-</div>
-<div class="layout-container flex h-full grow flex-col justify-center items-center relative z-10 px-6 py-12">
-<!-- Main Glass Card -->
-<main class="glass-panel w-full max-w-[1024px] rounded-2xl shadow-glass flex flex-col overflow-hidden">
-<!-- Card Header: Logo & Progress -->
-<div class="flex items-center justify-between px-8 py-6 border-b border-gray-100 dark:border-gray-800">
-<div class="flex items-center gap-3">
-<div class="size-8 rounded-lg bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30">
-<svg fill="none" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M2 17L12 22L22 17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-<path d="M2 12L12 17L22 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</div>
-<span class="text-xl font-bold tracking-tight text-[#121717] dark:text-white">Sira</span>
-</div>
-<div class="flex flex-col items-end gap-1.5 min-w-[140px]">
-<span class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Step 3 of 3</span>
-<div class="h-1.5 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-<div class="h-full bg-primary w-full rounded-full"></div>
-</div>
-</div>
-</div>
-<!-- Card Body -->
-<div class="flex flex-col items-center justify-center px-8 py-12 md:py-16 text-center">
-<!-- Headline & Subtext -->
-<div class="max-w-2xl mb-10">
-<h1 class="text-3xl md:text-4xl font-extrabold text-[#121717] dark:text-white mb-4 leading-tight tracking-tight">
-                        What are we building towards?
-                    </h1>
-<p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed font-medium">
-                        Sira helps you map your future. Choose your first financial goal to start your path.
-                    </p>
-</div>
-<!-- Goal Selection Grid -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-[900px] mb-12">
-<!-- Card 1: Emergency Fund -->
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" name="goal" type="radio" value="emergency"/>
-<div class="glass-card-hover h-full flex flex-col items-center justify-center p-8 rounded-xl border border-transparent bg-white/50 dark:bg-surface-dark/50 transition-all duration-300 peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:shadow-lg dark:peer-checked:bg-primary/20 dark:border-gray-700/50">
-<div class="mb-5 p-4 rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light group-hover:scale-110 transition-transform duration-300">
-<span class="material-symbols-outlined text-[40px]">shield</span>
-</div>
-<h3 class="text-xl font-bold text-[#121717] dark:text-white mb-2">Emergency Fund</h3>
-<p class="text-sm text-gray-500 dark:text-gray-400 font-medium">Build a safety net</p>
-<!-- Checkmark for active state -->
-<div class="absolute top-4 right-4 opacity-0 peer-checked:opacity-100 transition-opacity text-primary">
-<span class="material-symbols-outlined fill-current">check_circle</span>
-</div>
-</div>
-</label>
-<!-- Card 2: Dream Travel (Pre-selected visual cue for demo) -->
-<label class="group relative cursor-pointer">
-<input checked="" class="peer sr-only" name="goal" type="radio" value="travel"/>
-<div class="glass-card-hover h-full flex flex-col items-center justify-center p-8 rounded-xl border border-transparent bg-white/50 dark:bg-surface-dark/50 transition-all duration-300 peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:shadow-lg dark:peer-checked:bg-primary/20 dark:border-gray-700/50">
-<div class="mb-5 p-4 rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light group-hover:scale-110 transition-transform duration-300">
-<span class="material-symbols-outlined text-[40px]">flight_takeoff</span>
-</div>
-<h3 class="text-xl font-bold text-[#121717] dark:text-white mb-2">Dream Travel</h3>
-<p class="text-sm text-gray-500 dark:text-gray-400 font-medium">Save for adventure</p>
-<!-- Checkmark for active state -->
-<div class="absolute top-4 right-4 opacity-0 peer-checked:opacity-100 transition-opacity text-primary">
-<span class="material-symbols-outlined fill-current">check_circle</span>
-</div>
-</div>
-</label>
-<!-- Card 3: Debt Freedom -->
-<label class="group relative cursor-pointer">
-<input class="peer sr-only" name="goal" type="radio" value="debt"/>
-<div class="glass-card-hover h-full flex flex-col items-center justify-center p-8 rounded-xl border border-transparent bg-white/50 dark:bg-surface-dark/50 transition-all duration-300 peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:shadow-lg dark:peer-checked:bg-primary/20 dark:border-gray-700/50">
-<div class="mb-5 p-4 rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light group-hover:scale-110 transition-transform duration-300">
-<span class="material-symbols-outlined text-[40px]">key</span>
-</div>
-<h3 class="text-xl font-bold text-[#121717] dark:text-white mb-2">Debt Freedom</h3>
-<p class="text-sm text-gray-500 dark:text-gray-400 font-medium">Clear your path</p>
-<!-- Checkmark for active state -->
-<div class="absolute top-4 right-4 opacity-0 peer-checked:opacity-100 transition-opacity text-primary">
-<span class="material-symbols-outlined fill-current">check_circle</span>
-</div>
-</div>
-</label>
-</div>
-<!-- Action Button -->
-<button class="relative group overflow-hidden rounded-xl bg-primary px-12 py-4 transition-all hover:bg-[#157a72] hover:shadow-lg hover:shadow-primary/30 active:scale-95">
-<div class="relative flex items-center gap-2">
-<span class="text-base font-bold text-white tracking-wide">Finish Setup</span>
-<span class="material-symbols-outlined text-white text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
-</div>
-</button>
-</div>
-<!-- Footer Decorative -->
-<div class="h-2 w-full bg-gradient-to-r from-primary/10 via-primary/40 to-primary/10"></div>
-</main>
-<!-- Contextual Help (Subtle detail) -->
-<p class="mt-6 text-sm text-gray-400 dark:text-gray-500 font-medium cursor-pointer hover:text-primary transition-colors">
-            Not sure where to start? Take a quick quiz.
-        </p>
-</div>
-</body></html>
+  </head>
+  <body
+    class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden font-display antialiased selection:bg-primary/20 selection:text-primary transition-colors duration-300"
+  >
+    <!-- Ambient Background Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+      <div
+        class="blob w-96 h-96 rounded-full bg-primary/20 -top-20 -left-20 animate-pulse"
+        style="animation-duration: 10s"
+      ></div>
+      <div
+        class="blob w-[500px] h-[500px] rounded-full bg-[#a5f3fc]/30 dark:bg-[#1b988d]/10 bottom-0 right-0"
+      ></div>
+      <div
+        class="blob w-64 h-64 rounded-full bg-primary/10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+      ></div>
+    </div>
+    <div
+      class="layout-container flex h-full grow flex-col justify-center items-center relative z-10 px-6 py-12"
+    >
+      <!-- Main Glass Card -->
+      <main
+        class="glass-panel w-full max-w-[1024px] rounded-2xl shadow-glass flex flex-col overflow-hidden"
+      >
+        <!-- Card Header: Logo & Progress -->
+        <div
+          class="flex items-center justify-between px-8 py-6 border-b border-gray-100 dark:border-gray-800"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class="size-8 rounded-lg bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30"
+            >
+              <svg
+                fill="none"
+                height="20"
+                viewbox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 2L2 7L12 12L22 7L12 2Z"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                ></path>
+                <path
+                  d="M2 17L12 22L22 17"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                ></path>
+                <path
+                  d="M2 12L12 17L22 12"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                ></path>
+              </svg>
+            </div>
+            <span
+              class="text-xl font-bold tracking-tight text-[#121717] dark:text-white"
+              >Sira</span
+            >
+          </div>
+          <div class="flex flex-col items-end gap-1.5 min-w-[140px]">
+            <span
+              class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400"
+              >Step 3 of 3</span
+            >
+            <div
+              class="h-1.5 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden"
+            >
+              <div class="h-full bg-primary w-full rounded-full"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Card Body -->
+        <div
+          class="flex flex-col items-center justify-center px-8 py-12 md:py-16 text-center"
+        >
+          <!-- Headline & Subtext -->
+          <div class="max-w-2xl mb-10">
+            <h1
+              class="text-3xl md:text-4xl font-extrabold text-[#121717] dark:text-white mb-4 leading-tight tracking-tight"
+            >
+              What are we building towards?
+            </h1>
+            <p
+              class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed font-medium"
+            >
+              Sira helps you map your future. Choose your first financial goal
+              to start your path.
+            </p>
+          </div>
+          <!-- Goal Selection Grid -->
+          <div
+            class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-[900px] mb-12"
+          >
+            <!-- Card 1: Emergency Fund -->
+            <label class="group relative cursor-pointer">
+              <input
+                class="peer sr-only"
+                name="goal"
+                type="radio"
+                value="emergency"
+              />
+              <div
+                class="glass-card-hover h-full flex flex-col items-center justify-center p-8 rounded-xl border border-transparent bg-white/50 dark:bg-surface-dark/50 transition-all duration-300 peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:shadow-lg dark:peer-checked:bg-primary/20 dark:border-gray-700/50"
+              >
+                <div
+                  class="mb-5 p-4 rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light group-hover:scale-110 transition-transform duration-300"
+                >
+                  <span class="material-symbols-outlined text-[40px]"
+                    >shield</span
+                  >
+                </div>
+                <h3
+                  class="text-xl font-bold text-[#121717] dark:text-white mb-2"
+                >
+                  Emergency Fund
+                </h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                  Build a safety net
+                </p>
+                <!-- Checkmark for active state -->
+                <div
+                  class="absolute top-4 right-4 opacity-0 peer-checked:opacity-100 transition-opacity text-primary"
+                >
+                  <span class="material-symbols-outlined fill-current"
+                    >check_circle</span
+                  >
+                </div>
+              </div>
+            </label>
+            <!-- Card 2: Dream Travel (Pre-selected visual cue for demo) -->
+            <label class="group relative cursor-pointer">
+              <input
+                checked=""
+                class="peer sr-only"
+                name="goal"
+                type="radio"
+                value="travel"
+              />
+              <div
+                class="glass-card-hover h-full flex flex-col items-center justify-center p-8 rounded-xl border border-transparent bg-white/50 dark:bg-surface-dark/50 transition-all duration-300 peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:shadow-lg dark:peer-checked:bg-primary/20 dark:border-gray-700/50"
+              >
+                <div
+                  class="mb-5 p-4 rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light group-hover:scale-110 transition-transform duration-300"
+                >
+                  <span class="material-symbols-outlined text-[40px]"
+                    >flight_takeoff</span
+                  >
+                </div>
+                <h3
+                  class="text-xl font-bold text-[#121717] dark:text-white mb-2"
+                >
+                  Dream Travel
+                </h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                  Save for adventure
+                </p>
+                <!-- Checkmark for active state -->
+                <div
+                  class="absolute top-4 right-4 opacity-0 peer-checked:opacity-100 transition-opacity text-primary"
+                >
+                  <span class="material-symbols-outlined fill-current"
+                    >check_circle</span
+                  >
+                </div>
+              </div>
+            </label>
+            <!-- Card 3: Debt Freedom -->
+            <label class="group relative cursor-pointer">
+              <input
+                class="peer sr-only"
+                name="goal"
+                type="radio"
+                value="debt"
+              />
+              <div
+                class="glass-card-hover h-full flex flex-col items-center justify-center p-8 rounded-xl border border-transparent bg-white/50 dark:bg-surface-dark/50 transition-all duration-300 peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:shadow-lg dark:peer-checked:bg-primary/20 dark:border-gray-700/50"
+              >
+                <div
+                  class="mb-5 p-4 rounded-full bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light group-hover:scale-110 transition-transform duration-300"
+                >
+                  <span class="material-symbols-outlined text-[40px]">key</span>
+                </div>
+                <h3
+                  class="text-xl font-bold text-[#121717] dark:text-white mb-2"
+                >
+                  Debt Freedom
+                </h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                  Clear your path
+                </p>
+                <!-- Checkmark for active state -->
+                <div
+                  class="absolute top-4 right-4 opacity-0 peer-checked:opacity-100 transition-opacity text-primary"
+                >
+                  <span class="material-symbols-outlined fill-current"
+                    >check_circle</span
+                  >
+                </div>
+              </div>
+            </label>
+          </div>
+          <!-- Action Button -->
+          <button
+            class="relative group overflow-hidden rounded-xl bg-primary px-12 py-4 transition-all hover:bg-[#157a72] hover:shadow-lg hover:shadow-primary/30 active:scale-95"
+            onclick="(function() {
+                document.location.href = '/dashboard__welcome-celebration/code';
+            })()"
+          >
+            <div class="relative flex items-center gap-2">
+              <span class="text-base font-bold text-white tracking-wide"
+                >Finish Setup</span
+              >
+              <span
+                class="material-symbols-outlined text-white text-sm transition-transform group-hover:translate-x-1"
+                >arrow_forward</span
+              >
+            </div>
+          </button>
+        </div>
+        <!-- Footer Decorative -->
+        <div
+          class="h-2 w-full bg-gradient-to-r from-primary/10 via-primary/40 to-primary/10"
+        ></div>
+      </main>
+      <!-- Contextual Help (Subtle detail) -->
+      <p
+        class="mt-6 text-sm text-gray-400 dark:text-gray-500 font-medium cursor-pointer hover:text-primary transition-colors"
+      >
+        Not sure where to start? Take a quick quiz.
+      </p>
+    </div>
+  </body>
+</html>

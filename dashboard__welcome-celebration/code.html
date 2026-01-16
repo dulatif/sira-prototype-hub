@@ -1,194 +1,348 @@
 <!DOCTYPE html>
 
-<html class="" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sira Dashboard Welcome</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;700;900&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#1dc9c9",
-                        "secondary": "#aaf0d1", 
-                        "background-light": "#f0f2f4",
-                        "background-dark": "#16181d",
-                        "surface-dark": "#1c2626",
-                        "border-dark": "#293838",
-                    },
-                    fontFamily: {
-                        "display": ["Epilogue", "sans-serif"],
-                        "body": ["Manrope", "sans-serif"],
-                    },
-                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
-                    boxShadow: {
-                        'glow': '0 0 20px -5px rgba(29, 201, 201, 0.5)',
-                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
-                    }
-                },
+<html class="" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Sira Dashboard Welcome</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;700;900&amp;family=Manrope:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1dc9c9",
+              secondary: "#aaf0d1",
+              "background-light": "#f0f2f4",
+              "background-dark": "#16181d",
+              "surface-dark": "#1c2626",
+              "border-dark": "#293838",
             },
-        }
+            fontFamily: {
+              display: ["Epilogue", "sans-serif"],
+              body: ["Manrope", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "1rem",
+              xl: "1.5rem",
+              "2xl": "2rem",
+              full: "9999px",
+            },
+            boxShadow: {
+              glow: "0 0 20px -5px rgba(29, 201, 201, 0.5)",
+              glass: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
+            },
+          },
+        },
+      };
     </script>
-<style>
-        /* Custom scrollbar to match the dark theme */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #16181d; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #293838; 
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #3d5252; 
-        }
+    <style>
+      /* Custom scrollbar to match the dark theme */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #16181d;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #293838;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #3d5252;
+      }
     </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-body antialiased overflow-hidden h-screen w-screen selection:bg-primary selection:text-background-dark">
-<!-- Main Container -->
-<div class="relative w-full h-full flex flex-col">
-<!-- LAYER 1: The Blurred Dashboard Background -->
-<!-- This acts as the context. It mimics a real dashboard behind the modal. -->
-<div class="absolute inset-0 z-0 flex flex-col blur-[12px] opacity-60 pointer-events-none overflow-hidden select-none bg-[#0f1212]">
-<!-- Background Header -->
-<header class="flex items-center justify-between border-b border-solid border-border-dark px-10 py-4 bg-[#111717]">
-<div class="flex items-center gap-4 text-white">
-<div class="size-8 text-primary">
-<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill-rule="evenodd"></path>
-</svg>
-</div>
-<h2 class="text-white text-xl font-display font-bold">Sira</h2>
-</div>
-<div class="flex items-center gap-8">
-<div class="w-10 h-10 rounded-full bg-border-dark"></div>
-<div class="w-10 h-10 rounded-full bg-border-dark"></div>
-<div class="w-12 h-12 rounded-full bg-center bg-cover" data-alt="User profile placeholder" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC7RSOCAoAigWNE8C_J_3tdEsW8BlsCV_jyCsJGWlQ6JyKiSUdQEZmvhmYdwtGQXUeekWMIMpqFV8BmmUEmOwU1lK3e1AfzwmfUnFfl3W-DdS3FmzsvKzF-Iq2cotal3n-Jh3wEFdbGf0PIZvetbfSPFhy6SggnzALoHqwl8LOOFkpURbzb2FlMholZ7JR8AvEkfdZPdiCVcujBdvwWlTbXJf-UDbB7mlnwRf6ROnMftDpmpiMpa3lcHWSVUTJ6fTszu8rss6M1W3sq");'></div>
-</div>
-</header>
-<!-- Background Content Grid -->
-<div class="flex-1 p-10 grid grid-cols-12 gap-6 bg-[#111717]">
-<!-- Sidebar Placeholder -->
-<div class="col-span-2 hidden xl:flex flex-col gap-4">
-<div class="h-10 w-full bg-border-dark/50 rounded-lg"></div>
-<div class="h-10 w-3/4 bg-border-dark/50 rounded-lg"></div>
-<div class="h-10 w-5/6 bg-border-dark/50 rounded-lg"></div>
-<div class="mt-auto h-40 w-full bg-gradient-to-b from-border-dark/30 to-transparent rounded-xl"></div>
-</div>
-<!-- Main Dashboard Area -->
-<div class="col-span-12 xl:col-span-10 flex flex-col gap-6">
-<div class="flex justify-between items-end">
-<div class="h-12 w-64 bg-border-dark/50 rounded-lg"></div>
-<div class="h-10 w-32 bg-primary/20 rounded-lg"></div>
-</div>
-<!-- Top Cards Row -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<div class="h-40 rounded-2xl bg-surface-dark border border-border-dark relative overflow-hidden">
-<div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-primary/10 to-transparent"></div>
-</div>
-<div class="h-40 rounded-2xl bg-surface-dark border border-border-dark"></div>
-<div class="h-40 rounded-2xl bg-surface-dark border border-border-dark"></div>
-</div>
-<!-- Chart Area -->
-<div class="flex-1 rounded-2xl bg-surface-dark border border-border-dark relative overflow-hidden">
-<div class="absolute inset-0 flex items-center justify-center opacity-10">
-<!-- Abstract chart line -->
-<svg class="w-full h-full text-primary" preserveaspectratio="none" viewbox="0 0 100 20">
-<path d="M0 15 Q 10 5, 20 12 T 40 10 T 60 14 T 80 5 T 100 12" fill="none" stroke="currentColor" stroke-width="0.5"></path>
-</svg>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- LAYER 2: The Modal Overlay -->
-<div class="relative z-10 flex-1 flex items-center justify-center p-4">
-<!-- Glassmorphic Card -->
-<div class="relative w-full max-w-[640px] rounded-3xl overflow-hidden shadow-glass border border-white/10 flex flex-col">
-<!-- Card Backgrounds (Noise + Gradient) -->
-<div class="absolute inset-0 bg-[#141919]/90 backdrop-blur-xl z-0"></div>
-<!-- Subtle Radial Glow behind content -->
-<div class="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[80%] h-[50%] bg-primary/20 blur-[100px] rounded-full z-0 pointer-events-none"></div>
-<!-- Content Wrapper -->
-<div class="relative z-10 flex flex-col items-center text-center p-10 md:p-12">
-<!-- Close Button (Top Right) -->
-<button class="absolute top-6 right-6 text-white/40 hover:text-white transition-colors">
-<span class="material-symbols-outlined !text-[24px]">close</span>
-</button>
-<!-- 1. Hero Animation Section -->
-<div class="relative mb-8 size-24 flex items-center justify-center">
-<!-- Logo -->
-<div class="relative z-10 text-white drop-shadow-[0_0_15px_rgba(29,201,201,0.5)]">
-<svg fill="none" height="48" viewbox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg">
-<path clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-<!-- Outer Glowing Rings (Simulating "Wealth Flow") -->
-<div class="absolute inset-0 rounded-full border border-primary/20 animate-pulse"></div>
-<div class="absolute inset-[-8px] rounded-full border border-primary/10 opacity-60"></div>
-<!-- SVG Stroke Animation Representation -->
-<svg class="absolute inset-[-12px] w-[120px] h-[120px] text-primary rotate-[-90deg]" viewbox="0 0 100 100">
-<!-- Background track -->
-<circle cx="50" cy="50" fill="none" r="46" stroke="currentColor" stroke-opacity="0.1" stroke-width="1"></circle>
-<!-- Active stroke -->
-<circle class="drop-shadow-[0_0_8px_#1dc9c9]" cx="50" cy="50" fill="none" r="46" stroke="url(#gradient-stroke)" stroke-dasharray="290" stroke-dashoffset="40" stroke-linecap="round" stroke-width="2"></circle>
-<defs>
-<lineargradient id="gradient-stroke" x1="0%" x2="100%" y1="0%" y2="0%">
-<stop offset="0%" stop-color="#1dc9c9"></stop>
-<stop offset="100%" stop-color="#aaf0d1"></stop>
-</lineargradient>
-</defs>
-</svg>
-</div>
-<!-- 2. Typography Block -->
-<h1 class="text-white font-display font-bold text-3xl md:text-4xl tracking-tight mb-4 drop-shadow-md">
-                        Welcome to the Flow, Alex!
-                    </h1>
-<p class="text-[#9eb7b7] font-body text-base md:text-lg leading-relaxed max-w-md mx-auto mb-10">
-                        Your financial map is ready. You’ve successfully connected your first provider and set your first goal. Let’s start mapping your journey with ease.
-                    </p>
-<!-- 3. Quick Start Guide (Bento Box Row) -->
-<div class="w-full grid grid-cols-1 md:grid-cols-3 gap-3 mb-10">
-<!-- Card 1 -->
-<div class="group flex flex-col gap-3 items-center justify-center p-4 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 cursor-pointer">
-<div class="p-2 rounded-full bg-[#293838] group-hover:bg-primary/20 transition-colors text-primary shadow-inner">
-<span class="material-symbols-outlined !text-[24px]">receipt_long</span>
-</div>
-<span class="text-white text-sm font-semibold leading-tight">Add Transaction</span>
-</div>
-<!-- Card 2 -->
-<div class="group flex flex-col gap-3 items-center justify-center p-4 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 cursor-pointer">
-<div class="p-2 rounded-full bg-[#293838] group-hover:bg-primary/20 transition-colors text-primary shadow-inner">
-<span class="material-symbols-outlined !text-[24px]">grid_view</span>
-</div>
-<span class="text-white text-sm font-semibold leading-tight">Review Pockets</span>
-</div>
-<!-- Card 3 -->
-<div class="group flex flex-col gap-3 items-center justify-center p-4 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 cursor-pointer">
-<div class="p-2 rounded-full bg-[#293838] group-hover:bg-primary/20 transition-colors text-primary shadow-inner">
-<span class="material-symbols-outlined !text-[24px]">person_add</span>
-</div>
-<span class="text-white text-sm font-semibold leading-tight">Invite Friend</span>
-</div>
-</div>
-<!-- 4. Primary Action -->
-<button class="w-full md:w-auto min-w-[280px] h-14 rounded-xl bg-gradient-to-r from-[#1dc9c9] to-[#aaf0d1] text-[#0d2121] text-base font-bold tracking-wide shadow-glow hover:shadow-[0_0_30px_-5px_rgba(29,201,201,0.6)] hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2">
-<span>Explore Dashboard</span>
-<span class="material-symbols-outlined !text-[20px] font-bold">arrow_forward</span>
-</button>
-<!-- Footer Note -->
-<p class="mt-6 text-xs text-[#5c7575] font-medium">Press 'Esc' to skip tour</p>
-</div>
-</div>
-</div>
-</div>
-</body></html>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-body antialiased overflow-hidden h-screen w-screen selection:bg-primary selection:text-background-dark"
+  >
+    <!-- Main Container -->
+    <div class="relative w-full h-full flex flex-col">
+      <!-- LAYER 1: The Blurred Dashboard Background -->
+      <!-- This acts as the context. It mimics a real dashboard behind the modal. -->
+      <div
+        class="absolute inset-0 z-0 flex flex-col blur-[12px] opacity-60 pointer-events-none overflow-hidden select-none bg-[#0f1212]"
+      >
+        <!-- Background Header -->
+        <header
+          class="flex items-center justify-between border-b border-solid border-border-dark px-10 py-4 bg-[#111717]"
+        >
+          <div class="flex items-center gap-4 text-white">
+            <div class="size-8 text-primary">
+              <svg
+                fill="currentColor"
+                viewbox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z"
+                  fill-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
+            <h2 class="text-white text-xl font-display font-bold">Sira</h2>
+          </div>
+          <div class="flex items-center gap-8">
+            <div class="w-10 h-10 rounded-full bg-border-dark"></div>
+            <div class="w-10 h-10 rounded-full bg-border-dark"></div>
+            <div
+              class="w-12 h-12 rounded-full bg-center bg-cover"
+              data-alt="User profile placeholder"
+              style="
+                background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC7RSOCAoAigWNE8C_J_3tdEsW8BlsCV_jyCsJGWlQ6JyKiSUdQEZmvhmYdwtGQXUeekWMIMpqFV8BmmUEmOwU1lK3e1AfzwmfUnFfl3W-DdS3FmzsvKzF-Iq2cotal3n-Jh3wEFdbGf0PIZvetbfSPFhy6SggnzALoHqwl8LOOFkpURbzb2FlMholZ7JR8AvEkfdZPdiCVcujBdvwWlTbXJf-UDbB7mlnwRf6ROnMftDpmpiMpa3lcHWSVUTJ6fTszu8rss6M1W3sq');
+              "
+            ></div>
+          </div>
+        </header>
+        <!-- Background Content Grid -->
+        <div class="flex-1 p-10 grid grid-cols-12 gap-6 bg-[#111717]">
+          <!-- Sidebar Placeholder -->
+          <div class="col-span-2 hidden xl:flex flex-col gap-4">
+            <div class="h-10 w-full bg-border-dark/50 rounded-lg"></div>
+            <div class="h-10 w-3/4 bg-border-dark/50 rounded-lg"></div>
+            <div class="h-10 w-5/6 bg-border-dark/50 rounded-lg"></div>
+            <div
+              class="mt-auto h-40 w-full bg-gradient-to-b from-border-dark/30 to-transparent rounded-xl"
+            ></div>
+          </div>
+          <!-- Main Dashboard Area -->
+          <div class="col-span-12 xl:col-span-10 flex flex-col gap-6">
+            <div class="flex justify-between items-end">
+              <div class="h-12 w-64 bg-border-dark/50 rounded-lg"></div>
+              <div class="h-10 w-32 bg-primary/20 rounded-lg"></div>
+            </div>
+            <!-- Top Cards Row -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div
+                class="h-40 rounded-2xl bg-surface-dark border border-border-dark relative overflow-hidden"
+              >
+                <div
+                  class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-primary/10 to-transparent"
+                ></div>
+              </div>
+              <div
+                class="h-40 rounded-2xl bg-surface-dark border border-border-dark"
+              ></div>
+              <div
+                class="h-40 rounded-2xl bg-surface-dark border border-border-dark"
+              ></div>
+            </div>
+            <!-- Chart Area -->
+            <div
+              class="flex-1 rounded-2xl bg-surface-dark border border-border-dark relative overflow-hidden"
+            >
+              <div
+                class="absolute inset-0 flex items-center justify-center opacity-10"
+              >
+                <!-- Abstract chart line -->
+                <svg
+                  class="w-full h-full text-primary"
+                  preserveaspectratio="none"
+                  viewbox="0 0 100 20"
+                >
+                  <path
+                    d="M0 15 Q 10 5, 20 12 T 40 10 T 60 14 T 80 5 T 100 12"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="0.5"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- LAYER 2: The Modal Overlay -->
+      <div class="relative z-10 flex-1 flex items-center justify-center p-4">
+        <!-- Glassmorphic Card -->
+        <div
+          class="relative w-full max-w-[640px] rounded-3xl overflow-hidden shadow-glass border border-white/10 flex flex-col"
+        >
+          <!-- Card Backgrounds (Noise + Gradient) -->
+          <div
+            class="absolute inset-0 bg-[#141919]/90 backdrop-blur-xl z-0"
+          ></div>
+          <!-- Subtle Radial Glow behind content -->
+          <div
+            class="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[80%] h-[50%] bg-primary/20 blur-[100px] rounded-full z-0 pointer-events-none"
+          ></div>
+          <!-- Content Wrapper -->
+          <div
+            class="relative z-10 flex flex-col items-center text-center p-10 md:p-12"
+          >
+            <!-- Close Button (Top Right) -->
+            <button
+              class="absolute top-6 right-6 text-white/40 hover:text-white transition-colors"
+            >
+              <span class="material-symbols-outlined !text-[24px]">close</span>
+            </button>
+            <!-- 1. Hero Animation Section -->
+            <div class="relative mb-8 size-24 flex items-center justify-center">
+              <!-- Logo -->
+              <div
+                class="relative z-10 text-white drop-shadow-[0_0_15px_rgba(29,201,201,0.5)]"
+              >
+                <svg
+                  fill="none"
+                  height="48"
+                  viewbox="0 0 48 48"
+                  width="48"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+              <!-- Outer Glowing Rings (Simulating "Wealth Flow") -->
+              <div
+                class="absolute inset-0 rounded-full border border-primary/20 animate-pulse"
+              ></div>
+              <div
+                class="absolute inset-[-8px] rounded-full border border-primary/10 opacity-60"
+              ></div>
+              <!-- SVG Stroke Animation Representation -->
+              <svg
+                class="absolute inset-[-12px] w-[120px] h-[120px] text-primary rotate-[-90deg]"
+                viewbox="0 0 100 100"
+              >
+                <!-- Background track -->
+                <circle
+                  cx="50"
+                  cy="50"
+                  fill="none"
+                  r="46"
+                  stroke="currentColor"
+                  stroke-opacity="0.1"
+                  stroke-width="1"
+                ></circle>
+                <!-- Active stroke -->
+                <circle
+                  class="drop-shadow-[0_0_8px_#1dc9c9]"
+                  cx="50"
+                  cy="50"
+                  fill="none"
+                  r="46"
+                  stroke="url(#gradient-stroke)"
+                  stroke-dasharray="290"
+                  stroke-dashoffset="40"
+                  stroke-linecap="round"
+                  stroke-width="2"
+                ></circle>
+                <defs>
+                  <lineargradient
+                    id="gradient-stroke"
+                    x1="0%"
+                    x2="100%"
+                    y1="0%"
+                    y2="0%"
+                  >
+                    <stop offset="0%" stop-color="#1dc9c9"></stop>
+                    <stop offset="100%" stop-color="#aaf0d1"></stop>
+                  </lineargradient>
+                </defs>
+              </svg>
+            </div>
+            <!-- 2. Typography Block -->
+            <h1
+              class="text-white font-display font-bold text-3xl md:text-4xl tracking-tight mb-4 drop-shadow-md"
+            >
+              Welcome to the Flow, Alex!
+            </h1>
+            <p
+              class="text-[#9eb7b7] font-body text-base md:text-lg leading-relaxed max-w-md mx-auto mb-10"
+            >
+              Your financial map is ready. You’ve successfully connected your
+              first provider and set your first goal. Let’s start mapping your
+              journey with ease.
+            </p>
+            <!-- 3. Quick Start Guide (Bento Box Row) -->
+            <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-3 mb-10">
+              <!-- Card 1 -->
+              <div
+                class="group flex flex-col gap-3 items-center justify-center p-4 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 cursor-pointer"
+              >
+                <div
+                  class="p-2 rounded-full bg-[#293838] group-hover:bg-primary/20 transition-colors text-primary shadow-inner"
+                >
+                  <span class="material-symbols-outlined !text-[24px]"
+                    >receipt_long</span
+                  >
+                </div>
+                <span class="text-white text-sm font-semibold leading-tight"
+                  >Add Transaction</span
+                >
+              </div>
+              <!-- Card 2 -->
+              <div
+                class="group flex flex-col gap-3 items-center justify-center p-4 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 cursor-pointer"
+              >
+                <div
+                  class="p-2 rounded-full bg-[#293838] group-hover:bg-primary/20 transition-colors text-primary shadow-inner"
+                >
+                  <span class="material-symbols-outlined !text-[24px]"
+                    >grid_view</span
+                  >
+                </div>
+                <span class="text-white text-sm font-semibold leading-tight"
+                  >Review Pockets</span
+                >
+              </div>
+              <!-- Card 3 -->
+              <div
+                class="group flex flex-col gap-3 items-center justify-center p-4 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 cursor-pointer"
+              >
+                <div
+                  class="p-2 rounded-full bg-[#293838] group-hover:bg-primary/20 transition-colors text-primary shadow-inner"
+                >
+                  <span class="material-symbols-outlined !text-[24px]"
+                    >person_add</span
+                  >
+                </div>
+                <span class="text-white text-sm font-semibold leading-tight"
+                  >Invite Friend</span
+                >
+              </div>
+            </div>
+            <!-- 4. Primary Action -->
+            <button
+              class="w-full md:w-auto min-w-[280px] h-14 rounded-xl bg-gradient-to-r from-[#1dc9c9] to-[#aaf0d1] text-[#0d2121] text-base font-bold tracking-wide shadow-glow hover:shadow-[0_0_30px_-5px_rgba(29,201,201,0.6)] hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2"
+              onclick="(function() {
+                document.location.href = '/dashboard__main/code'
+              })()"
+            >
+              <span>Explore Dashboard</span>
+              <span class="material-symbols-outlined !text-[20px] font-bold"
+                >arrow_forward</span
+              >
+            </button>
+            <!-- Footer Note -->
+            <p class="mt-6 text-xs text-[#5c7575] font-medium">
+              Press 'Esc' to skip tour
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

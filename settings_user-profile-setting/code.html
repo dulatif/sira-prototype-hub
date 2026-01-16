@@ -29,7 +29,7 @@
   <body
     class="bg-background-light dark:bg-background-dark font-display text-[#1f2937] antialiased overflow-hidden h-screen flex"
   >
-    <load src="/src/partials/sidebar.html" active="settings" />
+    <load src="/src/partials/sidebar.html" active="setting" />
     <main class="flex-1 flex flex-col h-full relative overflow-hidden">
       <div
         class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl -z-10 pointer-events-none"
@@ -144,49 +144,82 @@
                     >
                   </div>
                 </div>
-                <div class="space-y-2">
-                  <label
-                    class="text-sm font-semibold text-[#121717] ml-1 font-outfit"
-                    for="currentPassword"
-                    >Current Password</label
+              </div>
+            </div>
+            <div class="p-8 lg:p-10 space-y-8">
+              <h4
+                class="text-lg font-bold text-[#121717] flex items-center gap-2 font-display"
+              >
+                <span class="material-symbols-outlined text-primary-dark"
+                  >lock</span
+                >
+                Change Password
+              </h4>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-semibold text-[#121717] ml-1 font-outfit"
+                  for="currentPassword"
+                  >Current Password</label
+                >
+                <div class="relative group/input">
+                  <input
+                    class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-base rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm placeholder:text-[#9ca3af]"
+                    id="currentPassword"
+                    type="password"
+                    value="password123"
+                  />
+                  <button
+                    class="absolute right-4 top-3.5 text-[#9ca3af] hover:text-[#121717] transition-colors focus:outline-none"
+                    type="button"
                   >
-                  <div class="relative group/input">
-                    <input
-                      class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-base rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm placeholder:text-[#9ca3af]"
-                      id="currentPassword"
-                      type="password"
-                      value="password123"
-                    />
-                    <button
-                      class="absolute right-4 top-3.5 text-[#9ca3af] hover:text-[#121717] transition-colors focus:outline-none"
-                      type="button"
-                    >
-                      <span class="material-symbols-outlined">visibility</span>
-                    </button>
-                  </div>
+                    <span class="material-symbols-outlined">visibility</span>
+                  </button>
                 </div>
-                <div class="space-y-2">
-                  <label
-                    class="text-sm font-semibold text-[#121717] ml-1 font-outfit"
-                    for="newPassword"
-                    >New Password</label
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-semibold text-[#121717] ml-1 font-outfit"
+                  for="newPassword"
+                  >New Password</label
+                >
+                <div class="relative group/input">
+                  <input
+                    class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-base rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm placeholder:text-[#9ca3af]"
+                    id="newPassword"
+                    placeholder="••••••••"
+                    type="password"
+                  />
+                  <button
+                    class="absolute right-4 top-3.5 text-[#9ca3af] hover:text-[#121717] transition-colors focus:outline-none"
+                    type="button"
                   >
-                  <div class="relative group/input">
-                    <input
-                      class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-base rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm placeholder:text-[#9ca3af]"
-                      id="newPassword"
-                      placeholder="••••••••"
-                      type="password"
-                    />
-                    <button
-                      class="absolute right-4 top-3.5 text-[#9ca3af] hover:text-[#121717] transition-colors focus:outline-none"
-                      type="button"
+                    <span class="material-symbols-outlined"
+                      >visibility_off</span
                     >
-                      <span class="material-symbols-outlined"
-                        >visibility_off</span
-                      >
-                    </button>
-                  </div>
+                  </button>
+                </div>
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-semibold text-[#121717] ml-1 font-outfit"
+                  for="confirmNewPassword"
+                  >Confirm New Password</label
+                >
+                <div class="relative group/input">
+                  <input
+                    class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-base rounded-xl px-4 py-3.5 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm placeholder:text-[#9ca3af]"
+                    id="confirmNewPassword"
+                    placeholder="••••••••"
+                    type="password"
+                  />
+                  <button
+                    class="absolute right-4 top-3.5 text-[#9ca3af] hover:text-[#121717] transition-colors focus:outline-none"
+                    type="button"
+                  >
+                    <span class="material-symbols-outlined"
+                      >visibility_off</span
+                    >
+                  </button>
                 </div>
               </div>
             </div>

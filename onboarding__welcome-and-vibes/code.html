@@ -1,177 +1,317 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sira Onboarding: Welcome &amp; Vibes</title>
-<!-- Material Symbols Link -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Theme Configuration -->
-<script>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Sira Onboarding: Welcome &amp; Vibes</title>
+    <!-- Material Symbols Link -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Theme Configuration -->
+    <script>
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
             colors: {
-              "primary": "#1b988d",
+              primary: "#1b988d",
               "background-light": "#f6f9f8",
               "background-dark": "#182125",
               "glass-border": "rgba(255, 255, 255, 0.5)",
             },
             fontFamily: {
-              "display": ["Manrope", "sans-serif"]
+              display: ["Manrope", "sans-serif"],
             },
             borderRadius: {
-              "DEFAULT": "0.5rem", 
-              "lg": "1rem", 
-              "xl": "1.5rem", 
+              DEFAULT: "0.5rem",
+              lg: "1rem",
+              xl: "1.5rem",
               "2xl": "2rem",
               "3xl": "1.5rem", // Requested 24px
-              "full": "9999px"
+              full: "9999px",
             },
             boxShadow: {
-              "soft": "0 20px 40px -10px rgba(27, 152, 141, 0.15)",
-              "glow": "0 0 15px rgba(27, 152, 141, 0.3)"
-            }
+              soft: "0 20px 40px -10px rgba(27, 152, 141, 0.15)",
+              glow: "0 0 15px rgba(27, 152, 141, 0.3)",
+            },
           },
         },
-      }
+      };
     </script>
-<style>
-        /* Custom Styles for Glassmorphism and subtle animations */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
-        }
-        
-        .dark .glass-card {
-            background: rgba(24, 33, 37, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
+    <style>
+      /* Custom Styles for Glassmorphism and subtle animations */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
+      }
 
-        .wealth-map-path {
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 1000;
-            animation: dash 5s linear forwards;
-        }
+      .dark .glass-card {
+        background: rgba(24, 33, 37, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
 
-        @keyframes dash {
-            to {
-                stroke-dashoffset: 0;
-            }
+      .wealth-map-path {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        animation: dash 5s linear forwards;
+      }
+
+      @keyframes dash {
+        to {
+          stroke-dashoffset: 0;
         }
-        
-        .glow-point {
-            animation: pulse-glow 3s infinite ease-in-out;
+      }
+
+      .glow-point {
+        animation: pulse-glow 3s infinite ease-in-out;
+      }
+
+      @keyframes pulse-glow {
+        0%,
+        100% {
+          opacity: 0.6;
+          transform: scale(1);
         }
-        
-        @keyframes pulse-glow {
-            0%, 100% { opacity: 0.6; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
         }
+      }
     </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark text-[#121717] dark:text-white font-display min-h-screen flex items-center justify-center relative overflow-hidden">
-<!-- Decorative background elements -->
-<div class="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
-<div class="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] bg-[#1b988d]/10 rounded-full blur-[120px] pointer-events-none"></div>
-<main class="w-full max-w-[1024px] px-6 py-10 relative z-10">
-<!-- Main Glass Card -->
-<div class="glass-card rounded-3xl p-8 md:p-16 flex flex-col items-center text-center relative overflow-hidden transition-all duration-300">
-<!-- Hero Illustration: Wealth Map -->
-<div class="w-full max-w-[600px] h-[200px] mb-10 relative flex items-center justify-center">
-<svg class="overflow-visible" fill="none" height="100%" viewbox="0 0 600 200" width="100%" xmlns="http://www.w3.org/2000/svg">
-<!-- Abstract Flow Lines -->
-<path class="wealth-map-path" d="M0 150 C 100 150, 150 100, 300 100 C 450 100, 500 50, 600 50" fill="none" stroke="#d1e6e4" stroke-width="2"></path>
-<path class="wealth-map-path" d="M0 180 C 120 180, 180 140, 300 140 C 420 140, 480 80, 600 80" fill="none" stroke="#e8f3f2" stroke-width="2" style="animation-delay: 0.5s"></path>
-<!-- Main Path -->
-<path class="wealth-map-path" d="M0 100 C 100 100, 200 160, 300 120 C 400 80, 500 100, 600 20" fill="none" stroke="#1b988d" stroke-linecap="round" stroke-width="3"></path>
-<!-- Gradient Area below main path -->
-<path d="M0 100 C 100 100, 200 160, 300 120 C 400 80, 500 100, 600 20 V 200 H 0 Z" fill="url(#paint0_linear)" opacity="0.1"></path>
-<!-- Glowing Points -->
-<circle class="glow-point" cx="300" cy="120" fill="#1b988d" r="6"></circle>
-<circle class="glow-point" cx="600" cy="20" fill="#1b988d" r="8" style="animation-delay: 1s"></circle>
-<defs>
-<lineargradient gradientunits="userSpaceOnUse" id="paint0_linear" x1="300" x2="300" y1="20" y2="200">
-<stop stop-color="#1b988d"></stop>
-<stop offset="1" stop-color="#1b988d" stop-opacity="0"></stop>
-</lineargradient>
-</defs>
-</svg>
-</div>
-<!-- Content Container -->
-<div class="max-w-[640px] flex flex-col items-center">
-<span class="text-primary text-sm font-bold tracking-widest uppercase mb-4 opacity-80">Mindful Finance</span>
-<h1 class="text-4xl md:text-5xl font-bold text-[#121717] dark:text-white mb-6 leading-tight tracking-tight">
-                    Welcome to Sira, Alex.
-                </h1>
-<p class="text-lg text-slate-600 dark:text-slate-300 mb-12 leading-relaxed max-w-lg">
-                    We believe money is a flow, not just numbers. In Sira, you map your journey and track your vibes alongside your wealth.
-                </p>
-<!-- Mood Slang Infographic -->
-<div class="w-full bg-white/50 dark:bg-black/20 rounded-2xl p-6 mb-12 border border-slate-100 dark:border-white/5">
-<p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-6 text-center">Your Mood Slang Palette</p>
-<div class="grid grid-cols-5 gap-2 md:gap-4">
-<!-- Item 1: HYPE -->
-<div class="flex flex-col items-center gap-3 group">
-<div class="w-12 h-12 rounded-full bg-[#f0fdfa] dark:bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
-<span class="material-symbols-outlined text-[24px]">bolt</span>
-</div>
-<span class="text-xs font-bold text-slate-700 dark:text-slate-200">HYPE</span>
-</div>
-<!-- Item 2: CUAN -->
-<div class="flex flex-col items-center gap-3 group">
-<div class="w-12 h-12 rounded-full bg-[#f0fdfa] dark:bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
-<span class="material-symbols-outlined text-[24px]">savings</span>
-</div>
-<span class="text-xs font-bold text-slate-700 dark:text-slate-200">CUAN</span>
-</div>
-<!-- Item 3: HEALING -->
-<div class="flex flex-col items-center gap-3 group">
-<div class="w-12 h-12 rounded-full bg-[#f0fdfa] dark:bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
-<span class="material-symbols-outlined text-[24px]">spa</span>
-</div>
-<span class="text-xs font-bold text-slate-700 dark:text-slate-200">HEALING</span>
-</div>
-<!-- Item 4: GABUT -->
-<div class="flex flex-col items-center gap-3 group">
-<div class="w-12 h-12 rounded-full bg-[#f0fdfa] dark:bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
-<span class="material-symbols-outlined text-[24px]">cloud</span>
-</div>
-<span class="text-xs font-bold text-slate-700 dark:text-slate-200">GABUT</span>
-</div>
-<!-- Item 5: MAGER -->
-<div class="flex flex-col items-center gap-3 group">
-<div class="w-12 h-12 rounded-full bg-[#f0fdfa] dark:bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300">
-<span class="material-symbols-outlined text-[24px]">weekend</span>
-</div>
-<span class="text-xs font-bold text-slate-700 dark:text-slate-200">MAGER</span>
-</div>
-</div>
-</div>
-<!-- Primary Action -->
-<button class="relative group overflow-hidden rounded-xl bg-primary px-10 py-4 shadow-soft hover:shadow-glow transition-all duration-300 w-full md:w-auto min-w-[200px]">
-<div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
-<span class="relative flex items-center justify-center gap-2 text-white font-bold text-lg tracking-wide">
-                        Get Started
-                        <span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-</span>
-</button>
-</div>
-</div>
-<!-- Subtle Footer Branding -->
-<div class="mt-8 text-center">
-<p class="text-slate-400 dark:text-slate-600 text-sm font-medium">Sira © 2024</p>
-</div>
-</main>
-</body></html>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-[#121717] dark:text-white font-display min-h-screen flex items-center justify-center relative overflow-hidden"
+  >
+    <!-- Decorative background elements -->
+    <div
+      class="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] pointer-events-none"
+    ></div>
+    <div
+      class="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] bg-[#1b988d]/10 rounded-full blur-[120px] pointer-events-none"
+    ></div>
+    <main class="w-full max-w-[1024px] px-6 py-10 relative z-10">
+      <!-- Main Glass Card -->
+      <div
+        class="glass-card rounded-3xl p-8 md:p-16 flex flex-col items-center text-center relative overflow-hidden transition-all duration-300"
+      >
+        <!-- Hero Illustration: Wealth Map -->
+        <div
+          class="w-full max-w-[600px] h-[200px] mb-10 relative flex items-center justify-center"
+        >
+          <svg
+            class="overflow-visible"
+            fill="none"
+            height="100%"
+            viewbox="0 0 600 200"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <!-- Abstract Flow Lines -->
+            <path
+              class="wealth-map-path"
+              d="M0 150 C 100 150, 150 100, 300 100 C 450 100, 500 50, 600 50"
+              fill="none"
+              stroke="#d1e6e4"
+              stroke-width="2"
+            ></path>
+            <path
+              class="wealth-map-path"
+              d="M0 180 C 120 180, 180 140, 300 140 C 420 140, 480 80, 600 80"
+              fill="none"
+              stroke="#e8f3f2"
+              stroke-width="2"
+              style="animation-delay: 0.5s"
+            ></path>
+            <!-- Main Path -->
+            <path
+              class="wealth-map-path"
+              d="M0 100 C 100 100, 200 160, 300 120 C 400 80, 500 100, 600 20"
+              fill="none"
+              stroke="#1b988d"
+              stroke-linecap="round"
+              stroke-width="3"
+            ></path>
+            <!-- Gradient Area below main path -->
+            <path
+              d="M0 100 C 100 100, 200 160, 300 120 C 400 80, 500 100, 600 20 V 200 H 0 Z"
+              fill="url(#paint0_linear)"
+              opacity="0.1"
+            ></path>
+            <!-- Glowing Points -->
+            <circle
+              class="glow-point"
+              cx="300"
+              cy="120"
+              fill="#1b988d"
+              r="6"
+            ></circle>
+            <circle
+              class="glow-point"
+              cx="600"
+              cy="20"
+              fill="#1b988d"
+              r="8"
+              style="animation-delay: 1s"
+            ></circle>
+            <defs>
+              <lineargradient
+                gradientunits="userSpaceOnUse"
+                id="paint0_linear"
+                x1="300"
+                x2="300"
+                y1="20"
+                y2="200"
+              >
+                <stop stop-color="#1b988d"></stop>
+                <stop offset="1" stop-color="#1b988d" stop-opacity="0"></stop>
+              </lineargradient>
+            </defs>
+          </svg>
+        </div>
+        <!-- Content Container -->
+        <div class="max-w-[640px] flex flex-col items-center">
+          <span
+            class="text-primary text-sm font-bold tracking-widest uppercase mb-4 opacity-80"
+            >Mindful Finance</span
+          >
+          <h1
+            class="text-4xl md:text-5xl font-bold text-[#121717] dark:text-white mb-6 leading-tight tracking-tight"
+          >
+            Welcome to Sira, Alex.
+          </h1>
+          <p
+            class="text-lg text-slate-600 dark:text-slate-300 mb-12 leading-relaxed max-w-lg"
+          >
+            We believe money is a flow, not just numbers. In Sira, you map your
+            journey and track your vibes alongside your wealth.
+          </p>
+          <!-- Mood Slang Infographic -->
+          <div
+            class="w-full bg-white/50 dark:bg-black/20 rounded-2xl p-6 mb-12 border border-slate-100 dark:border-white/5"
+          >
+            <p
+              class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-6 text-center"
+            >
+              Your Mood Slang Palette
+            </p>
+            <div class="grid grid-cols-5 gap-2 md:gap-4">
+              <!-- Item 1: HYPE -->
+              <div class="flex flex-col items-center gap-3 group">
+                <div
+                  class="w-12 h-12 rounded-full bg-[#f0fdfa] dark:bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300"
+                >
+                  <span class="material-symbols-outlined text-[24px]"
+                    >bolt</span
+                  >
+                </div>
+                <span
+                  class="text-xs font-bold text-slate-700 dark:text-slate-200"
+                  >HYPE</span
+                >
+              </div>
+              <!-- Item 2: CUAN -->
+              <div class="flex flex-col items-center gap-3 group">
+                <div
+                  class="w-12 h-12 rounded-full bg-[#f0fdfa] dark:bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300"
+                >
+                  <span class="material-symbols-outlined text-[24px]"
+                    >savings</span
+                  >
+                </div>
+                <span
+                  class="text-xs font-bold text-slate-700 dark:text-slate-200"
+                  >CUAN</span
+                >
+              </div>
+              <!-- Item 3: HEALING -->
+              <div class="flex flex-col items-center gap-3 group">
+                <div
+                  class="w-12 h-12 rounded-full bg-[#f0fdfa] dark:bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300"
+                >
+                  <span class="material-symbols-outlined text-[24px]">spa</span>
+                </div>
+                <span
+                  class="text-xs font-bold text-slate-700 dark:text-slate-200"
+                  >HEALING</span
+                >
+              </div>
+              <!-- Item 4: GABUT -->
+              <div class="flex flex-col items-center gap-3 group">
+                <div
+                  class="w-12 h-12 rounded-full bg-[#f0fdfa] dark:bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300"
+                >
+                  <span class="material-symbols-outlined text-[24px]"
+                    >cloud</span
+                  >
+                </div>
+                <span
+                  class="text-xs font-bold text-slate-700 dark:text-slate-200"
+                  >GABUT</span
+                >
+              </div>
+              <!-- Item 5: MAGER -->
+              <div class="flex flex-col items-center gap-3 group">
+                <div
+                  class="w-12 h-12 rounded-full bg-[#f0fdfa] dark:bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300"
+                >
+                  <span class="material-symbols-outlined text-[24px]"
+                    >weekend</span
+                  >
+                </div>
+                <span
+                  class="text-xs font-bold text-slate-700 dark:text-slate-200"
+                  >MAGER</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Primary Action -->
+          <button
+            class="relative group overflow-hidden rounded-xl bg-primary px-10 py-4 shadow-soft hover:shadow-glow transition-all duration-300 w-full md:w-auto min-w-[200px]"
+            onclick="(function() {
+              document.location.href = '/onboarding__connect-provider/code.html';
+            })()"
+          >
+            <div
+              class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"
+            ></div>
+            <span
+              class="relative flex items-center justify-center gap-2 text-white font-bold text-lg tracking-wide"
+            >
+              Get Started
+              <span
+                class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform"
+                >arrow_forward</span
+              >
+            </span>
+          </button>
+        </div>
+      </div>
+      <!-- Subtle Footer Branding -->
+      <div class="mt-8 text-center">
+        <p class="text-slate-400 dark:text-slate-600 text-sm font-medium">
+          Sira © 2026
+        </p>
+      </div>
+    </main>
+  </body>
+</html>
