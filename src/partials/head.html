@@ -64,6 +64,8 @@
           float: "float 6s ease-in-out infinite",
           ripple: "ripple 3s ease-out infinite",
           "ripple-expand": "rippleExpand 3s ease-out infinite",
+          "spin-slow": "spin-slow 12s linear infinite",
+          "spin-slow-reverse": "spin-slow-reverse 8s linear infinite",
         },
         keyframes: {
           fadeInUp: {
@@ -91,6 +93,14 @@
           },
           dash: {
             to: { "stroke-dashoffset": "0" },
+          },
+          "spin-slow": {
+            "0%": { transform: "rotate(0deg)" },
+            "100%": { transform: "rotate(360deg)" },
+          },
+          "spin-slow-reverse": {
+            "0%": { transform: "rotate(360deg)" },
+            "100%": { transform: "rotate(0deg)" },
           },
         },
       },
