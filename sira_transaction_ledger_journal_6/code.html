@@ -1,406 +1,608 @@
 <!DOCTYPE html>
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sira - Financial Analysis Reports</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Outfit:wght@300;400;500;600;700;800&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#22c3b6",
-                        "primary-dark": "#1aa398",
-                        "background-light": "#fafaf9",
-                        "background-dark": "#21262c",
-                        "glass-border": "rgba(255, 255, 255, 0.4)",
-                        "glass-bg": "rgba(255, 255, 255, 0.6)",
-                    },
-                    fontFamily: {
-                        "display": ["Outfit", "sans-serif"],
-                        "body": ["Manrope", "sans-serif"],
-                        "mono": ["JetBrains Mono", "monospace"],
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.5rem",
-                        "lg": "1rem", 
-                        "xl": "1.5rem",
-                        "2xl": "2rem",
-                        "full": "9999px"
-                    },
-                    boxShadow: {
-                        "soft": "0 4px 20px rgba(34, 195, 182, 0.08)",
-                        "glass": "0 8px 32px 0 rgba(31, 38, 135, 0.07)",
-                    }
-                },
-            },
+<html class="light" lang="en">
+  <head>
+    <load src="/src/partials/head.html" title="Sira - Financial Analysis" />
+    <style>
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02),
+          0 2px 4px -1px rgba(0, 0, 0, 0.02);
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      @keyframes draw {
+        from {
+          stroke-dashoffset: 1000;
         }
-    </script>
-<style>::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
+        to {
+          stroke-dashoffset: 0;
         }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
-        }input[type=number]::-webkit-inner-spin-button, 
-        input[type=number]::-webkit-outer-spin-button { 
-            -webkit-appearance: none; 
-            margin: 0; 
-        }@keyframes draw {
-            from { stroke-dashoffset: 1000; }
-            to { stroke-dashoffset: 0; }
-        }
-        .chart-line {
-            stroke-dasharray: 1000;
-            stroke-dashoffset: 0;
-            animation: draw 2s ease-out forwards;
-        }
+      }
+      .chart-line {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 0;
+        animation: draw 2s ease-out forwards;
+      }
     </style>
-</head>
-<body class="bg-background-light text-[#0f1a19] font-display antialiased overflow-hidden selection:bg-primary/30">
-<div class="flex h-screen w-full overflow-hidden">
-<aside class="hidden lg:flex w-72 flex-col h-full glass-panel border-r border-slate-200/50 relative z-20 shrink-0">
-<div class="p-6 pb-2">
-<div class="flex items-center gap-3">
-<div class="relative size-10 rounded-full overflow-hidden shadow-sm">
-<div class="absolute inset-0 bg-gradient-to-tr from-primary to-emerald-200"></div>
-<span class="material-symbols-outlined absolute inset-0 flex items-center justify-center text-white font-bold" style="font-size: 24px;">spa</span>
-</div>
-<div class="flex flex-col">
-<h1 class="text-[#0f1a19] text-lg font-bold leading-tight tracking-tight">Sira</h1>
-<p class="text-primary text-xs font-medium tracking-wide uppercase">Mindful Finance</p>
-</div>
-</div>
-</div>
-<nav class="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-2">
-<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-white/50 hover:text-primary transition-all group" href="#">
-<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">grid_view</span>
-<span class="text-sm font-medium">Dashboard</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-white/50 hover:text-primary transition-all group" href="#">
-<span class="material-symbols-outlined text-[24px]">book</span>
-<span class="text-sm font-medium">Ledger</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-white/50 hover:text-primary transition-all group" href="#">
-<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">account_balance_wallet</span>
-<span class="text-sm font-medium">Pockets</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary border border-primary/5 shadow-sm" href="#">
-<span class="material-symbols-outlined text-[24px] fill-1">donut_large</span>
-<span class="text-sm font-bold">Analysis</span>
-</a>
-<div class="mt-auto pt-4 border-t border-slate-200/50">
-<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-white/50 hover:text-primary transition-all group" href="#">
-<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">settings</span>
-<span class="text-sm font-medium">Settings</span>
-</a>
-</div>
-</nav>
-<div class="p-6">
-<div class="glass-card p-4 rounded-xl flex items-center gap-3">
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-white" data-alt="Portrait of user smiling" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB_g1vysrGOSm0HE3F6RwjPQGbyYEfh3WnJv7s-FzpFp6BytRTZkfqIJWo4aOAy6N4JsRUgLnEpoz3GQKtvDp05B81XikADCGLOT2DYeUzzljIsROgdN0C14LmAgq2JW-YVJdD9Wk7oT-3DgKyDYBTEmdihS5Dw1QE7WOC-ECOaz2nGC1vT0MbLg7s_tsaDrtt78wTed1dYwxDZMVP_eL_87stdJuuMAvz29Q3-9LlrtC2AFk0pgYfW1zKD9SYXNIrg9r7UeKIEVV99");'></div>
-<div class="flex flex-col min-w-0">
-<p class="text-sm font-bold text-slate-800 truncate">Sarah J.</p>
-<p class="text-xs text-slate-500 truncate">Pro Plan</p>
-</div>
-</div>
-</div>
-</aside>
-<main class="flex-1 flex flex-col h-full relative overflow-hidden bg-gradient-to-br from-[#fafaf9] via-[#f2fcfb] to-[#e6f7f6]">
-<header class="h-20 shrink-0 glass-panel border-b border-white/50 px-8 flex items-center justify-between z-30 sticky top-0">
-<div class="flex items-center gap-4">
-<button class="lg:hidden p-2 -ml-2 text-slate-500">
-<span class="material-symbols-outlined">menu</span>
-</button>
-<h2 class="text-xl font-bold tracking-tight text-slate-800">Financial Analysis</h2>
-</div>
-<div class="flex items-center gap-6">
-<div class="hidden md:flex items-center bg-white/60 border border-white/80 rounded-xl px-3 h-10 w-64 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary/50 transition-all shadow-sm">
-<span class="material-symbols-outlined text-slate-400 text-[20px]">search</span>
-<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-slate-400 text-slate-700 h-full" placeholder="Search report..." type="text"/>
-</div>
-<button class="size-10 flex items-center justify-center rounded-xl bg-white/60 border border-white/80 text-slate-600 hover:text-primary hover:bg-white hover:shadow-md transition-all relative">
-<span class="material-symbols-outlined text-[22px]">notifications</span>
-<span class="absolute top-2.5 right-2.5 size-2 bg-red-400 rounded-full border border-white"></span>
-</button>
-</div>
-</header>
-<div class="flex-1 overflow-y-auto relative p-4 md:p-8 md:pt-6 pb-20 scroll-smooth">
-<div class="max-w-7xl mx-auto flex flex-col gap-6">
-<div class="glass-panel p-2 rounded-2xl flex flex-col md:flex-row gap-4 items-center justify-between sticky top-0 z-20 shadow-soft">
-<div class="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-<div class="relative group">
-<button class="flex items-center gap-3 bg-white px-4 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold text-slate-700 hover:border-primary/50 hover:shadow-sm transition-all w-full md:w-auto">
-<span class="material-symbols-outlined text-primary text-[20px]">calendar_today</span>
-<span class="font-mono">Jan 01, 2024 - Dec 31, 2024</span>
-<span class="material-symbols-outlined text-slate-400 text-[18px]">expand_more</span>
-</button>
-</div>
-<div class="bg-slate-100/80 p-1 rounded-xl flex items-center border border-white/50 w-full md:w-auto justify-center">
-<button class="px-4 py-1.5 rounded-lg text-xs font-bold text-slate-500 hover:text-primary transition-colors">Quarterly</button>
-<button class="px-4 py-1.5 rounded-lg text-xs font-bold bg-white text-primary shadow-sm border border-slate-100 transition-all">Yearly</button>
-<button class="px-4 py-1.5 rounded-lg text-xs font-bold text-slate-500 hover:text-primary transition-colors">Custom</button>
-</div>
-</div>
-<div class="flex items-center gap-3 w-full md:w-auto justify-end">
-<div class="relative">
-<select class="appearance-none bg-white border border-slate-200 rounded-xl text-sm py-2.5 pl-4 pr-10 text-slate-600 font-bold focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none cursor-pointer hover:bg-slate-50 transition-colors">
-<option>USD ($)</option>
-<option>EUR (€)</option>
-<option>GBP (£)</option>
-</select>
-<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-sm">expand_more</span>
-</div>
-<button class="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-95">
-<span class="material-symbols-outlined text-[20px]">download</span>
-                                Download Report
-                            </button>
-</div>
-</div>
-<div class="glass-card p-6 md:p-8 rounded-2xl relative overflow-hidden group">
-<div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-<span class="material-symbols-outlined text-[120px] text-primary">ssid_chart</span>
-</div>
-<div class="flex flex-col md:flex-row justify-between items-start mb-8 relative z-10">
-<div>
-<h3 class="text-slate-800 font-bold text-xl font-display flex items-center gap-2">
-                                    Net Worth Over Time
-                                    <span class="material-symbols-outlined text-slate-400 text-sm cursor-help hover:text-primary transition-colors">info</span>
-</h3>
-<p class="text-slate-500 text-sm mt-1">Total assets minus liabilities across selected period</p>
-</div>
-<div class="text-left md:text-right mt-4 md:mt-0 bg-white/50 p-3 rounded-xl border border-white/60 backdrop-blur-sm">
-<p class="text-3xl font-bold font-mono text-slate-800 tracking-tight">$142,894.00</p>
-<div class="flex items-center justify-end gap-2 mt-1">
-<span class="text-xs text-slate-500 font-medium uppercase">VS LAST YEAR</span>
-<p class="text-emerald-500 text-sm font-mono font-bold flex items-center bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-100">
-<span class="material-symbols-outlined text-base">trending_up</span>
-                                        +12.4%
-                                    </p>
-</div>
-</div>
-</div>
-<div class="h-72 w-full relative">
-<div class="absolute inset-0 flex flex-col justify-between text-xs text-slate-400 font-mono">
-<div class="w-full h-px bg-slate-200 border-t border-dashed border-slate-300"></div>
-<div class="w-full h-px bg-slate-200 border-t border-dashed border-slate-300"></div>
-<div class="w-full h-px bg-slate-200 border-t border-dashed border-slate-300"></div>
-<div class="w-full h-px bg-slate-200 border-t border-dashed border-slate-300"></div>
-<div class="w-full h-px bg-slate-200 border-t border-slate-300"></div>
-</div>
-<svg class="absolute inset-0 w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 1000 200">
-<defs>
-<linearGradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
-<stop offset="0%" stop-color="#22c3b6" stop-opacity="0.3"></stop>
-<stop offset="100%" stop-color="#22c3b6" stop-opacity="0.0"></stop>
-</linearGradient>
-</defs>
-<path d="M0,150 C100,140 200,160 300,120 C400,80 500,100 600,60 C700,20 800,40 900,10 L1000,30 L1000,200 L0,200 Z" fill="url(#chartGradient)"></path>
-<path class="chart-line" d="M0,150 C100,140 200,160 300,120 C400,80 500,100 600,60 C700,20 800,40 900,10 L1000,30" fill="none" stroke="#22c3b6" stroke-linecap="round" stroke-width="3"></path>
-<circle class="fill-white stroke-primary" cx="600" cy="60" r="6" stroke-width="3">
-<animate attributeName="r" dur="1.5s" repeatCount="indefinite" values="6;8;6"></animate>
-</circle>
-</svg>
-<div class="absolute top-[10%] left-[58%] bg-slate-800 text-white p-2 rounded-lg text-xs shadow-xl font-mono z-10 pointer-events-none">
-<div class="font-bold">$128,400</div>
-<div class="text-slate-400 text-[10px]">Aug 2024</div>
-</div>
-</div>
-<div class="flex justify-between mt-2 px-2 text-xs text-slate-400 font-mono font-bold">
-<span>JAN</span>
-<span>FEB</span>
-<span>MAR</span>
-<span>APR</span>
-<span>MAY</span>
-<span>JUN</span>
-<span>JUL</span>
-<span>AUG</span>
-<span>SEP</span>
-<span>OCT</span>
-<span>NOV</span>
-<span>DEC</span>
-</div>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-<div class="glass-card p-6 rounded-2xl flex flex-col h-[400px]">
-<div class="flex items-center justify-between mb-6">
-<h3 class="text-slate-800 font-bold text-lg font-display">Income vs Expenses</h3>
-<div class="flex items-center gap-4 text-xs font-bold">
-<div class="flex items-center gap-1.5">
-<div class="size-2.5 rounded-full bg-primary"></div>
-<span class="text-slate-600">Income</span>
-</div>
-<div class="flex items-center gap-1.5">
-<div class="size-2.5 rounded-full bg-rose-400"></div>
-<span class="text-slate-600">Expense</span>
-</div>
-</div>
-</div>
-<div class="flex-1 flex items-end justify-between gap-2 md:gap-4 px-2 relative">
-<div class="absolute inset-x-0 bottom-0 top-0 flex flex-col justify-between pointer-events-none -z-10">
-<div class="w-full h-px bg-slate-100"></div>
-<div class="w-full h-px bg-slate-100"></div>
-<div class="w-full h-px bg-slate-100"></div>
-<div class="w-full h-px bg-slate-100"></div>
-<div class="w-full h-px bg-slate-100"></div>
-</div>
-<div class="flex-1 flex gap-1 items-end justify-center h-full group cursor-pointer relative">
-<div class="w-3 md:w-5 bg-primary rounded-t-sm h-[60%] opacity-90 group-hover:opacity-100 transition-all hover:shadow-[0_0_15px_rgba(34,195,182,0.4)]"></div>
-<div class="w-3 md:w-5 bg-rose-400 rounded-t-sm h-[40%] opacity-90 group-hover:opacity-100 transition-all hover:shadow-[0_0_15px_rgba(244,63,94,0.4)]"></div>
-<div class="absolute bottom-full mb-2 bg-slate-800 text-white text-[10px] p-2 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none font-mono z-20 whitespace-nowrap">
-                                        Inc: $5k | Exp: $3.2k
-                                    </div>
-</div>
-<div class="flex-1 flex gap-1 items-end justify-center h-full group cursor-pointer relative">
-<div class="w-3 md:w-5 bg-primary rounded-t-sm h-[75%] opacity-90 group-hover:opacity-100 transition-all"></div>
-<div class="w-3 md:w-5 bg-rose-400 rounded-t-sm h-[45%] opacity-90 group-hover:opacity-100 transition-all"></div>
-</div>
-<div class="flex-1 flex gap-1 items-end justify-center h-full group cursor-pointer relative">
-<div class="w-3 md:w-5 bg-primary rounded-t-sm h-[50%] opacity-90 group-hover:opacity-100 transition-all"></div>
-<div class="w-3 md:w-5 bg-rose-400 rounded-t-sm h-[30%] opacity-90 group-hover:opacity-100 transition-all"></div>
-</div>
-<div class="flex-1 flex gap-1 items-end justify-center h-full group cursor-pointer relative">
-<div class="w-3 md:w-5 bg-primary rounded-t-sm h-[85%] opacity-90 group-hover:opacity-100 transition-all"></div>
-<div class="w-3 md:w-5 bg-rose-400 rounded-t-sm h-[60%] opacity-90 group-hover:opacity-100 transition-all"></div>
-</div>
-<div class="flex-1 flex gap-1 items-end justify-center h-full group cursor-pointer relative">
-<div class="w-3 md:w-5 bg-primary rounded-t-sm h-[70%] opacity-90 group-hover:opacity-100 transition-all"></div>
-<div class="w-3 md:w-5 bg-rose-400 rounded-t-sm h-[80%] opacity-90 group-hover:opacity-100 transition-all"></div>
-</div>
-<div class="flex-1 flex gap-1 items-end justify-center h-full group cursor-pointer relative">
-<div class="w-3 md:w-5 bg-primary rounded-t-sm h-[90%] opacity-90 group-hover:opacity-100 transition-all"></div>
-<div class="w-3 md:w-5 bg-rose-400 rounded-t-sm h-[55%] opacity-90 group-hover:opacity-100 transition-all"></div>
-</div>
-</div>
-<div class="flex justify-between mt-3 px-2 text-[10px] md:text-xs text-slate-400 font-mono font-bold uppercase tracking-wider">
-<span>Jul</span>
-<span>Aug</span>
-<span>Sep</span>
-<span>Oct</span>
-<span>Nov</span>
-<span>Dec</span>
-</div>
-</div>
-<div class="glass-card p-6 rounded-2xl flex flex-col h-[400px]">
-<div class="flex items-center justify-between mb-4">
-<h3 class="text-slate-800 font-bold text-lg font-display">Spending by Category</h3>
-<button class="text-primary hover:text-primary-dark text-xs font-bold flex items-center gap-1">
-                                    View Details <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-</div>
-<div class="flex-1 flex flex-col md:flex-row items-center justify-center gap-8">
-<div class="relative size-48 shrink-0 group">
-<svg class="w-full h-full rotate-[-90deg]" viewBox="0 0 36 36">
-<path class="text-slate-100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.8"></path>
-<path class="text-slate-800 transition-all duration-500 hover:scale-110 origin-center" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="40 60" stroke-width="3.8"></path>
-<path class="text-primary transition-all duration-500 hover:scale-110 origin-center" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="30 70" stroke-dashoffset="-40" stroke-width="3.8"></path>
-<path class="text-rose-400 transition-all duration-500 hover:scale-110 origin-center" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="20 80" stroke-dashoffset="-70" stroke-width="3.8"></path>
-<path class="text-orange-300 transition-all duration-500 hover:scale-110 origin-center" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="10 90" stroke-dashoffset="-90" stroke-width="3.8"></path>
-</svg>
-<div class="absolute inset-0 flex items-center justify-center flex-col pointer-events-none">
-<span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Total</span>
-<span class="text-xl font-bold font-mono text-slate-800">$4,250</span>
-</div>
-</div>
-<div class="flex flex-col gap-3 w-full max-w-[180px]">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="size-3 rounded-full bg-slate-800"></span>
-<span class="text-sm font-semibold text-slate-700">Housing</span>
-</div>
-<span class="text-xs font-mono font-bold text-slate-500">40%</span>
-</div>
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="size-3 rounded-full bg-primary"></span>
-<span class="text-sm font-semibold text-slate-700">Food</span>
-</div>
-<span class="text-xs font-mono font-bold text-slate-500">30%</span>
-</div>
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="size-3 rounded-full bg-rose-400"></span>
-<span class="text-sm font-semibold text-slate-700">Fun</span>
-</div>
-<span class="text-xs font-mono font-bold text-slate-500">20%</span>
-</div>
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="size-3 rounded-full bg-orange-300"></span>
-<span class="text-sm font-semibold text-slate-700">Other</span>
-</div>
-<span class="text-xs font-mono font-bold text-slate-500">10%</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<div class="glass-card p-5 rounded-2xl border-l-4 border-primary flex items-start justify-between hover:-translate-y-1 transition-transform duration-300">
-<div>
-<p class="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-2 flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">savings</span>
-                                    Avg. Monthly Savings
-                                </p>
-<p class="text-2xl font-bold font-mono text-slate-800 tracking-tight">$3,240.50</p>
-</div>
-<div class="size-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined text-lg">check_circle</span>
-</div>
-</div>
-<div class="glass-card p-5 rounded-2xl border-l-4 border-rose-400 flex items-start justify-between hover:-translate-y-1 transition-transform duration-300">
-<div>
-<p class="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-2 flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">warning</span>
-                                    Highest Expense
-                                </p>
-<p class="text-2xl font-bold font-mono text-slate-800 tracking-tight">December</p>
-<p class="text-[10px] text-rose-500 font-mono mt-1 font-bold">-$8,400 (Holiday Season)</p>
-</div>
-<div class="size-8 rounded-full bg-rose-50 flex items-center justify-center text-rose-500">
-<span class="material-symbols-outlined text-lg">calendar_month</span>
-</div>
-</div>
-<div class="glass-card p-5 rounded-2xl border-l-4 border-emerald-400 flex items-start justify-between hover:-translate-y-1 transition-transform duration-300">
-<div>
-<p class="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-2 flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">rocket_launch</span>
-                                    YoY Growth
-                                </p>
-<p class="text-2xl font-bold font-mono text-slate-800 tracking-tight">+24.8%</p>
-<p class="text-[10px] text-emerald-600 font-mono mt-1 font-bold">On track for Q4 goals</p>
-</div>
-<div class="size-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
-<span class="material-symbols-outlined text-lg">trending_up</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</main>
-</div>
-</body></html>
+  </head>
+  <body
+    class="bg-background-light text-[#0f1a19] font-display antialiased overflow-hidden selection:bg-primary/30"
+  >
+    <div class="flex h-screen w-full overflow-hidden">
+      <load src="/src/partials/sidebar.html" active="analysis" />
+      <main
+        class="flex-1 flex flex-col h-full relative overflow-hidden bg-gradient-to-br from-[#fafaf9] via-[#f2fcfb] to-[#e6f7f6]"
+      >
+        <load
+          src="/src/partials/header.html"
+          title="Financial Analysis"
+          subtitle="Track your financial performance"
+          icon="donut_large"
+        />
+        <div
+          class="flex-1 overflow-y-auto relative p-4 md:p-8 md:pt-6 pb-20 scroll-smooth"
+        >
+          <div class="max-w-7xl mx-auto flex flex-col gap-6">
+            <div
+              class="glass-panel p-2 rounded-2xl flex flex-col md:flex-row gap-4 items-center justify-between sticky top-0 z-20 shadow-soft"
+            >
+              <div
+                class="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto"
+              >
+                <div class="relative group">
+                  <button
+                    class="flex items-center gap-3 bg-white px-4 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold text-slate-700 hover:border-primary/50 hover:shadow-sm transition-all w-full md:w-auto"
+                  >
+                    <span
+                      class="material-symbols-outlined text-primary text-[20px]"
+                      >calendar_today</span
+                    >
+                    <span class="font-mono">Jan 01, 2024 - Dec 31, 2024</span>
+                    <span
+                      class="material-symbols-outlined text-slate-400 text-[18px]"
+                      >expand_more</span
+                    >
+                  </button>
+                </div>
+                <div
+                  class="bg-slate-100/80 p-1 rounded-xl flex items-center border border-white/50 w-full md:w-auto justify-center"
+                >
+                  <button
+                    class="px-4 py-1.5 rounded-lg text-xs font-bold text-slate-500 hover:text-primary transition-colors"
+                  >
+                    Quarterly
+                  </button>
+                  <button
+                    class="px-4 py-1.5 rounded-lg text-xs font-bold bg-white text-primary shadow-sm border border-slate-100 transition-all"
+                  >
+                    Yearly
+                  </button>
+                  <button
+                    class="px-4 py-1.5 rounded-lg text-xs font-bold text-slate-500 hover:text-primary transition-colors"
+                  >
+                    Custom
+                  </button>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 w-full md:w-auto justify-end">
+                <div class="relative">
+                  <select
+                    class="appearance-none bg-white border border-slate-200 rounded-xl text-sm py-2.5 pl-4 pr-10 text-slate-600 font-bold focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none cursor-pointer hover:bg-slate-50 transition-colors"
+                  >
+                    <option>USD ($)</option>
+                    <option>EUR (€)</option>
+                    <option>GBP (£)</option>
+                  </select>
+                  <span
+                    class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-sm"
+                    >expand_more</span
+                  >
+                </div>
+                <button
+                  class="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all shadow-lg shadow-primary/20 hover:shadow-primary/30 active:scale-95"
+                >
+                  <span class="material-symbols-outlined text-[20px]"
+                    >download</span
+                  >
+                  Download Report
+                </button>
+              </div>
+            </div>
+            <div
+              class="glass-card p-6 md:p-8 rounded-2xl relative overflow-hidden group"
+            >
+              <div
+                class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none"
+              >
+                <span
+                  class="material-symbols-outlined text-[120px] text-primary"
+                  >ssid_chart</span
+                >
+              </div>
+              <div
+                class="flex flex-col md:flex-row justify-between items-start mb-8 relative z-10"
+              >
+                <div>
+                  <h3
+                    class="text-slate-800 font-bold text-xl font-display flex items-center gap-2"
+                  >
+                    Net Worth Over Time
+                    <span
+                      class="material-symbols-outlined text-slate-400 text-sm cursor-help hover:text-primary transition-colors"
+                      >info</span
+                    >
+                  </h3>
+                  <p class="text-slate-500 text-sm mt-1">
+                    Total assets minus liabilities across selected period
+                  </p>
+                </div>
+                <div
+                  class="text-left md:text-right mt-4 md:mt-0 bg-white/50 p-3 rounded-xl border border-white/60 backdrop-blur-sm"
+                >
+                  <p
+                    class="text-3xl font-bold font-mono text-slate-800 tracking-tight"
+                  >
+                    $142,894.00
+                  </p>
+                  <div class="flex items-center justify-end gap-2 mt-1">
+                    <span class="text-xs text-slate-500 font-medium uppercase"
+                      >VS LAST YEAR</span
+                    >
+                    <p
+                      class="text-emerald-500 text-sm font-mono font-bold flex items-center bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-100"
+                    >
+                      <span class="material-symbols-outlined text-base"
+                        >trending_up</span
+                      >
+                      +12.4%
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="h-72 w-full relative">
+                <div
+                  class="absolute inset-0 flex flex-col justify-between text-xs text-slate-400 font-mono"
+                >
+                  <div
+                    class="w-full h-px bg-slate-200 border-t border-dashed border-slate-300"
+                  ></div>
+                  <div
+                    class="w-full h-px bg-slate-200 border-t border-dashed border-slate-300"
+                  ></div>
+                  <div
+                    class="w-full h-px bg-slate-200 border-t border-dashed border-slate-300"
+                  ></div>
+                  <div
+                    class="w-full h-px bg-slate-200 border-t border-dashed border-slate-300"
+                  ></div>
+                  <div
+                    class="w-full h-px bg-slate-200 border-t border-slate-300"
+                  ></div>
+                </div>
+                <svg
+                  class="absolute inset-0 w-full h-full overflow-visible"
+                  preserveAspectRatio="none"
+                  viewBox="0 0 1000 200"
+                >
+                  <defs>
+                    <linearGradient
+                      id="chartGradient"
+                      x1="0"
+                      x2="0"
+                      y1="0"
+                      y2="1"
+                    >
+                      <stop
+                        offset="0%"
+                        stop-color="#22c3b6"
+                        stop-opacity="0.3"
+                      ></stop>
+                      <stop
+                        offset="100%"
+                        stop-color="#22c3b6"
+                        stop-opacity="0.0"
+                      ></stop>
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M0,150 C100,140 200,160 300,120 C400,80 500,100 600,60 C700,20 800,40 900,10 L1000,30 L1000,200 L0,200 Z"
+                    fill="url(#chartGradient)"
+                  ></path>
+                  <path
+                    class="chart-line"
+                    d="M0,150 C100,140 200,160 300,120 C400,80 500,100 600,60 C700,20 800,40 900,10 L1000,30"
+                    fill="none"
+                    stroke="#22c3b6"
+                    stroke-linecap="round"
+                    stroke-width="3"
+                  ></path>
+                  <circle
+                    class="fill-white stroke-primary"
+                    cx="600"
+                    cy="60"
+                    r="6"
+                    stroke-width="3"
+                  >
+                    <animate
+                      attributeName="r"
+                      dur="1.5s"
+                      repeatCount="indefinite"
+                      values="6;8;6"
+                    ></animate>
+                  </circle>
+                </svg>
+                <div
+                  class="absolute top-[10%] left-[58%] bg-slate-800 text-white p-2 rounded-lg text-xs shadow-xl font-mono z-10 pointer-events-none"
+                >
+                  <div class="font-bold">$128,400</div>
+                  <div class="text-slate-400 text-[10px]">Aug 2024</div>
+                </div>
+              </div>
+              <div
+                class="flex justify-between mt-2 px-2 text-xs text-slate-400 font-mono font-bold"
+              >
+                <span>JAN</span>
+                <span>FEB</span>
+                <span>MAR</span>
+                <span>APR</span>
+                <span>MAY</span>
+                <span>JUN</span>
+                <span>JUL</span>
+                <span>AUG</span>
+                <span>SEP</span>
+                <span>OCT</span>
+                <span>NOV</span>
+                <span>DEC</span>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div class="glass-card p-6 rounded-2xl flex flex-col h-[400px]">
+                <div class="flex items-center justify-between mb-6">
+                  <h3 class="text-slate-800 font-bold text-lg font-display">
+                    Income vs Expenses
+                  </h3>
+                  <div class="flex items-center gap-4 text-xs font-bold">
+                    <div class="flex items-center gap-1.5">
+                      <div class="size-2.5 rounded-full bg-primary"></div>
+                      <span class="text-slate-600">Income</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <div class="size-2.5 rounded-full bg-rose-400"></div>
+                      <span class="text-slate-600">Expense</span>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex-1 flex items-end justify-between gap-2 md:gap-4 px-2 relative"
+                >
+                  <div
+                    class="absolute inset-x-0 bottom-0 top-0 flex flex-col justify-between pointer-events-none -z-10"
+                  >
+                    <div class="w-full h-px bg-slate-100"></div>
+                    <div class="w-full h-px bg-slate-100"></div>
+                    <div class="w-full h-px bg-slate-100"></div>
+                    <div class="w-full h-px bg-slate-100"></div>
+                    <div class="w-full h-px bg-slate-100"></div>
+                  </div>
+                  <div
+                    class="flex-1 flex gap-1 items-end justify-center h-full group cursor-pointer relative"
+                  >
+                    <div
+                      class="w-3 md:w-5 bg-primary rounded-t-sm h-[60%] opacity-90 group-hover:opacity-100 transition-all hover:shadow-[0_0_15px_rgba(34,195,182,0.4)]"
+                    ></div>
+                    <div
+                      class="w-3 md:w-5 bg-rose-400 rounded-t-sm h-[40%] opacity-90 group-hover:opacity-100 transition-all hover:shadow-[0_0_15px_rgba(244,63,94,0.4)]"
+                    ></div>
+                    <div
+                      class="absolute bottom-full mb-2 bg-slate-800 text-white text-[10px] p-2 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none font-mono z-20 whitespace-nowrap"
+                    >
+                      Inc: $5k | Exp: $3.2k
+                    </div>
+                  </div>
+                  <div
+                    class="flex-1 flex gap-1 items-end justify-center h-full group cursor-pointer relative"
+                  >
+                    <div
+                      class="w-3 md:w-5 bg-primary rounded-t-sm h-[75%] opacity-90 group-hover:opacity-100 transition-all"
+                    ></div>
+                    <div
+                      class="w-3 md:w-5 bg-rose-400 rounded-t-sm h-[45%] opacity-90 group-hover:opacity-100 transition-all"
+                    ></div>
+                  </div>
+                  <div
+                    class="flex-1 flex gap-1 items-end justify-center h-full group cursor-pointer relative"
+                  >
+                    <div
+                      class="w-3 md:w-5 bg-primary rounded-t-sm h-[50%] opacity-90 group-hover:opacity-100 transition-all"
+                    ></div>
+                    <div
+                      class="w-3 md:w-5 bg-rose-400 rounded-t-sm h-[30%] opacity-90 group-hover:opacity-100 transition-all"
+                    ></div>
+                  </div>
+                  <div
+                    class="flex-1 flex gap-1 items-end justify-center h-full group cursor-pointer relative"
+                  >
+                    <div
+                      class="w-3 md:w-5 bg-primary rounded-t-sm h-[85%] opacity-90 group-hover:opacity-100 transition-all"
+                    ></div>
+                    <div
+                      class="w-3 md:w-5 bg-rose-400 rounded-t-sm h-[60%] opacity-90 group-hover:opacity-100 transition-all"
+                    ></div>
+                  </div>
+                  <div
+                    class="flex-1 flex gap-1 items-end justify-center h-full group cursor-pointer relative"
+                  >
+                    <div
+                      class="w-3 md:w-5 bg-primary rounded-t-sm h-[70%] opacity-90 group-hover:opacity-100 transition-all"
+                    ></div>
+                    <div
+                      class="w-3 md:w-5 bg-rose-400 rounded-t-sm h-[80%] opacity-90 group-hover:opacity-100 transition-all"
+                    ></div>
+                  </div>
+                  <div
+                    class="flex-1 flex gap-1 items-end justify-center h-full group cursor-pointer relative"
+                  >
+                    <div
+                      class="w-3 md:w-5 bg-primary rounded-t-sm h-[90%] opacity-90 group-hover:opacity-100 transition-all"
+                    ></div>
+                    <div
+                      class="w-3 md:w-5 bg-rose-400 rounded-t-sm h-[55%] opacity-90 group-hover:opacity-100 transition-all"
+                    ></div>
+                  </div>
+                </div>
+                <div
+                  class="flex justify-between mt-3 px-2 text-[10px] md:text-xs text-slate-400 font-mono font-bold uppercase tracking-wider"
+                >
+                  <span>Jul</span>
+                  <span>Aug</span>
+                  <span>Sep</span>
+                  <span>Oct</span>
+                  <span>Nov</span>
+                  <span>Dec</span>
+                </div>
+              </div>
+              <div class="glass-card p-6 rounded-2xl flex flex-col h-[400px]">
+                <div class="flex items-center justify-between mb-4">
+                  <h3 class="text-slate-800 font-bold text-lg font-display">
+                    Spending by Category
+                  </h3>
+                  <button
+                    class="text-primary hover:text-primary-dark text-xs font-bold flex items-center gap-1"
+                  >
+                    View Details
+                    <span class="material-symbols-outlined text-sm"
+                      >arrow_forward</span
+                    >
+                  </button>
+                </div>
+                <div
+                  class="flex-1 flex flex-col md:flex-row items-center justify-center gap-8"
+                >
+                  <div class="relative size-48 shrink-0 group">
+                    <svg
+                      class="w-full h-full rotate-[-90deg]"
+                      viewBox="0 0 36 36"
+                    >
+                      <path
+                        class="text-slate-100"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="3.8"
+                      ></path>
+                      <path
+                        class="text-slate-800 transition-all duration-500 hover:scale-110 origin-center"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-dasharray="40 60"
+                        stroke-width="3.8"
+                      ></path>
+                      <path
+                        class="text-primary transition-all duration-500 hover:scale-110 origin-center"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-dasharray="30 70"
+                        stroke-dashoffset="-40"
+                        stroke-width="3.8"
+                      ></path>
+                      <path
+                        class="text-rose-400 transition-all duration-500 hover:scale-110 origin-center"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-dasharray="20 80"
+                        stroke-dashoffset="-70"
+                        stroke-width="3.8"
+                      ></path>
+                      <path
+                        class="text-orange-300 transition-all duration-500 hover:scale-110 origin-center"
+                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-dasharray="10 90"
+                        stroke-dashoffset="-90"
+                        stroke-width="3.8"
+                      ></path>
+                    </svg>
+                    <div
+                      class="absolute inset-0 flex items-center justify-center flex-col pointer-events-none"
+                    >
+                      <span
+                        class="text-[10px] text-slate-400 font-bold uppercase tracking-widest"
+                        >Total</span
+                      >
+                      <span class="text-xl font-bold font-mono text-slate-800"
+                        >$4,250</span
+                      >
+                    </div>
+                  </div>
+                  <div class="flex flex-col gap-3 w-full max-w-[180px]">
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-2">
+                        <span class="size-3 rounded-full bg-slate-800"></span>
+                        <span class="text-sm font-semibold text-slate-700"
+                          >Housing</span
+                        >
+                      </div>
+                      <span class="text-xs font-mono font-bold text-slate-500"
+                        >40%</span
+                      >
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-2">
+                        <span class="size-3 rounded-full bg-primary"></span>
+                        <span class="text-sm font-semibold text-slate-700"
+                          >Food</span
+                        >
+                      </div>
+                      <span class="text-xs font-mono font-bold text-slate-500"
+                        >30%</span
+                      >
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-2">
+                        <span class="size-3 rounded-full bg-rose-400"></span>
+                        <span class="text-sm font-semibold text-slate-700"
+                          >Fun</span
+                        >
+                      </div>
+                      <span class="text-xs font-mono font-bold text-slate-500"
+                        >20%</span
+                      >
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-2">
+                        <span class="size-3 rounded-full bg-orange-300"></span>
+                        <span class="text-sm font-semibold text-slate-700"
+                          >Other</span
+                        >
+                      </div>
+                      <span class="text-xs font-mono font-bold text-slate-500"
+                        >10%</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div
+                class="glass-card p-5 rounded-2xl border-l-4 border-primary flex items-start justify-between hover:-translate-y-1 transition-transform duration-300"
+              >
+                <div>
+                  <p
+                    class="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-2 flex items-center gap-1"
+                  >
+                    <span class="material-symbols-outlined text-sm"
+                      >savings</span
+                    >
+                    Avg. Monthly Savings
+                  </p>
+                  <p
+                    class="text-2xl font-bold font-mono text-slate-800 tracking-tight"
+                  >
+                    $3,240.50
+                  </p>
+                </div>
+                <div
+                  class="size-8 rounded-full bg-primary/10 flex items-center justify-center text-primary"
+                >
+                  <span class="material-symbols-outlined text-lg"
+                    >check_circle</span
+                  >
+                </div>
+              </div>
+              <div
+                class="glass-card p-5 rounded-2xl border-l-4 border-rose-400 flex items-start justify-between hover:-translate-y-1 transition-transform duration-300"
+              >
+                <div>
+                  <p
+                    class="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-2 flex items-center gap-1"
+                  >
+                    <span class="material-symbols-outlined text-sm"
+                      >warning</span
+                    >
+                    Highest Expense
+                  </p>
+                  <p
+                    class="text-2xl font-bold font-mono text-slate-800 tracking-tight"
+                  >
+                    December
+                  </p>
+                  <p class="text-[10px] text-rose-500 font-mono mt-1 font-bold">
+                    -$8,400 (Holiday Season)
+                  </p>
+                </div>
+                <div
+                  class="size-8 rounded-full bg-rose-50 flex items-center justify-center text-rose-500"
+                >
+                  <span class="material-symbols-outlined text-lg"
+                    >calendar_month</span
+                  >
+                </div>
+              </div>
+              <div
+                class="glass-card p-5 rounded-2xl border-l-4 border-emerald-400 flex items-start justify-between hover:-translate-y-1 transition-transform duration-300"
+              >
+                <div>
+                  <p
+                    class="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-2 flex items-center gap-1"
+                  >
+                    <span class="material-symbols-outlined text-sm"
+                      >rocket_launch</span
+                    >
+                    YoY Growth
+                  </p>
+                  <p
+                    class="text-2xl font-bold font-mono text-slate-800 tracking-tight"
+                  >
+                    +24.8%
+                  </p>
+                  <p
+                    class="text-[10px] text-emerald-600 font-mono mt-1 font-bold"
+                  >
+                    On track for Q4 goals
+                  </p>
+                </div>
+                <div
+                  class="size-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600"
+                >
+                  <span class="material-symbols-outlined text-lg"
+                    >trending_up</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
