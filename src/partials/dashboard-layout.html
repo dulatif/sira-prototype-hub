@@ -1,0 +1,79 @@
+<!-- Dashboard Layout Component -->
+<!-- Usage: <load src="/src/partials/dashboard-layout.html" active="dashboard" title="Dashboard" subtitle="Your wealth flow snapshot" icon="dashboard" /> -->
+<!-- Slots: main-content -->
+
+<style type="text/tailwindcss">
+  .glass-shell {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+  .dark .glass-shell {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .glass-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    border-radius: 16px;
+  }
+  .dark .glass-card {
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  }
+  .glass-stat {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    border-radius: 16px;
+  }
+  .dark .glass-stat {
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .nav-item-active {
+    background: linear-gradient(
+      to right,
+      rgba(42, 157, 143, 0.15),
+      transparent
+    );
+    border-left: 4px solid #2a9d8f;
+  }
+  .dark .nav-item-active {
+    border-left-color: #63c1bb;
+  }
+</style>
+
+<load src="/src/partials/sidebar.html" active="{=$active}" />
+
+<main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+  <!-- Ambient Background Blobs -->
+  <div
+    class="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-300/20 dark:bg-teal-900/20 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/4"
+  ></div>
+  <div
+    class="absolute bottom-0 left-20 w-[300px] h-[300px] bg-blue-300/20 dark:bg-blue-900/20 rounded-full blur-3xl pointer-events-none translate-y-1/3"
+  ></div>
+
+  <!-- Header -->
+  <load
+    src="/src/partials/header.html"
+    title="{=$title}"
+    subtitle="{=$subtitle}"
+    icon="{=$icon}"
+  />
+
+  <!-- Scrollable Content Area -->
+  <div class="flex-1 overflow-y-auto overflow-x-hidden p-8 scroll-smooth">
+    <div class="max-w-7xl mx-auto space-y-8">
+      <slot name="main-content" />
+    </div>
+  </div>
+</main>

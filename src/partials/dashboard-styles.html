@@ -1,0 +1,65 @@
+<!-- Dashboard Styles Partial -->
+<!-- Usage: Include in <head> after head.html for dashboard pages -->
+<!-- Provides: glass-shell, glass-card, glass-stat, nav-item-active classes -->
+
+<style type="text/tailwindcss">
+  /* # dashboard-glass-effects */
+  .glass-shell {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+  .dark .glass-shell {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+    border-radius: 16px;
+  }
+  .dark .glass-card {
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .glass-stat {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    border-radius: 16px;
+  }
+  .dark .glass-stat {
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  /* # navigation-states */
+  .nav-item-active {
+    background: linear-gradient(
+      to right,
+      rgba(42, 157, 143, 0.15),
+      transparent
+    );
+    border-left: 4px solid #2a9d8f;
+  }
+  .dark .nav-item-active {
+    border-left-color: #63c1bb;
+  }
+
+  /* # table-utilities */
+  .table-row-hover:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  .dark .table-row-hover:hover {
+    background: rgba(30, 41, 59, 0.3);
+  }
+</style>
