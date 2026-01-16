@@ -4,7 +4,7 @@
 <link href="https://fonts.googleapis.com" rel="preconnect" />
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
 <link
-  href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Outfit:wght@300;400;500;600&amp;display=swap"
+  href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Outfit:wght@300;400;500;600;700;800&amp;display=swap"
   rel="stylesheet"
 />
 <link
@@ -44,7 +44,7 @@
         },
         fontFamily: {
           sans: ["Outfit", "sans-serif"],
-          display: ["Epilogue", "sans-serif"],
+          display: ["Outfit", "sans-serif"],
           body: ["Outfit", "sans-serif"],
           mono: ["JetBrains Mono", "monospace"],
         },
@@ -83,6 +83,14 @@
             "0%": { opacity: "0", transform: "scale(1)" },
             "20%": { opacity: "0.5" },
             "100%": { opacity: "0", transform: "scale(2)" },
+          },
+          rippleOut: {
+            "0%": { opacity: "0", transform: "scale(1)" },
+            "20%": { opacity: "0.6" },
+            "100%": { opacity: "0", transform: "scale(3)" },
+          },
+          dash: {
+            to: { "stroke-dashoffset": "0" },
           },
         },
       },
@@ -141,6 +149,60 @@
   .animate-ripple-expand {
     transform-origin: center;
     transform-box: fill-box;
+  }
+
+  /* # onboarding-components */
+  .dark .glass-panel {
+    background: rgba(35, 46, 52, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .blob {
+    position: absolute;
+    filter: blur(80px);
+    z-index: 0;
+    opacity: 0.6;
+  }
+  .glass-card-hover:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 40px -10px rgba(27, 152, 141, 0.15);
+  }
+  .dark .glass-card-hover:hover {
+    background: rgba(45, 58, 65, 0.9);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
+  }
+  .provider-card:hover {
+    transform: translateY(-2px);
+    border-color: #1b988d;
+    box-shadow: 0 10px 25px -5px rgba(27, 152, 141, 0.15);
+  }
+  .wealth-map-path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 5s linear forwards;
+  }
+  .ripple-point {
+    animation: rippleOut 3s ease-out infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes rippleOut {
+    0% {
+      opacity: 0;
+      transform: scale(1);
+    }
+    20% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 0;
+      transform: scale(3);
+    }
   }
 
   /* # scrollbar */
