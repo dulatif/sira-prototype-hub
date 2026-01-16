@@ -1,171 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Sira Sign In</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-      rel="stylesheet"
-    />
+    <load src="/src/partials/head.html" title="Sira Sign In" />
     <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#2A9D8F",
-              "primary-dark": "#1F7A6F",
-              "teal-gradient-start": "#63C1BB",
-              "teal-gradient-end": "#C8E6E2",
-              "background-light": "#F0F9F8",
-              "background-dark": "#0F172A",
-              "text-light": "#1E293B",
-              "text-dark": "#E2E8F0",
-            },
-            fontFamily: {
-              sans: ["Outfit", "sans-serif"],
-              mono: ["JetBrains Mono", "monospace"],
-              display: ["Outfit", "sans-serif"],
-            },
-            borderRadius: {
-              DEFAULT: "1rem",
-              xl: "1rem", // 16px as per request
-              "2xl": "1.5rem",
-            },
-          },
-        },
-      };
       function login() {
         document.location.href = "/onboarding__welcome-and-vibes/code";
       }
     </script>
-    <style type="text/tailwindcss">
-      .glass-input {
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(10px);
-      }
-      .teal-flux-gradient {
-        background: linear-gradient(135deg, #2a9d8f 0%, #63c1bb 100%);
-      }
-      .text-gradient {
-        background: linear-gradient(135deg, #2a9d8f 0%, #264653 100%);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 4px;
-      }
-    </style>
   </head>
   <body
     class="bg-white text-text-light font-sans antialiased h-screen w-full flex overflow-hidden"
   >
-    <div
-      class="hidden lg:flex lg:w-1/2 bg-[#E0F2F1] relative items-center justify-center overflow-hidden flex-col"
-    >
-      <div class="absolute inset-0 overflow-hidden">
-        <svg
-          class="absolute w-full h-full text-primary/10"
-          preserveAspectRatio="none"
-          viewBox="0 0 100 100"
-        >
-          <path
-            d="M0 100 C 20 0 50 0 100 100 Z"
-            fill="currentColor"
-            opacity="0.3"
-          ></path>
-        </svg>
-        <div
-          class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-teal-200/30 rounded-full blur-3xl"
-        ></div>
-        <div
-          class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-primary/20 rounded-full blur-3xl"
-        ></div>
-      </div>
-      <div class="relative z-10 w-3/4 max-w-lg">
-        <svg
-          class="w-full h-auto drop-shadow-xl"
-          fill="none"
-          viewBox="0 0 400 400"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="200"
-            cy="200"
-            r="150"
-            stroke="#2A9D8F"
-            stroke-opacity="0.2"
-            stroke-width="2"
-          ></circle>
-          <circle
-            cx="200"
-            cy="200"
-            r="100"
-            stroke="#2A9D8F"
-            stroke-opacity="0.3"
-            stroke-width="2"
-          ></circle>
-          <circle
-            cx="200"
-            cy="200"
-            fill="#C8E6E2"
-            fill-opacity="0.5"
-            r="50"
-          ></circle>
-          <path
-            d="M50 300 C 100 300, 150 250, 200 150 S 300 100, 350 100"
-            stroke="url(#paint0_linear)"
-            stroke-linecap="round"
-            stroke-width="8"
-          ></path>
-          <rect
-            fill="#2A9D8F"
-            height="20"
-            rx="6"
-            width="20"
-            x="330"
-            y="80"
-          ></rect>
-          <circle cx="200" cy="150" fill="#63C1BB" r="8"></circle>
-          <circle cx="100" cy="280" fill="#63C1BB" r="6"></circle>
-          <defs>
-            <linearGradient
-              gradientUnits="userSpaceOnUse"
-              id="paint0_linear"
-              x1="50"
-              x2="350"
-              y1="300"
-              y2="100"
-            >
-              <stop stop-color="#2A9D8F"></stop>
-              <stop offset="1" stop-color="#63C1BB"></stop>
-            </linearGradient>
-          </defs>
-        </svg>
-        <div class="text-center mt-12">
-          <h2 class="text-3xl font-bold text-slate-700 tracking-tight">
-            Mindful Finance
-          </h2>
-          <p class="text-slate-500 mt-4 text-lg">
-            Find your path to financial peace and clarity.
-          </p>
-        </div>
-      </div>
-    </div>
+    <load src="/login-screen/illustration.html" />
+
     <div
       class="w-full lg:w-1/2 flex flex-col items-center justify-center p-6 sm:p-12 lg:p-24 bg-white overflow-y-auto"
     >
@@ -196,7 +43,7 @@
                 >Email Address</label
               >
               <input
-                class="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 text-slate-800 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none placeholder:text-slate-400"
+                class="w-full px-5 py-3.5 border border-slate-200 text-slate-800 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none placeholder:text-slate-400"
                 id="email"
                 name="email"
                 placeholder="alex@example.com"
@@ -220,7 +67,7 @@
                 >
               </div>
               <input
-                class="w-full px-5 py-3.5 bg-slate-50 border border-slate-200 text-slate-800 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none placeholder:text-slate-400"
+                class="w-full px-5 py-3.5 border border-slate-200 text-slate-800 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none placeholder:text-slate-400"
                 id="password"
                 name="password"
                 placeholder="••••••••"
