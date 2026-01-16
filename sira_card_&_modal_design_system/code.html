@@ -1,450 +1,727 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sira Card &amp; Modal Design System</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#00a89a",
-                        "background-light": "#d2eeed",
-                        "background-dark": "#1d1d20",
-                        "glass-white": "rgba(255, 255, 255, 0.65)",
-                        "glass-border": "rgba(255, 255, 255, 0.4)",
-                    },
-                    fontFamily: {
-                        "display": ["Inter", "sans-serif"],
-                        "mono": ["Space Grotesk", "monospace"],
-                    },
-                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px" },
-                    backdropBlur: {
-                        xs: '2px',
-                    }
-                },
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Sira Card &amp; Modal Design System</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=Space+Grotesk:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#00a89a",
+              "background-light": "#d2eeed",
+              "background-dark": "#1d1d20",
+              "glass-white": "rgba(255, 255, 255, 0.65)",
+              "glass-border": "rgba(255, 255, 255, 0.4)",
             },
-        }
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+              mono: ["Space Grotesk", "monospace"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "1rem",
+              xl: "1.5rem",
+              "2xl": "2rem",
+              full: "9999px",
+            },
+            backdropBlur: {
+              xs: "2px",
+            },
+          },
+        },
+      };
     </script>
-<style>
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.55);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-        }
-        
-        .glass-card-high {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 10px 40px rgba(0, 168, 154, 0.1);
-        }
+    <style>
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+      }
 
-        .code-block {
-            background: #1d1d20;
-            color: #d2eeed;
-            font-family: 'Space Grotesk', monospace;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
+      .glass-card-high {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 10px 40px rgba(0, 168, 154, 0.1);
+      }
 
-        .redline-v {
-            border-left: 1px dashed #ef4444;
-            position: absolute;
-            height: 100%;
-        }
-        .redline-h {
-            border-top: 1px dashed #ef4444;
-            position: absolute;
-            width: 100%;
-        }
-        .redline-label {
-            color: #ef4444;
-            background: rgba(255,255,255,0.9);
-            font-family: 'Space Grotesk', monospace;
-            font-size: 10px;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
+      .code-block {
+        background: #1d1d20;
+        color: #d2eeed;
+        font-family: "Space Grotesk", monospace;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        font-size: 0.85rem;
+        line-height: 1.5;
+      }
+
+      .redline-v {
+        border-left: 1px dashed #ef4444;
+        position: absolute;
+        height: 100%;
+      }
+      .redline-h {
+        border-top: 1px dashed #ef4444;
+        position: absolute;
+        width: 100%;
+      }
+      .redline-label {
+        color: #ef4444;
+        background: rgba(255, 255, 255, 0.9);
+        font-family: "Space Grotesk", monospace;
+        font-size: 10px;
+        padding: 2px 4px;
+        border-radius: 4px;
+      }
     </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark text-[#101818] font-display antialiased">
-<!-- Top Navigation -->
-<header class="sticky top-0 z-50 glass-panel border-b-0">
-<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white shadow-lg shadow-primary/30">
-<span class="material-symbols-outlined text-[20px]">dataset</span>
-</div>
-<h1 class="font-bold text-lg tracking-tight">Sira<span class="font-normal text-primary/80">Design</span></h1>
-</div>
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-sm font-medium hover:text-primary transition-colors" href="#foundations">Foundations</a>
-<a class="text-sm font-medium hover:text-primary transition-colors" href="#content-cards">Content Cards</a>
-<a class="text-sm font-medium hover:text-primary transition-colors" href="#modals">Modals</a>
-<a class="text-sm font-medium hover:text-primary transition-colors" href="#spacing">Spacing</a>
-</nav>
-<div class="flex items-center gap-3">
-<span class="text-xs font-mono text-gray-500 bg-white/50 px-2 py-1 rounded border border-white/60">v1.0.4</span>
-</div>
-</div>
-</header>
-<main class="max-w-7xl mx-auto px-6 py-12 flex flex-col gap-16">
-<!-- Page Heading -->
-<section class="flex flex-col gap-4 max-w-3xl">
-<div class="flex items-center gap-2 text-primary font-medium text-sm tracking-wide uppercase">
-<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                System Documentation
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-[#101818] antialiased"
+  >
+    <!-- Top Navigation -->
+    <header class="sticky top-0 z-50 glass-panel border-b-0">
+      <div
+        class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white shadow-lg shadow-primary/30"
+          >
+            <span class="material-symbols-outlined text-[20px]">dataset</span>
+          </div>
+          <h1 class="font-bold text-lg tracking-tight">
+            Sira<span class="font-normal text-primary/80">Design</span>
+          </h1>
+        </div>
+        <nav class="hidden md:flex items-center gap-8">
+          <a
+            class="text-sm font-medium hover:text-primary transition-colors"
+            href="#foundations"
+            >Foundations</a
+          >
+          <a
+            class="text-sm font-medium hover:text-primary transition-colors"
+            href="#content-cards"
+            >Content Cards</a
+          >
+          <a
+            class="text-sm font-medium hover:text-primary transition-colors"
+            href="#modals"
+            >Modals</a
+          >
+          <a
+            class="text-sm font-medium hover:text-primary transition-colors"
+            href="#spacing"
+            >Spacing</a
+          >
+        </nav>
+        <div class="flex items-center gap-3">
+          <span
+            class="text-xs font-mono text-gray-500 bg-white/50 px-2 py-1 rounded border border-white/60"
+            >v1.0.4</span
+          >
+        </div>
+      </div>
+    </header>
+    <main class="max-w-7xl mx-auto px-6 py-12 flex flex-col gap-16">
+      <!-- Page Heading -->
+      <section class="flex flex-col gap-4 max-w-3xl">
+        <div
+          class="flex items-center gap-2 text-primary font-medium text-sm tracking-wide uppercase"
+        >
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          System Documentation
+        </div>
+        <h1
+          class="text-5xl md:text-6xl font-black text-[#101818] tracking-tight leading-[1.1]"
+        >
+          Card &amp; Modal<br />
+          <span class="text-primary/80">Architecture</span>
+        </h1>
+        <p class="text-xl text-gray-600 max-w-2xl leading-relaxed">
+          The foundational surface system for Sira's mindful finance interface.
+          Utilizing glassmorphism to create depth, clarity, and a sense of
+          lightness.
+        </p>
+      </section>
+      <!-- Section 1: Card Foundations -->
+      <section class="scroll-mt-24" id="foundations">
+        <div
+          class="flex items-end justify-between border-b border-primary/20 pb-4 mb-8"
+        >
+          <h2 class="text-2xl font-bold flex items-center gap-2">
+            <span class="text-primary font-mono text-lg">01.</span> Card
+            Foundations
+          </h2>
+          <span class="hidden sm:block text-sm font-mono text-gray-500"
+            >Base Layer Configuration</span
+          >
+        </div>
+        <div class="grid lg:grid-cols-2 gap-8 items-start">
+          <!-- Visual Example -->
+          <div
+            class="relative p-12 rounded-2xl bg-gradient-to-br from-[#c4e4e2] to-[#b0d8d6] shadow-inner overflow-hidden min-h-[400px] flex items-center justify-center group"
+            data-alt="Abstract gradient background simulating a desktop surface"
+          >
+            <!-- Abstract Background Shapes -->
+            <div
+              class="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"
+            ></div>
+            <div
+              class="absolute bottom-0 left-0 w-64 h-64 bg-white/40 rounded-full blur-[60px] translate-y-1/2 -translate-x-1/2"
+            ></div>
+            <!-- The Card Component -->
+            <div
+              class="relative w-full max-w-sm glass-panel rounded-xl p-6 transition-transform duration-500 group-hover:-translate-y-2"
+            >
+              <div class="flex justify-between items-start mb-4">
+                <div
+                  class="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary"
+                >
+                  <span class="material-symbols-outlined"
+                    >account_balance_wallet</span
+                  >
+                </div>
+                <span
+                  class="bg-white/50 backdrop-blur-sm px-2 py-1 rounded text-xs font-mono font-medium text-gray-600"
+                  >Base Elevation</span
+                >
+              </div>
+              <h3 class="text-lg font-bold mb-1">Total Savings</h3>
+              <p class="text-3xl font-black text-[#101818] mb-4">$12,450.00</p>
+              <div class="h-1 w-full bg-gray-200 rounded-full overflow-hidden">
+                <div class="h-full bg-primary w-2/3"></div>
+              </div>
+              <p class="text-xs text-gray-500 mt-2 flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm text-primary"
+                  >trending_up</span
+                >
+                +4.5% from last month
+              </p>
             </div>
-<h1 class="text-5xl md:text-6xl font-black text-[#101818] tracking-tight leading-[1.1]">
-                Card &amp; Modal<br/>
-<span class="text-primary/80">Architecture</span>
-</h1>
-<p class="text-xl text-gray-600 max-w-2xl leading-relaxed">
-                The foundational surface system for Sira's mindful finance interface. Utilizing glassmorphism to create depth, clarity, and a sense of lightness.
-            </p>
-</section>
-<!-- Section 1: Card Foundations -->
-<section class="scroll-mt-24" id="foundations">
-<div class="flex items-end justify-between border-b border-primary/20 pb-4 mb-8">
-<h2 class="text-2xl font-bold flex items-center gap-2">
-<span class="text-primary font-mono text-lg">01.</span> Card Foundations
-                </h2>
-<span class="hidden sm:block text-sm font-mono text-gray-500">Base Layer Configuration</span>
-</div>
-<div class="grid lg:grid-cols-2 gap-8 items-start">
-<!-- Visual Example -->
-<div class="relative p-12 rounded-2xl bg-gradient-to-br from-[#c4e4e2] to-[#b0d8d6] shadow-inner overflow-hidden min-h-[400px] flex items-center justify-center group" data-alt="Abstract gradient background simulating a desktop surface">
-<!-- Abstract Background Shapes -->
-<div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
-<div class="absolute bottom-0 left-0 w-64 h-64 bg-white/40 rounded-full blur-[60px] translate-y-1/2 -translate-x-1/2"></div>
-<!-- The Card Component -->
-<div class="relative w-full max-w-sm glass-panel rounded-xl p-6 transition-transform duration-500 group-hover:-translate-y-2">
-<div class="flex justify-between items-start mb-4">
-<div class="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined">account_balance_wallet</span>
-</div>
-<span class="bg-white/50 backdrop-blur-sm px-2 py-1 rounded text-xs font-mono font-medium text-gray-600">Base Elevation</span>
-</div>
-<h3 class="text-lg font-bold mb-1">Total Savings</h3>
-<p class="text-3xl font-black text-[#101818] mb-4">$12,450.00</p>
-<div class="h-1 w-full bg-gray-200 rounded-full overflow-hidden">
-<div class="h-full bg-primary w-2/3"></div>
-</div>
-<p class="text-xs text-gray-500 mt-2 flex items-center gap-1">
-<span class="material-symbols-outlined text-sm text-primary">trending_up</span>
-                            +4.5% from last month
-                        </p>
-</div>
-</div>
-<!-- Specs -->
-<div class="flex flex-col gap-6">
-<div class="glass-panel p-6 rounded-xl">
-<h3 class="text-lg font-bold mb-4 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary">style</span>
-                            Surface Properties
-                        </h3>
-<div class="grid grid-cols-2 gap-4 mb-6">
-<div class="p-3 bg-white/40 rounded border border-white/50">
-<span class="text-xs font-mono text-gray-500 block mb-1">Backdrop Filter</span>
-<span class="font-bold text-gray-800">blur(16px)</span>
-</div>
-<div class="p-3 bg-white/40 rounded border border-white/50">
-<span class="text-xs font-mono text-gray-500 block mb-1">Border Radius</span>
-<span class="font-bold text-gray-800">16px (lg) / 24px (xl)</span>
-</div>
-<div class="p-3 bg-white/40 rounded border border-white/50">
-<span class="text-xs font-mono text-gray-500 block mb-1">Background</span>
-<span class="font-bold text-gray-800">White @ 55-65%</span>
-</div>
-<div class="p-3 bg-white/40 rounded border border-white/50">
-<span class="text-xs font-mono text-gray-500 block mb-1">Border Stroke</span>
-<span class="font-bold text-gray-800">1px Solid White @ 40%</span>
-</div>
-</div>
-<div class="code-block">
-<span class="text-purple-400">.glass-card</span> {<br/>
-                              <span class="text-blue-300">background</span>: <span class="text-orange-300">rgba</span>(255, 255, 255, 0.55);<br/>
-                              <span class="text-blue-300">backdrop-filter</span>: <span class="text-orange-300">blur</span>(16px);<br/>
-                              <span class="text-blue-300">border</span>: <span class="text-orange-300">1px solid</span> rgba(255, 255, 255, 0.4);<br/>
-                              <span class="text-blue-300">box-shadow</span>: <span class="text-orange-300">0 4px 30px</span> rgba(0, 0, 0, 0.05);<br/>
-                            }
-                        </div>
-</div>
-</div>
-</div>
-</section>
-<!-- Section 2: Content Cards -->
-<section class="scroll-mt-24" id="content-cards">
-<div class="flex items-end justify-between border-b border-primary/20 pb-4 mb-8">
-<h2 class="text-2xl font-bold flex items-center gap-2">
-<span class="text-primary font-mono text-lg">02.</span> Content Variants
-                </h2>
-<span class="hidden sm:block text-sm font-mono text-gray-500">List Items, Stats, &amp; Actions</span>
-</div>
-<div class="grid md:grid-cols-3 gap-6">
-<!-- Stat Card -->
-<div class="glass-panel p-6 rounded-xl flex flex-col h-full hover:bg-white/70 transition-colors cursor-default">
-<div class="mb-4 flex justify-between items-center">
-<span class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Daily Goal</span>
-<span class="material-symbols-outlined text-primary bg-primary/10 p-1 rounded-full text-[20px]">flag</span>
-</div>
-<div class="mt-auto">
-<div class="flex items-baseline gap-1">
-<span class="text-4xl font-black text-primary">85</span>
-<span class="text-sm text-gray-500 font-medium">%</span>
-</div>
-<p class="text-sm text-gray-500 mt-1">Completion rate</p>
-</div>
-</div>
-<!-- Transaction List Card -->
-<div class="glass-panel p-0 rounded-xl flex flex-col h-full overflow-hidden">
-<div class="p-4 border-b border-white/40 bg-white/20">
-<h3 class="font-bold text-sm">Recent Activity</h3>
-</div>
-<div class="flex-1 p-2">
-<!-- List Item 1 -->
-<div class="flex items-center gap-3 p-3 hover:bg-white/40 rounded-lg transition-colors cursor-pointer group">
-<div class="h-10 w-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-500 group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
-</div>
-<div class="flex-1">
-<p class="text-sm font-bold text-[#101818]">Grocery Market</p>
-<p class="text-xs text-gray-500">Today, 10:23 AM</p>
-</div>
-<span class="text-sm font-bold text-[#101818]">-$45.20</span>
-</div>
-<!-- List Item 2 -->
-<div class="flex items-center gap-3 p-3 hover:bg-white/40 rounded-lg transition-colors cursor-pointer group">
-<div class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-[20px]">work</span>
-</div>
-<div class="flex-1">
-<p class="text-sm font-bold text-[#101818]">Freelance Pay</p>
-<p class="text-xs text-gray-500">Yesterday</p>
-</div>
-<span class="text-sm font-bold text-green-600">+$850.00</span>
-</div>
-</div>
-</div>
-<!-- Action Card -->
-<div class="group relative overflow-hidden rounded-xl bg-primary text-white p-6 shadow-xl shadow-primary/20 flex flex-col justify-between">
-<div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-white/20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
-<div>
-<div class="h-12 w-12 bg-white/20 backdrop-blur-md rounded-lg flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform">
-<span class="material-symbols-outlined text-[24px]">add_card</span>
-</div>
-<h3 class="text-xl font-bold leading-tight mb-2">Connect New Account</h3>
-<p class="text-white/80 text-sm leading-relaxed">Link your external banks or credit cards to track expenses.</p>
-</div>
-<button class="mt-6 flex items-center gap-2 text-sm font-bold hover:gap-3 transition-all">
-                        Get Started <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</button>
-</div>
-</div>
-</section>
-<!-- Section 3: Modal Architecture -->
-<section class="scroll-mt-24" id="modals">
-<div class="flex items-end justify-between border-b border-primary/20 pb-4 mb-8">
-<h2 class="text-2xl font-bold flex items-center gap-2">
-<span class="text-primary font-mono text-lg">03.</span> Modal Architecture
-                </h2>
-<span class="hidden sm:block text-sm font-mono text-gray-500">Overlay &amp; Stacking Context</span>
-</div>
-<div class="relative w-full h-[600px] rounded-2xl overflow-hidden border border-primary/10 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&amp;w=2564&amp;auto=format&amp;fit=crop')] bg-cover bg-center" data-alt="Blurred abstract background representing a dashboard interface behind a modal">
-<div class="absolute inset-0 bg-background-dark/30 backdrop-blur-[4px] flex items-center justify-center p-4">
-<!-- Modal Anatomy -->
-<div class="relative w-full max-w-md bg-white rounded-2xl shadow-2xl flex flex-col max-h-[90%] overflow-hidden animate-fade-in-up">
-<!-- Header -->
-<div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between bg-white sticky top-0 z-10">
-<h3 class="font-bold text-lg">Transaction Details</h3>
-<button class="text-gray-400 hover:text-gray-800 transition-colors">
-<span class="material-symbols-outlined">close</span>
-</button>
-<!-- Annotation -->
-<div class="hidden lg:flex absolute -left-32 top-1/2 -translate-y-1/2 items-center gap-2">
-<span class="text-xs font-mono text-white bg-primary px-2 py-1 rounded">Sticky Header</span>
-<div class="w-8 h-px bg-primary border-t border-dashed border-white/50"></div>
-</div>
-</div>
-<!-- Body (Scrollable) -->
-<div class="p-6 overflow-y-auto">
-<div class="flex flex-col items-center py-6">
-<div class="h-16 w-16 bg-gray-100 rounded-full flex items-center justify-center text-3xl mb-4">🍎</div>
-<h4 class="text-2xl font-black mb-1">$45.20</h4>
-<p class="text-gray-500">Whole Foods Market</p>
-</div>
-<div class="space-y-4 mt-4">
-<div class="p-4 bg-gray-50 rounded-lg border border-gray-100">
-<label class="text-xs font-bold text-gray-400 uppercase tracking-wider block mb-1">Category</label>
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="w-3 h-3 rounded-full bg-orange-400"></span>
-<span class="font-medium">Groceries</span>
-</div>
-<span class="text-primary text-sm font-bold cursor-pointer">Edit</span>
-</div>
-</div>
-<div class="p-4 bg-gray-50 rounded-lg border border-gray-100">
-<label class="text-xs font-bold text-gray-400 uppercase tracking-wider block mb-1">Note</label>
-<p class="text-sm text-gray-600">Weekly run for vegetables and fruits.</p>
-</div>
-<div class="h-24 bg-gray-50 rounded-lg border border-gray-100"></div> <!-- Filler content for scroll demo -->
-</div>
-</div>
-<!-- Footer (Sticky) -->
-<div class="p-4 border-t border-gray-100 bg-gray-50 flex gap-3 sticky bottom-0 z-10">
-<button class="flex-1 py-3 px-4 rounded-lg border border-gray-200 font-bold text-gray-600 hover:bg-gray-100 transition-colors">Split Bill</button>
-<button class="flex-1 py-3 px-4 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">Repeat Transaction</button>
-<!-- Annotation -->
-<div class="hidden lg:flex absolute -right-32 top-1/2 -translate-y-1/2 items-center gap-2 flex-row-reverse">
-<span class="text-xs font-mono text-white bg-primary px-2 py-1 rounded">Sticky Footer</span>
-<div class="w-8 h-px bg-primary border-t border-dashed border-white/50"></div>
-</div>
-</div>
-</div>
-</div>
-<!-- Overlay Annotation -->
-<div class="absolute bottom-6 left-6 bg-black/80 backdrop-blur-md text-white px-4 py-3 rounded-lg border border-white/20">
-<div class="flex flex-col gap-1">
-<span class="text-xs font-mono text-gray-400">Overlay Color</span>
-<span class="font-bold text-sm">#1d1d20 @ 30% Opacity</span>
-<span class="text-xs font-mono text-gray-400 mt-1">Backdrop Blur</span>
-<span class="font-bold text-sm">4px - 8px</span>
-</div>
-</div>
-</div>
-</section>
-<!-- Section 4: Spacing System -->
-<section class="pb-20" id="spacing">
-<div class="flex items-end justify-between border-b border-primary/20 pb-4 mb-8">
-<h2 class="text-2xl font-bold flex items-center gap-2">
-<span class="text-primary font-mono text-lg">04.</span> Spacing &amp; Gutters
-                </h2>
-<span class="hidden sm:block text-sm font-mono text-gray-500">Internal Padding Logic</span>
-</div>
-<div class="grid lg:grid-cols-2 gap-12">
-<!-- Diagram -->
-<div class="relative bg-white border border-gray-200 rounded-2xl p-12 flex items-center justify-center">
-<!-- The Card being measured -->
-<div class="relative w-full max-w-sm bg-background-light rounded-xl border border-primary/20 shadow-sm">
-<!-- Padding Visualizer: Top/Bottom/Left/Right -->
-<div class="absolute top-0 left-0 right-0 h-6 bg-red-500/10 border-b border-red-500/20 flex items-center justify-center z-20">
-<span class="text-[10px] font-mono text-red-600 font-bold">24px</span>
-</div>
-<div class="absolute bottom-0 left-0 right-0 h-6 bg-red-500/10 border-t border-red-500/20 flex items-center justify-center z-20">
-<span class="text-[10px] font-mono text-red-600 font-bold">24px</span>
-</div>
-<div class="absolute top-0 bottom-0 left-0 w-6 bg-red-500/10 border-r border-red-500/20 flex items-center justify-center z-20">
-<span class="text-[10px] font-mono text-red-600 font-bold -rotate-90">24px</span>
-</div>
-<div class="absolute top-0 bottom-0 right-0 w-6 bg-red-500/10 border-l border-red-500/20 flex items-center justify-center z-20">
-<span class="text-[10px] font-mono text-red-600 font-bold rotate-90">24px</span>
-</div>
-<!-- Content Area -->
-<div class="p-6">
-<div class="flex items-center gap-4 mb-6 relative">
-<div class="h-12 w-12 rounded-full bg-primary/20"></div>
-<div class="flex-1 space-y-2">
-<div class="h-4 w-32 bg-primary/10 rounded"></div>
-<div class="h-3 w-20 bg-primary/5 rounded"></div>
-</div>
-<!-- Internal Gutter Measurement -->
-<div class="absolute left-12 top-0 bottom-0 w-4 bg-blue-500/10 border-x border-blue-500/20 flex items-center justify-center">
-<span class="text-[9px] font-mono text-blue-600 font-bold -rotate-90 whitespace-nowrap">16px</span>
-</div>
-</div>
-<div class="space-y-3">
-<div class="h-8 w-full bg-white rounded border border-primary/10"></div>
-<div class="h-8 w-full bg-white rounded border border-primary/10"></div>
-<!-- Stack spacing -->
-<div class="absolute mt-[-20px] left-1/2 -translate-x-1/2 h-3 w-4 bg-green-500/10 border-y border-green-500/20 flex items-center justify-center">
-<span class="text-[8px] font-mono text-green-600 font-bold">12px</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Reference Table -->
-<div class="flex flex-col gap-6 justify-center">
-<div class="glass-panel p-6 rounded-xl">
-<h3 class="font-bold text-lg mb-4">Space Tokens</h3>
-<div class="overflow-hidden rounded-lg border border-gray-200">
-<table class="w-full text-sm text-left">
-<thead class="bg-gray-50 text-gray-500 font-mono text-xs uppercase">
-<tr>
-<th class="px-4 py-3">Token</th>
-<th class="px-4 py-3">Value</th>
-<th class="px-4 py-3">Usage</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-gray-100">
-<tr class="bg-white">
-<td class="px-4 py-3 font-mono text-primary font-bold">p-6</td>
-<td class="px-4 py-3">24px</td>
-<td class="px-4 py-3 text-gray-600">Standard Card Padding</td>
-</tr>
-<tr class="bg-white">
-<td class="px-4 py-3 font-mono text-primary font-bold">p-4</td>
-<td class="px-4 py-3">16px</td>
-<td class="px-4 py-3 text-gray-600">Compact Card / Modal Header</td>
-</tr>
-<tr class="bg-white">
-<td class="px-4 py-3 font-mono text-primary font-bold">gap-4</td>
-<td class="px-4 py-3">16px</td>
-<td class="px-4 py-3 text-gray-600">Icon-to-Text Gutter</td>
-</tr>
-<tr class="bg-white">
-<td class="px-4 py-3 font-mono text-primary font-bold">gap-3</td>
-<td class="px-4 py-3">12px</td>
-<td class="px-4 py-3 text-gray-600">List Item Stack</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="p-4 bg-amber-50 rounded-lg border border-amber-100 flex gap-3 items-start">
-<span class="material-symbols-outlined text-amber-500 mt-0.5">lightbulb</span>
-<div>
-<h4 class="text-sm font-bold text-amber-800">Designer Note</h4>
-<p class="text-sm text-amber-700 mt-1">
-                                For mobile viewports (&lt; 640px), reduce the standard card padding from <code class="bg-amber-100 px-1 rounded">24px</code> to <code class="bg-amber-100 px-1 rounded">16px</code> to maximize horizontal screen real estate.
-                            </p>
-</div>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Simple Footer -->
-<footer class="border-t border-primary/20 bg-white/40 backdrop-blur-sm py-12 mt-12">
-<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-<div class="flex items-center gap-2 text-gray-500 text-sm">
-<span class="font-bold text-[#101818]">Sira Design System</span>
-<span>•</span>
-<span>Internal Documentation</span>
-</div>
-<div class="flex gap-6">
-<a class="text-gray-400 hover:text-primary transition-colors" href="#">
-<span class="material-symbols-outlined">description</span>
-</a>
-<a class="text-gray-400 hover:text-primary transition-colors" href="#">
-<span class="material-symbols-outlined">code</span>
-</a>
-<a class="text-gray-400 hover:text-primary transition-colors" href="#">
-<span class="material-symbols-outlined">palette</span>
-</a>
-</div>
-</div>
-</footer>
-</body></html>
+          </div>
+          <!-- Specs -->
+          <div class="flex flex-col gap-6">
+            <div class="glass-panel p-6 rounded-xl">
+              <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary"
+                  >style</span
+                >
+                Surface Properties
+              </h3>
+              <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="p-3 bg-white/40 rounded border border-white/50">
+                  <span class="text-xs font-mono text-gray-500 block mb-1"
+                    >Backdrop Filter</span
+                  >
+                  <span class="font-bold text-gray-800">blur(16px)</span>
+                </div>
+                <div class="p-3 bg-white/40 rounded border border-white/50">
+                  <span class="text-xs font-mono text-gray-500 block mb-1"
+                    >Border Radius</span
+                  >
+                  <span class="font-bold text-gray-800"
+                    >16px (lg) / 24px (xl)</span
+                  >
+                </div>
+                <div class="p-3 bg-white/40 rounded border border-white/50">
+                  <span class="text-xs font-mono text-gray-500 block mb-1"
+                    >Background</span
+                  >
+                  <span class="font-bold text-gray-800">White @ 55-65%</span>
+                </div>
+                <div class="p-3 bg-white/40 rounded border border-white/50">
+                  <span class="text-xs font-mono text-gray-500 block mb-1"
+                    >Border Stroke</span
+                  >
+                  <span class="font-bold text-gray-800"
+                    >1px Solid White @ 40%</span
+                  >
+                </div>
+              </div>
+              <div class="code-block">
+                <span class="text-purple-400">.glass-card</span> {<br />
+                  <span class="text-blue-300">background</span>:
+                <span class="text-orange-300">rgba</span>(255, 255, 255,
+                0.55);<br />
+                  <span class="text-blue-300">backdrop-filter</span>:
+                <span class="text-orange-300">blur</span>(16px);<br />
+                  <span class="text-blue-300">border</span>:
+                <span class="text-orange-300">1px solid</span> rgba(255, 255,
+                255, 0.4);<br />
+                  <span class="text-blue-300">box-shadow</span>:
+                <span class="text-orange-300">0 4px 30px</span> rgba(0, 0, 0,
+                0.05);<br />
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Section 2: Content Cards -->
+      <section class="scroll-mt-24" id="content-cards">
+        <div
+          class="flex items-end justify-between border-b border-primary/20 pb-4 mb-8"
+        >
+          <h2 class="text-2xl font-bold flex items-center gap-2">
+            <span class="text-primary font-mono text-lg">02.</span> Content
+            Variants
+          </h2>
+          <span class="hidden sm:block text-sm font-mono text-gray-500"
+            >List Items, Stats, &amp; Actions</span
+          >
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Stat Card -->
+          <div
+            class="glass-panel p-6 rounded-xl flex flex-col h-full hover:bg-white/70 transition-colors cursor-default"
+          >
+            <div class="mb-4 flex justify-between items-center">
+              <span
+                class="text-sm font-semibold text-gray-500 uppercase tracking-wider"
+                >Daily Goal</span
+              >
+              <span
+                class="material-symbols-outlined text-primary bg-primary/10 p-1 rounded-full text-[20px]"
+                >flag</span
+              >
+            </div>
+            <div class="mt-auto">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-black text-primary">85</span>
+                <span class="text-sm text-gray-500 font-medium">%</span>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Completion rate</p>
+            </div>
+          </div>
+          <!-- Transaction List Card -->
+          <div
+            class="glass-panel p-0 rounded-xl flex flex-col h-full overflow-hidden"
+          >
+            <div class="p-4 border-b border-white/40 bg-white/20">
+              <h3 class="font-bold text-sm">Recent Activity</h3>
+            </div>
+            <div class="flex-1 p-2">
+              <!-- List Item 1 -->
+              <div
+                class="flex items-center gap-3 p-3 hover:bg-white/40 rounded-lg transition-colors cursor-pointer group"
+              >
+                <div
+                  class="h-10 w-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-500 group-hover:scale-110 transition-transform"
+                >
+                  <span class="material-symbols-outlined text-[20px]"
+                    >shopping_bag</span
+                  >
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm font-bold text-[#101818]">Grocery Market</p>
+                  <p class="text-xs text-gray-500">Today, 10:23 AM</p>
+                </div>
+                <span class="text-sm font-bold text-[#101818]">-$45.20</span>
+              </div>
+              <!-- List Item 2 -->
+              <div
+                class="flex items-center gap-3 p-3 hover:bg-white/40 rounded-lg transition-colors cursor-pointer group"
+              >
+                <div
+                  class="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform"
+                >
+                  <span class="material-symbols-outlined text-[20px]"
+                    >work</span
+                  >
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm font-bold text-[#101818]">Freelance Pay</p>
+                  <p class="text-xs text-gray-500">Yesterday</p>
+                </div>
+                <span class="text-sm font-bold text-green-600">+$850.00</span>
+              </div>
+            </div>
+          </div>
+          <!-- Action Card -->
+          <div
+            class="group relative overflow-hidden rounded-xl bg-primary text-white p-6 shadow-xl shadow-primary/20 flex flex-col justify-between"
+          >
+            <div
+              class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-white/20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"
+            ></div>
+            <div>
+              <div
+                class="h-12 w-12 bg-white/20 backdrop-blur-md rounded-lg flex items-center justify-center mb-4 group-hover:rotate-12 transition-transform"
+              >
+                <span class="material-symbols-outlined text-[24px]"
+                  >add_card</span
+                >
+              </div>
+              <h3 class="text-xl font-bold leading-tight mb-2">
+                Connect New Account
+              </h3>
+              <p class="text-white/80 text-sm leading-relaxed">
+                Link your external banks or credit cards to track expenses.
+              </p>
+            </div>
+            <button
+              class="mt-6 flex items-center gap-2 text-sm font-bold hover:gap-3 transition-all"
+            >
+              Get Started
+              <span class="material-symbols-outlined text-[18px]"
+                >arrow_forward</span
+              >
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- Section 3: Modal Architecture -->
+      <section class="scroll-mt-24" id="modals">
+        <div
+          class="flex items-end justify-between border-b border-primary/20 pb-4 mb-8"
+        >
+          <h2 class="text-2xl font-bold flex items-center gap-2">
+            <span class="text-primary font-mono text-lg">03.</span> Modal
+            Architecture
+          </h2>
+          <span class="hidden sm:block text-sm font-mono text-gray-500"
+            >Overlay &amp; Stacking Context</span
+          >
+        </div>
+        <div
+          class="relative w-full h-[600px] rounded-2xl overflow-hidden border border-primary/10 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&amp;w=2564&amp;auto=format&amp;fit=crop')] bg-cover bg-center"
+          data-alt="Blurred abstract background representing a dashboard interface behind a modal"
+        >
+          <div
+            class="absolute inset-0 bg-background-dark/30 backdrop-blur-[4px] flex items-center justify-center p-4"
+          >
+            <!-- Modal Anatomy -->
+            <div
+              class="relative w-full max-w-md bg-white rounded-2xl shadow-2xl flex flex-col max-h-[90%] overflow-hidden animate-fade-in-up"
+            >
+              <!-- Header -->
+              <div
+                class="px-6 py-4 border-b border-gray-100 flex items-center justify-between bg-white sticky top-0 z-10"
+              >
+                <h3 class="font-bold text-lg">Transaction Details</h3>
+                <button
+                  class="text-gray-400 hover:text-gray-800 transition-colors"
+                >
+                  <span class="material-symbols-outlined">close</span>
+                </button>
+                <!-- Annotation -->
+                <div
+                  class="hidden lg:flex absolute -left-32 top-1/2 -translate-y-1/2 items-center gap-2"
+                >
+                  <span
+                    class="text-xs font-mono text-white bg-primary px-2 py-1 rounded"
+                    >Sticky Header</span
+                  >
+                  <div
+                    class="w-8 h-px bg-primary border-t border-dashed border-white/50"
+                  ></div>
+                </div>
+              </div>
+              <!-- Body (Scrollable) -->
+              <div class="p-6 overflow-y-auto">
+                <div class="flex flex-col items-center py-6">
+                  <div
+                    class="h-16 w-16 bg-gray-100 rounded-full flex items-center justify-center text-3xl mb-4"
+                  >
+                    🍎
+                  </div>
+                  <h4 class="text-2xl font-black mb-1">$45.20</h4>
+                  <p class="text-gray-500">Whole Foods Market</p>
+                </div>
+                <div class="space-y-4 mt-4">
+                  <div class="p-4 bg-gray-50 rounded-lg border border-gray-100">
+                    <label
+                      class="text-xs font-bold text-gray-400 uppercase tracking-wider block mb-1"
+                      >Category</label
+                    >
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-orange-400"></span>
+                        <span class="font-medium">Groceries</span>
+                      </div>
+                      <span
+                        class="text-primary text-sm font-bold cursor-pointer"
+                        >Edit</span
+                      >
+                    </div>
+                  </div>
+                  <div class="p-4 bg-gray-50 rounded-lg border border-gray-100">
+                    <label
+                      class="text-xs font-bold text-gray-400 uppercase tracking-wider block mb-1"
+                      >Note</label
+                    >
+                    <p class="text-sm text-gray-600">
+                      Weekly run for vegetables and fruits.
+                    </p>
+                  </div>
+                  <div
+                    class="h-24 bg-gray-50 rounded-lg border border-gray-100"
+                  ></div>
+                  <!-- Filler content for scroll demo -->
+                </div>
+              </div>
+              <!-- Footer (Sticky) -->
+              <div
+                class="p-4 border-t border-gray-100 bg-gray-50 flex gap-3 sticky bottom-0 z-10"
+              >
+                <button
+                  class="flex-1 py-3 px-4 rounded-lg border border-gray-200 font-bold text-gray-600 hover:bg-gray-100 transition-colors"
+                >
+                  Split Bill
+                </button>
+                <button
+                  class="flex-1 py-3 px-4 rounded-lg bg-primary text-white font-bold hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
+                >
+                  Repeat Transaction
+                </button>
+                <!-- Annotation -->
+                <div
+                  class="hidden lg:flex absolute -right-32 top-1/2 -translate-y-1/2 items-center gap-2 flex-row-reverse"
+                >
+                  <span
+                    class="text-xs font-mono text-white bg-primary px-2 py-1 rounded"
+                    >Sticky Footer</span
+                  >
+                  <div
+                    class="w-8 h-px bg-primary border-t border-dashed border-white/50"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Overlay Annotation -->
+          <div
+            class="absolute bottom-6 left-6 bg-black/80 backdrop-blur-md text-white px-4 py-3 rounded-lg border border-white/20"
+          >
+            <div class="flex flex-col gap-1">
+              <span class="text-xs font-mono text-gray-400">Overlay Color</span>
+              <span class="font-bold text-sm">#1d1d20 @ 30% Opacity</span>
+              <span class="text-xs font-mono text-gray-400 mt-1"
+                >Backdrop Blur</span
+              >
+              <span class="font-bold text-sm">4px - 8px</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Section 4: Spacing System -->
+      <section class="pb-20" id="spacing">
+        <div
+          class="flex items-end justify-between border-b border-primary/20 pb-4 mb-8"
+        >
+          <h2 class="text-2xl font-bold flex items-center gap-2">
+            <span class="text-primary font-mono text-lg">04.</span> Spacing
+            &amp; Gutters
+          </h2>
+          <span class="hidden sm:block text-sm font-mono text-gray-500"
+            >Internal Padding Logic</span
+          >
+        </div>
+        <div class="grid lg:grid-cols-2 gap-12">
+          <!-- Diagram -->
+          <div
+            class="relative bg-white border border-gray-200 rounded-2xl p-12 flex items-center justify-center"
+          >
+            <!-- The Card being measured -->
+            <div
+              class="relative w-full max-w-sm bg-background-light rounded-xl border border-primary/20 shadow-sm"
+            >
+              <!-- Padding Visualizer: Top/Bottom/Left/Right -->
+              <div
+                class="absolute top-0 left-0 right-0 h-6 bg-red-500/10 border-b border-red-500/20 flex items-center justify-center z-20"
+              >
+                <span class="text-[10px] font-mono text-red-600 font-bold"
+                  >24px</span
+                >
+              </div>
+              <div
+                class="absolute bottom-0 left-0 right-0 h-6 bg-red-500/10 border-t border-red-500/20 flex items-center justify-center z-20"
+              >
+                <span class="text-[10px] font-mono text-red-600 font-bold"
+                  >24px</span
+                >
+              </div>
+              <div
+                class="absolute top-0 bottom-0 left-0 w-6 bg-red-500/10 border-r border-red-500/20 flex items-center justify-center z-20"
+              >
+                <span
+                  class="text-[10px] font-mono text-red-600 font-bold -rotate-90"
+                  >24px</span
+                >
+              </div>
+              <div
+                class="absolute top-0 bottom-0 right-0 w-6 bg-red-500/10 border-l border-red-500/20 flex items-center justify-center z-20"
+              >
+                <span
+                  class="text-[10px] font-mono text-red-600 font-bold rotate-90"
+                  >24px</span
+                >
+              </div>
+              <!-- Content Area -->
+              <div class="p-6">
+                <div class="flex items-center gap-4 mb-6 relative">
+                  <div class="h-12 w-12 rounded-full bg-primary/20"></div>
+                  <div class="flex-1 space-y-2">
+                    <div class="h-4 w-32 bg-primary/10 rounded"></div>
+                    <div class="h-3 w-20 bg-primary/5 rounded"></div>
+                  </div>
+                  <!-- Internal Gutter Measurement -->
+                  <div
+                    class="absolute left-12 top-0 bottom-0 w-4 bg-blue-500/10 border-x border-blue-500/20 flex items-center justify-center"
+                  >
+                    <span
+                      class="text-[9px] font-mono text-blue-600 font-bold -rotate-90 whitespace-nowrap"
+                      >16px</span
+                    >
+                  </div>
+                </div>
+                <div class="space-y-3">
+                  <div
+                    class="h-8 w-full bg-white rounded border border-primary/10"
+                  ></div>
+                  <div
+                    class="h-8 w-full bg-white rounded border border-primary/10"
+                  ></div>
+                  <!-- Stack spacing -->
+                  <div
+                    class="absolute mt-[-20px] left-1/2 -translate-x-1/2 h-3 w-4 bg-green-500/10 border-y border-green-500/20 flex items-center justify-center"
+                  >
+                    <span class="text-[8px] font-mono text-green-600 font-bold"
+                      >12px</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Reference Table -->
+          <div class="flex flex-col gap-6 justify-center">
+            <div class="glass-panel p-6 rounded-xl">
+              <h3 class="font-bold text-lg mb-4">Space Tokens</h3>
+              <div class="overflow-hidden rounded-lg border border-gray-200">
+                <table class="w-full text-sm text-left">
+                  <thead
+                    class="bg-gray-50 text-gray-500 font-mono text-xs uppercase"
+                  >
+                    <tr>
+                      <th class="px-4 py-3">Token</th>
+                      <th class="px-4 py-3">Value</th>
+                      <th class="px-4 py-3">Usage</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-100">
+                    <tr class="bg-white">
+                      <td class="px-4 py-3 font-mono text-primary font-bold">
+                        p-6
+                      </td>
+                      <td class="px-4 py-3">24px</td>
+                      <td class="px-4 py-3 text-gray-600">
+                        Standard Card Padding
+                      </td>
+                    </tr>
+                    <tr class="bg-white">
+                      <td class="px-4 py-3 font-mono text-primary font-bold">
+                        p-4
+                      </td>
+                      <td class="px-4 py-3">16px</td>
+                      <td class="px-4 py-3 text-gray-600">
+                        Compact Card / Modal Header
+                      </td>
+                    </tr>
+                    <tr class="bg-white">
+                      <td class="px-4 py-3 font-mono text-primary font-bold">
+                        gap-4
+                      </td>
+                      <td class="px-4 py-3">16px</td>
+                      <td class="px-4 py-3 text-gray-600">
+                        Icon-to-Text Gutter
+                      </td>
+                    </tr>
+                    <tr class="bg-white">
+                      <td class="px-4 py-3 font-mono text-primary font-bold">
+                        gap-3
+                      </td>
+                      <td class="px-4 py-3">12px</td>
+                      <td class="px-4 py-3 text-gray-600">List Item Stack</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div
+              class="p-4 bg-amber-50 rounded-lg border border-amber-100 flex gap-3 items-start"
+            >
+              <span class="material-symbols-outlined text-amber-500 mt-0.5"
+                >lightbulb</span
+              >
+              <div>
+                <h4 class="text-sm font-bold text-amber-800">Designer Note</h4>
+                <p class="text-sm text-amber-700 mt-1">
+                  For mobile viewports (&lt; 640px), reduce the standard card
+                  padding from
+                  <code class="bg-amber-100 px-1 rounded">24px</code> to
+                  <code class="bg-amber-100 px-1 rounded">16px</code> to
+                  maximize horizontal screen real estate.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Simple Footer -->
+    <footer
+      class="border-t border-primary/20 bg-white/40 backdrop-blur-sm py-12 mt-12"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6"
+      >
+        <div class="flex items-center gap-2 text-gray-500 text-sm">
+          <span class="font-bold text-[#101818]">Sira Design System</span>
+          <span>•</span>
+          <span>Internal Documentation</span>
+        </div>
+        <div class="flex gap-6">
+          <a
+            class="text-gray-400 hover:text-primary transition-colors"
+            href="#"
+          >
+            <span class="material-symbols-outlined">description</span>
+          </a>
+          <a
+            class="text-gray-400 hover:text-primary transition-colors"
+            href="#"
+          >
+            <span class="material-symbols-outlined">code</span>
+          </a>
+          <a
+            class="text-gray-400 hover:text-primary transition-colors"
+            href="#"
+          >
+            <span class="material-symbols-outlined">palette</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -40,11 +40,13 @@
       }
       .text-gradient {
         background: linear-gradient(135deg, #2a9d8f 0%, #264653 100%);
+        background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
       .dark .text-gradient {
         background: linear-gradient(135deg, #63c1bb 0%, #c8e6e2 100%);
+        background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
@@ -64,11 +66,7 @@
   <body
     class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans transition-colors duration-300 antialiased overflow-hidden h-screen flex"
   >
-    <aside
-      class="w-64 h-[calc(100vh-2rem)] m-4 flex flex-col justify-between glass-shell z-20 rounded-2xl shadow-xl transition-all duration-300"
-    >
-      <load src="/src/partials/sidebar.html" active="dashboard" />
-    </aside>
+    <load src="/src/partials/sidebar.html" active="dashboard" />
     <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
       <div
         class="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-300/20 dark:bg-teal-900/20 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/4"
@@ -262,9 +260,6 @@
                       >
                         BCA
                       </div>
-                      <span class="material-symbols-outlined text-slate-300"
-                        >more_horiz</span
-                      >
                     </div>
                     <div class="space-y-1">
                       <p
@@ -288,9 +283,6 @@
                       >
                         JAGO
                       </div>
-                      <span class="material-symbols-outlined text-slate-300"
-                        >more_horiz</span
-                      >
                     </div>
                     <div class="space-y-1">
                       <p

@@ -47,7 +47,9 @@
       }
     </style>
   </head>
-  <body class="bg-background-light text-[#21262c] font-display h-screen flex overflow-hidden selection:bg-primary/30">
+  <body
+    class="bg-background-light text-[#21262c] h-screen flex overflow-hidden selection:bg-primary/30"
+  >
     <load src="/src/partials/sidebar.html" active="split-bill" />
     <main class="flex-1 flex flex-col relative min-w-0">
       <load
@@ -57,260 +59,525 @@
         icon="receipt_long"
       />
 
-<!-- Scrollable Workspace -->
-<div class="flex-1 overflow-y-auto relative">
-<!-- Background Decorative Elements -->
-<div class="bg-blob bg-primary/20 w-96 h-96 rounded-full top-10 left-10"></div>
-<div class="bg-blob bg-blue-200 w-[500px] h-[500px] rounded-full bottom-20 right-20"></div>
-<div class="max-w-6xl mx-auto p-8 relative z-10 flex flex-col gap-8 pb-32">
-<!-- Section A: Session Setup (Glassmorphic Header) -->
-<section class="glass-panel rounded-2xl p-8 shadow-glass flex flex-wrap md:flex-nowrap items-center justify-between gap-8">
-<div class="flex-1 min-w-[300px]">
-<label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 ml-1">Session Name</label>
-<div class="relative group">
-<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-teal-500 transition-colors">edit</span>
-<input class="w-full bg-white/50 hover:bg-white/80 focus:bg-white border border-transparent focus:border-primary/30 rounded-xl py-4 pl-12 pr-4 text-xl font-bold text-gray-800 placeholder:text-gray-300 focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all shadow-sm" type="text" value="Dinner at Senopati"/>
-</div>
-</div>
-<div class="w-px h-16 bg-gradient-to-b from-transparent via-slate-200 to-transparent hidden md:block"></div>
-<div class="flex-1 min-w-[300px]">
-<label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 ml-1 text-right">Total Bill Amount</label>
-<div class="relative group">
-<span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-mono text-2xl group-focus-within:text-teal-500 transition-colors">$</span>
-<input class="w-full bg-white/50 hover:bg-white/80 focus:bg-white border border-transparent focus:border-primary/30 rounded-xl py-4 pl-10 pr-4 text-3xl font-bold font-mono text-gray-800 text-right placeholder:text-gray-300 focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all shadow-sm" type="text" value="248.50"/>
-</div>
-</div>
-</section>
-<!-- Section B: Two Column Layout -->
-<div class="grid grid-cols-12 gap-8">
-<!-- Left Column: Friends & Guests -->
-<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
-<div class="flex items-center justify-between px-1">
-<h3 class="text-lg font-bold text-gray-800 flex items-center gap-2">
-<span class="material-symbols-outlined text-teal-500">groups</span>
-                                Friends &amp; Guests
-                            </h3>
-<button class="text-sm font-semibold text-teal-600 hover:text-teal-700 hover:bg-teal-50 px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1">
-<span class="material-symbols-outlined text-[18px]">add</span> Add
-                            </button>
-</div>
-<div class="flex flex-col gap-3">
-<!-- Member Card 1 (Me) -->
-<div class="bg-white rounded-xl p-4 shadow-soft border border-slate-100 flex flex-col gap-3 transition-transform hover:-translate-y-1 duration-300">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="size-10 rounded-full bg-gray-200 bg-center bg-cover border border-white shadow-sm" data-alt="Profile picture of yourself" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDAaRWVqs-hcIPy0nAG4XKlMBD9zuY1yR0aHpc3gCwLcHT9y0VvF5zcouj_Vj9QK8gDprWxNHBZegHrOh8sGGmQDgjJfDp_wXcpYVF-LJyAV6CrMgJuhDHyj8y2OlITEqbNYtgRZer7woKPMcbKEURiOpDEcafhCvs-G-CoSmtdlVGGzRHLCHlIsfXt9T3uhXHpjwH7mAxBdBCOPMCVum2VPRvT9YKaAlqGbS_oAcpWDUb1p3oOeGxBDBJKg7jklDSt7jhiJKpzuP2-');"></div>
-<div>
-<p class="text-sm font-bold text-gray-900 leading-tight">You</p>
-<p class="text-xs text-gray-500">Organizer</p>
-</div>
-</div>
-<div class="px-2 py-1 rounded bg-teal-50 text-teal-700 text-xs font-bold">Paid</div>
-</div>
-<div class="h-px bg-slate-50 w-full"></div>
-<div class="flex items-center justify-between">
-<span class="text-xs font-medium text-gray-500">Split Method</span>
-<label class="relative inline-flex items-center cursor-pointer group">
-<input checked="" class="sr-only peer" type="checkbox"/>
-<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
-<span class="ml-2 text-xs font-medium text-gray-400 group-hover:text-gray-600 peer-checked:text-teal-600">Custom</span>
-</label>
-</div>
-</div>
-<!-- Member Card 2 -->
-<div class="bg-white rounded-xl p-4 shadow-soft border border-slate-100 flex flex-col gap-3 transition-transform hover:-translate-y-1 duration-300">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="size-10 rounded-full bg-gray-200 bg-center bg-cover border border-white shadow-sm" data-alt="Profile picture of David" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCAi6TESREN6H7A3CMkrVsZygOhC7oVl-SjMZfMMtZh7Q41sxPZFzXpQjpKNKZERvOlGYkEoq3-u4P1vN3meOzo6e7vGUYSXHOsqmrUL5UGPvlCdDxReBcvHtj-kv862wbl939OlpbFs2Kx9jcFuPcMBjvUXAoAntwPbH4dYg_8sgLph3efdjceQnsvt3OoLNpWRbWaJSwN8phlMfbtdQwaYB9wZbt3grcrmQKkSR_ZaJFgJWqKdEoTpr9iIBt-OzWBzr6T9Z50NqFz');"></div>
-<div>
-<p class="text-sm font-bold text-gray-900 leading-tight">David K.</p>
-<p class="text-xs text-gray-500">@david_k</p>
-</div>
-</div>
-<button class="text-gray-300 hover:text-red-400 transition-colors">
-<span class="material-symbols-outlined text-[20px]">remove_circle</span>
-</button>
-</div>
-<div class="h-px bg-slate-50 w-full"></div>
-<div class="flex items-center justify-between">
-<span class="text-xs font-medium text-gray-500">Split Method</span>
-<label class="relative inline-flex items-center cursor-pointer group">
-<input class="sr-only peer" type="checkbox"/>
-<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
-<span class="ml-2 text-xs font-medium text-gray-400 group-hover:text-gray-600 peer-checked:text-teal-600">Even</span>
-</label>
-</div>
-</div>
-<!-- Member Card 3 -->
-<div class="bg-white rounded-xl p-4 shadow-soft border border-slate-100 flex flex-col gap-3 transition-transform hover:-translate-y-1 duration-300">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="size-10 rounded-full bg-gray-200 bg-center bg-cover border border-white shadow-sm" data-alt="Profile picture of Sarah" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSSNPzuXIx_XQtmvVnQ5SxQ3yPb1u7cBDLLrR_PKbImQDDN4wMOQt6Sb3rpNju9uO9FzSK1r3Xq9ip0zqy2TGSQAwACrQ-8tHKdTRsst_lVQlMtvE_q2UNKlqoZ37ZVWrQQp4uDV7Cjuq0sI-QcECjZACGoBZ406TXW-GvrcGjUI2yxSo2lQlg3jzV1vG_jWUMowzr6K_5Hjxlg3yn3-WdOVZcC7ltbEvWBNDVdHKuXgoJyPcNVnWwaknnumm-cy-bsZV4D8ErA25I');"></div>
-<div>
-<p class="text-sm font-bold text-gray-900 leading-tight">Sarah J.</p>
-<p class="text-xs text-gray-500">@sarah_j</p>
-</div>
-</div>
-<button class="text-gray-300 hover:text-red-400 transition-colors">
-<span class="material-symbols-outlined text-[20px]">remove_circle</span>
-</button>
-</div>
-<div class="h-px bg-slate-50 w-full"></div>
-<div class="flex items-center justify-between">
-<span class="text-xs font-medium text-gray-500">Split Method</span>
-<label class="relative inline-flex items-center cursor-pointer group">
-<input checked="" class="sr-only peer" type="checkbox"/>
-<div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"></div>
-<span class="ml-2 text-xs font-medium text-gray-400 group-hover:text-gray-600 peer-checked:text-teal-600">Custom</span>
-</label>
-</div>
-</div>
-</div>
-</div>
-<!-- Right Column: Itemized List -->
-<div class="col-span-12 lg:col-span-8 flex flex-col gap-6">
-<div class="flex items-center justify-between px-1">
-<h3 class="text-lg font-bold text-gray-800 flex items-center gap-2">
-<span class="material-symbols-outlined text-teal-500">receipt_long</span>
-                                Item Breakdown
-                            </h3>
-<div class="text-xs font-mono text-gray-400">
-                                REMAINING: <span class="text-red-400 font-bold">$0.00</span>
-</div>
-</div>
-<div class="bg-white rounded-2xl shadow-soft border border-slate-100 overflow-hidden">
-<!-- Table Header -->
-<div class="grid grid-cols-12 gap-4 px-6 py-4 bg-slate-50/50 border-b border-slate-100">
-<div class="col-span-5 text-xs font-bold text-gray-400 uppercase tracking-wider">Item</div>
-<div class="col-span-3 text-xs font-bold text-gray-400 uppercase tracking-wider text-right">Cost</div>
-<div class="col-span-4 text-xs font-bold text-gray-400 uppercase tracking-wider text-center">Assigned To</div>
-</div>
-<!-- Row 1 -->
-<div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-slate-50 items-center hover:bg-slate-50/30 transition-colors group">
-<div class="col-span-5">
-<input class="w-full bg-transparent border-none p-0 text-sm font-semibold text-gray-800 focus:ring-0 placeholder:text-gray-300" type="text" value="Truffle Fries"/>
-</div>
-<div class="col-span-3 flex justify-end">
-<div class="flex items-center bg-slate-100 rounded-lg px-2 py-1 group-focus-within:bg-white group-focus-within:ring-2 group-focus-within:ring-primary/20">
-<span class="text-gray-400 font-mono text-xs mr-1">$</span>
-<input class="w-16 bg-transparent border-none p-0 text-sm font-mono font-bold text-gray-800 text-right focus:ring-0" type="text" value="12.50"/>
-</div>
-</div>
-<div class="col-span-4 flex justify-center">
-<div class="flex -space-x-2">
-<img class="inline-block size-8 rounded-full ring-2 ring-white" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQK2zu-ECQnT-rk4hOBkWP2GwizOc6X8Xu9iOHnEVQfNoJaWDZUA5svdfkeYL7NBbVLg-aDfQtJkagU_FqJD0TZ2k6m5otkcr4qfihIpmPiU6gOL-oX7jMGXXndqpdJjt49ekO9IrEkVfN4SGrLqUG4rm03BXFlqN5a6zbgZ4ZG2yGT3FrtC4zYPGaok0175tGSfoFYqDO3_qPcj4M6MKVIbBxhjeHlF-2WSirTAa8kBHlgD1aE5MPKVLgkm_Z9B0zvVKUTYSOIZ92"/>
-<img class="inline-block size-8 rounded-full ring-2 ring-white opacity-40 grayscale" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtApBh5LAYhFppitwUn4bVL2bJ-FpP-iL_7k3wDgsOs5q5Yfq9Q4i-bOzVa8Kc3Lc-SM5l8BxmxqOAYs2D8UL133BtblaJIPcMT11qvkACRZiWB4X5Qom4V-VILsRap04eHzkyUkZfy0S_3HsjnrSVPl6cGDVgJKQohfDm5DQkCfvuWPXgZ4dGZ_NZpr0ShMW-9w85XjaCZntGIGlkUYoGe3iLJOxUcuMTbrGzeZJ_mdSCZ-kMYovW4eukHFVXzavNYoovHBX9WbIo"/>
-<img class="inline-block size-8 rounded-full ring-2 ring-white" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe9mtNXjAHpod2uBE3gnDm9Z7_pPCGEvt40TGqIoknbTbWHmP6ct1e8rBsWrBnkr3Vedvl9HnLCsb7trJCiqnHGsiG0jvVT7hPcTPiLKFHSbnyOvCh7Zndvx12dgXFRlRDb4-JQ9PqoW6x4DWTgTJivyX46N9U9EzV9sMO7sDFIb31oQr75Xgh3_LnMjZNMzeV9H7rwafrHtLppf2kKpTi0lHhByIY3f724FPTgo0QOmWXgccxjd5xg39OU0YSX3upjrk6_qKbNpIc"/>
-<button class="size-8 rounded-full bg-slate-100 ring-2 ring-white flex items-center justify-center text-gray-400 hover:bg-slate-200 hover:text-gray-600 transition-colors">
-<span class="material-symbols-outlined text-[16px]">add</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Row 2 -->
-<div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-slate-50 items-center hover:bg-slate-50/30 transition-colors group">
-<div class="col-span-5">
-<input class="w-full bg-transparent border-none p-0 text-sm font-semibold text-gray-800 focus:ring-0 placeholder:text-gray-300" type="text" value="Wagyu Burger"/>
-</div>
-<div class="col-span-3 flex justify-end">
-<div class="flex items-center bg-slate-100 rounded-lg px-2 py-1 group-focus-within:bg-white group-focus-within:ring-2 group-focus-within:ring-primary/20">
-<span class="text-gray-400 font-mono text-xs mr-1">$</span>
-<input class="w-16 bg-transparent border-none p-0 text-sm font-mono font-bold text-gray-800 text-right focus:ring-0" type="text" value="24.00"/>
-</div>
-</div>
-<div class="col-span-4 flex justify-center">
-<div class="flex -space-x-2">
-<img class="inline-block size-8 rounded-full ring-2 ring-white opacity-40 grayscale" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6C2x90CvDPRRTVocWhDxBMQ-a-Vn2_058iBJJTA5RHHwmYZFQWUtA4rJTAOkMNo4hoIj3DUxEhocS_ST3ka3wJrYMgQRwoiO5X5D9eTxHYFYF3tZzB_RmS2KZbtfaJfKwRzuGltbfAnRUD9EEff8MtZDvt0mR9kBpz3yKHMEe6NOkz0BuYW142ifV1Q6Tn34vRJjsc01J4E5tHreWyJzn94NhvXsdrFNsxBPENFMu5Zymnm8axCXqNEBDgd1Esg0Gtfl8nTIpesNs"/>
-<img class="inline-block size-8 rounded-full ring-2 ring-white" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2GQtuO4rQQ7u8jgj0YLhfU_ktDLeIFMSfg3WueHTktFa-TUhZS9RaDMturg3eglxcRAC0uVFFi9x3EzDKqAtYj0wgymiu1x7vvYTLgZY92I1jKY1NNd_Efl6H8zWwNBthxtqZkj4qbfydiN0ZZ1Wov4EsyHNpasb1PfxXOg4SqOqtx3PDWTLmKm9Si07HwlTugxjwLxb97s9Hh6LhxTUwx1yEbjE6v-WxnQTimHcz3C_c39BY1Fm2p6rZiz2y3YjiSVYXx2JXof1o"/>
-<img class="inline-block size-8 rounded-full ring-2 ring-white opacity-40 grayscale" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv_iU78DMZa0v1SBg20pnoctz5uaxb1wYU0ZIWZVLW1FaQjpyM5hOyBKbs2ksVNwF-geys4hIrs_sJHHxZdtkB6qhzbroY6jenlkbZj3Iej2tehloL-7SZD6GBcNw9vMg2b_IvJf6LyQtxbShA2xN7U3a4AW1TbjPHFSi08LnRqc-K2xrVHmUyU8g6GnL5YivQUVUmCTIz2tJKJaVXJnj5m1A2oSNLkeir93X2Ai-RK9yw6D1QFqJPLGcZvB4bFom18ff07qEknEWG"/>
-<button class="size-8 rounded-full bg-slate-100 ring-2 ring-white flex items-center justify-center text-gray-400 hover:bg-slate-200 hover:text-gray-600 transition-colors">
-<span class="material-symbols-outlined text-[16px]">add</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Row 3 -->
-<div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-slate-50 items-center hover:bg-slate-50/30 transition-colors group">
-<div class="col-span-5">
-<input class="w-full bg-transparent border-none p-0 text-sm font-semibold text-gray-800 focus:ring-0 placeholder:text-gray-300" type="text" value="Iced Latte x2"/>
-</div>
-<div class="col-span-3 flex justify-end">
-<div class="flex items-center bg-slate-100 rounded-lg px-2 py-1 group-focus-within:bg-white group-focus-within:ring-2 group-focus-within:ring-primary/20">
-<span class="text-gray-400 font-mono text-xs mr-1">$</span>
-<input class="w-16 bg-transparent border-none p-0 text-sm font-mono font-bold text-gray-800 text-right focus:ring-0" type="text" value="14.00"/>
-</div>
-</div>
-<div class="col-span-4 flex justify-center">
-<div class="flex -space-x-2">
-<img class="inline-block size-8 rounded-full ring-2 ring-white" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4ZHTkDRbxNlWTQ7AL2kPcx-Eg6fOL1bsq5RfPhBMKrgJzdGofimMDnN1_vmCe0vUQ11aOSB40KPm7ha0udCksBjHRX-DQiV0Cb_M6NX2oRCZ4pMO1ErXX5k4Tw_DFNpbnN_iSEYtI7vgsY5mtYm6KvYvC61IeB0q2hFk_wlvUWFeLlfUnKawqa12ggDOdB0xX93DWRn0IZ1KyTIyWNG7tV-W_e6GHuNlYtUvxfvagxvjVpZlQmPcdcbE99kcTg4XUQSJsjp2iRLv3"/>
-<img class="inline-block size-8 rounded-full ring-2 ring-white opacity-40 grayscale" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoGCvzZPMKz2nCJyu439v64O2EJDX7f5TWbI9ZG9DUQCnw15pX_3yCdkPKSvN1zlAGc8XtyIYj_gAHC0GHxLXswDWwaLQTwYOC02ZjqW8q-_APUmH4moybQ7CsL3z72vgG2ajEuEQ5Vh5iH4nneP0oYIQmr5OZTfYr1IMfUCu86X7mStisg_aqPudxjaBpGzqxQVKI7YMwuz2ZXXIpckioqUUEVFbW8TEH5pt-k5tsq4IOYygd5J3gmF9vB_j5xO8fA-kWhG7GaswU"/>
-<img class="inline-block size-8 rounded-full ring-2 ring-white" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5r_IPP_Db9V9ENWafpr9SUmim49KIfHBeTEYLEp2YoaPw-pvQ8TgEMNc4h3XMNZ5iL54XTQ4p1bSwzQJzIUFmMdP4c6A8bP1qqvbtJJ0RoPwItacb-6klRWwVp29brf_1vkcMJMZBXdFnyzPxXnwsu0UX9PmrfXUFMwxAmXkZDhKHY1crInmIULqJ6ffFxMMhYZ4Mn4VQetyP1OXam6TyBryYptJZ5gIFbm_wM-_OG_3mNJPEgCbgiwCvBVm5UWeCNTIPB2t4KXHQ"/>
-<button class="size-8 rounded-full bg-slate-100 ring-2 ring-white flex items-center justify-center text-gray-400 hover:bg-slate-200 hover:text-gray-600 transition-colors">
-<span class="material-symbols-outlined text-[16px]">add</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Add Item Row -->
-<div class="px-6 py-3 bg-slate-50">
-<button class="w-full flex items-center justify-center gap-2 text-sm font-semibold text-teal-600 py-2 rounded-lg border border-dashed border-teal-200 hover:bg-teal-50 hover:border-teal-300 transition-colors">
-<span class="material-symbols-outlined text-[18px]">playlist_add</span> Add Item
-                                </button>
-</div>
-</div>
-<!-- Tax and Tip -->
-<div class="bg-white rounded-xl shadow-soft border border-slate-100 p-6 flex items-center justify-between">
-<div class="flex items-center gap-6">
-<label class="flex items-center gap-2 cursor-pointer">
-<span class="text-sm font-medium text-gray-600">Tax</span>
-<div class="bg-slate-100 rounded px-2 py-1 flex items-center">
-<span class="text-xs text-gray-400 mr-1">%</span>
-<input class="w-6 bg-transparent border-none p-0 text-sm font-mono text-gray-800 text-right focus:ring-0" type="text" value="10"/>
-</div>
-</label>
-<div class="h-4 w-px bg-slate-200"></div>
-<label class="flex items-center gap-2 cursor-pointer">
-<span class="text-sm font-medium text-gray-600">Tip</span>
-<div class="bg-slate-100 rounded px-2 py-1 flex items-center">
-<span class="text-xs text-gray-400 mr-1">%</span>
-<input class="w-6 bg-transparent border-none p-0 text-sm font-mono text-gray-800 text-right focus:ring-0" type="text" value="15"/>
-</div>
-</label>
-</div>
-<div class="text-right">
-<p class="text-xs text-gray-400 font-bold uppercase">Total Extras</p>
-<p class="font-mono text-lg font-bold text-gray-800">$62.12</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Sticky Footer (Results & Action) -->
-<div class="sticky bottom-0 z-30 bg-surface/80 backdrop-blur-xl border-t border-slate-200 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
-<div class="max-w-6xl mx-auto px-8 py-4 flex items-center justify-between gap-6">
-<div class="flex items-center gap-8">
-<div>
-<p class="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-0.5">Your Share</p>
-<p class="text-2xl font-mono font-bold text-gray-900">$84.50</p>
-</div>
-<div class="w-px h-8 bg-slate-200"></div>
-<div>
-<p class="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-0.5">Total Others Owe</p>
-<p class="text-2xl font-mono font-bold text-teal-600">$164.00</p>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<button class="px-6 py-3 rounded-xl border border-slate-200 text-sm font-bold text-gray-600 hover:bg-slate-50 hover:text-gray-900 hover:border-slate-300 transition-all flex items-center gap-2">
-<span class="material-symbols-outlined text-[20px]">send</span>
-                        Request Payments
+      <!-- Scrollable Workspace -->
+      <div class="flex-1 overflow-y-auto relative">
+        <!-- Background Decorative Elements -->
+        <div
+          class="bg-blob bg-primary/20 w-96 h-96 rounded-full top-10 left-10"
+        ></div>
+        <div
+          class="bg-blob bg-blue-200 w-[500px] h-[500px] rounded-full bottom-20 right-20"
+        ></div>
+        <div
+          class="max-w-6xl mx-auto p-8 relative z-10 flex flex-col gap-8 pb-32"
+        >
+          <!-- Section A: Session Setup (Glassmorphic Header) -->
+          <section
+            class="glass-panel rounded-2xl p-8 shadow-glass flex flex-wrap md:flex-nowrap items-center justify-between gap-8"
+          >
+            <div class="flex-1 min-w-[300px]">
+              <label
+                class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 ml-1"
+                >Session Name</label
+              >
+              <div class="relative group">
+                <span
+                  class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-teal-500 transition-colors"
+                  >edit</span
+                >
+                <input
+                  class="w-full bg-white/50 hover:bg-white/80 focus:bg-white border border-transparent focus:border-primary/30 rounded-xl py-4 pl-12 pr-4 text-xl font-bold text-gray-800 placeholder:text-gray-300 focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all shadow-sm"
+                  type="text"
+                  value="Dinner at Senopati"
+                />
+              </div>
+            </div>
+            <div
+              class="w-px h-16 bg-gradient-to-b from-transparent via-slate-200 to-transparent hidden md:block"
+            ></div>
+            <div class="flex-1 min-w-[300px]">
+              <label
+                class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 ml-1 text-right"
+                >Total Bill Amount</label
+              >
+              <div class="relative group">
+                <span
+                  class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 font-mono text-2xl group-focus-within:text-teal-500 transition-colors"
+                  >$</span
+                >
+                <input
+                  class="w-full bg-white/50 hover:bg-white/80 focus:bg-white border border-transparent focus:border-primary/30 rounded-xl py-4 pl-10 pr-4 text-3xl font-bold font-mono text-gray-800 text-right placeholder:text-gray-300 focus:outline-none focus:ring-4 focus:ring-primary/10 transition-all shadow-sm"
+                  type="text"
+                  value="248.50"
+                />
+              </div>
+            </div>
+          </section>
+          <!-- Section B: Two Column Layout -->
+          <div class="grid grid-cols-12 gap-8">
+            <!-- Left Column: Friends & Guests -->
+            <div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+              <div class="flex items-center justify-between px-1">
+                <h3
+                  class="text-lg font-bold text-gray-800 flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-teal-500"
+                    >groups</span
+                  >
+                  Friends &amp; Guests
+                </h3>
+                <button
+                  class="text-sm font-semibold text-teal-600 hover:text-teal-700 hover:bg-teal-50 px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1"
+                >
+                  <span class="material-symbols-outlined text-[18px]">add</span>
+                  Add
+                </button>
+              </div>
+              <div class="flex flex-col gap-3">
+                <!-- Member Card 1 (Me) -->
+                <div
+                  class="bg-white rounded-xl p-4 shadow-soft border border-slate-100 flex flex-col gap-3 transition-transform hover:-translate-y-1 duration-300"
+                >
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="size-10 rounded-full bg-gray-200 bg-center bg-cover border border-white shadow-sm"
+                        data-alt="Profile picture of yourself"
+                        style="
+                          background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDAaRWVqs-hcIPy0nAG4XKlMBD9zuY1yR0aHpc3gCwLcHT9y0VvF5zcouj_Vj9QK8gDprWxNHBZegHrOh8sGGmQDgjJfDp_wXcpYVF-LJyAV6CrMgJuhDHyj8y2OlITEqbNYtgRZer7woKPMcbKEURiOpDEcafhCvs-G-CoSmtdlVGGzRHLCHlIsfXt9T3uhXHpjwH7mAxBdBCOPMCVum2VPRvT9YKaAlqGbS_oAcpWDUb1p3oOeGxBDBJKg7jklDSt7jhiJKpzuP2-');
+                        "
+                      ></div>
+                      <div>
+                        <p
+                          class="text-sm font-bold text-gray-900 leading-tight"
+                        >
+                          You
+                        </p>
+                        <p class="text-xs text-gray-500">Organizer</p>
+                      </div>
+                    </div>
+                    <div
+                      class="px-2 py-1 rounded bg-teal-50 text-teal-700 text-xs font-bold"
+                    >
+                      Paid
+                    </div>
+                  </div>
+                  <div class="h-px bg-slate-50 w-full"></div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-medium text-gray-500"
+                      >Split Method</span
+                    >
+                    <label
+                      class="relative inline-flex items-center cursor-pointer group"
+                    >
+                      <input checked="" class="sr-only peer" type="checkbox" />
+                      <div
+                        class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"
+                      ></div>
+                      <span
+                        class="ml-2 text-xs font-medium text-gray-400 group-hover:text-gray-600 peer-checked:text-teal-600"
+                        >Custom</span
+                      >
+                    </label>
+                  </div>
+                </div>
+                <!-- Member Card 2 -->
+                <div
+                  class="bg-white rounded-xl p-4 shadow-soft border border-slate-100 flex flex-col gap-3 transition-transform hover:-translate-y-1 duration-300"
+                >
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="size-10 rounded-full bg-gray-200 bg-center bg-cover border border-white shadow-sm"
+                        data-alt="Profile picture of David"
+                        style="
+                          background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCAi6TESREN6H7A3CMkrVsZygOhC7oVl-SjMZfMMtZh7Q41sxPZFzXpQjpKNKZERvOlGYkEoq3-u4P1vN3meOzo6e7vGUYSXHOsqmrUL5UGPvlCdDxReBcvHtj-kv862wbl939OlpbFs2Kx9jcFuPcMBjvUXAoAntwPbH4dYg_8sgLph3efdjceQnsvt3OoLNpWRbWaJSwN8phlMfbtdQwaYB9wZbt3grcrmQKkSR_ZaJFgJWqKdEoTpr9iIBt-OzWBzr6T9Z50NqFz');
+                        "
+                      ></div>
+                      <div>
+                        <p
+                          class="text-sm font-bold text-gray-900 leading-tight"
+                        >
+                          David K.
+                        </p>
+                        <p class="text-xs text-gray-500">@david_k</p>
+                      </div>
+                    </div>
+                    <button
+                      class="text-gray-300 hover:text-red-400 transition-colors"
+                    >
+                      <span class="material-symbols-outlined text-[20px]"
+                        >remove_circle</span
+                      >
                     </button>
-<button class="flux-gradient px-8 py-3 rounded-xl text-white text-sm font-bold shadow-lg shadow-teal-500/30 hover:shadow-teal-500/50 hover:brightness-105 active:scale-95 transition-all flex items-center gap-2 group">
-<span class="material-symbols-outlined text-[20px] group-hover:animate-pulse">book</span>
-                        Record to Ledger
+                  </div>
+                  <div class="h-px bg-slate-50 w-full"></div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-medium text-gray-500"
+                      >Split Method</span
+                    >
+                    <label
+                      class="relative inline-flex items-center cursor-pointer group"
+                    >
+                      <input class="sr-only peer" type="checkbox" />
+                      <div
+                        class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"
+                      ></div>
+                      <span
+                        class="ml-2 text-xs font-medium text-gray-400 group-hover:text-gray-600 peer-checked:text-teal-600"
+                        >Even</span
+                      >
+                    </label>
+                  </div>
+                </div>
+                <!-- Member Card 3 -->
+                <div
+                  class="bg-white rounded-xl p-4 shadow-soft border border-slate-100 flex flex-col gap-3 transition-transform hover:-translate-y-1 duration-300"
+                >
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="size-10 rounded-full bg-gray-200 bg-center bg-cover border border-white shadow-sm"
+                        data-alt="Profile picture of Sarah"
+                        style="
+                          background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSSNPzuXIx_XQtmvVnQ5SxQ3yPb1u7cBDLLrR_PKbImQDDN4wMOQt6Sb3rpNju9uO9FzSK1r3Xq9ip0zqy2TGSQAwACrQ-8tHKdTRsst_lVQlMtvE_q2UNKlqoZ37ZVWrQQp4uDV7Cjuq0sI-QcECjZACGoBZ406TXW-GvrcGjUI2yxSo2lQlg3jzV1vG_jWUMowzr6K_5Hjxlg3yn3-WdOVZcC7ltbEvWBNDVdHKuXgoJyPcNVnWwaknnumm-cy-bsZV4D8ErA25I');
+                        "
+                      ></div>
+                      <div>
+                        <p
+                          class="text-sm font-bold text-gray-900 leading-tight"
+                        >
+                          Sarah J.
+                        </p>
+                        <p class="text-xs text-gray-500">@sarah_j</p>
+                      </div>
+                    </div>
+                    <button
+                      class="text-gray-300 hover:text-red-400 transition-colors"
+                    >
+                      <span class="material-symbols-outlined text-[20px]"
+                        >remove_circle</span
+                      >
                     </button>
-</div>
-</div>
-</div>
-</main>
-</body></html>
+                  </div>
+                  <div class="h-px bg-slate-50 w-full"></div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-medium text-gray-500"
+                      >Split Method</span
+                    >
+                    <label
+                      class="relative inline-flex items-center cursor-pointer group"
+                    >
+                      <input checked="" class="sr-only peer" type="checkbox" />
+                      <div
+                        class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary"
+                      ></div>
+                      <span
+                        class="ml-2 text-xs font-medium text-gray-400 group-hover:text-gray-600 peer-checked:text-teal-600"
+                        >Custom</span
+                      >
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Right Column: Itemized List -->
+            <div class="col-span-12 lg:col-span-8 flex flex-col gap-6">
+              <div class="flex items-center justify-between px-1">
+                <h3
+                  class="text-lg font-bold text-gray-800 flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-teal-500"
+                    >receipt_long</span
+                  >
+                  Item Breakdown
+                </h3>
+                <div class="text-xs font-mono text-gray-400">
+                  REMAINING: <span class="text-red-400 font-bold">$0.00</span>
+                </div>
+              </div>
+              <div
+                class="bg-white rounded-2xl shadow-soft border border-slate-100 overflow-hidden"
+              >
+                <!-- Table Header -->
+                <div
+                  class="grid grid-cols-12 gap-4 px-6 py-4 bg-slate-50/50 border-b border-slate-100"
+                >
+                  <div
+                    class="col-span-5 text-xs font-bold text-gray-400 uppercase tracking-wider"
+                  >
+                    Item
+                  </div>
+                  <div
+                    class="col-span-3 text-xs font-bold text-gray-400 uppercase tracking-wider text-right"
+                  >
+                    Cost
+                  </div>
+                  <div
+                    class="col-span-4 text-xs font-bold text-gray-400 uppercase tracking-wider text-center"
+                  >
+                    Assigned To
+                  </div>
+                </div>
+                <!-- Row 1 -->
+                <div
+                  class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-slate-50 items-center hover:bg-slate-50/30 transition-colors group"
+                >
+                  <div class="col-span-5">
+                    <input
+                      class="w-full bg-transparent border-none p-0 text-sm font-semibold text-gray-800 focus:ring-0 placeholder:text-gray-300"
+                      type="text"
+                      value="Truffle Fries"
+                    />
+                  </div>
+                  <div class="col-span-3 flex justify-end">
+                    <div
+                      class="flex items-center bg-slate-100 rounded-lg px-2 py-1 group-focus-within:bg-white group-focus-within:ring-2 group-focus-within:ring-primary/20"
+                    >
+                      <span class="text-gray-400 font-mono text-xs mr-1"
+                        >$</span
+                      >
+                      <input
+                        class="w-16 bg-transparent border-none p-0 text-sm font-mono font-bold text-gray-800 text-right focus:ring-0"
+                        type="text"
+                        value="12.50"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-span-4 flex justify-center">
+                    <div class="flex -space-x-2">
+                      <img
+                        class="inline-block size-8 rounded-full ring-2 ring-white"
+                        data-alt="User avatar"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQK2zu-ECQnT-rk4hOBkWP2GwizOc6X8Xu9iOHnEVQfNoJaWDZUA5svdfkeYL7NBbVLg-aDfQtJkagU_FqJD0TZ2k6m5otkcr4qfihIpmPiU6gOL-oX7jMGXXndqpdJjt49ekO9IrEkVfN4SGrLqUG4rm03BXFlqN5a6zbgZ4ZG2yGT3FrtC4zYPGaok0175tGSfoFYqDO3_qPcj4M6MKVIbBxhjeHlF-2WSirTAa8kBHlgD1aE5MPKVLgkm_Z9B0zvVKUTYSOIZ92"
+                      />
+                      <img
+                        class="inline-block size-8 rounded-full ring-2 ring-white opacity-40 grayscale"
+                        data-alt="User avatar"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtApBh5LAYhFppitwUn4bVL2bJ-FpP-iL_7k3wDgsOs5q5Yfq9Q4i-bOzVa8Kc3Lc-SM5l8BxmxqOAYs2D8UL133BtblaJIPcMT11qvkACRZiWB4X5Qom4V-VILsRap04eHzkyUkZfy0S_3HsjnrSVPl6cGDVgJKQohfDm5DQkCfvuWPXgZ4dGZ_NZpr0ShMW-9w85XjaCZntGIGlkUYoGe3iLJOxUcuMTbrGzeZJ_mdSCZ-kMYovW4eukHFVXzavNYoovHBX9WbIo"
+                      />
+                      <img
+                        class="inline-block size-8 rounded-full ring-2 ring-white"
+                        data-alt="User avatar"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe9mtNXjAHpod2uBE3gnDm9Z7_pPCGEvt40TGqIoknbTbWHmP6ct1e8rBsWrBnkr3Vedvl9HnLCsb7trJCiqnHGsiG0jvVT7hPcTPiLKFHSbnyOvCh7Zndvx12dgXFRlRDb4-JQ9PqoW6x4DWTgTJivyX46N9U9EzV9sMO7sDFIb31oQr75Xgh3_LnMjZNMzeV9H7rwafrHtLppf2kKpTi0lHhByIY3f724FPTgo0QOmWXgccxjd5xg39OU0YSX3upjrk6_qKbNpIc"
+                      />
+                      <button
+                        class="size-8 rounded-full bg-slate-100 ring-2 ring-white flex items-center justify-center text-gray-400 hover:bg-slate-200 hover:text-gray-600 transition-colors"
+                      >
+                        <span class="material-symbols-outlined text-[16px]"
+                          >add</span
+                        >
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!-- Row 2 -->
+                <div
+                  class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-slate-50 items-center hover:bg-slate-50/30 transition-colors group"
+                >
+                  <div class="col-span-5">
+                    <input
+                      class="w-full bg-transparent border-none p-0 text-sm font-semibold text-gray-800 focus:ring-0 placeholder:text-gray-300"
+                      type="text"
+                      value="Wagyu Burger"
+                    />
+                  </div>
+                  <div class="col-span-3 flex justify-end">
+                    <div
+                      class="flex items-center bg-slate-100 rounded-lg px-2 py-1 group-focus-within:bg-white group-focus-within:ring-2 group-focus-within:ring-primary/20"
+                    >
+                      <span class="text-gray-400 font-mono text-xs mr-1"
+                        >$</span
+                      >
+                      <input
+                        class="w-16 bg-transparent border-none p-0 text-sm font-mono font-bold text-gray-800 text-right focus:ring-0"
+                        type="text"
+                        value="24.00"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-span-4 flex justify-center">
+                    <div class="flex -space-x-2">
+                      <img
+                        class="inline-block size-8 rounded-full ring-2 ring-white opacity-40 grayscale"
+                        data-alt="User avatar"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6C2x90CvDPRRTVocWhDxBMQ-a-Vn2_058iBJJTA5RHHwmYZFQWUtA4rJTAOkMNo4hoIj3DUxEhocS_ST3ka3wJrYMgQRwoiO5X5D9eTxHYFYF3tZzB_RmS2KZbtfaJfKwRzuGltbfAnRUD9EEff8MtZDvt0mR9kBpz3yKHMEe6NOkz0BuYW142ifV1Q6Tn34vRJjsc01J4E5tHreWyJzn94NhvXsdrFNsxBPENFMu5Zymnm8axCXqNEBDgd1Esg0Gtfl8nTIpesNs"
+                      />
+                      <img
+                        class="inline-block size-8 rounded-full ring-2 ring-white"
+                        data-alt="User avatar"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2GQtuO4rQQ7u8jgj0YLhfU_ktDLeIFMSfg3WueHTktFa-TUhZS9RaDMturg3eglxcRAC0uVFFi9x3EzDKqAtYj0wgymiu1x7vvYTLgZY92I1jKY1NNd_Efl6H8zWwNBthxtqZkj4qbfydiN0ZZ1Wov4EsyHNpasb1PfxXOg4SqOqtx3PDWTLmKm9Si07HwlTugxjwLxb97s9Hh6LhxTUwx1yEbjE6v-WxnQTimHcz3C_c39BY1Fm2p6rZiz2y3YjiSVYXx2JXof1o"
+                      />
+                      <img
+                        class="inline-block size-8 rounded-full ring-2 ring-white opacity-40 grayscale"
+                        data-alt="User avatar"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDv_iU78DMZa0v1SBg20pnoctz5uaxb1wYU0ZIWZVLW1FaQjpyM5hOyBKbs2ksVNwF-geys4hIrs_sJHHxZdtkB6qhzbroY6jenlkbZj3Iej2tehloL-7SZD6GBcNw9vMg2b_IvJf6LyQtxbShA2xN7U3a4AW1TbjPHFSi08LnRqc-K2xrVHmUyU8g6GnL5YivQUVUmCTIz2tJKJaVXJnj5m1A2oSNLkeir93X2Ai-RK9yw6D1QFqJPLGcZvB4bFom18ff07qEknEWG"
+                      />
+                      <button
+                        class="size-8 rounded-full bg-slate-100 ring-2 ring-white flex items-center justify-center text-gray-400 hover:bg-slate-200 hover:text-gray-600 transition-colors"
+                      >
+                        <span class="material-symbols-outlined text-[16px]"
+                          >add</span
+                        >
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!-- Row 3 -->
+                <div
+                  class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-slate-50 items-center hover:bg-slate-50/30 transition-colors group"
+                >
+                  <div class="col-span-5">
+                    <input
+                      class="w-full bg-transparent border-none p-0 text-sm font-semibold text-gray-800 focus:ring-0 placeholder:text-gray-300"
+                      type="text"
+                      value="Iced Latte x2"
+                    />
+                  </div>
+                  <div class="col-span-3 flex justify-end">
+                    <div
+                      class="flex items-center bg-slate-100 rounded-lg px-2 py-1 group-focus-within:bg-white group-focus-within:ring-2 group-focus-within:ring-primary/20"
+                    >
+                      <span class="text-gray-400 font-mono text-xs mr-1"
+                        >$</span
+                      >
+                      <input
+                        class="w-16 bg-transparent border-none p-0 text-sm font-mono font-bold text-gray-800 text-right focus:ring-0"
+                        type="text"
+                        value="14.00"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-span-4 flex justify-center">
+                    <div class="flex -space-x-2">
+                      <img
+                        class="inline-block size-8 rounded-full ring-2 ring-white"
+                        data-alt="User avatar"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4ZHTkDRbxNlWTQ7AL2kPcx-Eg6fOL1bsq5RfPhBMKrgJzdGofimMDnN1_vmCe0vUQ11aOSB40KPm7ha0udCksBjHRX-DQiV0Cb_M6NX2oRCZ4pMO1ErXX5k4Tw_DFNpbnN_iSEYtI7vgsY5mtYm6KvYvC61IeB0q2hFk_wlvUWFeLlfUnKawqa12ggDOdB0xX93DWRn0IZ1KyTIyWNG7tV-W_e6GHuNlYtUvxfvagxvjVpZlQmPcdcbE99kcTg4XUQSJsjp2iRLv3"
+                      />
+                      <img
+                        class="inline-block size-8 rounded-full ring-2 ring-white opacity-40 grayscale"
+                        data-alt="User avatar"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoGCvzZPMKz2nCJyu439v64O2EJDX7f5TWbI9ZG9DUQCnw15pX_3yCdkPKSvN1zlAGc8XtyIYj_gAHC0GHxLXswDWwaLQTwYOC02ZjqW8q-_APUmH4moybQ7CsL3z72vgG2ajEuEQ5Vh5iH4nneP0oYIQmr5OZTfYr1IMfUCu86X7mStisg_aqPudxjaBpGzqxQVKI7YMwuz2ZXXIpckioqUUEVFbW8TEH5pt-k5tsq4IOYygd5J3gmF9vB_j5xO8fA-kWhG7GaswU"
+                      />
+                      <img
+                        class="inline-block size-8 rounded-full ring-2 ring-white"
+                        data-alt="User avatar"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5r_IPP_Db9V9ENWafpr9SUmim49KIfHBeTEYLEp2YoaPw-pvQ8TgEMNc4h3XMNZ5iL54XTQ4p1bSwzQJzIUFmMdP4c6A8bP1qqvbtJJ0RoPwItacb-6klRWwVp29brf_1vkcMJMZBXdFnyzPxXnwsu0UX9PmrfXUFMwxAmXkZDhKHY1crInmIULqJ6ffFxMMhYZ4Mn4VQetyP1OXam6TyBryYptJZ5gIFbm_wM-_OG_3mNJPEgCbgiwCvBVm5UWeCNTIPB2t4KXHQ"
+                      />
+                      <button
+                        class="size-8 rounded-full bg-slate-100 ring-2 ring-white flex items-center justify-center text-gray-400 hover:bg-slate-200 hover:text-gray-600 transition-colors"
+                      >
+                        <span class="material-symbols-outlined text-[16px]"
+                          >add</span
+                        >
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!-- Add Item Row -->
+                <div class="px-6 py-3 bg-slate-50">
+                  <button
+                    class="w-full flex items-center justify-center gap-2 text-sm font-semibold text-teal-600 py-2 rounded-lg border border-dashed border-teal-200 hover:bg-teal-50 hover:border-teal-300 transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >playlist_add</span
+                    >
+                    Add Item
+                  </button>
+                </div>
+              </div>
+              <!-- Tax and Tip -->
+              <div
+                class="bg-white rounded-xl shadow-soft border border-slate-100 p-6 flex items-center justify-between"
+              >
+                <div class="flex items-center gap-6">
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <span class="text-sm font-medium text-gray-600">Tax</span>
+                    <div
+                      class="bg-slate-100 rounded px-2 py-1 flex items-center"
+                    >
+                      <span class="text-xs text-gray-400 mr-1">%</span>
+                      <input
+                        class="w-6 bg-transparent border-none p-0 text-sm font-mono text-gray-800 text-right focus:ring-0"
+                        type="text"
+                        value="10"
+                      />
+                    </div>
+                  </label>
+                  <div class="h-4 w-px bg-slate-200"></div>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <span class="text-sm font-medium text-gray-600">Tip</span>
+                    <div
+                      class="bg-slate-100 rounded px-2 py-1 flex items-center"
+                    >
+                      <span class="text-xs text-gray-400 mr-1">%</span>
+                      <input
+                        class="w-6 bg-transparent border-none p-0 text-sm font-mono text-gray-800 text-right focus:ring-0"
+                        type="text"
+                        value="15"
+                      />
+                    </div>
+                  </label>
+                </div>
+                <div class="text-right">
+                  <p class="text-xs text-gray-400 font-bold uppercase">
+                    Total Extras
+                  </p>
+                  <p class="font-mono text-lg font-bold text-gray-800">
+                    $62.12
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Sticky Footer (Results & Action) -->
+      <div
+        class="sticky bottom-0 z-30 bg-surface/80 backdrop-blur-xl border-t border-slate-200 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]"
+      >
+        <div
+          class="max-w-6xl mx-auto px-8 py-4 flex items-center justify-between gap-6"
+        >
+          <div class="flex items-center gap-8">
+            <div>
+              <p
+                class="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-0.5"
+              >
+                Your Share
+              </p>
+              <p class="text-2xl font-mono font-bold text-gray-900">$84.50</p>
+            </div>
+            <div class="w-px h-8 bg-slate-200"></div>
+            <div>
+              <p
+                class="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-0.5"
+              >
+                Total Others Owe
+              </p>
+              <p class="text-2xl font-mono font-bold text-teal-600">$164.00</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <button
+              class="px-6 py-3 rounded-xl border border-slate-200 text-sm font-bold text-gray-600 hover:bg-slate-50 hover:text-gray-900 hover:border-slate-300 transition-all flex items-center gap-2"
+            >
+              <span class="material-symbols-outlined text-[20px]">send</span>
+              Request Payments
+            </button>
+            <button
+              class="flux-gradient px-8 py-3 rounded-xl text-white text-sm font-bold shadow-lg shadow-teal-500/30 hover:shadow-teal-500/50 hover:brightness-105 active:scale-95 transition-all flex items-center gap-2 group"
+            >
+              <span
+                class="material-symbols-outlined text-[20px] group-hover:animate-pulse"
+                >book</span
+              >
+              Record to Ledger
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
