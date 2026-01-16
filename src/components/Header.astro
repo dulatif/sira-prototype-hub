@@ -6,48 +6,74 @@ interface Props {
   icon?: string;
 }
 
-const { title, subtitle = '', icon = 'dashboard' } = Astro.props;
+const { title, subtitle = "", icon = "dashboard" } = Astro.props;
 ---
 
-<header class="flex items-center justify-between px-8 py-6 border-b border-border-light dark:border-border-dark bg-white/30 dark:bg-slate-900/30 backdrop-blur-md relative z-10">
-  <div class="flex items-center gap-4">
-    <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
-      <span class="material-symbols-outlined text-2xl">{icon}</span>
+<header
+  class="flex items-center justify-between px-8 py-5 border-b border-[#e7f3f2]/60 bg-white/30 backdrop-blur-md z-10"
+>
+  <div class="flex items-center gap-3">
+    <div
+      class="rounded-lg bg-primary/10 border border-primary/20 shadow-sm size-12 flex items-center justify-center text-primary"
+    >
+      <span class="material-symbols-outlined">{icon}</span>
     </div>
     <div>
-      <h1 class="text-2xl font-bold text-slate-800 dark:text-white">{title}</h1>
-      {subtitle && (
-        <p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5" set:html={subtitle} />
-      )}
+      <h2 class="text-[#1e293b] text-xl font-display font-bold leading-tight">
+        {title}
+      </h2>
+      {subtitle && <p class="text-slate-500 text-sm">{subtitle}</p>}
     </div>
   </div>
 
-  <div class="flex items-center gap-4">
+  <div class="flex items-center gap-6">
     <!-- Search -->
-    <div class="hidden lg:flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/50 dark:bg-slate-800/50 border border-border-light dark:border-border-dark">
-      <span class="material-symbols-outlined text-slate-400 text-xl">search</span>
+    <div class="relative hidden lg:flex items-center">
+      <span class="material-symbols-outlined absolute left-3 text-slate-500"
+        >search</span
+      >
       <input
+        class="pl-10 pr-4 py-2.5 bg-white/50 border border-transparent focus:border-primary/30 focus:bg-white focus:ring-0 rounded-xl text-sm w-64 transition-all placeholder:text-slate-500/70"
+        placeholder="Search ..."
         type="text"
-        placeholder="Search..."
-        class="bg-transparent outline-none text-sm text-slate-600 dark:text-slate-300 w-48 placeholder:text-slate-400"
       />
     </div>
 
+    <!-- Dark Mode Toggle -->
+    <button
+      class="relative p-2 rounded-full hover:bg-white/50 transition-colors text-[#1e293b]/80"
+      id="dark-mode-toggle"
+    >
+      <span class="material-symbols-outlined">dark_mode</span>
+    </button>
+
     <!-- Notifications -->
-    <button class="relative p-2.5 rounded-xl bg-white/50 dark:bg-slate-800/50 border border-border-light dark:border-border-dark text-slate-500 hover:text-primary transition-colors">
+    <button
+      class="relative p-2 rounded-full hover:bg-white/50 transition-colors text-[#1e293b]/80"
+    >
       <span class="material-symbols-outlined">notifications</span>
-      <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
+      <span
+        class="absolute top-2 right-2 w-2 h-2 bg-red-400 rounded-full border-2 border-[#f8fcfb]"
+      ></span>
     </button>
 
     <!-- User Profile -->
-    <div class="flex items-center gap-3 pl-4 border-l border-border-light dark:border-border-dark">
+    <div class="flex items-center gap-3 pl-4 border-l border-[#e7f3f2]">
       <div class="text-right hidden sm:block">
-        <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">Alex M.</p>
-        <p class="text-xs text-slate-400">Premium Plan</p>
+        <p class="text-sm font-bold text-[#1e293b]">Alex M.</p>
+        <p class="text-xs text-slate-500">Premium Plan</p>
       </div>
-      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-teal-400 flex items-center justify-center text-white font-bold text-sm">
-        AM
+      <div
+        class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-white shadow-sm"
+        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAE4fj-Ts_xs0esQRbCO8BpuWVnpmI-XINI9GdfS7OMUMStmgGM_eQch56LX7IFuIwjQZtPCCquWFOS7_ejjCKlQOjILwFM1i0FiJNqznFaWhTuLC_trWTMwsgCprZoznFwsjkbj-czo-T95TnI4Fh6uhmE5fBjzMAIXskIMsGL1H-UYWEiy0Id1TYc1Ct9ZCwTF_mdpkw9QSa4VQB1cEkIqLuKP8lgTh6ZNrxesoWp0ZDdt_nFbNcmijViMORA9L_A94gRDAO_uJHH');"
+      >
       </div>
     </div>
   </div>
 </header>
+
+<script>
+  document.getElementById("dark-mode-toggle")?.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+  });
+</script>
