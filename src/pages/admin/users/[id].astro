@@ -1,0 +1,318 @@
+---
+import AdminLayout from "../../../layouts/AdminLayout.astro";
+
+export function getStaticPaths() {
+  return [
+    { params: { id: "1" } },
+    { params: { id: "2" } },
+    { params: { id: "4" } },
+  ];
+}
+
+const { id } = Astro.params;
+---
+
+<AdminLayout title="User Management">
+  <div
+    class="grid grid-cols-12 gap-6 items-start h-[calc(100vh-140px)] min-h-[500px]"
+  >
+    <!-- Left Column: User List -->
+    <div
+      class="col-span-12 lg:col-span-4 flex flex-col h-full glass-panel rounded-xl overflow-hidden"
+    >
+      <div
+        class="p-4 border-b border-gray-200/60 bg-white/30 flex items-center justify-between"
+      >
+        <h3 class="font-bold text-text-main flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[20px]"
+            >group</span
+          >
+          Users
+        </h3>
+        <button class="text-text-muted hover:text-primary transition-colors">
+          <span class="material-symbols-outlined text-[18px]">filter_list</span>
+        </button>
+      </div>
+      <div class="flex-1 overflow-y-auto divide-y divide-gray-100">
+        <!-- Active User Item (simulated for ID 1) -->
+        <a
+          href="/admin/users/1"
+          class={`p-4 cursor-pointer flex items-center gap-4 transition-all ${id === "1" ? "bg-primary/5 border-l-4 border-primary" : "hover:bg-gray-50/50 border-l-4 border-transparent"}`}
+        >
+          <div
+            class={`size-10 rounded-full bg-cover bg-center shadow-sm border-2 shrink-0 ${id === "1" ? "border-white ring-2 ring-primary/20" : "border-white"}`}
+            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBCfKKs9lG8Y9HVCYEuup3n-AoFuPKNBM1fOKPrG4Hf3hOJL5PC4W-UN5ZqgwoAkzSGQGIqyFqdT1KAWLfZRJw8iQYTcfUnUj7BBBFppV731WDY6TH4RGJZ282-Yk51r6HuGDe4ja9lSAcnnY7ahUSEYR3DhY8i9CcmeBTLKuIiEGE6a8M2i8iJJHDb7h-THasE5vPVSNtKpxuA5vgQuKFHZ8J9jmYW6iJpc_D95A0UP4vwHPHIZ5NqPO-ntXXODsOegwH39nmWWYwH');"
+          >
+          </div>
+          <div class="min-w-0 flex-1">
+            <div
+              class={`font-bold truncate ${id === "1" ? "text-text-main" : "text-text-main group-hover:text-primary transition-colors"}`}
+            >
+              Alice Chen
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="size-2 rounded-full bg-status-green"></span>
+              <span class="text-[11px] font-medium text-text-muted uppercase"
+                >Active</span
+              >
+            </div>
+          </div>
+          {
+            id === "1" && (
+              <span class="material-symbols-outlined text-primary text-[18px]">
+                chevron_right
+              </span>
+            )
+          }
+        </a>
+
+        <!-- Other Users -->
+        <a
+          href="/admin/users/2"
+          class={`p-4 cursor-pointer flex items-center gap-4 transition-all group ${id === "2" ? "bg-primary/5 border-l-4 border-primary" : "hover:bg-gray-50/50 border-l-4 border-transparent"}`}
+        >
+          <div
+            class="size-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 font-bold border border-white shrink-0 group-hover:border-primary/20 transition-colors"
+          >
+            BS
+          </div>
+          <div class="min-w-0 flex-1">
+            <div
+              class="font-bold text-text-main group-hover:text-primary transition-colors truncate"
+            >
+              Bob Smith
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="size-2 rounded-full bg-status-green"></span>
+              <span class="text-[11px] font-medium text-text-muted uppercase"
+                >Active</span
+              >
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="/admin/users/4"
+          class={`p-4 cursor-pointer flex items-center gap-4 transition-all group ${id === "4" ? "bg-primary/5 border-l-4 border-primary" : "hover:bg-gray-50/50 border-l-4 border-transparent"}`}
+        >
+          <div
+            class="size-10 rounded-full bg-cover bg-center shadow-sm border border-white grayscale opacity-70 shrink-0 group-hover:border-primary/20 transition-colors"
+            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAebmyrWCAKqfVdH33Lj-VYC2KIxs-ssxctDZeYQjph86Avxy3lz1M5jWjyznVLiA_n1Q4JBS8Dbyilbz0BC17QKDiuKze4oGeIKTVQ4xtO-fVGZb9QfEFuqIEMeN3WeFRL76St4qk2TfQYDv7KvBxKD-6Z8DrseiRsNXiy0D0j0G1i8jwJxkTrlZH8vTu8fuof3qLncLR7X6UMmWcQYQxaYQAOWDgXCT3X0feqZcDWfO0bzLf0weJLc7DgMfZ4ujnA3yqX2Y_iHnVX');"
+          >
+          </div>
+          <div class="min-w-0 flex-1">
+            <div
+              class="font-bold text-text-main group-hover:text-primary transition-colors truncate"
+            >
+              Dana White
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="size-2 rounded-full bg-status-red"></span>
+              <span class="text-[11px] font-medium text-status-red uppercase"
+                >Suspended</span
+              >
+            </div>
+          </div>
+        </a>
+
+        <div
+          class="p-3 border-t border-gray-200/60 bg-white/30 flex items-center justify-center gap-4 text-[11px] text-text-muted font-bold uppercase tracking-widest"
+        >
+          <button class="hover:text-primary disabled:opacity-30">Prev</button>
+          <span>1 / 8,429</span>
+          <button class="hover:text-primary">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: User Details -->
+    <div
+      class="col-span-12 lg:col-span-8 flex flex-col h-full glass-panel rounded-xl overflow-hidden relative"
+    >
+      <div
+        class="p-8 border-b border-gray-200/60 bg-white/30 flex items-start gap-6"
+      >
+        <div
+          class="size-24 rounded-2xl bg-cover bg-center shadow-xl border-4 border-white ring-4 ring-primary/10"
+          style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBCfKKs9lG8Y9HVCYEuup3n-AoFuPKNBM1fOKPrG4Hf3hOJL5PC4W-UN5ZqgwoAkzSGQGIqyFqdT1KAWLfZRJw8iQYTcfUnUj7BBBFppV731WDY6TH4RGJZ282-Yk51r6HuGDe4ja9lSAcnnY7ahUSEYR3DhY8i9CcmeBTLKuIiEGE6a8M2i8iJJHDb7h-THasE5vPVSNtKpxuA5vgQuKFHZ8J9jmYW6iJpc_D95A0UP4vwHPHIZ5NqPO-ntXXODsOegwH39nmWWYwH');"
+        >
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center justify-between mb-2">
+            <div>
+              <h2 class="text-3xl font-bold text-text-main leading-tight">
+                Alice Chen
+              </h2>
+              <p class="font-mono text-sm text-text-muted">
+                ID: 839201 • alice@sira.io
+              </p>
+            </div>
+            <div class="flex gap-2">
+              <span
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-yellow-100/50 text-yellow-700 border border-yellow-200 shadow-sm"
+              >
+                <span
+                  class="material-symbols-outlined text-[16px] text-status-gold"
+                  >stars</span
+                > Premium
+              </span>
+              <div
+                class="flex items-center gap-2 px-3 py-1.5 bg-green-50 text-status-green rounded-full border border-green-100 shadow-sm"
+              >
+                <span class="relative flex h-2.5 w-2.5">
+                  <span
+                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
+                  ></span>
+                  <span
+                    class="relative inline-flex rounded-full h-2.5 w-2.5 bg-status-green"
+                  ></span>
+                </span>
+                <span class="text-xs font-bold uppercase">Active</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex gap-4 mt-6">
+            <button
+              class="flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-xl font-bold text-sm shadow-lg shadow-primary/30 hover:bg-primary-dark transition-all"
+            >
+              <span class="material-symbols-outlined text-[20px]">person</span> View
+              Profile
+            </button>
+            <button
+              class="flex items-center gap-2 px-6 py-2.5 bg-white border border-gray-200 text-text-main rounded-xl font-bold text-sm shadow-sm hover:border-primary hover:text-primary transition-all"
+            >
+              <span class="material-symbols-outlined text-[20px]">edit</span> Edit
+              Permissions
+            </button>
+            <button
+              class="ml-auto flex items-center gap-2 px-4 py-2.5 text-text-muted hover:text-status-red transition-all"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >more_vert</span
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-1 overflow-y-auto p-8 space-y-6">
+        <div class="grid grid-cols-2 gap-6">
+          <div
+            class="glass-panel p-4 rounded-xl border-white/50 bg-white/40 group hover:border-primary/20 transition-all"
+          >
+            <p
+              class="text-xs font-bold text-text-muted uppercase tracking-wider mb-1"
+            >
+              Joined Date
+            </p>
+            <p class="text-lg font-bold text-text-main">October 24, 2023</p>
+            <div class="mt-2 text-[11px] text-text-muted">
+              Account age: 114 days
+            </div>
+          </div>
+          <div
+            class="glass-panel p-4 rounded-xl border-white/50 bg-white/40 group hover:border-primary/20 transition-all"
+          >
+            <p
+              class="text-xs font-bold text-text-muted uppercase tracking-wider mb-1"
+            >
+              Last Active
+            </p>
+            <p class="text-lg font-bold text-text-main">2 hours ago</p>
+            <div class="mt-2 text-[11px] text-primary flex items-center gap-1">
+              <span class="size-1.5 rounded-full bg-primary animate-pulse"
+              ></span>
+              Live Session
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="glass-panel p-6 rounded-xl border-white/50 bg-white/40 group hover:border-primary/20 transition-all"
+        >
+          <div class="flex items-center justify-between mb-4">
+            <p
+              class="text-xs font-bold text-text-muted uppercase tracking-wider"
+            >
+              Total Assets
+            </p>
+            <span class="material-symbols-outlined text-primary"
+              >account_balance_wallet</span
+            >
+          </div>
+          <div class="flex items-baseline gap-3">
+            <h3
+              class="text-4xl font-bold text-text-main font-mono tracking-tight"
+            >
+              $12,450.00
+            </h3>
+            <span
+              class="text-status-green font-bold text-sm flex items-center gap-1"
+            >
+              <span class="material-symbols-outlined text-[16px]"
+                >arrow_upward</span
+              > +$1,200.40
+            </span>
+          </div>
+          <div
+            class="mt-6 pt-6 border-t border-gray-200/50 grid grid-cols-3 gap-4"
+          >
+            <div>
+              <p class="text-[10px] font-bold text-text-muted uppercase mb-1">
+                Portfolio Tier
+              </p>
+              <p class="text-sm font-bold text-text-main">High Volume</p>
+            </div>
+            <div>
+              <p class="text-[10px] font-bold text-text-muted uppercase mb-1">
+                Last Transaction
+              </p>
+              <p class="text-sm font-bold text-text-main">-$45.20 (Fees)</p>
+            </div>
+            <div>
+              <p class="text-[10px] font-bold text-text-muted uppercase mb-1">
+                Verification
+              </p>
+              <p
+                class="text-sm font-bold text-status-green flex items-center gap-1"
+              >
+                <span class="material-symbols-outlined text-[14px]"
+                  >verified</span
+                > Level 3
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4">
+          <h4
+            class="text-xs font-bold text-text-muted uppercase tracking-widest mb-4"
+          >
+            Danger Zone & Administrative Actions
+          </h4>
+          <div class="flex flex-wrap gap-3">
+            <button
+              class="flex items-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-text-main rounded-xl font-bold text-sm shadow-sm hover:border-primary hover:text-primary transition-all"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >lock_reset</span
+              > Reset Password
+            </button>
+            <button
+              class="flex items-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-text-main rounded-xl font-bold text-sm shadow-sm hover:border-primary hover:text-primary transition-all"
+            >
+              <span class="material-symbols-outlined text-[18px]">mail</span> Send
+              Message
+            </button>
+            <button
+              class="flex items-center gap-2 px-5 py-2.5 bg-red-50 border border-red-100 text-status-red rounded-xl font-bold text-sm shadow-sm hover:bg-status-red hover:text-white transition-all"
+            >
+              <span class="material-symbols-outlined text-[18px]">block</span> Suspend
+              Account
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</AdminLayout>

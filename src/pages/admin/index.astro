@@ -1,0 +1,501 @@
+---
+import AdminLayout from "../../layouts/AdminLayout.astro";
+---
+
+<AdminLayout title="System Health">
+  <!-- Original Stats Grid (Kept as requested) -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <!-- Stat Card 1 -->
+    <div
+      class="glass-panel p-6 rounded-2xl border-l-4 border-l-primary flex flex-col justify-between group hover:translate-y-[-4px] transition-all min-h-[160px]"
+    >
+      <div class="flex justify-between items-start">
+        <div class="p-3 rounded-xl bg-primary/10 text-primary">
+          <span class="material-symbols-outlined text-[28px]">person_check</span
+          >
+        </div>
+        <div class="text-right">
+          <span
+            class="text-xs font-bold px-2 py-1 rounded-full bg-green-100 text-status-green flex items-center gap-1"
+          >
+            <span class="material-symbols-outlined text-[14px]"
+              >trending_up</span
+            >
+            5.2%
+          </span>
+        </div>
+      </div>
+      <div class="mt-4">
+        <p class="text-sm font-bold text-text-muted uppercase tracking-wider">
+          Active Users
+        </p>
+        <h3
+          class="text-4xl font-bold text-text-main font-mono mt-1 group-hover:text-primary transition-colors"
+        >
+          14,205
+        </h3>
+      </div>
+    </div>
+
+    <!-- Stat Card 2 -->
+    <div
+      class="glass-panel p-6 rounded-2xl border-l-4 border-l-blue-500 flex flex-col justify-between group hover:translate-y-[-4px] transition-all min-h-[160px]"
+    >
+      <div class="flex justify-between items-start">
+        <div class="p-3 rounded-xl bg-blue-50 text-blue-500">
+          <span class="material-symbols-outlined text-[28px]">person_add</span>
+        </div>
+        <div class="text-right">
+          <span
+            class="text-xs font-bold px-2 py-1 rounded-full bg-green-100 text-status-green flex items-center gap-1"
+          >
+            <span class="material-symbols-outlined text-[14px]"
+              >trending_up</span
+            >
+            12%
+          </span>
+        </div>
+      </div>
+      <div class="mt-4">
+        <p class="text-sm font-bold text-text-muted uppercase tracking-wider">
+          New Signups (24h)
+        </p>
+        <h3
+          class="text-4xl font-bold text-text-main font-mono mt-1 group-hover:text-blue-500 transition-colors"
+        >
+          +128
+        </h3>
+      </div>
+    </div>
+
+    <!-- Stat Card 3 -->
+    <div
+      class="glass-panel p-6 rounded-2xl border-l-4 border-l-status-gold flex flex-col justify-between group hover:translate-y-[-4px] transition-all min-h-[160px]"
+    >
+      <div class="flex justify-between items-start">
+        <div class="p-3 rounded-xl bg-yellow-50 text-status-gold">
+          <span class="material-symbols-outlined text-[28px]"
+            >workspace_premium</span
+          >
+        </div>
+        <div class="text-right">
+          <span
+            class="text-xs font-bold px-2 py-1 rounded-full bg-yellow-50 text-yellow-600"
+          >
+            +2.4%
+          </span>
+        </div>
+      </div>
+      <div class="mt-4">
+        <p class="text-sm font-bold text-text-muted uppercase tracking-wider">
+          Premium Subs
+        </p>
+        <h3
+          class="text-4xl font-bold text-text-main font-mono mt-1 group-hover:text-status-gold transition-colors"
+        >
+          4,590
+        </h3>
+      </div>
+    </div>
+
+    <!-- Stat Card 4 -->
+    <div
+      class="glass-panel p-6 rounded-2xl border-l-4 border-l-status-red flex flex-col justify-between group hover:translate-y-[-4px] transition-all min-h-[160px]"
+    >
+      <div class="flex justify-between items-start">
+        <div class="p-3 rounded-xl bg-red-50 text-status-red">
+          <span class="material-symbols-outlined text-[28px]">gavel</span>
+        </div>
+        <div class="text-right">
+          <span
+            class="text-xs font-bold px-2 py-1 rounded-full bg-red-50 text-status-red flex items-center gap-1"
+          >
+            <span class="material-symbols-outlined text-[14px]"
+              >trending_down</span
+            >
+            -1.1%
+          </span>
+        </div>
+      </div>
+      <div class="mt-4">
+        <p class="text-sm font-bold text-text-muted uppercase tracking-wider">
+          Flagged Accounts
+        </p>
+        <h3
+          class="text-4xl font-bold text-text-main font-mono mt-1 group-hover:text-status-red transition-colors"
+        >
+          23
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Advanced Charts & Analytics (Added from prototype) -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6 h-[420px]">
+    <!-- Transaction Volume Chart -->
+    <div
+      class="glass-panel lg:col-span-2 rounded-2xl p-6 flex flex-col shadow-sm"
+    >
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900 dark:text-white">
+            Transaction Volume &amp; User Growth
+          </h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400">
+            Comparing network traffic over the last 30 days
+          </p>
+        </div>
+        <div
+          class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg"
+        >
+          <button
+            class="px-3 py-1 text-xs font-bold rounded bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-sm"
+          >
+            30D
+          </button>
+          <button
+            class="px-3 py-1 text-xs font-bold rounded text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+          >
+            7D
+          </button>
+          <button
+            class="px-3 py-1 text-xs font-bold rounded text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+          >
+            24H
+          </button>
+        </div>
+      </div>
+      <div class="flex-1 w-full relative">
+        <svg
+          class="w-full h-full overflow-visible"
+          preserveAspectRatio="none"
+          viewBox="0 0 800 300"
+        >
+          <defs>
+            <linearGradient id="gradientPrimary" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#14ccc3" stop-opacity="0.5"></stop>
+              <stop offset="100%" stop-color="#14ccc3" stop-opacity="0"></stop>
+            </linearGradient>
+            <linearGradient id="gradientSecondary" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#0ea5e9" stop-opacity="0.3"></stop>
+              <stop offset="100%" stop-color="#0ea5e9" stop-opacity="0"></stop>
+            </linearGradient>
+          </defs>
+          <g class="chart-grid opacity-30">
+            <line x1="0" x2="800" y1="250" y2="250"></line>
+            <line x1="0" x2="800" y1="175" y2="175"></line>
+            <line x1="0" x2="800" y1="100" y2="100"></line>
+            <line x1="0" x2="800" y1="25" y2="25"></line>
+          </g>
+          <path
+            d="M0,250 C50,240 100,200 150,210 C200,220 250,150 300,160 C350,170 400,100 450,120 C500,140 550,50 600,80 C650,110 700,40 750,60 L800,50 V300 H0 Z"
+            fill="url(#gradientPrimary)"></path>
+          <path
+            d="M0,250 C50,240 100,200 150,210 C200,220 250,150 300,160 C350,170 400,100 450,120 C500,140 550,50 600,80 C650,110 700,40 750,60 L800,50"
+            fill="none"
+            stroke="#14ccc3"
+            stroke-width="3"></path>
+          <path
+            d="M0,280 C60,270 120,250 180,260 C240,270 300,220 360,230 C420,240 480,180 540,190 C600,200 660,150 720,160 L800,140"
+            fill="none"
+            stroke="#0ea5e9"
+            stroke-width="3"></path>
+          <path
+            d="M0,280 C60,270 120,250 180,260 C240,270 300,220 360,230 C420,240 480,180 540,190 C600,200 660,150 720,160 L800,140 V300 H0 Z"
+            fill="url(#gradientSecondary)"></path>
+        </svg>
+        <div class="flex justify-between mt-2 text-xs font-mono text-slate-400">
+          <span>01 Nov</span>
+          <span>05 Nov</span>
+          <span>10 Nov</span>
+          <span>15 Nov</span>
+          <span>20 Nov</span>
+          <span>25 Nov</span>
+          <span>30 Nov</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mood Distribution Chart -->
+    <div class="glass-panel rounded-2xl p-6 flex flex-col shadow-sm">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white">
+          Mood Distribution
+        </h2>
+        <button class="text-slate-400 hover:text-primary">
+          <span class="material-symbols-outlined">more_vert</span>
+        </button>
+      </div>
+      <div class="flex-1 flex items-center justify-center relative">
+        <svg class="transform -rotate-90 w-48 h-48" viewBox="0 0 100 100">
+          <circle
+            cx="50"
+            cy="50"
+            fill="transparent"
+            r="40"
+            stroke="#f1f5f9"
+            stroke-width="12"></circle>
+          <circle
+            class="donut-chart-segment"
+            cx="50"
+            cy="50"
+            fill="transparent"
+            r="40"
+            stroke="#14ccc3"
+            stroke-dasharray="160 251.2"
+            stroke-dashoffset="0"
+            stroke-width="12"></circle>
+          <circle
+            class="donut-chart-segment"
+            cx="50"
+            cy="50"
+            fill="transparent"
+            r="40"
+            stroke="#f59e0b"
+            stroke-dasharray="50 251.2"
+            stroke-dashoffset="-160"
+            stroke-width="12"></circle>
+          <circle
+            class="donut-chart-segment"
+            cx="50"
+            cy="50"
+            fill="transparent"
+            r="40"
+            stroke="#64748b"
+            stroke-dasharray="41.2 251.2"
+            stroke-dashoffset="-210"
+            stroke-width="12"></circle>
+        </svg>
+        <div
+          class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
+        >
+          <span
+            class="text-3xl font-mono font-bold text-slate-800 dark:text-white"
+            >64%</span
+          >
+          <span class="text-xs font-bold text-primary uppercase">Cuan</span>
+        </div>
+      </div>
+      <div class="mt-4 space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="size-3 rounded-full bg-primary"></span>
+            <span
+              class="text-sm font-semibold text-slate-600 dark:text-slate-300"
+              >CUAN (Productive)</span
+            >
+          </div>
+          <span
+            class="font-mono text-sm font-bold text-slate-800 dark:text-white"
+            >64%</span
+          >
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="size-3 rounded-full bg-amber-500"></span>
+            <span
+              class="text-sm font-semibold text-slate-600 dark:text-slate-300"
+              >MAGER (Lazy)</span
+            >
+          </div>
+          <span
+            class="font-mono text-sm font-bold text-slate-800 dark:text-white"
+            >20%</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activity Logs & Server Health -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1">
+    <!-- Last Registered Users -->
+    <div
+      class="glass-panel lg:col-span-2 rounded-2xl p-6 shadow-sm overflow-hidden flex flex-col"
+    >
+      <div class="flex items-center justify-between mb-4 flex-none">
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white">
+          Last Registered Users
+        </h2>
+        <button class="text-xs font-bold text-primary hover:underline">
+          View All Users
+        </button>
+      </div>
+      <div class="overflow-x-auto flex-1">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr
+              class="border-b border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-400 uppercase tracking-wider"
+            >
+              <th class="pb-3 pl-2">User</th>
+              <th class="pb-3">Email</th>
+              <th class="pb-3">Plan</th>
+              <th class="pb-3">Joined</th>
+              <th class="pb-3 text-right pr-2">Status</th>
+            </tr>
+          </thead>
+          <tbody class="text-sm font-medium">
+            <tr
+              class="group hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors border-b border-slate-100 dark:border-slate-800/50"
+            >
+              <td class="py-3 pl-2 flex items-center gap-3">
+                <div
+                  class="size-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xs"
+                >
+                  JD
+                </div>
+                <span class="text-slate-700 dark:text-slate-200">John Doe</span>
+              </td>
+              <td class="py-3 text-slate-600 dark:text-slate-400">
+                john.doe@example.com
+              </td>
+              <td class="py-3 font-mono text-xs text-slate-500">Free</td>
+              <td class="py-3 text-slate-500 font-mono text-xs">2 mins ago</td>
+              <td class="py-3 text-right pr-2">
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"
+                  >ACTIVE</span
+                >
+              </td>
+            </tr>
+            <tr
+              class="group hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors border-b border-slate-100 dark:border-slate-800/50"
+            >
+              <td class="py-3 pl-2 flex items-center gap-3">
+                <div
+                  class="size-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-xs"
+                >
+                  JS
+                </div>
+                <span class="text-slate-700 dark:text-slate-200"
+                  >Jane Smith</span
+                >
+              </td>
+              <td class="py-3 text-slate-600 dark:text-slate-400">
+                jane.smith@example.com
+              </td>
+              <td class="py-3 font-mono text-xs text-slate-500">Premium</td>
+              <td class="py-3 text-slate-500 font-mono text-xs">45 mins ago</td>
+              <td class="py-3 text-right pr-2">
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"
+                  >ACTIVE</span
+                >
+              </td>
+            </tr>
+            <tr
+              class="group hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors"
+            >
+              <td class="py-3 pl-2 flex items-center gap-3">
+                <div
+                  class="size-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-xs"
+                >
+                  MJ
+                </div>
+                <span class="text-slate-700 dark:text-slate-200"
+                  >Michael Johnson</span
+                >
+              </td>
+              <td class="py-3 text-slate-600 dark:text-slate-400">
+                michael.j@test.com
+              </td>
+              <td class="py-3 font-mono text-xs text-slate-500">
+                Enterprise
+              </td>
+              <td class="py-3 text-slate-500 font-mono text-xs">
+                2 hours ago
+              </td>
+              <td class="py-3 text-right pr-2">
+                <span
+                  class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
+                  >PENDING</span
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Server Health -->
+    <div class="glass-panel rounded-2xl p-6 shadow-sm flex flex-col gap-4">
+      <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+        Server Health
+      </h2>
+      <div class="space-y-6">
+        <div>
+          <div class="flex justify-between items-end mb-2">
+            <span
+              class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider"
+              >CPU Usage</span
+            >
+            <span
+              class="text-sm font-mono font-bold text-slate-800 dark:text-white"
+              >42%</span
+            >
+          </div>
+          <div
+            class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden"
+          >
+            <div class="h-full bg-primary w-[42%] rounded-full"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between items-end mb-2">
+            <span
+              class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider"
+              >Memory (RAM)</span
+            >
+            <span
+              class="text-sm font-mono font-bold text-slate-800 dark:text-white"
+              >78%</span
+            >
+          </div>
+          <div
+            class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden"
+          >
+            <div class="h-full bg-amber-500 w-[78%] rounded-full"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between items-end mb-2">
+            <span
+              class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider"
+              >Database IOPS</span
+            >
+            <span
+              class="text-sm font-mono font-bold text-slate-800 dark:text-white"
+              >1.2k</span
+            >
+          </div>
+          <div
+            class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden"
+          >
+            <div class="h-full bg-purple-500 w-[24%] rounded-full"></div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800">
+        <div class="flex items-center gap-2 text-xs text-slate-400">
+          <span class="material-symbols-outlined text-sm text-emerald-500"
+            >check_circle</span
+          >
+          <span class="font-medium">All systems operational</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .donut-chart-segment {
+      transition: stroke-dasharray 0.5s ease-in-out;
+    }
+    .chart-grid line {
+      stroke: #e2e8f0;
+      stroke-dasharray: 4 4;
+    }
+    .dark .chart-grid line {
+      stroke: #334155;
+    }
+  </style>
+</AdminLayout>

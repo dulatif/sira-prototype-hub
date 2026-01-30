@@ -47,6 +47,30 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.glass-sidebar {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.dark .glass-sidebar {
+  background: rgba(30, 41, 59, 0.85);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-header {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.dark .glass-header {
+  background: rgba(30, 41, 59, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
 .glass {
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(12px);

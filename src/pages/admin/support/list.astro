@@ -1,0 +1,218 @@
+---
+import AdminLayout from "../../../layouts/AdminLayout.astro";
+---
+
+<AdminLayout title="Support Tickets">
+  <div class="flex flex-col gap-6 h-full min-h-0">
+    <!-- Toolbar -->
+    <div class="flex items-center justify-between shrink-0">
+      <h2 class="text-2xl font-bold text-text-main leading-tight hidden">
+        Support Tickets
+      </h2>
+      <div class="flex items-center gap-4 w-full">
+        <div class="relative group w-72">
+          <div
+            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+          >
+            <span
+              class="material-symbols-outlined text-text-muted group-focus-within:text-primary transition-colors text-[20px]"
+              >search</span
+            >
+          </div>
+          <input
+            class="block w-full pl-10 pr-3 py-2.5 border-none rounded-xl leading-5 bg-white/50 text-text-main placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-white shadow-inner transition-all font-medium sm:text-sm"
+            placeholder="Search tickets by ID, user or subject..."
+            type="text"
+          />
+        </div>
+        <!-- Kanban/List Toggle -->
+        <div
+          class="bg-white/50 rounded-xl p-1 shadow-sm border border-white/60 flex items-center ml-auto"
+        >
+          <a
+            href="/admin/support"
+            class="p-1.5 rounded-lg text-text-muted hover:text-text-main hover:bg-white/50 transition-colors"
+          >
+            <span class="material-symbols-outlined text-[20px]"
+              >view_kanban</span
+            >
+          </a>
+          <a
+            href="/admin/support/tickets"
+            class="p-1.5 rounded-lg text-text-muted hover:text-text-main hover:bg-white/50 transition-colors"
+          >
+            <span class="material-symbols-outlined text-[20px]"
+              >splitscreen</span
+            >
+          </a>
+          <a
+            href="/admin/support/list"
+            class="p-1.5 rounded-lg bg-white shadow-sm text-primary"
+          >
+            <span class="material-symbols-outlined text-[20px]"
+              >table_chart</span
+            >
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table Layout -->
+    <div class="w-full flex flex-col min-h-0 h-full">
+      <div
+        class="glass-panel flex-1 rounded-xl flex flex-col overflow-hidden shadow-sm"
+      >
+        <div
+          class="p-5 border-b border-gray-200/60 bg-white/40 flex items-center justify-between sticky top-0 backdrop-blur-md z-10"
+        >
+          <h3 class="font-bold text-lg text-text-main flex items-center gap-3">
+            <span
+              class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg"
+              >list_alt</span
+            >
+            All Tickets
+          </h3>
+          <div class="flex items-center gap-3">
+            <div
+              class="flex items-center bg-white/50 rounded-xl p-1 shadow-sm border border-white/60 text-xs"
+            >
+              <button
+                class="px-3 py-1.5 font-medium text-primary bg-white rounded-lg shadow-sm"
+                >All Status</button
+              >
+              <button
+                class="px-3 py-1.5 font-medium text-text-muted hover:text-text-main"
+                >Open</button
+              >
+              <button
+                class="px-3 py-1.5 font-medium text-text-muted hover:text-text-main"
+                >Pending</button
+              >
+              <button
+                class="px-3 py-1.5 font-medium text-text-muted hover:text-text-main"
+                >Resolved</button
+              >
+            </div>
+          </div>
+        </div>
+        <div class="flex-1 overflow-y-auto">
+          <table class="w-full text-left border-collapse">
+            <thead
+              class="bg-white/40 sticky top-0 backdrop-blur-sm z-10 text-xs uppercase tracking-wider text-text-muted font-bold"
+            >
+              <tr>
+                <th class="px-6 py-3 border-b border-gray-200/50">Ticket ID</th>
+                <th class="px-6 py-3 border-b border-gray-200/50">User</th>
+                <th class="px-6 py-3 border-b border-gray-200/50">Subject</th>
+                <th class="px-6 py-3 border-b border-gray-200/50">Created</th>
+                <th class="px-6 py-3 border-b border-gray-200/50">Priority</th>
+                <th class="px-6 py-3 border-b border-gray-200/50">Status</th>
+                <th class="px-6 py-3 border-b border-gray-200/50 text-right"
+                  >Actions</th
+                >
+              </tr>
+            </thead>
+            <tbody class="text-sm divide-y divide-gray-100">
+              <!-- Ticket 1 -->
+              <tr
+                class="bg-primary/5 hover:bg-primary/10 transition-colors group"
+              >
+                <td class="px-6 py-4 font-mono text-text-main font-medium"
+                  >#TKT-9204</td
+                >
+                <td class="px-6 py-4">
+                  <div class="flex items-center gap-2">
+                    <div
+                      class="size-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-[10px] font-bold"
+                    >
+                      JD
+                    </div>
+                    <span class="font-medium text-text-main">John Doe</span>
+                  </div>
+                </td>
+                <td class="px-6 py-4 text-text-main font-medium"
+                  >Transaction failed on checkout</td
+                >
+                <td class="px-6 py-4 text-text-muted">10 mins ago</td>
+                <td class="px-6 py-4">
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide bg-red-100 text-status-red border border-red-200"
+                    >Critical</span
+                  >
+                </td>
+                <td class="px-6 py-4">
+                  <div
+                    class="flex items-center gap-1.5 text-status-green font-bold text-xs"
+                  >
+                    <span
+                      class="w-1.5 h-1.5 rounded-full bg-status-green animate-pulse"
+                    ></span>
+                    Open
+                  </div>
+                </td>
+                <td class="px-6 py-4 text-right">
+                  <button
+                    class="p-1.5 hover:bg-white rounded-lg transition-colors text-text-muted hover:text-primary"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >visibility</span
+                    >
+                  </button>
+                </td>
+              </tr>
+              <!-- Ticket 2 -->
+              <tr class="hover:bg-white/40 transition-colors group">
+                <td class="px-6 py-4 font-mono text-text-muted">#TKT-9203</td>
+                <td class="px-6 py-4">
+                  <div class="flex items-center gap-2">
+                    <div
+                      class="size-6 rounded-full bg-orange-50 border border-orange-200 flex items-center justify-center text-[8px] font-bold text-orange-600"
+                    >
+                      SS
+                    </div>
+                    <span class="font-medium text-text-main">Sarah Smith</span>
+                  </div>
+                </td>
+                <td class="px-6 py-4 text-text-main"
+                  >Account verification pending</td
+                >
+                <td class="px-6 py-4 text-text-muted">1 hr ago</td>
+                <td class="px-6 py-4">
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide bg-orange-100 text-orange-700 border border-orange-200"
+                    >High</span
+                  >
+                </td>
+                <td class="px-6 py-4">
+                  <div
+                    class="flex items-center gap-1.5 text-yellow-600 font-bold text-xs"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-yellow-500"></span>
+                    Pending
+                  </div>
+                </td>
+                <td class="px-6 py-4 text-right">
+                  <button
+                    class="p-1.5 hover:bg-white rounded-lg transition-colors text-text-muted hover:text-primary"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >visibility</span
+                    >
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div
+            class="p-3 bg-white/40 border-t border-gray-200/50 flex justify-center"
+          >
+            <button
+              class="text-xs font-semibold text-text-muted hover:text-primary transition-colors"
+              >Load more tickets</button
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</AdminLayout>

@@ -1,0 +1,63 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<header
+  class="h-20 glass-header flex items-center justify-between px-8 z-10 shrink-0 sticky top-0 w-full"
+>
+  <div class="flex flex-col justify-center">
+    <h2 class="text-2xl font-bold text-text-main leading-tight">
+      {title}
+    </h2>
+    <div class="flex items-center gap-2 text-xs text-text-muted font-medium">
+      <span class="flex items-center gap-1 text-primary">
+        <span class="material-symbols-outlined text-[14px]">public</span>
+        Global
+      </span>
+      <span class="w-1 h-1 rounded-full bg-gray-300"></span>
+      <span>Last updated: just now</span>
+    </div>
+  </div>
+  <div class="flex items-center gap-6">
+    <div class="relative group w-96">
+      <div
+        class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+      >
+        <span
+          class="material-symbols-outlined text-text-muted group-focus-within:text-primary transition-colors"
+          >search</span
+        >
+      </div>
+      <input
+        class="block w-full pl-10 pr-3 py-2.5 border-none rounded-xl leading-5 bg-white/50 text-text-main placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-white shadow-inner transition-all font-medium sm:text-sm"
+        placeholder="Search..."
+        type="text"
+      />
+      <div
+        class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"
+      >
+        <span
+          class="bg-gray-200/50 text-gray-500 text-[10px] px-1.5 py-0.5 rounded border border-gray-300/50 font-mono"
+          >/</span
+        >
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <button
+        class="size-10 rounded-xl bg-white/50 text-text-muted hover:text-primary hover:bg-white shadow-sm border border-gray-100 flex items-center justify-center transition-all"
+      >
+        <span class="material-symbols-outlined">notifications</span>
+      </button>
+      <button
+        class="bg-primary hover:bg-primary-dark text-white px-4 py-2.5 rounded-xl shadow-lg shadow-primary/30 transition-all hover:scale-105 active:scale-95 flex items-center gap-2 font-bold text-sm"
+      >
+        <span class="material-symbols-outlined text-[20px]">add</span>
+        <span>New Action</span>
+      </button>
+    </div>
+  </div>
+</header>

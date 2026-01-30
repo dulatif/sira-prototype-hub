@@ -1,0 +1,483 @@
+---
+import AdminLayout from "../../../layouts/AdminLayout.astro";
+---
+
+<AdminLayout title="Category Management">
+  <div
+    class="flex h-full overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-surface-dark shadow-sm"
+  >
+    <!-- Taxonomy Sidebar -->
+    <aside
+      class="w-[320px] flex flex-col border-r border-slate-200 dark:border-slate-800 h-full flex-none z-10"
+    >
+      <div
+        class="p-5 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-surface-dark"
+      >
+        <div class="flex items-center justify-between mb-4">
+          <h3
+            class="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider"
+          >
+            Global Taxonomy
+          </h3>
+          <div class="flex gap-2">
+            <button
+              class="size-7 flex items-center justify-center bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded hover:border-primary text-slate-500 hover:text-primary transition-colors"
+            >
+              <span class="material-symbols-outlined text-base"
+                >unfold_less</span
+              >
+            </button>
+            <button
+              class="size-7 flex items-center justify-center bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded hover:border-primary text-slate-500 hover:text-primary transition-colors"
+            >
+              <span class="material-symbols-outlined text-base">add</span>
+            </button>
+          </div>
+        </div>
+        <div class="relative">
+          <span
+            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg"
+            >filter_alt</span
+          >
+          <input
+            class="w-full h-9 pl-9 pr-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-mono focus:ring-2 focus:ring-primary/20 focus:border-primary"
+            placeholder="Filter by ID, Name or Tag..."
+            type="text"
+          />
+        </div>
+      </div>
+      <div class="flex-1 overflow-y-auto p-2 space-y-1">
+        <!-- Root Item -->
+        <div class="group relative">
+          <div
+            class="flex items-center p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all cursor-pointer"
+          >
+            <button class="mr-2 text-slate-400 hover:text-slate-600"
+              ><span class="material-symbols-outlined text-lg">expand_more</span
+              ></button
+            >
+            <div
+              class="size-8 rounded bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 flex items-center justify-center mr-3 border border-orange-200 dark:border-orange-800"
+            >
+              <span class="material-symbols-outlined text-lg">restaurant</span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center gap-2">
+                <span
+                  class="font-bold text-sm text-slate-800 dark:text-slate-200"
+                  >Food & Drinks</span
+                >
+                <span
+                  class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[10px] font-mono text-slate-500"
+                  >CAT_001</span
+                >
+              </div>
+              <div class="flex items-center gap-3 mt-0.5">
+                <span
+                  class="text-[10px] font-mono text-slate-400 flex items-center gap-1"
+                >
+                  <span class="material-symbols-outlined text-[10px]"
+                    >group</span
+                  > 42.5k users
+                </span>
+              </div>
+            </div>
+            <div
+              class="relative inline-block w-8 mr-2 align-middle select-none transition duration-200 ease-in"
+            >
+              <input
+                checked
+                class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-white border-4 appearance-none cursor-pointer border-slate-300 checked:border-primary transition-all duration-300 left-0"
+                id="toggle1"
+                name="toggle"
+                type="checkbox"
+              />
+              <label
+                class="toggle-label block overflow-hidden h-4 rounded-full bg-slate-300 cursor-pointer checked:bg-primary transition-colors duration-300"
+                for="toggle1"></label>
+            </div>
+          </div>
+
+          <!-- Sub Items -->
+          <div class="relative ml-4 pl-4 pt-1 space-y-1">
+            <div
+              class="absolute left-[28px] top-0 bottom-0 w-px bg-slate-200 dark:bg-slate-700 z-0"
+            >
+            </div>
+            <!-- Active Sub Item -->
+            <div
+              class="relative flex items-center p-2 rounded-lg bg-primary/5 dark:bg-primary/10 border border-primary/20 shadow-sm cursor-pointer transport"
+            >
+              <div
+                class="absolute left-[-14px] top-[-14px] h-[42px] w-[24px] border-l-[1.5px] border-b-[1.5px] border-slate-300 dark:border-slate-600 rounded-bl-xl z-0"
+              >
+              </div>
+              <div
+                class="size-7 rounded bg-white dark:bg-slate-800 text-primary shadow-sm flex items-center justify-center mr-3 z-10 relative"
+              >
+                <span class="material-symbols-outlined text-base">coffee</span>
+              </div>
+              <div class="flex-1 min-w-0 z-10">
+                <div class="flex items-center gap-2">
+                  <span class="font-bold text-sm text-slate-900 dark:text-white"
+                    >Coffee</span
+                  >
+                  <span
+                    class="px-1.5 py-0.5 rounded bg-white/50 dark:bg-slate-900/50 text-[10px] font-mono text-primary font-bold"
+                    >CAT_001_A</span
+                  >
+                </div>
+                <span
+                  class="text-[10px] font-mono text-slate-500 dark:text-slate-400"
+                  >Used by 12.1k users</span
+                >
+              </div>
+              <div
+                class="relative inline-block w-8 mr-2 align-middle select-none z-10"
+              >
+                <input
+                  checked
+                  class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-white border-4 appearance-none cursor-pointer border-slate-300 checked:border-primary transition-all duration-300 left-0"
+                  type="checkbox"
+                />
+                <label
+                  class="toggle-label block overflow-hidden h-4 rounded-full bg-slate-300 cursor-pointer checked:bg-primary transition-colors duration-300"
+                ></label>
+              </div>
+            </div>
+
+            <!-- Other Sub Item -->
+            <div
+              class="relative flex items-center p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer opacity-80 hover:opacity-100"
+            >
+              <div
+                class="absolute left-[-14px] top-[-38px] h-[42px] w-[24px] border-l-[1.5px] border-b-[1.5px] border-slate-300 dark:border-slate-600 rounded-bl-xl z-0"
+              >
+              </div>
+              <div
+                class="size-7 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 flex items-center justify-center mr-3 z-10 relative"
+              >
+                <span class="material-symbols-outlined text-base"
+                  >shopping_basket</span
+                >
+              </div>
+              <div class="flex-1 min-w-0 z-10">
+                <div class="flex items-center gap-2">
+                  <span
+                    class="font-medium text-sm text-slate-700 dark:text-slate-300"
+                    >Groceries</span
+                  >
+                  <span
+                    class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[10px] font-mono text-slate-400"
+                    >CAT_001_B</span
+                  >
+                </div>
+                <span class="text-[10px] font-mono text-slate-400"
+                  >Used by 38.2k users</span
+                >
+              </div>
+              <div
+                class="relative inline-block w-8 mr-2 align-middle select-none z-10"
+              >
+                <input
+                  checked
+                  class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-white border-4 appearance-none cursor-pointer border-slate-300 checked:border-primary transition-all duration-300 left-0"
+                  type="checkbox"
+                />
+                <label
+                  class="toggle-label block overflow-hidden h-4 rounded-full bg-slate-300 cursor-pointer checked:bg-primary transition-colors duration-300"
+                ></label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Root Item 2 -->
+        <div
+          class="flex items-center p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 border border-transparent hover:border-slate-200 dark:hover:border-slate-700 transition-all cursor-pointer mt-1"
+        >
+          <button class="mr-2 text-slate-400 hover:text-slate-600"
+            ><span class="material-symbols-outlined text-lg">chevron_right</span
+            ></button
+          >
+          <div
+            class="size-8 rounded bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center mr-3 border border-blue-200 dark:border-blue-800"
+          >
+            <span class="material-symbols-outlined text-lg">directions_car</span
+            >
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-sm text-slate-800 dark:text-slate-200"
+                >Transportation</span
+              >
+              <span
+                class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[10px] font-mono text-slate-500"
+                >CAT_002</span
+              >
+            </div>
+            <span class="text-[10px] font-mono text-slate-400"
+              >Used by 22.8k users</span
+            >
+          </div>
+          <div class="relative inline-block w-8 mr-2 align-middle select-none">
+            <input
+              checked
+              class="toggle-checkbox absolute block w-4 h-4 rounded-full bg-white border-4 appearance-none cursor-pointer border-slate-300 checked:border-primary transition-all duration-300 left-0"
+              type="checkbox"
+            />
+            <label
+              class="toggle-label block overflow-hidden h-4 rounded-full bg-slate-300 cursor-pointer checked:bg-primary transition-colors duration-300"
+            ></label>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <section
+      class="flex-1 relative bg-slate-50 dark:bg-background-dark flex flex-col p-6 overflow-y-auto w-full"
+    >
+      <div
+        class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] pointer-events-none"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-10 w-[300px] h-[300px] bg-blue-500/5 rounded-full blur-[80px] pointer-events-none"
+      >
+      </div>
+
+      <div
+        class="glass-panel w-full max-w-5xl mx-auto rounded-[2rem] shadow-glass dark:shadow-glass-dark relative flex flex-col h-full min-h-0"
+      >
+        <!-- Header -->
+        <div
+          class="px-8 pt-6 pb-2 border-b border-slate-200/50 dark:border-slate-700/50 flex-none"
+        >
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center gap-4">
+              <div
+                class="size-12 rounded-2xl bg-gradient-to-br from-teal-400 to-cyan-500 shadow-teal-glow flex items-center justify-center text-white"
+              >
+                <span class="material-symbols-outlined text-2xl">coffee</span>
+              </div>
+              <div>
+                <h2
+                  class="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2"
+                >
+                  Coffee
+                  <span
+                    class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 text-[10px] font-bold uppercase tracking-wide border border-amber-200 dark:border-amber-800"
+                    >Expense</span
+                  >
+                </h2>
+                <p class="text-xs font-mono text-slate-500 mt-1">
+                  Global ID: <span
+                    class="text-slate-800 dark:text-slate-300 font-bold"
+                    >CAT_001_A</span>
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-2">
+              <button
+                class="px-4 py-2 text-xs font-bold text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 border border-red-100 rounded-lg transition-all"
+              >
+                Deprecate
+              </button>
+            </div>
+          </div>
+          <div
+            class="flex border-b border-slate-200 dark:border-slate-800 overflow-x-auto"
+          >
+            <button
+              class="px-6 py-3 border-b-2 border-primary text-primary text-xs font-bold tracking-wider uppercase transition-all whitespace-nowrap"
+            >
+              Metadata & Core Properties
+            </button>
+            <button
+              class="px-6 py-3 border-b-2 border-transparent text-slate-500 hover:text-slate-700 text-xs font-bold tracking-wider uppercase transition-all whitespace-nowrap"
+            >
+              Rules & Toggles
+            </button>
+            <button
+              class="px-6 py-3 border-b-2 border-transparent text-slate-500 hover:text-slate-700 text-xs font-bold tracking-wider uppercase transition-all whitespace-nowrap"
+            >
+              Icon & Media Governance
+            </button>
+            <button
+              class="px-6 py-3 border-b-2 border-transparent text-slate-500 hover:text-slate-700 text-xs font-bold tracking-wider uppercase transition-all whitespace-nowrap"
+            >
+              Analytics & History
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="flex-1 overflow-y-auto p-8 custom-scrollbar">
+          <form onsubmit="event.preventDefault();">
+            <div class="space-y-8" id="metadata-tab">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Name EN -->
+                <div class="space-y-2">
+                  <label
+                    class="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1"
+                    >Name (EN)</label
+                  >
+                  <div class="relative">
+                    <div
+                      class="absolute left-4 top-1/2 -translate-y-1/2 w-5 flex items-center justify-center opacity-50 font-bold text-[10px]"
+                    >
+                      EN
+                    </div>
+                    <input
+                      class="w-full h-12 pl-12 pr-4 bg-white/80 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold focus:ring-2 focus:ring-primary/50 transition-all shadow-sm"
+                      type="text"
+                      value="Coffee"
+                    />
+                  </div>
+                </div>
+                <!-- Name ID -->
+                <div class="space-y-2">
+                  <label
+                    class="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1"
+                    >Name (ID)</label
+                  >
+                  <div class="relative">
+                    <div
+                      class="absolute left-4 top-1/2 -translate-y-1/2 w-5 flex items-center justify-center opacity-50 font-bold text-[10px]"
+                    >
+                      ID
+                    </div>
+                    <input
+                      class="w-full h-12 pl-12 pr-4 bg-white/80 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold focus:ring-2 focus:ring-primary/50 transition-all shadow-sm"
+                      type="text"
+                      value="Kopi"
+                    />
+                  </div>
+                </div>
+                <!-- Slug -->
+                <div class="space-y-2">
+                  <label
+                    class="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1"
+                    >System Slug</label
+                  >
+                  <input
+                    class="w-full h-12 px-4 bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-mono text-slate-600 dark:text-slate-400 focus:ring-2 focus:ring-primary/50 transition-all"
+                    type="text"
+                    value="coffee_beverage"
+                  />
+                </div>
+                <!-- Type -->
+                <div class="space-y-2">
+                  <label
+                    class="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1"
+                    >Category Type</label
+                  >
+                  <div
+                    class="flex bg-slate-100 dark:bg-slate-800/80 p-1 rounded-xl h-12"
+                  >
+                    <button
+                      class="flex-1 rounded-lg bg-white dark:bg-slate-700 shadow-sm text-xs font-bold text-slate-800 dark:text-white transition-all"
+                      type="button">Expense</button
+                    >
+                    <button
+                      class="flex-1 rounded-lg text-xs font-bold text-slate-400 hover:text-slate-600 transition-all"
+                      type="button">Income</button
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Icon Section (Simplified for this view) -->
+              <div class="mt-8 space-y-4">
+                <div class="flex items-center justify-between">
+                  <label
+                    class="text-[10px] font-bold text-slate-400 uppercase tracking-widest ml-1"
+                    >Icon Governance</label
+                  >
+                  <button
+                    class="text-[10px] font-bold text-primary hover:underline"
+                    >Upload SVG</button
+                  >
+                </div>
+                <div
+                  class="bg-white/50 dark:bg-slate-800/30 border border-slate-200 dark:border-slate-700 rounded-2xl p-6"
+                >
+                  <div
+                    class="grid grid-cols-6 sm:grid-cols-8 lg:grid-cols-10 gap-3"
+                  >
+                    <button
+                      class="aspect-square rounded-xl bg-primary text-white flex items-center justify-center shadow-lg shadow-primary/30 ring-2 ring-primary ring-offset-2 ring-offset-white dark:ring-offset-slate-900 transition-all"
+                      type="button"
+                    >
+                      <span class="material-symbols-outlined text-xl"
+                        >coffee</span
+                      >
+                    </button>
+                    <button
+                      class="aspect-square rounded-xl bg-white dark:bg-slate-800 text-slate-400 hover:text-primary hover:border-primary border border-transparent hover:shadow-md transition-all flex items-center justify-center"
+                      type="button"
+                      ><span class="material-symbols-outlined">local_cafe</span
+                      ></button
+                    >
+                    <button
+                      class="aspect-square rounded-xl bg-white dark:bg-slate-800 text-slate-400 hover:text-primary hover:border-primary border border-transparent hover:shadow-md transition-all flex items-center justify-center"
+                      type="button"
+                      ><span class="material-symbols-outlined"
+                        >bakery_dining</span
+                      ></button
+                    >
+                    <button
+                      class="aspect-square rounded-xl bg-white dark:bg-slate-800 text-slate-400 hover:text-primary hover:border-primary border border-transparent hover:shadow-md transition-all flex items-center justify-center"
+                      type="button"
+                      ><span class="material-symbols-outlined">liquor</span
+                      ></button
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Footer Actions -->
+        <div
+          class="px-8 py-5 border-t border-slate-200/50 dark:border-slate-700/50 bg-white/40 dark:bg-slate-900/40 rounded-b-[2rem] flex items-center justify-between flex-none backdrop-blur-md"
+        >
+          <div class="flex items-center gap-2 text-slate-400">
+            <span class="size-2 rounded-full bg-amber-400 animate-pulse"></span>
+            <span
+              class="text-[10px] font-mono font-bold tracking-widest uppercase"
+              >Draft - Unsaved Changes</span
+            >
+          </div>
+          <div class="flex gap-4">
+            <button
+              class="px-6 py-3 rounded-xl text-slate-500 hover:text-slate-800 font-bold text-xs hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+              type="button"
+            >
+              Revert
+            </button>
+            <button
+              class="px-8 py-3 rounded-xl bg-gradient-to-r from-teal-400 to-cyan-500 hover:from-teal-300 hover:to-cyan-400 text-white font-bold text-sm shadow-lg shadow-teal-500/30 transform active:scale-95 transition-all flex items-center gap-2"
+              type="submit"
+            >
+              <span class="material-symbols-outlined text-lg">public</span>
+              Apply to All Users
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <style>
+    .toggle-checkbox:checked {
+      right: 0;
+      border-color: #14ccc3;
+    }
+    .toggle-checkbox:checked + .toggle-label {
+      background-color: #14ccc3;
+    }
+  </style>
+</AdminLayout>

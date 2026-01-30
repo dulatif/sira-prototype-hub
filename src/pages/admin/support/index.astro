@@ -1,0 +1,438 @@
+---
+import AdminLayout from "../../../layouts/AdminLayout.astro";
+---
+
+<AdminLayout title="Support Tickets">
+  <div class="flex flex-col gap-6 h-full min-h-0">
+    <!-- Header Controls (Optional override or within layout? Layout has header, but this page has specific controls) 
+         The AdminLayout has a slot. We'll put the page content here.
+         The prototype has a specific 2nd header or tool bar. We can put that in the top of the slot.
+    -->
+
+    <!-- Toolbar -->
+    <div class="flex items-center justify-between shrink-0">
+      <h2 class="text-2xl font-bold text-text-main leading-tight hidden">
+        Status Board
+      </h2>
+      <!-- Title is in Layout -->
+      <div class="flex items-center gap-4 w-full">
+        <div
+          class="flex items-center bg-white/50 rounded-xl p-1 shadow-sm border border-white/60"
+        >
+          <button
+            class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-text-muted hover:text-text-main hover:bg-white rounded-lg transition-colors"
+          >
+            Status: All
+            <span class="material-symbols-outlined text-[18px]"
+              >expand_more</span
+            >
+          </button>
+          <div class="w-px h-4 bg-gray-300 mx-1"></div>
+          <button
+            class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-text-muted hover:text-text-main hover:bg-white rounded-lg transition-colors"
+          >
+            Priority: All
+            <span class="material-symbols-outlined text-[18px]"
+              >expand_more</span
+            >
+          </button>
+        </div>
+        <!-- Kanban/List Toggle -->
+        <div
+          class="bg-white/50 rounded-xl p-1 shadow-sm border border-white/60 flex items-center ml-auto"
+        >
+          <a
+            href="/admin/support"
+            class="p-1.5 rounded-lg bg-white shadow-sm text-primary"
+          >
+            <span class="material-symbols-outlined text-[20px]"
+              >view_kanban</span
+            >
+          </a>
+          <a
+            href="/admin/support/tickets"
+            class="p-1.5 rounded-lg text-text-muted hover:text-text-main hover:bg-white/50 transition-colors"
+          >
+            <span class="material-symbols-outlined text-[20px]"
+              >splitscreen</span
+            >
+          </a>
+          <a
+            href="/admin/support/list"
+            class="p-1.5 rounded-lg text-text-muted hover:text-text-main hover:bg-white/50 transition-colors"
+          >
+            <span class="material-symbols-outlined text-[20px]"
+              >table_chart</span
+            >
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex gap-6 h-full min-h-0">
+      <!-- Kanban Columns -->
+      <div class="flex-1 flex gap-6 overflow-x-auto pb-4 scroll-smooth">
+        <!-- Open Column -->
+        <div
+          class="min-w-[320px] max-w-[320px] flex flex-col h-full bg-white/20 rounded-2xl border border-white/40 p-3"
+        >
+          <div class="flex items-center justify-between mb-4 px-2">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-status-green animate-pulse"
+              ></span>
+              <h3
+                class="font-bold text-sm text-text-main uppercase tracking-wider"
+              >
+                Open
+              </h3>
+              <span
+                class="bg-white/60 px-2 py-0.5 rounded-full text-[10px] font-bold text-text-muted"
+                >3</span
+              >
+            </div>
+            <button class="text-text-muted hover:text-primary">
+              <span class="material-symbols-outlined text-lg">add</span>
+            </button>
+          </div>
+          <div class="flex-1 space-y-3 overflow-y-auto pr-1">
+            <!-- Ticket Card 1 -->
+            <div
+              class="glass-panel p-4 rounded-xl cursor-pointer hover:border-primary/50 transition-all border-l-4 border-l-primary shadow-sm group"
+            >
+              <div class="flex justify-between items-start mb-2">
+                <span class="font-mono text-[10px] font-bold text-text-muted"
+                  >#TKT-9204</span
+                >
+                <span
+                  class="px-1.5 py-0.5 rounded text-[8px] font-bold uppercase tracking-wide bg-red-100 text-status-red border border-red-200"
+                  >Critical</span
+                >
+              </div>
+              <h4
+                class="text-sm font-bold text-text-main mb-3 line-clamp-2 group-hover:text-primary transition-colors"
+              >
+                Transaction failed on checkout
+              </h4>
+              <div class="flex items-center gap-2">
+                <div
+                  class="size-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-[10px] font-bold"
+                >
+                  JD
+                </div>
+                <span class="text-xs font-medium text-text-muted">John Doe</span
+                >
+                <span class="ml-auto text-[10px] text-text-muted/60"
+                  >10m ago</span
+                >
+              </div>
+            </div>
+            <!-- Ticket Card 2 -->
+            <div
+              class="glass-panel p-4 rounded-xl cursor-pointer hover:border-primary/50 transition-all border-l-4 border-l-primary shadow-sm group"
+            >
+              <div class="flex justify-between items-start mb-2">
+                <span class="font-mono text-[10px] font-bold text-text-muted"
+                  >#TKT-9202</span
+                >
+                <span
+                  class="px-1.5 py-0.5 rounded text-[8px] font-bold uppercase tracking-wide bg-blue-100 text-status-blue border border-blue-200"
+                  >Medium</span
+                >
+              </div>
+              <h4
+                class="text-sm font-bold text-text-main mb-3 line-clamp-2 group-hover:text-primary transition-colors"
+              >
+                Feature request: Dark mode
+              </h4>
+              <div class="flex items-center gap-2">
+                <div
+                  class="size-6 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-[10px] font-bold"
+                >
+                  MK
+                </div>
+                <span class="text-xs font-medium text-text-muted"
+                  >Mike Kowalski</span
+                >
+                <span class="ml-auto text-[10px] text-text-muted/60"
+                  >3h ago</span
+                >
+              </div>
+            </div>
+            <!-- Ticket Card 3 -->
+            <div
+              class="glass-panel p-4 rounded-xl cursor-pointer hover:border-primary/50 transition-all border-l-4 border-l-primary shadow-sm group"
+            >
+              <div class="flex justify-between items-start mb-2">
+                <span class="font-mono text-[10px] font-bold text-text-muted"
+                  >#TKT-9201</span
+                >
+                <span
+                  class="px-1.5 py-0.5 rounded text-[8px] font-bold uppercase tracking-wide bg-gray-100 text-gray-600 border border-gray-200"
+                  >Low</span
+                >
+              </div>
+              <h4
+                class="text-sm font-bold text-text-main mb-3 line-clamp-2 group-hover:text-primary transition-colors"
+              >
+                Login issues on mobile
+              </h4>
+              <div class="flex items-center gap-2">
+                <div
+                  class="size-6 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center text-[10px] font-bold"
+                >
+                  AL
+                </div>
+                <span class="text-xs font-medium text-text-muted">Anna Lee</span
+                >
+                <span class="ml-auto text-[10px] text-text-muted/60"
+                  >Yesterday</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pending Column -->
+        <div
+          class="min-w-[320px] max-w-[320px] flex flex-col h-full bg-white/20 rounded-2xl border border-white/40 p-3"
+        >
+          <div class="flex items-center justify-between mb-4 px-2">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-status-gold"></span>
+              <h3
+                class="font-bold text-sm text-text-main uppercase tracking-wider"
+              >
+                Pending
+              </h3>
+              <span
+                class="bg-white/60 px-2 py-0.5 rounded-full text-[10px] font-bold text-text-muted"
+                >1</span
+              >
+            </div>
+          </div>
+          <div class="flex-1 space-y-3 overflow-y-auto pr-1">
+            <!-- Ticket Card 4 -->
+            <div
+              class="glass-panel p-4 rounded-xl cursor-pointer hover:border-yellow-500/50 transition-all border-l-4 border-l-status-gold shadow-sm group"
+            >
+              <div class="flex justify-between items-start mb-2">
+                <span class="font-mono text-[10px] font-bold text-text-muted"
+                  >#TKT-9203</span
+                >
+                <span
+                  class="px-1.5 py-0.5 rounded text-[8px] font-bold uppercase tracking-wide bg-orange-100 text-orange-700 border border-orange-200"
+                  >High</span
+                >
+              </div>
+              <h4
+                class="text-sm font-bold text-text-main mb-3 line-clamp-2 group-hover:text-status-gold transition-colors"
+              >
+                Account verification pending
+              </h4>
+              <div class="flex items-center gap-2">
+                <div
+                  class="size-6 rounded-full bg-orange-50 border border-orange-200 flex items-center justify-center text-[8px] font-bold text-orange-600"
+                >
+                  SS
+                </div>
+                <span class="text-xs font-medium text-text-muted"
+                  >Sarah Smith</span
+                >
+                <span class="ml-auto text-[10px] text-text-muted/60"
+                  >1h ago</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resolved Column -->
+        <div
+          class="min-w-[320px] max-w-[320px] flex flex-col h-full bg-white/20 rounded-2xl border border-white/40 p-3"
+        >
+          <div class="flex items-center justify-between mb-4 px-2">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+              <h3
+                class="font-bold text-sm text-text-main uppercase tracking-wider"
+              >
+                Resolved
+              </h3>
+              <span
+                class="bg-white/60 px-2 py-0.5 rounded-full text-[10px] font-bold text-text-muted"
+                >1</span
+              >
+            </div>
+          </div>
+          <div class="flex-1 space-y-3 overflow-y-auto pr-1">
+            <!-- Ticket Card 5 -->
+            <div
+              class="glass-panel p-4 rounded-xl cursor-pointer hover:border-gray-400/50 transition-all border-l-4 border-l-gray-400 shadow-sm group opacity-70"
+            >
+              <div class="flex justify-between items-start mb-2">
+                <span class="font-mono text-[10px] font-bold text-text-muted"
+                  >#TKT-9199</span
+                >
+                <span
+                  class="px-1.5 py-0.5 rounded text-[8px] font-bold uppercase tracking-wide bg-blue-100 text-status-blue border border-blue-200"
+                  >Medium</span
+                >
+              </div>
+              <h4 class="text-sm font-bold text-text-main mb-3 line-clamp-2">
+                Billing cycle query
+              </h4>
+              <div class="flex items-center gap-2">
+                <div
+                  class="size-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-[10px] font-bold"
+                >
+                  RP
+                </div>
+                <span class="text-xs font-medium text-text-muted"
+                  >Riya Patel</span
+                >
+                <span class="ml-auto text-[10px] text-text-muted/60"
+                  >Yesterday</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Detail View (1/3) -->
+      <div class="w-1/3 flex flex-col min-h-0">
+        <div
+          class="glass-panel rounded-xl flex flex-col h-full overflow-hidden shadow-lg border-l border-white/80"
+        >
+          <div
+            class="p-5 border-b border-gray-200/60 bg-white/60 backdrop-blur-md"
+          >
+            <div class="flex justify-between items-start mb-3">
+              <span
+                class="font-mono text-xs font-bold text-text-muted bg-gray-100 px-2 py-1 rounded"
+                >#TKT-9204</span
+              >
+              <div class="flex gap-2">
+                <span
+                  class="material-symbols-outlined text-text-muted text-[18px] cursor-pointer hover:text-primary"
+                  >open_in_new</span
+                >
+                <span
+                  class="material-symbols-outlined text-text-muted text-[18px] cursor-pointer hover:text-primary"
+                  >more_horiz</span
+                >
+              </div>
+            </div>
+            <h2 class="text-xl font-bold text-text-main mb-2 leading-tight">
+              Transaction failed on checkout
+            </h2>
+            <div class="flex items-center gap-3 mt-3">
+              <div
+                class="size-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-bold border border-white shadow-sm"
+              >
+                JD
+              </div>
+              <div>
+                <div class="text-sm font-bold text-text-main">John Doe</div>
+                <div class="text-[10px] text-text-muted">
+                  user_id: 8821 • Premium Plan
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex-1 overflow-y-auto p-5 space-y-6 bg-white/20">
+            <!-- Chat Message 1 -->
+            <div class="flex gap-3">
+              <div
+                class="size-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-bold shrink-0 mt-1"
+              >
+                JD
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-xs font-bold text-text-main">John Doe</span>
+                  <span class="text-[10px] text-text-muted">10:42 AM</span>
+                </div>
+                <div
+                  class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-gray-100 text-sm text-text-main leading-relaxed"
+                >
+                  I tried to purchase the enterprise plan using my VISA card
+                  ending in 4242, but I keep getting a generic "Error 500"
+                  message. I've tried twice now. Please help as I need to deploy
+                  today.
+                </div>
+              </div>
+            </div>
+            <!-- Chat Message 2 -->
+            <div class="flex gap-3">
+              <div
+                class="size-8 rounded-full bg-yellow-100 text-yellow-700 flex items-center justify-center shrink-0 mt-1 border border-yellow-200"
+              >
+                <span class="material-symbols-outlined text-[16px]">lock</span>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-1">
+                  <span
+                    class="text-xs font-bold text-yellow-700 uppercase tracking-wider"
+                    >Internal Note</span
+                  >
+                  <span class="text-[10px] text-text-muted">10:45 AM</span>
+                </div>
+                <div
+                  class="bg-yellow-50/80 p-3 rounded-2xl rounded-tl-none border border-yellow-100 text-sm text-text-muted leading-relaxed italic"
+                >
+                  System logs show a timeout from the payment gateway provider.
+                  It might be a momentary glitch on their end. Checking Stripe
+                  status now.
+                  <br class="block mt-1" /><span
+                    class="font-semibold not-italic text-xs text-text-main"
+                    >- Marcus Reiner</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="p-5 bg-white/60 border-t border-gray-200/60 backdrop-blur-md z-20"
+          >
+            <div class="flex items-center justify-between mb-2">
+              <h4
+                class="text-sm font-bold text-text-main flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-[18px] text-primary"
+                  >reply</span
+                >
+                Reply via Email
+              </h4>
+            </div>
+            <textarea
+              class="w-full h-24 bg-white border border-gray-200 rounded-xl p-3 text-sm focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all resize-none shadow-inner mb-2 placeholder:text-gray-400"
+              placeholder="Type your response here..."></textarea>
+            <p
+              class="text-[10px] text-text-muted mb-4 flex items-start gap-1.5"
+            >
+              <span class="material-symbols-outlined text-[12px] mt-0.5"
+                >info</span
+              >
+              Note: Clicking send will deliver this message directly to the user's
+              registered email address.
+            </p>
+            <div class="flex gap-2">
+              <button
+                class="flex-1 bg-gradient-to-br from-primary to-teal-600 hover:bg-primary-dark text-white py-2.5 rounded-lg shadow-lg shadow-primary/20 transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 font-semibold text-sm"
+              >
+                <span class="material-symbols-outlined text-[18px]">send</span>
+                Send & Resolve
+              </button>
+              <button
+                class="px-4 py-2.5 rounded-lg border border-gray-200 bg-white text-text-muted hover:text-text-main hover:border-gray-300 transition-all font-medium text-sm hover:shadow-sm"
+              >
+                Send & Keep Open
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</AdminLayout>

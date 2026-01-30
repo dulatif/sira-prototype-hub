@@ -1,0 +1,572 @@
+---
+import AdminLayout from "../../../layouts/AdminLayout.astro";
+---
+
+<AdminLayout title="Provider Library">
+  <div class="flex flex-col gap-6">
+    <!-- Metrics Grid -->
+    <div class="grid grid-cols-4 gap-4">
+      <div
+        class="glass-panel p-4 rounded-xl flex items-center gap-4 group hover:border-primary/30 transition-all"
+      >
+        <div class="p-2.5 rounded-lg bg-blue-50 text-blue-600">
+          <span class="material-symbols-outlined text-[20px]"
+            >account_balance</span
+          >
+        </div>
+        <div>
+          <p
+            class="text-[11px] font-bold text-text-muted uppercase tracking-wider"
+          >
+            Bank Options
+          </p>
+          <h3 class="text-xl font-bold text-text-main font-mono">24</h3>
+        </div>
+      </div>
+      <div
+        class="glass-panel p-4 rounded-xl flex items-center gap-4 group hover:border-primary/30 transition-all"
+      >
+        <div class="p-2.5 rounded-lg bg-teal-50 text-teal-600">
+          <span class="material-symbols-outlined text-[20px]"
+            >account_balance_wallet</span
+          >
+        </div>
+        <div>
+          <p
+            class="text-[11px] font-bold text-text-muted uppercase tracking-wider"
+          >
+            E-Wallet Options
+          </p>
+          <h3 class="text-xl font-bold text-text-main font-mono">12</h3>
+        </div>
+      </div>
+      <div
+        class="glass-panel p-4 rounded-xl flex items-center gap-4 group hover:border-primary/30 transition-all"
+      >
+        <div class="p-2.5 rounded-lg bg-purple-50 text-purple-600">
+          <span class="material-symbols-outlined text-[20px]"
+            >manage_accounts</span
+          >
+        </div>
+        <div>
+          <p
+            class="text-[11px] font-bold text-text-muted uppercase tracking-wider"
+          >
+            Manual Tracking Users
+          </p>
+          <h3 class="text-xl font-bold text-text-main font-mono">84,392</h3>
+        </div>
+      </div>
+      <div
+        class="glass-panel p-4 rounded-xl flex items-center gap-4 group hover:border-primary/30 transition-all"
+      >
+        <div class="p-2.5 rounded-lg bg-primary/10 text-primary">
+          <span class="material-symbols-outlined text-[20px]">fact_check</span>
+        </div>
+        <div>
+          <p
+            class="text-[11px] font-bold text-text-muted uppercase tracking-wider"
+          >
+            Metadata Accuracy
+          </p>
+          <h3 class="text-xl font-bold text-text-main font-mono">99.8%</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Providers Table -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-bold text-text-main flex items-center gap-2 px-2">
+        <span class="material-symbols-outlined text-primary">grid_view</span>
+        Active Providers
+      </h3>
+      <div class="glass-panel rounded-xl overflow-hidden">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-white/40 border-b border-gray-200/60">
+              <th
+                class="px-6 py-4 text-xs font-bold text-text-muted uppercase tracking-wider"
+              >
+                <button
+                  class="flex items-center gap-1 hover:text-text-main transition-colors"
+                >
+                  Provider <span class="material-symbols-outlined text-[14px]"
+                    >unfold_more</span
+                  >
+                </button>
+              </th>
+              <th
+                class="px-6 py-4 text-xs font-bold text-text-muted uppercase tracking-wider"
+              >
+                <button
+                  class="flex items-center gap-1 hover:text-text-main transition-colors"
+                >
+                  Category <span class="material-symbols-outlined text-[14px]"
+                    >unfold_more</span
+                  >
+                </button>
+              </th>
+              <th
+                class="px-6 py-4 text-xs font-bold text-text-muted uppercase tracking-wider"
+              >
+                <button
+                  class="flex items-center gap-1 hover:text-text-main transition-colors"
+                >
+                  Total Users Linked <span
+                    class="material-symbols-outlined text-[14px]"
+                    >unfold_more</span
+                  >
+                </button>
+              </th>
+              <th
+                class="px-6 py-4 text-xs font-bold text-text-muted uppercase tracking-wider"
+              >
+                <button
+                  class="flex items-center gap-1 hover:text-text-main transition-colors"
+                >
+                  Last Updated Metadata <span
+                    class="material-symbols-outlined text-[14px]"
+                    >unfold_more</span
+                  >
+                </button>
+              </th>
+              <th
+                class="px-6 py-4 text-xs font-bold text-text-muted uppercase tracking-wider text-right"
+                >Actions</th
+              >
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200/50">
+            <!-- Row 1 -->
+            <tr class="hover:bg-white/50 transition-colors group">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="size-10 rounded-lg bg-white border border-gray-100 p-1 flex items-center justify-center shadow-sm"
+                  >
+                    <img
+                      alt="BCA Logo"
+                      class="w-full h-full object-cover rounded"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCfKKs9lG8Y9HVCYEuup3n-AoFuPKNBM1fOKPrG4Hf3hOJL5PC4W-UN5ZqgwoAkzSGQGIqyFqdT1KAWLfZRJw8iQYTcfUnUj7BBBFppV731WDY6TH4RGJZ282-Yk51r6HuGDe4ja9lSAcnnY7ahUSEYR3DhY8i9CcmeBTLKuIiEGE6a8M2i8iJJHDb7h-THasE5vPVSNtKpxuA5vgQuKFHZ8J9jmYW6iJpc_D95A0UP4vwHPHIZ5NqPO-ntXXODsOegwH39nmWWYwH"
+                    />
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-sm font-bold text-text-main"
+                      >BCA Bank</span
+                    >
+                    <span
+                      class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-green-100 text-status-green w-fit border border-green-200 mt-0.5"
+                      >PUBLIC</span
+                    >
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-xs font-mono text-text-muted"
+                >Commercial Bank</td
+              >
+              <td class="px-6 py-4 text-sm font-bold font-mono text-text-main"
+                >2,491,020</td
+              >
+              <td class="px-6 py-4">
+                <div
+                  class="flex items-center gap-2 text-primary font-bold text-xs"
+                >
+                  <span class="material-symbols-outlined text-[16px]"
+                    >edit_calendar</span
+                  >
+                  24 Oct 2023
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="flex justify-end gap-2">
+                  <button
+                    class="px-3 py-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary hover:text-white transition-colors text-xs font-bold border border-primary/10"
+                    >Edit Details</button
+                  >
+                  <button
+                    class="p-1.5 rounded-lg text-text-muted hover:text-text-main hover:bg-white border border-transparent hover:border-gray-200 transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >analytics</span
+                    >
+                  </button>
+                  <button
+                    class="p-1.5 rounded-lg text-status-red hover:bg-red-50 border border-transparent hover:border-red-100 transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >visibility_off</span
+                    >
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <!-- Row 2 -->
+            <tr class="hover:bg-white/50 transition-colors group">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="size-10 rounded-lg bg-orange-50 border border-orange-100 p-1 flex items-center justify-center shadow-sm"
+                  >
+                    <div
+                      class="w-full h-full bg-gradient-to-tr from-orange-400 to-purple-500 rounded flex items-center justify-center text-white font-bold text-xs"
+                    >
+                      J
+                    </div>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-sm font-bold text-text-main"
+                      >Bank Jago</span
+                    >
+                    <span
+                      class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-green-100 text-status-green w-fit border border-green-200 mt-0.5"
+                      >PUBLIC</span
+                    >
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-xs font-mono text-text-muted"
+                >Digital Bank</td
+              >
+              <td class="px-6 py-4 text-sm font-bold font-mono text-text-main"
+                >892,102</td
+              >
+              <td class="px-6 py-4">
+                <div
+                  class="flex items-center gap-2 text-text-muted font-bold text-xs"
+                >
+                  <span class="material-symbols-outlined text-[16px]"
+                    >edit_calendar</span
+                  >
+                  12 Sep 2023
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="flex justify-end gap-2">
+                  <button
+                    class="px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-text-main hover:border-primary hover:text-primary transition-colors text-xs font-bold"
+                    >Edit Details</button
+                  >
+                  <button
+                    class="p-1.5 rounded-lg text-text-muted hover:text-text-main hover:bg-white border border-transparent hover:border-gray-200 transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >analytics</span
+                    >
+                  </button>
+                  <button
+                    class="p-1.5 rounded-lg text-status-red hover:bg-red-50 border border-transparent hover:border-red-100 transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >visibility_off</span
+                    >
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <!-- Row 3 -->
+            <tr class="hover:bg-white/50 transition-colors group">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="size-10 rounded-lg bg-blue-50 border border-blue-100 p-1 flex items-center justify-center shadow-sm"
+                  >
+                    <div
+                      class="w-full h-full bg-blue-700 rounded flex items-center justify-center text-white font-bold text-xs"
+                    >
+                      M
+                    </div>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-sm font-bold text-text-main">Mandiri</span
+                    >
+                    <span
+                      class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-yellow-100 text-yellow-700 w-fit border border-yellow-200 mt-0.5"
+                      >DRAFT</span
+                    >
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-xs font-mono text-text-muted"
+                >Commercial Bank</td
+              >
+              <td class="px-6 py-4 text-sm font-bold font-mono text-text-main"
+                >3,100,550</td
+              >
+              <td class="px-6 py-4">
+                <div
+                  class="flex items-center gap-2 text-text-main font-bold text-xs"
+                >
+                  <span class="material-symbols-outlined text-[16px]"
+                    >edit_calendar</span
+                  >
+                  Yesterday
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="flex justify-end gap-2">
+                  <button
+                    class="px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-text-main hover:border-primary hover:text-primary transition-colors text-xs font-bold"
+                    >Edit Details</button
+                  >
+                  <button
+                    class="p-1.5 rounded-lg text-text-muted hover:text-text-main hover:bg-white border border-transparent hover:border-gray-200 transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >analytics</span
+                    >
+                  </button>
+                  <button
+                    class="p-1.5 rounded-lg text-status-red hover:bg-red-50 border border-transparent hover:border-red-100 transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >visibility_off</span
+                    >
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <!-- Row 4 -->
+            <tr class="hover:bg-white/50 transition-colors group">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="size-10 rounded-lg bg-white border border-gray-100 p-1 flex items-center justify-center shadow-sm"
+                  >
+                    <img
+                      alt="GoPay Logo"
+                      class="w-full h-full object-cover rounded"
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0tCrp9wGPhIBNHSRq0D2uof3nkY8W3iUy39w3U5L1PVEccGVhK4Z_wFstQQzjqqVeVedaEfNkUqaixAmnxMzEk5zizWPslv1pU3MOM5uEbRijJQtiwhS8i83CY6lNvzE0mTObWggzJHVXkIPeO4Dygsz5YySxXVBnNvTuT8dQvYNb7DLDA6m2OtYKOR_JDokfg2KVn0GbNzg9O1FNENYq0OBAgLRJcbw8aCL_YEVw9Gq1UlNZSr5gkGyvFw0-gLdwJyl8iSmAUk8E"
+                    />
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-sm font-bold text-text-main">GoPay</span>
+                    <span
+                      class="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-green-100 text-status-green w-fit border border-green-200 mt-0.5"
+                      >PUBLIC</span
+                    >
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-xs font-mono text-text-muted"
+                >E-Wallet</td
+              >
+              <td class="px-6 py-4 text-sm font-bold font-mono text-text-main"
+                >5,220,100</td
+              >
+              <td class="px-6 py-4">
+                <div
+                  class="flex items-center gap-2 text-primary font-bold text-xs"
+                >
+                  <span class="material-symbols-outlined text-[16px]"
+                    >edit_calendar</span
+                  >
+                  Just now
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="flex justify-end gap-2">
+                  <button
+                    class="px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-text-main hover:border-primary hover:text-primary transition-colors text-xs font-bold"
+                    >Edit Details</button
+                  >
+                  <button
+                    class="p-1.5 rounded-lg text-text-muted hover:text-text-main hover:bg-white border border-transparent hover:border-gray-200 transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >analytics</span
+                    >
+                  </button>
+                  <button
+                    class="p-1.5 rounded-lg text-status-red hover:bg-red-50 border border-transparent hover:border-red-100 transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >visibility_off</span
+                    >
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div
+          class="px-6 py-4 bg-white/20 border-t border-gray-200/50 flex justify-between items-center"
+        >
+          <span class="text-xs text-text-muted font-medium"
+            >Showing 4 of 36 providers</span
+          >
+          <div class="flex gap-1">
+            <button
+              class="size-8 rounded-lg flex items-center justify-center border border-gray-200 hover:bg-white text-text-muted transition-colors"
+              ><span class="material-symbols-outlined text-[18px]"
+                >chevron_left</span
+              ></button
+            >
+            <button
+              class="size-8 rounded-lg flex items-center justify-center border border-primary bg-primary text-white text-xs font-bold"
+              >1</button
+            >
+            <button
+              class="size-8 rounded-lg flex items-center justify-center border border-gray-200 hover:bg-white text-text-muted text-xs font-bold"
+              >2</button
+            >
+            <button
+              class="size-8 rounded-lg flex items-center justify-center border border-gray-200 hover:bg-white text-text-muted transition-colors"
+              ><span class="material-symbols-outlined text-[18px]"
+                >chevron_right</span
+              ></button
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- System Activity Log -->
+    <div class="glass-panel rounded-xl overflow-hidden">
+      <div
+        class="px-6 py-4 border-b border-gray-200/60 bg-white/30 flex items-center justify-between"
+      >
+        <h3 class="font-bold text-text-main flex items-center gap-2 text-lg">
+          <span class="material-symbols-outlined text-text-muted">list_alt</span
+          >
+          System Activity Log
+        </h3>
+        <div class="flex items-center gap-3">
+          <span
+            class="text-[10px] uppercase font-bold tracking-wider text-status-green bg-green-100 px-2 py-0.5 rounded border border-green-200"
+            >System Online</span
+          >
+          <button class="text-xs font-bold text-primary hover:underline"
+            >Download Report</button
+          >
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 p-2 font-mono text-xs"
+      >
+        <!-- Log Item 1 -->
+        <div
+          class="p-4 rounded-lg bg-white/40 border border-gray-100 hover:bg-white/60 transition-colors group"
+        >
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-text-muted text-[10px]">10:42:05.120</span>
+            <span class="text-status-green font-bold text-[10px]"
+              >NEW ASSOCIATION</span
+            >
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-1 h-8 bg-status-green rounded-full shrink-0"></div>
+            <div>
+              <span class="font-bold text-text-main block">BCA Bank</span>
+              <span class="text-text-muted leading-relaxed"
+                >New manual BCA pocket created by User ID: 4920</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Log Item 2 -->
+        <div
+          class="p-4 rounded-lg bg-white/40 border border-gray-100 hover:bg-white/60 transition-colors group"
+        >
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-text-muted text-[10px]">10:41:58.902</span>
+            <span class="text-status-blue font-bold text-[10px]"
+              >USER ACTION</span
+            >
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-1 h-8 bg-status-blue rounded-full shrink-0"></div>
+            <div>
+              <span class="font-bold text-text-main block">GoPay</span>
+              <span class="text-text-muted leading-relaxed"
+                >User ID: 8821 manually linked GoPay account</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Log Item 3 -->
+        <div
+          class="p-4 rounded-lg bg-yellow-50/50 border border-yellow-100 hover:bg-yellow-50/80 transition-colors group"
+        >
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-text-muted text-[10px]">10:40:12.441</span>
+            <span class="text-yellow-600 font-bold text-[10px]">METADATA</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-1 h-8 bg-status-gold rounded-full shrink-0"></div>
+            <div>
+              <span class="font-bold text-text-main block">Mandiri</span>
+              <span class="text-text-muted leading-relaxed"
+                >Logo updated by Admin (Size: 400x400px)</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Log Item 4 -->
+        <div
+          class="p-4 rounded-lg bg-white/40 border border-gray-100 hover:bg-white/60 transition-colors group"
+        >
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-text-muted text-[10px]">10:39:01.005</span>
+            <span class="text-status-green font-bold text-[10px]"
+              >NEW ASSOCIATION</span
+            >
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-1 h-8 bg-status-green rounded-full shrink-0"></div>
+            <div>
+              <span class="font-bold text-text-main block">Bank Jago</span>
+              <span class="text-text-muted leading-relaxed"
+                >Manual tracking enabled by User ID: 1055</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Log Item 5 -->
+        <div
+          class="p-4 rounded-lg bg-red-50/50 border border-red-100 hover:bg-red-50/80 transition-colors group"
+        >
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-text-muted text-[10px]">10:38:45.220</span>
+            <span class="text-status-red font-bold text-[10px]">REPORT</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-1 h-8 bg-status-red rounded-full shrink-0"></div>
+            <div>
+              <span class="font-bold text-text-main block">BNI (Legacy)</span>
+              <span class="text-text-muted leading-relaxed"
+                >User reported incorrect interest rate metadata</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Log Item 6 -->
+        <div
+          class="p-4 rounded-lg bg-white/40 border border-gray-100 hover:bg-white/60 transition-colors group"
+        >
+          <div class="flex justify-between items-center mb-1">
+            <span class="text-text-muted text-[10px]">10:35:10.118</span>
+            <span class="text-status-blue font-bold text-[10px]">UPDATE</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-1 h-8 bg-status-blue rounded-full shrink-0"></div>
+            <div>
+              <span class="font-bold text-text-main block">BCA Bank</span>
+              <span class="text-text-muted leading-relaxed"
+                >Batch update: 50 new branch locations added</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 bg-white/40 border-t border-gray-200/50 text-center">
+        <button
+          class="text-sm font-bold text-primary hover:text-primary-dark transition-colors inline-flex items-center gap-2"
+        >
+          View Full Activity Logs <span
+            class="material-symbols-outlined text-[18px]">arrow_forward</span
+          >
+        </button>
+      </div>
+    </div>
+  </div>
+</AdminLayout>
