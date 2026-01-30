@@ -1,0 +1,344 @@
+---
+// Settings Page
+import Base from "../layouts/Base.astro";
+import Sidebar from "../components/Sidebar.astro";
+import Header from "../components/Header.astro";
+---
+
+<Base title="Sira - User Settings">
+  <style>
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    }
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(99, 193, 187, 0.3),
+        transparent
+      );
+    }
+  </style>
+
+  <div
+    class="flex h-screen w-full overflow-hidden bg-[#f8fcfb] font-display text-[#1f2937] antialiased"
+  >
+    <Sidebar activePage="setting" />
+
+    <main class="flex-1 flex flex-col h-full relative overflow-hidden">
+      <!-- Background Blobs -->
+      <div
+        class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl -z-10 pointer-events-none"
+      >
+      </div>
+      <div
+        class="absolute bottom-[-10%] left-[10%] w-[300px] h-[300px] bg-[#2dd4bf]/10 rounded-full blur-3xl -z-10 pointer-events-none"
+      >
+      </div>
+
+      <Header
+        title="Profile & Preferences"
+        subtitle="Manage your account"
+        icon="settings"
+      />
+
+      <div class="flex-1 overflow-y-auto p-4 lg:p-8 flex justify-center">
+        <div
+          class="glass-panel w-full max-w-4xl rounded-3xl flex flex-col h-fit mb-10 overflow-hidden"
+        >
+          <!-- Avatar Section -->
+          <div
+            class="w-full p-6 border-b border-white/60 bg-white/40 flex flex-col sm:flex-row items-center gap-5"
+          >
+            <div class="relative group cursor-pointer shrink-0">
+              <div
+                class="w-20 h-20 rounded-full border-4 border-white shadow-lg bg-cover bg-center overflow-hidden transition-transform duration-300 group-hover:scale-105"
+                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDG0QDM_WsG3TMAlJ4WTCKjraOeWzFPv1P1-uFGvgdLnUYaY8qblHSkQ0BHcrlNB3G9HXm-BN6LYXm_l2GFYYeupNNaj1DR0YvkWdV_y0nQgVPQbYScG7nP-iwTS2mChY3lbzm2QWl3qmjijWXtsJxngfZRBg4cijG5ZchGZtykVD83nlU4gZEzT_T1E31iTmJCiRP43-XfqDKh9qZXHmEkObWQK2MoBM7V2ZpWsyWDLp9pcmetauDYBZZjaSw9f0DubqBfILaxUQnQ');"
+              >
+                <div
+                  class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                >
+                </div>
+              </div>
+              <button
+                aria-label="Upload new avatar"
+                class="absolute bottom-0 right-0 w-6 h-6 bg-primary hover:bg-primary/90 text-[#12201f] rounded-full shadow-md flex items-center justify-center transition-all duration-300 hover:scale-110 border-2 border-white"
+              >
+                <span class="material-symbols-outlined text-[14px]"
+                  >photo_camera</span
+                >
+              </button>
+            </div>
+            <div class="text-center sm:text-left flex-1">
+              <h3 class="text-lg font-bold text-[#121717] font-display">
+                Alex Morgan
+              </h3>
+              <p class="text-sm text-[#658683]">alex@sira.finance</p>
+            </div>
+            <button
+              class="text-xs font-bold text-[#0f766e] bg-primary/10 hover:bg-primary/20 px-4 py-2 rounded-lg transition-colors"
+            >
+              Change Avatar
+            </button>
+          </div>
+
+          <!-- Profile Details Form -->
+          <form class="flex flex-col" onsubmit="event.preventDefault();">
+            <div class="p-6 space-y-4">
+              <h4
+                class="text-sm font-bold text-[#121717] flex items-center gap-2 font-display"
+              >
+                <span class="material-symbols-outlined text-primary text-lg"
+                  >badge</span
+                >
+                Profile Details
+              </h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="space-y-1">
+                  <label
+                    class="text-xs font-semibold text-[#658683] ml-1"
+                    for="fullName">Full Name</label
+                  >
+                  <div class="relative">
+                    <input
+                      class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-sm rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm placeholder:text-[#9ca3af]"
+                      id="fullName"
+                      placeholder="Enter your full name"
+                      type="text"
+                      value="Alex Morgan"
+                    />
+                    <span
+                      class="material-symbols-outlined absolute right-3 top-2.5 text-[#9ca3af] pointer-events-none text-lg"
+                      >person</span
+                    >
+                  </div>
+                </div>
+                <div class="space-y-1">
+                  <label
+                    class="text-xs font-semibold text-[#658683] ml-1"
+                    for="email">Email Address</label
+                  >
+                  <div class="relative opacity-75">
+                    <input
+                      class="w-full bg-[#f0f4f4] border border-transparent text-[#658683] text-sm rounded-xl px-4 py-2.5 cursor-not-allowed shadow-inner"
+                      disabled
+                      id="email"
+                      type="email"
+                      value="alex@sira.finance"
+                    />
+                    <span
+                      class="material-symbols-outlined absolute right-3 top-2.5 text-[#658683] text-lg"
+                      >lock</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-end">
+                <button
+                  class="px-5 py-2 rounded-lg text-xs font-bold text-white bg-primary hover:bg-primary/90 transition-all shadow-sm"
+                  type="submit"
+                >
+                  Update Profile
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Divider -->
+          <div class="section-divider mx-6"></div>
+
+          <!-- Change Password Form -->
+          <form class="flex flex-col" onsubmit="event.preventDefault();">
+            <div class="p-6 space-y-4">
+              <h4
+                class="text-sm font-bold text-[#121717] flex items-center gap-2 font-display"
+              >
+                <span class="material-symbols-outlined text-amber-500 text-lg"
+                  >lock</span
+                >
+                Change Password
+              </h4>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="space-y-1">
+                  <label
+                    class="text-xs font-semibold text-[#658683] ml-1"
+                    for="currentPassword">Current Password</label
+                  >
+                  <div class="relative">
+                    <input
+                      class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-sm rounded-xl px-4 py-2.5 pr-10 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm placeholder:text-[#9ca3af]"
+                      id="currentPassword"
+                      type="password"
+                      placeholder="••••••••"
+                    />
+                    <button
+                      class="absolute right-3 top-2.5 text-[#9ca3af] hover:text-[#121717] transition-colors focus:outline-none"
+                      type="button"
+                    >
+                      <span class="material-symbols-outlined text-lg"
+                        >visibility</span
+                      >
+                    </button>
+                  </div>
+                </div>
+                <div class="space-y-1">
+                  <label
+                    class="text-xs font-semibold text-[#658683] ml-1"
+                    for="newPassword">New Password</label
+                  >
+                  <div class="relative">
+                    <input
+                      class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-sm rounded-xl px-4 py-2.5 pr-10 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm placeholder:text-[#9ca3af]"
+                      id="newPassword"
+                      placeholder="••••••••"
+                      type="password"
+                    />
+                    <button
+                      class="absolute right-3 top-2.5 text-[#9ca3af] hover:text-[#121717] transition-colors focus:outline-none"
+                      type="button"
+                    >
+                      <span class="material-symbols-outlined text-lg"
+                        >visibility_off</span
+                      >
+                    </button>
+                  </div>
+                </div>
+                <div class="space-y-1">
+                  <label
+                    class="text-xs font-semibold text-[#658683] ml-1"
+                    for="confirmNewPassword">Confirm Password</label
+                  >
+                  <div class="relative">
+                    <input
+                      class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-sm rounded-xl px-4 py-2.5 pr-10 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm placeholder:text-[#9ca3af]"
+                      id="confirmNewPassword"
+                      placeholder="••••••••"
+                      type="password"
+                    />
+                    <button
+                      class="absolute right-3 top-2.5 text-[#9ca3af] hover:text-[#121717] transition-colors focus:outline-none"
+                      type="button"
+                    >
+                      <span class="material-symbols-outlined text-lg"
+                        >visibility_off</span
+                      >
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-end">
+                <button
+                  class="px-5 py-2 rounded-lg text-xs font-bold text-[#12201f] bg-amber-400 hover:bg-amber-500 transition-all shadow-sm flex items-center gap-1.5"
+                  type="submit"
+                >
+                  <span class="material-symbols-outlined text-sm">key</span>
+                  Update Password
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Divider -->
+          <div class="section-divider mx-6"></div>
+
+          <!-- Preferences Form -->
+          <form class="flex flex-col" onsubmit="event.preventDefault();">
+            <div class="p-6 space-y-4">
+              <h4
+                class="text-sm font-bold text-[#121717] flex items-center gap-2 font-display"
+              >
+                <span class="material-symbols-outlined text-primary text-lg"
+                  >tune</span
+                >
+                Preferences
+              </h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="space-y-1">
+                  <label
+                    class="text-xs font-semibold text-[#658683] ml-1"
+                    for="currency">Base Currency</label
+                  >
+                  <div class="relative">
+                    <select
+                      class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-sm rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm appearance-none cursor-pointer"
+                      id="currency"
+                    >
+                      <option value="USD">🇺🇸 USD - US Dollar</option>
+                      <option value="IDR">🇮🇩 IDR - Indonesian Rupiah</option>
+                      <option value="EUR">🇪🇺 EUR - Euro</option>
+                      <option value="SGD">🇸🇬 SGD - Singapore Dollar</option>
+                    </select>
+                    <span
+                      class="material-symbols-outlined absolute right-3 top-2.5 text-[#9ca3af] pointer-events-none text-lg"
+                      >expand_more</span
+                    >
+                  </div>
+                </div>
+                <div class="space-y-1">
+                  <label
+                    class="text-xs font-semibold text-[#658683] ml-1"
+                    for="language">Language</label
+                  >
+                  <div class="relative">
+                    <select
+                      class="w-full bg-white/80 border border-[#dce5e4] text-[#121717] text-sm rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm appearance-none cursor-pointer"
+                      id="language"
+                    >
+                      <option value="en">English (US)</option>
+                      <option value="id">Bahasa Indonesia</option>
+                    </select>
+                    <span
+                      class="material-symbols-outlined absolute right-3 top-2.5 text-[#9ca3af] pointer-events-none text-lg"
+                      >expand_more</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-end gap-2">
+                <button
+                  class="px-4 py-2 rounded-lg text-xs font-bold text-[#658683] hover:bg-gray-100/50 hover:text-[#121717] transition-colors"
+                  type="button"
+                >
+                  Reset
+                </button>
+                <button
+                  class="px-5 py-2 rounded-lg text-xs font-bold text-[#12201f] bg-gradient-to-r from-primary to-[#2dd4bf] hover:shadow-md transition-all"
+                  type="submit"
+                >
+                  Save Preferences
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- Danger Zone -->
+          <div class="section-divider mx-6"></div>
+          <div class="p-6 bg-red-50/30 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-red-400 text-lg"
+                >warning</span
+              >
+              <div>
+                <h4 class="text-xs font-bold text-red-600">Danger Zone</h4>
+                <p class="text-[11px] text-red-400">
+                  Delete account permanently
+                </p>
+              </div>
+            </div>
+            <button
+              class="px-4 py-2 rounded-lg text-xs font-bold text-red-600 border border-red-200 hover:bg-red-100 transition-colors"
+              type="button"
+            >
+              Delete Account
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</Base>

@@ -1,0 +1,804 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Sira Admin System Health Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#14ccc3",
+              "primary-hover": "#11b5ad",
+              secondary: "#2c3e50",
+              "teal-flux-start": "#14ccc3",
+              "teal-flux-end": "#0ea5e9",
+              "background-light": "#f8fafb",
+              "background-dark": "#0f1414",
+              "surface-light": "#ffffff",
+              "surface-dark": "#1a2221",
+              "sidebar-light": "#fcfdfe",
+            },
+            fontFamily: {
+              display: ["Outfit", "sans-serif"],
+              body: ["Outfit", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "1rem",
+              xl: "1.5rem",
+              "2xl": "2rem",
+              full: "9999px",
+            },
+            boxShadow: {
+              glass: "0 8px 32px 0 rgba(31, 38, 135, 0.07)",
+              "glass-dark": "0 8px 32px 0 rgba(0, 0, 0, 0.3)",
+              "teal-glow": "0 4px 14px 0 rgba(20, 204, 195, 0.39)",
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer base {
+        body {
+          @apply font-display;
+        }
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 3px;
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+      }
+      .dark .glass-panel {
+        background: rgba(26, 34, 33, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .donut-chart-segment {
+        transition: stroke-dasharray 0.5s ease-in-out;
+      }
+      .chart-grid line {
+        stroke: #e2e8f0;
+        stroke-dasharray: 4 4;
+      }
+      .dark .chart-grid line {
+        stroke: #334155;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 overflow-hidden h-screen flex transition-colors duration-300 selection:bg-primary/30"
+  >
+    <aside
+      class="w-64 flex-none border-r border-slate-200 dark:border-slate-800 bg-sidebar-light dark:bg-surface-dark flex flex-col h-full z-40 shadow-sm"
+    >
+      <div class="p-6">
+        <div class="h-8 flex items-center gap-2">
+          <div
+            class="size-8 rounded-lg bg-primary flex items-center justify-center text-white"
+          >
+            <span class="material-symbols-outlined text-sm">token</span>
+          </div>
+          <span class="font-bold text-slate-800 dark:text-white tracking-tight"
+            >SIRA</span
+          >
+        </div>
+      </div>
+      <nav class="flex-1 px-4 space-y-1 overflow-y-auto">
+        <a
+          class="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-primary/10 to-transparent text-primary rounded-xl transition-all border-l-4 border-primary"
+          href="#"
+        >
+          <span class="material-symbols-outlined">dashboard</span>
+          <span class="font-bold text-sm">System Health</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">account_balance</span>
+          <span class="font-semibold text-sm">Accounts</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">list_alt</span>
+          <span class="font-semibold text-sm">Transactions</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">track_changes</span>
+          <span class="font-semibold text-sm">Goals</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">call_split</span>
+          <span class="font-semibold text-sm">Split Bill</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">category</span>
+          <span class="font-semibold text-sm">Categories</span>
+        </a>
+      </nav>
+      <div class="p-4 border-t border-slate-200 dark:border-slate-800">
+        <button
+          class="flex items-center gap-3 w-full px-4 py-3 text-slate-500 hover:bg-red-50 hover:text-red-500 rounded-xl transition-all"
+        >
+          <span class="material-symbols-outlined">logout</span>
+          <span class="font-semibold text-sm">Logout</span>
+        </button>
+      </div>
+    </aside>
+    <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+      <header
+        class="h-20 flex-none bg-white dark:bg-surface-dark border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8 sticky top-0 z-30 shadow-sm"
+      >
+        <div class="flex items-center gap-6">
+          <h1
+            class="text-2xl font-extrabold tracking-tight text-slate-800 dark:text-white"
+          >
+            System Health
+          </h1>
+          <div
+            class="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800"
+          >
+            <span class="relative flex h-2.5 w-2.5">
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+              ></span>
+              <span
+                class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"
+              ></span>
+            </span>
+            <span
+              class="text-xs font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wide"
+              >Status: Online</span
+            >
+          </div>
+          <div class="flex items-center gap-2">
+            <span
+              class="text-xs font-semibold text-slate-400 uppercase tracking-wider"
+              >Server Load</span
+            >
+            <span
+              class="text-sm font-mono font-bold text-slate-700 dark:text-slate-200"
+              >24%</span
+            >
+          </div>
+        </div>
+        <div class="flex items-center gap-6">
+          <div class="relative w-72 hidden md:block">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg"
+              >search</span
+            >
+            <input
+              class="w-full h-10 pl-10 pr-4 bg-slate-50 dark:bg-background-dark border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+              placeholder="Search logs, errors, metrics..."
+              type="text"
+            />
+          </div>
+          <div class="flex items-center gap-4">
+            <button
+              class="size-10 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 relative"
+            >
+              <span class="material-symbols-outlined">notifications</span>
+              <span
+                class="absolute top-2 right-2 size-2.5 bg-red-500 rounded-full border-2 border-white dark:border-surface-dark"
+              ></span>
+            </button>
+            <div class="h-8 w-px bg-slate-200 dark:bg-slate-700"></div>
+            <div class="flex items-center gap-3 cursor-pointer group">
+              <div class="text-right hidden sm:block">
+                <p class="text-sm font-bold text-slate-900 dark:text-white">
+                  Sarah Jenkins
+                </p>
+                <p
+                  class="text-[10px] font-bold text-slate-500 uppercase tracking-wider"
+                >
+                  System Admin
+                </p>
+              </div>
+              <div
+                class="size-10 rounded-full ring-2 ring-primary/20 overflow-hidden group-hover:ring-primary/50 transition-all"
+              >
+                <div
+                  class="size-10 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30"
+                  title="Sarah Jenkins"
+                >
+                  <span class="text-xs font-bold text-primary">SJ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main
+        class="flex-1 relative bg-slate-50 dark:bg-background-dark flex flex-col overflow-y-auto overflow-x-hidden p-6 gap-6"
+      >
+        <div
+          class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] pointer-events-none"
+        ></div>
+        <div
+          class="absolute bottom-0 left-10 w-[300px] h-[300px] bg-blue-500/5 rounded-full blur-[80px] pointer-events-none"
+        ></div>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 z-10 relative"
+        >
+          <div
+            class="glass-panel p-6 rounded-2xl shadow-sm hover:shadow-teal-glow transition-shadow duration-300"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <div
+                class="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-blue-500"
+              >
+                <span class="material-symbols-outlined">group</span>
+              </div>
+              <span
+                class="text-xs font-bold text-emerald-500 bg-emerald-50 dark:bg-emerald-900/20 px-2 py-1 rounded-md flex items-center gap-1"
+              >
+                <span class="material-symbols-outlined text-sm"
+                  >trending_up</span
+                >
+                +12%
+              </span>
+            </div>
+            <h3
+              class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-1"
+            >
+              Total Users
+            </h3>
+            <p
+              class="text-3xl font-mono font-bold text-slate-900 dark:text-white"
+            >
+              248,392
+            </p>
+            <p class="text-xs text-slate-400 mt-2 font-mono">
+              Vs. 221,490 last month
+            </p>
+          </div>
+          <div
+            class="glass-panel p-6 rounded-2xl shadow-sm hover:shadow-teal-glow transition-shadow duration-300"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <div
+                class="p-2 bg-purple-50 dark:bg-purple-900/20 rounded-lg text-purple-500"
+              >
+                <span class="material-symbols-outlined">savings</span>
+              </div>
+              <span
+                class="text-xs font-bold text-emerald-500 bg-emerald-50 dark:bg-emerald-900/20 px-2 py-1 rounded-md flex items-center gap-1"
+              >
+                <span class="material-symbols-outlined text-sm"
+                  >trending_up</span
+                >
+                +5.2%
+              </span>
+            </div>
+            <h3
+              class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-1"
+            >
+              Total AUM
+            </h3>
+            <p
+              class="text-3xl font-mono font-bold text-slate-900 dark:text-white"
+            >
+              $42.8M
+            </p>
+            <p class="text-xs text-slate-400 mt-2 font-mono">
+              Aggregated globally
+            </p>
+          </div>
+          <div
+            class="glass-panel p-6 rounded-2xl shadow-sm hover:shadow-teal-glow transition-shadow duration-300"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <div
+                class="p-2 bg-amber-50 dark:bg-amber-900/20 rounded-lg text-amber-500"
+              >
+                <span class="material-symbols-outlined">devices</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="relative flex h-2 w-2">
+                  <span
+                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"
+                  ></span>
+                  <span
+                    class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"
+                  ></span>
+                </span>
+                <span
+                  class="text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase"
+                  >Live</span
+                >
+              </div>
+            </div>
+            <h3
+              class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-1"
+            >
+              Active Sessions
+            </h3>
+            <p
+              class="text-3xl font-mono font-bold text-slate-900 dark:text-white"
+            >
+              1,842
+            </p>
+            <p class="text-xs text-slate-400 mt-2 font-mono">
+              Currently logged in
+            </p>
+          </div>
+          <div
+            class="glass-panel p-6 rounded-2xl shadow-sm hover:shadow-teal-glow transition-shadow duration-300"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <div
+                class="p-2 bg-teal-50 dark:bg-teal-900/20 rounded-lg text-teal-500"
+              >
+                <span class="material-symbols-outlined">speed</span>
+              </div>
+              <span
+                class="text-xs font-bold text-emerald-500 bg-emerald-50 dark:bg-emerald-900/20 px-2 py-1 rounded-md"
+              >
+                Good
+              </span>
+            </div>
+            <h3
+              class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider mb-1"
+            >
+              System Latency
+            </h3>
+            <p
+              class="text-3xl font-mono font-bold text-slate-900 dark:text-white"
+            >
+              24ms
+            </p>
+            <p class="text-xs text-slate-400 mt-2 font-mono">
+              Avg API response time
+            </p>
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-1 lg:grid-cols-3 gap-6 z-10 relative h-[420px]"
+        >
+          <div
+            class="glass-panel lg:col-span-2 rounded-2xl p-6 flex flex-col shadow-sm"
+          >
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <h2 class="text-lg font-bold text-slate-900 dark:text-white">
+                  Transaction Volume &amp; User Growth
+                </h2>
+                <p class="text-sm text-slate-500 dark:text-slate-400">
+                  Comparing network traffic over the last 30 days
+                </p>
+              </div>
+              <div
+                class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg"
+              >
+                <button
+                  class="px-3 py-1 text-xs font-bold rounded bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-sm"
+                >
+                  30D
+                </button>
+                <button
+                  class="px-3 py-1 text-xs font-bold rounded text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                >
+                  7D
+                </button>
+                <button
+                  class="px-3 py-1 text-xs font-bold rounded text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                >
+                  24H
+                </button>
+              </div>
+            </div>
+            <div class="flex-1 w-full relative">
+              <svg
+                class="w-full h-full overflow-visible"
+                preserveAspectRatio="none"
+                viewBox="0 0 800 300"
+              >
+                <defs>
+                  <linearGradient
+                    id="gradientPrimary"
+                    x1="0"
+                    x2="0"
+                    y1="0"
+                    y2="1"
+                  >
+                    <stop
+                      offset="0%"
+                      stop-color="#14ccc3"
+                      stop-opacity="0.5"
+                    ></stop>
+                    <stop
+                      offset="100%"
+                      stop-color="#14ccc3"
+                      stop-opacity="0"
+                    ></stop>
+                  </linearGradient>
+                  <linearGradient
+                    id="gradientSecondary"
+                    x1="0"
+                    x2="0"
+                    y1="0"
+                    y2="1"
+                  >
+                    <stop
+                      offset="0%"
+                      stop-color="#0ea5e9"
+                      stop-opacity="0.3"
+                    ></stop>
+                    <stop
+                      offset="100%"
+                      stop-color="#0ea5e9"
+                      stop-opacity="0"
+                    ></stop>
+                  </linearGradient>
+                </defs>
+                <g class="chart-grid opacity-30">
+                  <line x1="0" x2="800" y1="250" y2="250"></line>
+                  <line x1="0" x2="800" y1="175" y2="175"></line>
+                  <line x1="0" x2="800" y1="100" y2="100"></line>
+                  <line x1="0" x2="800" y1="25" y2="25"></line>
+                </g>
+                <path
+                  d="M0,250 C50,240 100,200 150,210 C200,220 250,150 300,160 C350,170 400,100 450,120 C500,140 550,50 600,80 C650,110 700,40 750,60 L800,50 V300 H0 Z"
+                  fill="url(#gradientPrimary)"
+                ></path>
+                <path
+                  d="M0,250 C50,240 100,200 150,210 C200,220 250,150 300,160 C350,170 400,100 450,120 C500,140 550,50 600,80 C650,110 700,40 750,60 L800,50"
+                  fill="none"
+                  stroke="#14ccc3"
+                  stroke-width="3"
+                ></path>
+                <path
+                  d="M0,280 C60,270 120,250 180,260 C240,270 300,220 360,230 C420,240 480,180 540,190 C600,200 660,150 720,160 L800,140"
+                  fill="none"
+                  stroke="#0ea5e9"
+                  stroke-width="3"
+                ></path>
+                <path
+                  d="M0,280 C60,270 120,250 180,260 C240,270 300,220 360,230 C420,240 480,180 540,190 C600,200 660,150 720,160 L800,140 V300 H0 Z"
+                  fill="url(#gradientSecondary)"
+                ></path>
+              </svg>
+              <div
+                class="flex justify-between mt-2 text-xs font-mono text-slate-400"
+              >
+                <span>01 Nov</span>
+                <span>05 Nov</span>
+                <span>10 Nov</span>
+                <span>15 Nov</span>
+                <span>20 Nov</span>
+                <span>25 Nov</span>
+                <span>30 Nov</span>
+              </div>
+            </div>
+          </div>
+          <div class="glass-panel rounded-2xl p-6 flex flex-col shadow-sm">
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="text-lg font-bold text-slate-900 dark:text-white">
+                Mood Distribution
+              </h2>
+              <button class="text-slate-400 hover:text-primary">
+                <span class="material-symbols-outlined">more_vert</span>
+              </button>
+            </div>
+            <div class="flex-1 flex items-center justify-center relative">
+              <svg class="transform -rotate-90 w-48 h-48" viewBox="0 0 100 100">
+                <circle
+                  cx="50"
+                  cy="50"
+                  fill="transparent"
+                  r="40"
+                  stroke="#f1f5f9"
+                  stroke-width="12"
+                ></circle>
+                <circle
+                  class="donut-chart-segment"
+                  cx="50"
+                  cy="50"
+                  fill="transparent"
+                  r="40"
+                  stroke="#14ccc3"
+                  stroke-dasharray="160 251.2"
+                  stroke-dashoffset="0"
+                  stroke-width="12"
+                ></circle>
+                <circle
+                  class="donut-chart-segment"
+                  cx="50"
+                  cy="50"
+                  fill="transparent"
+                  r="40"
+                  stroke="#f59e0b"
+                  stroke-dasharray="50 251.2"
+                  stroke-dashoffset="-160"
+                  stroke-width="12"
+                ></circle>
+                <circle
+                  class="donut-chart-segment"
+                  cx="50"
+                  cy="50"
+                  fill="transparent"
+                  r="40"
+                  stroke="#64748b"
+                  stroke-dasharray="41.2 251.2"
+                  stroke-dashoffset="-210"
+                  stroke-width="12"
+                ></circle>
+              </svg>
+              <div
+                class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
+              >
+                <span
+                  class="text-3xl font-mono font-bold text-slate-800 dark:text-white"
+                  >64%</span
+                >
+                <span class="text-xs font-bold text-primary uppercase"
+                  >Cuan</span
+                >
+              </div>
+            </div>
+            <div class="mt-4 space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="size-3 rounded-full bg-primary"></span>
+                  <span
+                    class="text-sm font-semibold text-slate-600 dark:text-slate-300"
+                    >CUAN (Productive)</span
+                  >
+                </div>
+                <span
+                  class="font-mono text-sm font-bold text-slate-800 dark:text-white"
+                  >64%</span
+                >
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="size-3 rounded-full bg-amber-500"></span>
+                  <span
+                    class="text-sm font-semibold text-slate-600 dark:text-slate-300"
+                    >MAGER (Lazy)</span
+                  >
+                </div>
+                <span
+                  class="font-mono text-sm font-bold text-slate-800 dark:text-white"
+                  >20%</span
+                >
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="size-3 rounded-full bg-slate-500"></span>
+                  <span
+                    class="text-sm font-semibold text-slate-600 dark:text-slate-300"
+                    >Other</span
+                  >
+                </div>
+                <span
+                  class="font-mono text-sm font-bold text-slate-800 dark:text-white"
+                  >16%</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 z-10 relative flex-1">
+          <div
+            class="glass-panel lg:col-span-2 rounded-2xl p-6 shadow-sm overflow-hidden flex flex-col"
+          >
+            <div class="flex items-center justify-between mb-4 flex-none">
+              <h2 class="text-lg font-bold text-slate-900 dark:text-white">
+                Recent Admin Activity
+              </h2>
+              <button class="text-xs font-bold text-primary hover:underline">
+                View All Logs
+              </button>
+            </div>
+            <div class="overflow-x-auto flex-1">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr
+                    class="border-b border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-400 uppercase tracking-wider"
+                  >
+                    <th class="pb-3 pl-2">Admin</th>
+                    <th class="pb-3">Action</th>
+                    <th class="pb-3">Target</th>
+                    <th class="pb-3">Time</th>
+                    <th class="pb-3 text-right pr-2">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="text-sm font-medium">
+                  <tr
+                    class="group hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors border-b border-slate-100 dark:border-slate-800/50"
+                  >
+                    <td class="py-3 pl-2 flex items-center gap-3">
+                      <div
+                        class="size-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-xs"
+                      >
+                        SJ
+                      </div>
+                      <span class="text-slate-700 dark:text-slate-200"
+                        >Sarah Jenkins</span
+                      >
+                    </td>
+                    <td class="py-3 text-slate-600 dark:text-slate-400">
+                      Updated Taxanomy
+                    </td>
+                    <td class="py-3 font-mono text-xs text-slate-500">
+                      CAT_001_A
+                    </td>
+                    <td class="py-3 text-slate-500 font-mono text-xs">
+                      2 mins ago
+                    </td>
+                    <td class="py-3 text-right pr-2">
+                      <span
+                        class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"
+                        >SUCCESS</span
+                      >
+                    </td>
+                  </tr>
+                  <tr
+                    class="group hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors border-b border-slate-100 dark:border-slate-800/50"
+                  >
+                    <td class="py-3 pl-2 flex items-center gap-3">
+                      <div
+                        class="size-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-xs"
+                      >
+                        MK
+                      </div>
+                    </td>
+                    <td class="py-3 text-slate-600 dark:text-slate-400">
+                      System Backup
+                    </td>
+                    <td class="py-3 font-mono text-xs text-slate-500">
+                      DB_SHARD_04
+                    </td>
+                    <td class="py-3 text-slate-500 font-mono text-xs">
+                      45 mins ago
+                    </td>
+                    <td class="py-3 text-right pr-2">
+                      <span
+                        class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"
+                        >SUCCESS</span
+                      >
+                    </td>
+                  </tr>
+                  <tr
+                    class="group hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors"
+                  >
+                    <td class="py-3 pl-2 flex items-center gap-3">
+                      <div
+                        class="size-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-xs"
+                      >
+                        SYS
+                      </div>
+                    </td>
+                    <td class="py-3 text-slate-600 dark:text-slate-400">
+                      Auto-Scaling
+                    </td>
+                    <td class="py-3 font-mono text-xs text-slate-500">
+                      NODE_CLUSTER_2
+                    </td>
+                    <td class="py-3 text-slate-500 font-mono text-xs">
+                      2 hours ago
+                    </td>
+                    <td class="py-3 text-right pr-2">
+                      <span
+                        class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
+                        >WARNING</span
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div
+            class="glass-panel rounded-2xl p-6 shadow-sm flex flex-col gap-4"
+          >
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+              Server Health
+            </h2>
+            <div class="space-y-6">
+              <div>
+                <div class="flex justify-between items-end mb-2">
+                  <span
+                    class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider"
+                    >CPU Usage</span
+                  >
+                  <span
+                    class="text-sm font-mono font-bold text-slate-800 dark:text-white"
+                    >42%</span
+                  >
+                </div>
+                <div
+                  class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden"
+                >
+                  <div class="h-full bg-primary w-[42%] rounded-full"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between items-end mb-2">
+                  <span
+                    class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider"
+                    >Memory (RAM)</span
+                  >
+                  <span
+                    class="text-sm font-mono font-bold text-slate-800 dark:text-white"
+                    >78%</span
+                  >
+                </div>
+                <div
+                  class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden"
+                >
+                  <div class="h-full bg-amber-500 w-[78%] rounded-full"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between items-end mb-2">
+                  <span
+                    class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider"
+                    >Database IOPS</span
+                  >
+                  <span
+                    class="text-sm font-mono font-bold text-slate-800 dark:text-white"
+                    >1.2k</span
+                  >
+                </div>
+                <div
+                  class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden"
+                >
+                  <div class="h-full bg-purple-500 w-[24%] rounded-full"></div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800"
+            >
+              <div class="flex items-center gap-2 text-xs text-slate-400">
+                <span class="material-symbols-outlined text-sm text-emerald-500"
+                  >check_circle</span
+                >
+                <span class="font-medium">All systems operational</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
