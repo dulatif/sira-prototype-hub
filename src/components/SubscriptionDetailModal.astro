@@ -1,0 +1,343 @@
+---
+
+---
+
+<div
+  id="subscription-detail-modal"
+  class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/10 backdrop-blur-[20px] opacity-0 pointer-events-none transition-opacity duration-300"
+  aria-hidden="true"
+>
+  <!-- Modal Content -->
+  <div
+    class="relative bg-white/70 backdrop-blur-2xl border border-white/80 shadow-2xl rounded-[24px] w-full max-w-lg overflow-hidden flex flex-col transform scale-95 transition-transform duration-300"
+  >
+    <div class="p-6 pb-2 flex justify-between items-start">
+      <div class="flex items-center gap-4">
+        <div
+          class="size-14 rounded-xl bg-black flex items-center justify-center text-red-600 text-3xl font-bold shadow-md ring-4 ring-white/50"
+        >
+          N
+        </div>
+        <div class="flex flex-col">
+          <h2 class="text-2xl font-bold text-slate-800 leading-tight">
+            Netflix Premium
+          </h2>
+          <div class="flex items-center gap-2 mt-1">
+            <span
+              class="inline-flex items-center gap-1 bg-emerald-100/80 text-emerald-700 px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wide border border-emerald-200"
+            >
+              <span class="size-1.5 rounded-full bg-emerald-500"></span>
+              Active
+            </span>
+            <span class="text-xs text-slate-500">Since Dec 2021</span>
+          </div>
+        </div>
+      </div>
+      <button
+        id="close-subscription-detail-modal"
+        class="text-slate-400 hover:text-slate-600 p-1 hover:bg-slate-100 rounded-full transition-colors"
+      >
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+
+    <div class="overflow-y-auto max-h-[80vh] hide-scroll">
+      <div class="px-6 py-4 flex items-baseline gap-2">
+        <span class="font-mono text-4xl font-bold text-slate-900">$15.99</span>
+        <span class="text-slate-500 font-medium text-lg">/ Monthly</span>
+      </div>
+
+      <div class="px-6 mb-4">
+        <div class="flex items-center justify-between mb-2">
+          <span
+            class="text-xs font-bold text-slate-400 uppercase tracking-wider"
+            >Price History (12m)</span
+          >
+          <span
+            class="text-[10px] text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded font-bold"
+            >Stable</span
+          >
+        </div>
+        <div class="h-20 w-full relative">
+          <svg
+            class="w-full h-full overflow-visible"
+            preserveAspectRatio="none"
+            viewBox="0 0 400 60"
+          >
+            <line
+              stroke="#e2e8f0"
+              stroke-dasharray="4 4"
+              stroke-width="1"
+              x1="0"
+              x2="400"
+              y1="0"
+              y2="0"></line>
+            <line
+              stroke="#e2e8f0"
+              stroke-dasharray="4 4"
+              stroke-width="1"
+              x1="0"
+              x2="400"
+              y1="30"
+              y2="30"></line>
+            <line
+              stroke="#cbd5e1"
+              stroke-width="1"
+              x1="0"
+              x2="400"
+              y1="60"
+              y2="60"></line>
+            <defs>
+              <linearGradient id="gradientLine" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#22c3b6" stop-opacity="0.2"
+                ></stop>
+                <stop offset="100%" stop-color="#22c3b6" stop-opacity="0"
+                ></stop>
+              </linearGradient>
+            </defs>
+            <path
+              d="M0,45 L100,45 L200,45 L200,15 L400,15 V60 H0 Z"
+              fill="url(#gradientLine)"></path>
+            <path
+              d="M0,45 L100,45 L200,45 L200,15 L400,15"
+              fill="none"
+              stroke="#22c3b6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"></path>
+            <circle
+              cx="400"
+              cy="15"
+              fill="#fff"
+              r="4"
+              stroke="#22c3b6"
+              stroke-width="2"></circle>
+          </svg>
+          <div
+            class="flex justify-between text-[10px] text-slate-400 mt-1 font-mono"
+          >
+            <span>Jan '23</span>
+            <span>Jun '23</span>
+            <span>Jan '24</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="px-6 py-2">
+        <div class="grid grid-cols-2 gap-4">
+          <div
+            class="bg-white/50 border border-white/60 rounded-xl p-3 flex flex-col gap-1"
+          >
+            <span
+              class="text-[10px] text-slate-400 font-bold uppercase tracking-wider"
+              >Linked Pocket</span
+            >
+            <div
+              class="flex items-center gap-2 text-slate-700 font-semibold text-sm"
+            >
+              <span class="material-symbols-outlined text-primary text-[18px]"
+                >credit_card</span
+              >
+              BCA Main
+            </div>
+          </div>
+          <div
+            class="bg-white/50 border border-white/60 rounded-xl p-3 flex flex-col gap-1"
+          >
+            <span
+              class="text-[10px] text-slate-400 font-bold uppercase tracking-wider"
+              >Next Billing</span
+            >
+            <div
+              class="flex items-center gap-2 text-slate-700 font-semibold text-sm"
+            >
+              <span class="material-symbols-outlined text-primary text-[18px]"
+                >calendar_month</span
+              >
+              Jan 16, 2024
+            </div>
+          </div>
+          <div
+            class="bg-white/50 border border-white/60 rounded-xl p-3 flex flex-col gap-1"
+          >
+            <span
+              class="text-[10px] text-slate-400 font-bold uppercase tracking-wider"
+              >Category</span
+            >
+            <div
+              class="flex items-center gap-2 text-slate-700 font-semibold text-sm"
+            >
+              <span
+                class="material-symbols-outlined text-purple-500 text-[18px]"
+                >movie</span
+              >
+              Entertainment
+            </div>
+          </div>
+          <div
+            class="bg-white/50 border border-white/60 rounded-xl p-3 flex flex-col gap-1"
+          >
+            <span
+              class="text-[10px] text-slate-400 font-bold uppercase tracking-wider"
+              >Mood Reflection</span
+            >
+            <div
+              class="flex items-center gap-2 text-teal-600 font-bold text-sm"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >self_improvement</span
+              >
+              HEALING
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="px-6 py-6 flex flex-col gap-4">
+        <div class="flex items-center justify-between group">
+          <div class="flex flex-col">
+            <span class="text-sm font-semibold text-slate-700"
+              >Auto-record to Ledger</span
+            >
+            <span class="text-xs text-slate-400"
+              >Add transaction automatically when paid</span
+            >
+          </div>
+          <div
+            class="relative inline-block w-10 align-middle select-none transition duration-200 ease-in"
+          >
+            <input
+              checked=""
+              class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-slate-300 transition-all duration-300"
+              id="modal-detail-toggle1"
+              name="toggle"
+              type="checkbox"
+            />
+            <label
+              class="toggle-label block overflow-hidden h-5 rounded-full bg-slate-300 cursor-pointer transition-colors duration-300"
+              for="modal-detail-toggle1"></label>
+          </div>
+        </div>
+        <div class="flex items-center justify-between group">
+          <div class="flex flex-col">
+            <span class="text-sm font-semibold text-slate-700"
+              >Notify before renewal</span
+            >
+            <span class="text-xs text-slate-400"
+              >Get an alert 2 days before billing</span
+            >
+          </div>
+          <div
+            class="relative inline-block w-10 align-middle select-none transition duration-200 ease-in"
+          >
+            <input
+              checked=""
+              class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-slate-300 transition-all duration-300"
+              id="modal-detail-toggle2"
+              name="toggle"
+              type="checkbox"
+            />
+            <label
+              class="toggle-label block overflow-hidden h-5 rounded-full bg-slate-300 cursor-pointer transition-colors duration-300"
+              for="modal-detail-toggle2"></label>
+          </div>
+        </div>
+        <div
+          class="flex items-center justify-between group opacity-50 pointer-events-none grayscale"
+        >
+          <div class="flex flex-col">
+            <span class="text-sm font-semibold text-slate-700"
+              >Pause Subscription</span
+            >
+            <span class="text-xs text-slate-400"
+              >Available on Standard plan only</span
+            >
+          </div>
+          <div
+            class="relative inline-block w-10 align-middle select-none transition duration-200 ease-in"
+          >
+            <input
+              class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 appearance-none cursor-pointer border-slate-300 transition-all duration-300"
+              id="modal-detail-toggle3"
+              name="toggle"
+              type="checkbox"
+            />
+            <label
+              class="toggle-label block overflow-hidden h-5 rounded-full bg-slate-300 cursor-pointer transition-colors duration-300"
+              for="modal-detail-toggle3"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-6 pt-4 bg-white/40 border-t border-white/60 flex gap-3">
+      <button
+        class="flex-1 py-3 rounded-xl border border-slate-200 text-slate-600 font-semibold text-sm hover:bg-slate-50 transition-colors"
+      >
+        Edit Details
+      </button>
+      <button
+        class="flex-1 py-3 rounded-xl bg-rose-50 border border-rose-100 text-rose-600 font-bold text-sm hover:bg-rose-100 hover:shadow-sm transition-all"
+      >
+        Cancel Subscription
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hide-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .toggle-checkbox:checked {
+    right: 0;
+    border-color: #22c3b6;
+  }
+  .toggle-checkbox:checked + .toggle-label {
+    background-color: #22c3b6;
+  }
+</style>
+
+<script>
+  const modal = document.getElementById("subscription-detail-modal");
+  // The content wrapper that needs scaling animation
+  // It's the first child div of the modal container
+  const modalContent = modal?.querySelector("div");
+  const closeBtn = document.getElementById("close-subscription-detail-modal");
+
+  function openDetailModal() {
+    if (modal) {
+      modal.classList.remove("opacity-0", "pointer-events-none");
+      if (modalContent) {
+        modalContent.classList.remove("scale-95");
+        modalContent.classList.add("scale-100");
+      }
+    }
+  }
+
+  function closeDetailModal() {
+    if (modal) {
+      modal.classList.add("opacity-0", "pointer-events-none");
+      if (modalContent) {
+        modalContent.classList.remove("scale-100");
+        modalContent.classList.add("scale-95");
+      }
+    }
+  }
+
+  // Listen for custom event
+  document.addEventListener("open-subscription-detail-modal", openDetailModal);
+
+  closeBtn?.addEventListener("click", closeDetailModal);
+
+  // Close on backdrop click
+  modal?.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeDetailModal();
+    }
+  });
+</script>

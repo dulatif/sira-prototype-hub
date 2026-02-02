@@ -2,6 +2,8 @@
 import Base from "../layouts/Base.astro";
 import Sidebar from "../components/Sidebar.astro";
 import Header from "../components/Header.astro";
+import SubscriptionCreateModal from "../components/SubscriptionCreateModal.astro";
+import SubscriptionDetailModal from "../components/SubscriptionDetailModal.astro";
 ---
 
 <Base title="Sira - Subscription Manager">
@@ -55,6 +57,22 @@ import Header from "../components/Header.astro";
         class="flex-1 overflow-y-auto relative p-4 md:p-8 md:pt-6 pb-20 scroll-smooth"
       >
         <div class="max-w-7xl mx-auto flex flex-col gap-8">
+          <!-- Actions Header (Desktop) -->
+          <div class="hidden md:flex items-center justify-between">
+            <div>
+              <h2 class="text-2xl font-bold text-slate-800">Overview</h2>
+              <p class="text-slate-500 text-sm">
+                Welcome back, get on top of your subs.
+              </p>
+            </div>
+            <button
+              id="add-subscription-desktop"
+              class="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-bold text-sm shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-0.5 transition-all"
+            >
+              <span class="material-symbols-outlined text-[20px]">add</span>
+              Add Subscription
+            </button>
+          </div>
           <!-- Summary Section -->
           <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div
@@ -363,7 +381,7 @@ import Header from "../components/Header.astro";
                     </thead>
                     <tbody class="text-sm">
                       <tr
-                        class="hover:bg-white/40 transition-colors border-b border-slate-100/50"
+                        class="hover:bg-white/40 transition-colors border-b border-slate-100/50 cursor-pointer subscription-row"
                       >
                         <td class="p-5">
                           <div class="flex items-center gap-3">
@@ -417,7 +435,7 @@ import Header from "../components/Header.astro";
                         </td>
                       </tr>
                       <tr
-                        class="hover:bg-white/40 transition-colors border-b border-slate-100/50"
+                        class="hover:bg-white/40 transition-colors border-b border-slate-100/50 cursor-pointer subscription-row"
                       >
                         <td class="p-5">
                           <div class="flex items-center gap-3">
@@ -474,7 +492,7 @@ import Header from "../components/Header.astro";
                         </td>
                       </tr>
                       <tr
-                        class="hover:bg-white/40 transition-colors border-b border-slate-100/50"
+                        class="hover:bg-white/40 transition-colors border-b border-slate-100/50 cursor-pointer subscription-row"
                       >
                         <td class="p-5">
                           <div class="flex items-center gap-3">
@@ -527,7 +545,7 @@ import Header from "../components/Header.astro";
                         </td>
                       </tr>
                       <tr
-                        class="hover:bg-white/40 transition-colors border-b border-slate-100/50"
+                        class="hover:bg-white/40 transition-colors border-b border-slate-100/50 cursor-pointer subscription-row"
                       >
                         <td class="p-5">
                           <div class="flex items-center gap-3">
@@ -690,10 +708,44 @@ import Header from "../components/Header.astro";
 
       <!-- Mobile FAB -->
       <button
+        id="add-subscription-fab"
         class="md:hidden fixed bottom-6 right-6 size-14 rounded-full bg-primary text-white shadow-lg flex items-center justify-center z-50"
       >
         <span class="material-symbols-outlined">add</span>
       </button>
+
+      <SubscriptionCreateModal />
+      <SubscriptionDetailModal />
     </main>
   </div>
+
+  <script>
+    const addBtnDesktop = document.getElementById("add-subscription-desktop");
+    const addBtnFab = document.getElementById("add-subscription-fab");
+    const subscriptionRows = document.querySelectorAll(".subscription-row");
+
+    function openModal() {
+      document.dispatchEvent(new CustomEvent("open-subscription-modal"));
+    }
+
+    function openDetailModal() {
+      document.dispatchEvent(new CustomEvent("open-subscription-detail-modal"));
+    }
+
+    addBtnDesktop?.addEventListener("click", openModal);
+    addBtnFab?.addEventListener("click", openModal);
+
+    subscriptionRows.forEach((row) => {
+      row.addEventListener("click", (e) => {
+        // Prevent opening if clicking on toggle checkboxes or their labels
+        if (
+          (e.target as HTMLElement).closest(".toggle-checkbox") ||
+          (e.target as HTMLElement).closest(".toggle-label")
+        ) {
+          return;
+        }
+        openDetailModal();
+      });
+    });
+  </script>
 </Base>
