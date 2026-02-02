@@ -3,6 +3,7 @@
 import Base from "../layouts/Base.astro";
 import Sidebar from "../components/Sidebar.astro";
 import Header from "../components/Header.astro";
+import GoalCreateModal from "../components/GoalCreateModal.astro";
 ---
 
 <Base title="Sira - Goals & Planner">
@@ -275,6 +276,7 @@ import Header from "../components/Header.astro";
 
               <!-- Add New Path Button -->
               <button
+                id="add-goal-btn"
                 class="rounded-[24px] border-2 border-dashed border-[#11d4c4]/20 hover:border-[#11d4c4]/40 bg-white/5 hover:bg-[#11d4c4]/5 p-7 flex items-center justify-center gap-4 group transition-all duration-300 min-h-[140px] lg:col-span-3"
               >
                 <div
@@ -432,5 +434,16 @@ import Header from "../components/Header.astro";
         </div>
       </div>
     </main>
+    <GoalCreateModal />
   </div>
 </Base>
+
+<script>
+  const addGoalBtn = document.getElementById("add-goal-btn");
+
+  function openGoalModal() {
+    document.dispatchEvent(new CustomEvent("open-goal-modal"));
+  }
+
+  addGoalBtn?.addEventListener("click", openGoalModal);
+</script>
