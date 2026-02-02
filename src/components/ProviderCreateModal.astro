@@ -1,0 +1,217 @@
+---
+
+---
+
+<style>
+  .glass-modal {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.1),
+      0 0 100px rgba(79, 176, 169, 0.1);
+  }
+  :global(.dark) .glass-modal {
+    background: rgba(21, 29, 28, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.3),
+      0 0 100px rgba(79, 176, 169, 0.05);
+  }
+  .shadow-glow {
+    box-shadow: 0 0 15px rgba(17, 212, 196, 0.3);
+  }
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 0.3s ease-out forwards;
+  }
+</style>
+
+<div
+  id="provider-modal"
+  class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden"
+>
+  <div
+    id="modal-backdrop"
+    class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+  >
+  </div>
+  <div
+    class="relative w-full max-w-lg glass-modal rounded-[24px] overflow-hidden flex flex-col max-h-[90vh] shadow-2xl animate-fade-in-up"
+  >
+    <div
+      class="p-6 border-b border-slate-200/50 dark:border-slate-700/50 flex justify-between items-center"
+    >
+      <h2 class="text-xl font-bold text-slate-800 dark:text-white">
+        Connect New Provider
+      </h2>
+      <button
+        id="btn-close-modal"
+        class="w-8 h-8 rounded-full flex items-center justify-center text-slate-500 hover:text-slate-800 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+      >
+        <span class="material-symbols-rounded">close</span>
+      </button>
+    </div>
+    <div class="p-6 overflow-y-auto">
+      <div class="relative mb-6">
+        <span
+          class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 material-symbols-rounded"
+          >search</span
+        >
+        <input
+          class="w-full pl-11 pr-4 py-3.5 bg-slate-100 dark:bg-slate-800/50 border-none rounded-2xl text-slate-800 dark:text-white placeholder-slate-400 focus:ring-2 focus:ring-primary/50 transition-all font-medium"
+          placeholder="Search for your bank or e-wallet"
+          type="text"
+        />
+      </div>
+      <h3
+        class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4"
+      >
+        Popular Providers
+      </h3>
+      <div class="grid grid-cols-3 gap-3 mb-6">
+        <button
+          class="flex flex-col items-center justify-center gap-2 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/30 hover:border-primary/50 hover:bg-primary/5 hover:shadow-glow transition-all group h-28"
+        >
+          <div
+            class="w-10 h-10 rounded-full bg-blue-700 text-white flex items-center justify-center font-bold text-xs shadow-md group-hover:scale-110 transition-transform"
+          >
+            BCA
+          </div>
+          <span class="text-xs font-bold text-slate-600 dark:text-slate-300"
+            >BCA</span
+          >
+        </button>
+        <button
+          class="flex flex-col items-center justify-center gap-2 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/30 hover:border-primary/50 hover:bg-primary/5 hover:shadow-glow transition-all group h-28"
+        >
+          <div
+            class="w-10 h-10 rounded-full bg-[#f8a53e] text-white flex items-center justify-center font-bold text-xs shadow-md group-hover:scale-110 transition-transform"
+          >
+            Jago
+          </div>
+          <span class="text-xs font-bold text-slate-600 dark:text-slate-300"
+            >Bank Jago</span
+          >
+        </button>
+        <button
+          class="flex flex-col items-center justify-center gap-2 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/30 hover:border-primary/50 hover:bg-primary/5 hover:shadow-glow transition-all group h-28"
+        >
+          <div
+            class="w-10 h-10 rounded-full bg-blue-900 text-[#FFD700] flex items-center justify-center font-bold text-xs shadow-md group-hover:scale-110 transition-transform"
+          >
+            BM
+          </div>
+          <span class="text-xs font-bold text-slate-600 dark:text-slate-300"
+            >Mandiri</span
+          >
+        </button>
+        <button
+          class="flex flex-col items-center justify-center gap-2 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/30 hover:border-primary/50 hover:bg-primary/5 hover:shadow-glow transition-all group h-28"
+        >
+          <div
+            class="w-10 h-10 rounded-full bg-sky-500 text-white flex items-center justify-center font-bold text-xs shadow-md group-hover:scale-110 transition-transform"
+          >
+            <span class="material-symbols-rounded text-lg"
+              >account_balance_wallet</span
+            >
+          </div>
+          <span class="text-xs font-bold text-slate-600 dark:text-slate-300"
+            >GoPay</span
+          >
+        </button>
+        <button
+          class="flex flex-col items-center justify-center gap-2 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/30 hover:border-primary/50 hover:bg-primary/5 hover:shadow-glow transition-all group h-28"
+        >
+          <div
+            class="w-10 h-10 rounded-full bg-purple-700 text-white flex items-center justify-center font-bold text-xs shadow-md group-hover:scale-110 transition-transform"
+          >
+            OVO
+          </div>
+          <span class="text-xs font-bold text-slate-600 dark:text-slate-300"
+            >OVO</span
+          >
+        </button>
+        <button
+          class="flex flex-col items-center justify-center gap-2 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/30 hover:border-primary/50 hover:bg-primary/5 hover:shadow-glow transition-all group h-28"
+        >
+          <div
+            class="w-10 h-10 rounded-full bg-orange-500 text-white flex items-center justify-center font-bold text-xs shadow-md group-hover:scale-110 transition-transform"
+          >
+            SP
+          </div>
+          <span class="text-xs font-bold text-slate-600 dark:text-slate-300"
+            >ShopeePay</span
+          >
+        </button>
+      </div>
+      <button
+        class="w-full flex items-center gap-3 p-4 rounded-2xl border border-dashed border-slate-300 dark:border-slate-600 hover:border-primary hover:bg-primary/5 transition-all text-left group"
+      >
+        <div
+          class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 group-hover:text-primary transition-colors"
+        >
+          <span class="material-symbols-rounded">edit</span>
+        </div>
+        <span
+          class="text-sm font-bold text-slate-700 dark:text-slate-300 group-hover:text-primary transition-colors"
+          >Add Manual Account (Cash)</span
+        >
+      </button>
+    </div>
+    <div
+      class="p-6 border-t border-slate-200/50 dark:border-slate-700/50 bg-slate-50/50 dark:bg-slate-800/30"
+    >
+      <button
+        class="w-full py-3.5 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-400 font-bold cursor-not-allowed mb-4 transition-colors"
+      >
+        Continue
+      </button>
+      <div
+        class="flex items-center justify-center gap-1.5 text-slate-400 opacity-80"
+      >
+        <span class="material-symbols-rounded text-sm">lock</span>
+        <span class="text-[10px] font-bold uppercase tracking-wider"
+          >Secured with 256-bit encryption</span
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("provider-modal");
+  const btnClose = document.getElementById("btn-close-modal");
+  const backdrop = document.getElementById("modal-backdrop");
+
+  // Logic to open modal is handled via the trigger button in the parent page
+  const btnOpen = document.getElementById("btn-add-provider");
+
+  if (btnOpen && modal) {
+    btnOpen.addEventListener("click", () => {
+      modal.classList.remove("hidden");
+    });
+  }
+
+  if (btnClose && modal) {
+    btnClose.addEventListener("click", () => {
+      modal.classList.add("hidden");
+    });
+  }
+
+  if (backdrop && modal) {
+    backdrop.addEventListener("click", () => {
+      modal.classList.add("hidden");
+    });
+  }
+</script>

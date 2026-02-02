@@ -3,6 +3,7 @@
 import Base from "../layouts/Base.astro";
 import Sidebar from "../components/Sidebar.astro";
 import Header from "../components/Header.astro";
+import ProviderCreateModal from "../components/ProviderCreateModal.astro";
 ---
 
 <Base title="Sira - Account Matrix">
@@ -582,6 +583,7 @@ import Header from "../components/Header.astro";
             class="p-6 border-t border-white/20 dark:border-slate-700/50 mt-auto bg-white/20 dark:bg-slate-900/30 rounded-b-2xl"
           >
             <button
+              id="btn-add-provider"
               class="btn-primary w-full py-3 text-white rounded-xl font-bold shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all flex items-center justify-center gap-2"
             >
               <span class="material-symbols-rounded">add_circle</span>
@@ -592,6 +594,7 @@ import Header from "../components/Header.astro";
       </div>
     </main>
   </div>
+  <ProviderCreateModal />
 </Base>
 
 <style>
