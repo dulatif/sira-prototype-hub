@@ -3,6 +3,8 @@
 import Base from "../layouts/Base.astro";
 import Sidebar from "../components/Sidebar.astro";
 import Header from "../components/Header.astro";
+import TransactionModal from "../components/TransactionModal.astro";
+import TransactionDetailModal from "../components/TransactionDetailModal.astro";
 ---
 
 <Base title="Sira - Transaction Journal">
@@ -88,7 +90,16 @@ import Header from "../components/Header.astro";
                 >
                 <span>Wallet: Main</span>
               </button>
-              <div class="flex-1"></div>
+              <button
+                onclick="document.dispatchEvent(new CustomEvent('open-transaction-modal'))"
+                class="hidden md:flex items-center gap-2 px-4 py-2 rounded-xl bg-primary text-white text-sm font-bold shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:scale-105 transition-all whitespace-nowrap ml-auto"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >add_circle</span
+                >
+                <span>Add Transaction</span>
+              </button>
+              <div class="hidden"></div>
               <button
                 class="hidden md:flex items-center justify-center size-8 rounded-full text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors"
               >
@@ -261,6 +272,7 @@ import Header from "../components/Header.astro";
 
                   <!-- Transaction Item 1 -->
                   <div
+                    onclick="document.dispatchEvent(new CustomEvent('open-transaction-detail'))"
                     class="group relative flex items-center justify-between p-3 bg-white/70 hover:bg-white rounded-xl border border-transparent hover:border-primary/20 shadow-sm transition-all duration-300 cursor-pointer"
                   >
                     <div class="flex items-center gap-3">
@@ -294,6 +306,7 @@ import Header from "../components/Header.astro";
 
                   <!-- Transaction Item 2 -->
                   <div
+                    onclick="document.dispatchEvent(new CustomEvent('open-transaction-detail'))"
                     class="group relative flex items-center justify-between p-3 bg-white/70 hover:bg-white rounded-xl border border-transparent hover:border-primary/20 shadow-sm transition-all duration-300 cursor-pointer"
                   >
                     <div class="flex items-center gap-3">
@@ -351,6 +364,7 @@ import Header from "../components/Header.astro";
 
                   <!-- Transaction Item 3 -->
                   <div
+                    onclick="document.dispatchEvent(new CustomEvent('open-transaction-detail'))"
                     class="group relative flex items-center justify-between p-3 bg-white/70 hover:bg-white rounded-xl border border-transparent hover:border-primary/20 shadow-sm transition-all duration-300 cursor-pointer"
                   >
                     <div class="flex items-center gap-3">
@@ -384,6 +398,7 @@ import Header from "../components/Header.astro";
 
                   <!-- Transaction Item 4 -->
                   <div
+                    onclick="document.dispatchEvent(new CustomEvent('open-transaction-detail'))"
                     class="group relative flex items-center justify-between p-3 bg-white/70 hover:bg-white rounded-xl border border-transparent hover:border-primary/20 shadow-sm transition-all duration-300 cursor-pointer"
                   >
                     <div class="flex items-center gap-3">
@@ -432,10 +447,13 @@ import Header from "../components/Header.astro";
 
       <!-- Mobile FAB -->
       <button
-        class="md:hidden fixed bottom-6 right-6 size-14 rounded-full bg-primary text-white shadow-lg flex items-center justify-center z-50"
+        onclick="document.dispatchEvent(new CustomEvent('open-transaction-modal'))"
+        class="md:hidden fixed bottom-6 right-6 size-14 rounded-full bg-primary text-white shadow-lg flex items-center justify-center z-50 active:scale-90 transition-transform"
       >
         <span class="material-symbols-outlined">add</span>
       </button>
     </main>
   </div>
+  <TransactionModal />
+  <TransactionDetailModal />
 </Base>
